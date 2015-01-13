@@ -2,8 +2,8 @@
 *.bluej
 *.ctxt
 *.txt
-.project
-.classpath
+*.project
+*.classpath
 
 # Mobile Tools for Java (J2ME)
 .mtj.tmp/
