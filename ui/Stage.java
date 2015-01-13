@@ -36,10 +36,14 @@ public class Stage
         return choices;
     }
     
+    public void setChoice(String str) {
+        chosen = str;
+    }
+    
     public void setChoices(String... buttons) {
         if(choices == null) {
             choices = buttons;
-            Window.syncChoices(buttons);
+            Window.syncChoices();
         }
     }
     
@@ -61,6 +65,7 @@ public class Stage
     public static void nextStage() {
         currentStage++;
         if(currentStage < stageList.size()) stageList.get(currentStage).init();
+        Window.syncChoices();
         Window.redraw();
     }
     
@@ -68,6 +73,7 @@ public class Stage
         if(currentStage > 0) currentStage--;
         if(currentStage < stageList.size()) stageList.get(currentStage).init();
         else if(stageList.size() > 0) stageList.get(stageList.size()-1).init();
+        Window.syncChoices();
         Window.redraw();
     }
     

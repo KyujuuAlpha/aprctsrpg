@@ -21,6 +21,8 @@ public class Window extends JFrame implements ActionListener {
         super(str);
         this.setSize(800,600);
         painterVar = new Painter();
+        statsMenu = new JPanel();
+        ostatsMenu = new JPanel();
         actionsMenu = new JPanel();
         this.add(statsMenu, BorderLayout.NORTH);
         this.add(ostatsMenu, BorderLayout.SOUTH);
@@ -29,11 +31,20 @@ public class Window extends JFrame implements ActionListener {
         this.setVisible(true);
     }
     
-    public static void syncChoices(String[] choices) {
+    public static void syncChoices() {
         actionsMenu.removeAll();
-        actionsMenu.setLayout(new GridLayout(choices.length, 1));
-        for(int i = 0; i < choices.length; i++) {
-            actionsMenu.add(new JButton(choices[i]));
+        if(Stage.getStage().getChoices() == null) return;
+        actionsMenu.setLayout(new GridLayout(Stage.getStage().getChoices().length, 1));
+        for(int i = 0; i < Stage.getStage().getChoices().length; i++) {
+            JButton jb = new JButton(Stage.getStage().getChoices()[i]);
+            jb.addActionListener(windowVar);
+            actionsMenu.add(jb);
+        }
+    }
+    
+    public static void disableChoices() {
+        for(int i = 0; i < actionsMenu.getComponents().length; i++) {
+            actionsMenu.getComponents()[i].setEnabled(false);
         }
     }
     
@@ -43,7 +54,11 @@ public class Window extends JFrame implements ActionListener {
     
     @Override
     public void actionPerformed(ActionEvent e) {
- 
+        if(Stage.getStage().getChoice() == null) {
+            Stage.getStage().setChoice(((JButton)e.getSource()).getText());
+            disableChoices();
+            Stage.getStage().choiceDone();
+        }
     }
     
     static class Painter extends JComponent {
