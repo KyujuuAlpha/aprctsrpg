@@ -26,8 +26,9 @@ public class Stage
     }
     
     public boolean checkChoices() {
-        if(chosen != null) return true;
-        else return checkChoices();
+        /*if(chosen != null) return true;
+        else return checkChoices();*/
+        return false;
     }
     
     public String getChoice() {
