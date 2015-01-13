@@ -22,8 +22,19 @@ public class Character {
 							return stat_Value[i];
 						}
 				}
+			return 0;
+		}
+	public static void health_Mutator(double damage)
+		{
+			stat_Value[0] = stat_Value[0] - damage;
+		}
+	public static void health_Main_Mutator(double damage)
+		{
+			double temp_01;
+			temp_01 = damage - (stat_Value[1] * damage);
+			health_Mutator(temp_01);
 			
 		}
-	
+		
 
 }
