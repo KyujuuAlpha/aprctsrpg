@@ -9,6 +9,8 @@ public class Window extends JFrame implements ActionListener {
     private static Window windowVar;
     
     private static JPanel actionsMenu;
+    private static JPanel statsMenu;
+    private static JPanel ostatsMenu;
     
     public static void init() {
         windowVar = new Window("RPG");
@@ -20,6 +22,8 @@ public class Window extends JFrame implements ActionListener {
         this.setSize(800,600);
         painterVar = new Painter();
         actionsMenu = new JPanel();
+        this.add(statsMenu, BorderLayout.NORTH);
+        this.add(ostatsMenu, BorderLayout.SOUTH);
         this.add(actionsMenu, BorderLayout.WEST);
         this.add(painterVar);
         this.setVisible(true);
