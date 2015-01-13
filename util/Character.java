@@ -1,21 +1,29 @@
 package util;
 
 public class Character {
-	static private int health;
-	static private double armor;
-	static private int attackDmg;
-	static private double speed;
-	static private int weapon_Dmg;
-	static private double speed_Multiplier;
+	static private double[] stat_Value = new double[6];
+	static private String[] stats_Name = {"health", "armor", "speed", "speed_Multiplier", "attackDamage", "weapon_Dmg"};
 	public static void character_Stats()
 		{
-			health = 100;
-			armor = 0.10;
-			speed = 10.0;
-			speed_Multiplier = 0.05;
-			attackDmg = 5;
-			weapon_Dmg = 0;
+			stat_Value[0] = 100;
+			stat_Value[1] = 0.10;
+			stat_Value[2] = 10.0;
+			stat_Value[3] = 0.05;
+			stat_Value[4] = 5.0;
+			stat_Value[5] = 0;
 			
 		}
+	public static double character_Stats_Return (String stat_Name)
+		{
+			for (int i = 0; i <= stats_Name.length; i++)
+				{
+					if (stats_Name[i].equals(stat_Name))
+						{
+							return stat_Value[i];
+						}
+				}
+			
+		}
+	
 
 }
