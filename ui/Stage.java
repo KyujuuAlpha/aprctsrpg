@@ -17,18 +17,15 @@ public class Stage
         nextStage();
     }
     
+    public void choiceDone() {
+    }
+    
     public void setDialog(String str) {
         dialogText = str;
     }
     
     public String getDialog() {
         return dialogText;
-    }
-    
-    public boolean checkChoices() {
-        /*if(chosen != null) return true;
-        else return checkChoices();*/
-        return false;
     }
     
     public String getChoice() {
@@ -40,7 +37,10 @@ public class Stage
     }
     
     public void setChoices(String... buttons) {
-        choices = buttons;
+        if(choices == null) {
+            choices = buttons;
+            Window.syncChoices(buttons);
+        }
     }
     
     /**
