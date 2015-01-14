@@ -37,12 +37,17 @@ public class Character {
 		}
 	public static void armor_Mutator(double armor){
 		if (armor > 0.0 && armor <1.0)
-		{
-			stat_Value[1] = armor;
+			{
+				stat_Value[1] = armor;
+			}
+				
+		
 		}
-			
+	public static void speed_Multiplier_Mutator(String item_Name){
 		
 	}
 		
+	
+	
 
 }
