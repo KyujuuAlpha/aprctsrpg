@@ -61,10 +61,11 @@ public class Window extends JFrame implements ActionListener {
     public static void syncInputs() {
         if(Stage.getStage().getInputLengths() == null) return;
         else inMenu.removeAll();
-        inMenu.setLayout(new GridLayout(Stage.getStage().getInputLengths().length, 1));
+        inMenu.setLayout(new BoxLayout(inMenu, BoxLayout.Y_AXIS));
         for(int i = 0; i < Stage.getStage().getInputLengths().length; i++) {
             JTextField jT = new JTextField(Stage.getStage().getInputLengths()[i]);
-            //jT.addActionListener(windowVar);
+            jT.setMaximumSize(jT.getPreferredSize());
+            jT.setAlignmentX(0.0F);
             inMenu.add(jT);
         }
         inMenu.revalidate();
