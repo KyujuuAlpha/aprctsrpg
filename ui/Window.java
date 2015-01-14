@@ -32,20 +32,16 @@ public class Window extends JFrame implements ActionListener {
     }
     
     public static void syncChoices() {
-        actionsMenu.removeAll();
         if(Stage.getStage().getChoices() == null) return;
+        else actionsMenu.removeAll();
         actionsMenu.setLayout(new GridLayout(Stage.getStage().getChoices().length, 1));
         for(int i = 0; i < Stage.getStage().getChoices().length; i++) {
             JButton jb = new JButton(Stage.getStage().getChoices()[i]);
             jb.addActionListener(windowVar);
             actionsMenu.add(jb);
         }
-    }
-    
-    public static void disableChoices() {
-        for(int i = 0; i < actionsMenu.getComponents().length; i++) {
-            actionsMenu.getComponents()[i].setEnabled(false);
-        }
+        actionsMenu.revalidate();
+        actionsMenu.repaint();
     }
     
     public static void redraw() {
