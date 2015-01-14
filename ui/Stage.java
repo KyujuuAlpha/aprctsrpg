@@ -12,17 +12,30 @@ public class Stage
     
     private String[] choices;
     
+    /**
+     * Initial method that is called upon when stage starts
+     */
     public void init() {
         nextStage();
     }
     
+    /**
+     * Method that activates when one of the choices is clicked
+     * 1 Parameter: the button's name
+     */
     public void choiceDone(String button) {
     }
     
+    /**
+     * Set the current dialog for this stage
+     */
     public void setDialog(String str) {
         dialogText = str;
     }
     
+    /**
+     * Get the current dialog for this stage
+     */
     public String getDialog() {
         return dialogText;
     }
@@ -31,6 +44,9 @@ public class Stage
         return choices;
     }
     
+    /**
+     * Set the current choices for this stage
+     */
     public void setChoices(String... buttons) {
         choices = buttons;
         Window.syncChoices();
@@ -47,10 +63,16 @@ public class Stage
         if(stageList.size() > 0) stageList.get(0).init();
     }
     
+    /**
+     * Add a new stage to the list
+     */
     public static void addStage(Stage stageVar) {
         stageList.add(stageVar);
     }
     
+    /**
+     * Move onto the next stage on the list
+     */
     public static void nextStage() {
         currentStage++;
         if(currentStage < stageList.size()) stageList.get(currentStage).init();
@@ -58,6 +80,9 @@ public class Stage
         Window.redraw();
     }
     
+    /**
+     * Go back one stage on the list
+     */
     public static void prevStage() {
         if(currentStage > 0) currentStage--;
         if(currentStage < stageList.size()) stageList.get(currentStage).init();
@@ -66,10 +91,16 @@ public class Stage
         Window.redraw();
     }
     
+    /**
+     * Get the current stage this game is on
+     */
     public static int getStageNumber() { 
         return currentStage; 
     }
     
+    /**
+     * Get the actual current stage object
+     */
     public static Stage getStage() {
         if(currentStage < stageList.size()) return stageList.get(currentStage);
         else if(stageList.size() > 0) return stageList.get(stageList.size()-1);
