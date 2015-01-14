@@ -5,30 +5,30 @@ Contributors: Troi-Ryan Stoeffler, Alexander Patapoff, and Ryan Chen
 
 Classes:
 
-Backpack (Five Slots not including weapon)
+• Backpack (Five Slots not including weapon)
 
-Building (Where you start)
+• Building (Where you start)
 
-Character (contains health, weapon selection)
+• Character (contains health, weapon selection)
 
-Creature (types of Zombies?)
+• Creature (types of Zombies?)
 
-Dock (Location)
+• Dock (Location)
 
-Event
+• Event
 
-Game
+• Game
 
-Gold/currency
+• Gold/currency
 
-Items
+• Items
 
-Factions(Interface for missions)
+• Factions(Interface for missions)
 
-Food (Health)
+• Food (Health)
 
-Random (Having to do with random gold drop, weapon drop, exp, etc.)
+• Random (Having to do with random gold drop, weapon drop, exp, etc.)
 
-Score (TBD)
+• Score (TBD)
 
-Shop (Upgrade Weapons and Buy Food)
+• Shop (Upgrade Weapons and Buy Food)
