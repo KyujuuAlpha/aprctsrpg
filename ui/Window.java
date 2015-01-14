@@ -11,6 +11,7 @@ public class Window extends JFrame implements ActionListener {
     private static JPanel actionsMenu;
     private static JPanel statsMenu;
     private static JPanel ostatsMenu;
+    private static JPanel displayMenu;
     
     public static void init() {
         windowVar = new Window("RPG");
@@ -21,14 +22,24 @@ public class Window extends JFrame implements ActionListener {
         super(str);
         this.setSize(800,600);
         painterVar = new Painter();
+        displayMenu = new JPanel();
         statsMenu = new JPanel();
         ostatsMenu = new JPanel();
         actionsMenu = new JPanel();
+        this.setLayout(new BorderLayout());
+        displayMenu.setLayout(new BorderLayout());
+        displayMenu.add(painterVar, BorderLayout.CENTER);
+        this.add(displayMenu, BorderLayout.CENTER);
         this.add(statsMenu, BorderLayout.NORTH);
         this.add(ostatsMenu, BorderLayout.SOUTH);
         this.add(actionsMenu, BorderLayout.WEST);
-        this.add(painterVar);
         this.setVisible(true);
+    }
+    
+    public static void renderDisplay() {
+        displayMenu.revalidate();
+        displayMenu.repaint();
+        painterVar.repaint();
     }
     
     public static void syncChoices() {
@@ -42,6 +53,7 @@ public class Window extends JFrame implements ActionListener {
         }
         actionsMenu.revalidate();
         actionsMenu.repaint();
+        renderDisplay();
     }
 
     @Override
@@ -50,13 +62,15 @@ public class Window extends JFrame implements ActionListener {
             actionsMenu.getComponents()[i].setEnabled(false);
         }
         Stage.getStage().choiceDone(((JButton)e.getSource()).getText());
+        renderDisplay();
     }
     
     static class Painter extends JComponent {
         @Override
         public void paintComponent(Graphics g) {
             Graphics2D render = (Graphics2D)g;
-            render.drawString(Stage.getStage().getDialog(), 0, 0);
+            render.setPaint(Color.BLACK);
+            render.drawString(Stage.getStage().getDialog(), 0, 20);
         }
     };
 }
