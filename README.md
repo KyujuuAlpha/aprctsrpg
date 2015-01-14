@@ -17,6 +17,8 @@ Dock (Location)
 
 Event
 
+Game
+
 Gold/currency
 
 Items
