@@ -3,8 +3,7 @@
 *.txt
 *.project
 *.classpath
-
-package*
+*.bluej
 
 # Mobile Tools for Java (J2ME)
 .mtj.tmp/
