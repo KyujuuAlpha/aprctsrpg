@@ -11,13 +11,12 @@ public class Stage
     private String dialogText = "";
     
     private String[] choices;
-    private String chosen;
     
     public void init() {
         nextStage();
     }
     
-    public void choiceDone() {
+    public void choiceDone(String button) {
     }
     
     public void setDialog(String str) {
@@ -28,23 +27,13 @@ public class Stage
         return dialogText;
     }
     
-    public String getChoice() {
-        return chosen;
-    }
-    
     public String[] getChoices() {
         return choices;
     }
     
-    public void setChoice(String str) {
-        chosen = str;
-    }
-    
     public void setChoices(String... buttons) {
-        if(choices == null) {
-            choices = buttons;
-            Window.syncChoices();
-        }
+        choices = buttons;
+        Window.syncChoices();
     }
     
     /**

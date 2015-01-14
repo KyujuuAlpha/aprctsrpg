@@ -54,11 +54,10 @@ public class Window extends JFrame implements ActionListener {
     
     @Override
     public void actionPerformed(ActionEvent e) {
-        if(Stage.getStage().getChoice() == null) {
-            Stage.getStage().setChoice(((JButton)e.getSource()).getText());
-            disableChoices();
-            Stage.getStage().choiceDone();
+        for(int i = 0; i < actionsMenu.getComponents().length; i++) {
+            actionsMenu.getComponents()[i].setEnabled(false);
         }
+        Stage.getStage().choiceDone(((JButton)e.getSource()).getText());
     }
     
     static class Painter extends JComponent {
