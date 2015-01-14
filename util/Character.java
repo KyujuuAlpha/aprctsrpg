@@ -2,7 +2,7 @@ package util;
 
 public class Character {
 	static private double[] stat_Value = new double[6];
-	static private String[] stats_Name = {"health", "armor", "speed", "speed_Multiplier", "attackDamage", "weapon_Dmg"};
+	static private String[] stats_Name = {"health", "armor", "speed", "speed_Multiplier", "attackDamage", "weapon_Dmg","Gold","Backpack"};
 	public static void character_Stats()
 		{
 			stat_Value[0] = 100;
@@ -35,6 +35,14 @@ public class Character {
 			health_Mutator(temp_01);
 			
 		}
+	public static void armor_Mutator(double armor){
+		if (armor > 0.0 && armor <1.0)
+		{
+			stat_Value[1] = armor;
+		}
+			
+		
+	}
 		
 
 }
