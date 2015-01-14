@@ -13,6 +13,7 @@ public class StageMenu extends Stage {
     public void init() {
         setDialog("Maximized");
         setImages("troi");
+        setInputs(5);
         setChoices("Click To Expand", "Disable Me");
     }
 }

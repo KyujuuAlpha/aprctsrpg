@@ -13,6 +13,8 @@ public class Stage
     
     private String[] choices;
     
+    private int[] inputs;
+    
     /**
      * Initial method that is called upon when stage starts
      */
@@ -39,6 +41,21 @@ public class Stage
      */
     public String getDialog() {
         return dialogText;
+    }
+    
+    /**
+     * Set the current inputs for this stage
+     */
+    public void setInputs(int... inputsVar) {
+        inputs = inputsVar;
+        Window.syncInputs();
+    }
+    
+    /**
+     * Get the current inputs for this stage
+     */
+    public int[] getInputLengths() {
+        return inputs;
     }
     
     /**

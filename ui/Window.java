@@ -19,6 +19,9 @@ public class Window extends JFrame implements ActionListener {
     private static JPanel displayMenu;
     private static JPanel imageMenu;
     
+    private static JPanel ioMenu;
+    private static JPanel inMenu;
+    
     public static void init() {
         windowVar = new Window("RPG");
         Stage.begin();
@@ -33,9 +36,14 @@ public class Window extends JFrame implements ActionListener {
         ostatsMenu = new JPanel();
         actionsMenu = new JPanel();
         imageMenu = new JPanel();
+        ioMenu = new JPanel();
+        inMenu = new JPanel();
         this.setLayout(new BorderLayout());
         displayMenu.setLayout(new GridLayout(1,2));
-        displayMenu.add(painterVar);
+        ioMenu.setLayout(new GridLayout(2,1));
+        ioMenu.add(painterVar);
+        ioMenu.add(inMenu);
+        displayMenu.add(ioMenu);
         displayMenu.add(imageMenu);
         this.add(displayMenu, BorderLayout.CENTER);
         this.add(statsMenu, BorderLayout.NORTH);
@@ -50,10 +58,24 @@ public class Window extends JFrame implements ActionListener {
         painterVar.repaint();
     }
     
+    public static void syncInputs() {
+        if(Stage.getStage().getInputLengths() == null) return;
+        else inMenu.removeAll();
+        inMenu.setLayout(new GridLayout(Stage.getStage().getInputLengths().length, 1));
+        for(int i = 0; i < Stage.getStage().getInputLengths().length; i++) {
+            JTextField jT = new JTextField(Stage.getStage().getInputLengths()[i]);
+            //jT.addActionListener(windowVar);
+            inMenu.add(jT);
+        }
+        inMenu.revalidate();
+        inMenu.repaint();
+        renderDisplay();
+    }
+    
     private static void syncImages() { //MY way of adding images next to eachother without adding another painter
         if(Stage.getStage().getImages() == null) return;
         else imageMenu.removeAll();
-        imageMenu.setLayout(new GridLayout(1, Stage.getStage().getChoices().length));
+        imageMenu.setLayout(new GridLayout(1, Stage.getStage().getImages().length));
         for(int i = 0; i < Stage.getStage().getImages().length; i++) {
             if(Stage.getStage().getImages()[i].length() < 1) continue;
             JLabel jl = new JLabel();
