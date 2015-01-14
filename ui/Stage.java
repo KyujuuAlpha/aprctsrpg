@@ -9,6 +9,7 @@ public class Stage
     private static ArrayList<Stage> stageList = new ArrayList<Stage>();
     
     private String dialogText = "";
+    private String[] imageDisplay = {""};
     
     private String[] choices;
     
@@ -38,6 +39,20 @@ public class Stage
      */
     public String getDialog() {
         return dialogText;
+    }
+    
+    /**
+     * Set the current images for this stage
+     */
+    public void setImages(String... images) {
+        imageDisplay = images;
+    }
+    
+    /**
+     * Get the current images for this stage
+     */
+    public String[] getImages() {
+        return imageDisplay;
     }
     
     public String[] getChoices() {

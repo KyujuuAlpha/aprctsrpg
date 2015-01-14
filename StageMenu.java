@@ -4,6 +4,7 @@ public class StageMenu extends Stage {
     @Override
     public void choiceDone(String a) {
         setDialog("Minimized");
+        setImages("");
         if(a.equals("Click To Expand")) setChoices("Click To Minimize", "Disable Me", "Disable Me", "Disable Me", "Disable Me", "Disable Me");
         else if(a.equals("Click To Minimize")) init();
     }
@@ -11,6 +12,7 @@ public class StageMenu extends Stage {
     @Override
     public void init() {
         setDialog("Maximized");
+        setImages("troi");
         setChoices("Click To Expand", "Disable Me");
     }
 }
