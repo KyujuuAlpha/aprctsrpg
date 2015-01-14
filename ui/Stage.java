@@ -44,6 +44,14 @@ public class Stage
     }
     
     /**
+     * get the text from an input
+     */
+    public String getInputText(int id) {
+        if(inputs.length < 1) return null;
+        return Window.getTextFromField(id);
+    }
+    
+    /**
      * Set the current inputs for this stage
      */
     public void setInputs(int... inputsVar) {

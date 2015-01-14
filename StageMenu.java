@@ -5,7 +5,7 @@ public class StageMenu extends Stage {
     public void choiceDone(String a) {
         setDialog("Minimized");
         setImages("troi", "troi");
-        if(a.equals("Click To Expand")) setChoices("Click To Minimize", "Disable Me", "Disable Me", "Disable Me", "Disable Me", "Disable Me");
+        if(a.equals("Click To Expand")) setChoices("Click To Minimize", "Disable Me", "Disable Me", "Disable Me", "Disable Me", getInputText(0));
         else if(a.equals("Click To Minimize")) init();
     }
     

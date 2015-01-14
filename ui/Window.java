@@ -103,6 +103,19 @@ public class Window extends JFrame implements ActionListener {
         actionsMenu.repaint();
         renderDisplay();
     }
+    
+    public static Component[] getComponentArray(String type) {
+        switch(type) {
+            case "choice": return actionsMenu.getComponents();
+            case "image": return imageMenu.getComponents();
+            case "input": return inMenu.getComponents();
+            default: return null;
+        }
+    }
+    
+    public static String getTextFromField(int id) {
+        return ((JTextField)getComponentArray("input")[id]).getText();
+    }
 
     @Override
     public void actionPerformed(ActionEvent e) {
