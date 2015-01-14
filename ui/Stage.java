@@ -51,14 +51,7 @@ public class Stage
         choices = buttons;
         Window.syncChoices();
     }
-    
-    /**
-     * Redraw the window;
-     */
-    public void update() {
-        Window.redraw();
-    }
-    
+
     public static void begin() {
         if(stageList.size() > 0) stageList.get(0).init();
     }
@@ -77,7 +70,6 @@ public class Stage
         currentStage++;
         if(currentStage < stageList.size()) stageList.get(currentStage).init();
         Window.syncChoices();
-        Window.redraw();
     }
     
     /**
@@ -88,7 +80,6 @@ public class Stage
         if(currentStage < stageList.size()) stageList.get(currentStage).init();
         else if(stageList.size() > 0) stageList.get(stageList.size()-1).init();
         Window.syncChoices();
-        Window.redraw();
     }
     
     /**

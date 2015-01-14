@@ -43,11 +43,7 @@ public class Window extends JFrame implements ActionListener {
         actionsMenu.revalidate();
         actionsMenu.repaint();
     }
-    
-    public static void redraw() {
-        painterVar.repaint();
-    }
-    
+
     @Override
     public void actionPerformed(ActionEvent e) {
         for(int i = 0; i < actionsMenu.getComponents().length; i++) {
