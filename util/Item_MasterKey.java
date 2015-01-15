@@ -1,4 +1,4 @@
-
+package util;
 public class Item_MasterKey {
 	static double[] stats_Value = new double[2];
 	static String[] stats_Name = {"damage", "drop_Num","poisonDotDamage"};
