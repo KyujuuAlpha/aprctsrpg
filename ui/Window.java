@@ -13,7 +13,7 @@ public class Window extends JFrame implements ActionListener {
     private static JPanel statsMenu;
     private static JPanel ostatsMenu;
     private static JPanel displayMenu;
-    private static ImagePanel imageMenu;
+    private static SpritePanel imageMenu;
     
     private static JPanel ioMenu;
     private static JPanel inMenu;
@@ -32,7 +32,7 @@ public class Window extends JFrame implements ActionListener {
         statsMenu = new JPanel();
         ostatsMenu = new JPanel();
         actionsMenu = new JPanel();
-        imageMenu = new ImagePanel();
+        imageMenu = new SpritePanel();
         ioMenu = new JPanel();
         inMenu = new JPanel();
         this.setLayout(new BorderLayout());
@@ -91,12 +91,4 @@ public class Window extends JFrame implements ActionListener {
         Stage.getStage().choiceDone(((JButton)e.getSource()).getText());
         renderDisplay();
     }
-    
-    static class ImagePanel extends JPanel {
-        @Override
-        public void repaint() {
-            super.revalidate();
-            super.repaint();
-        };
-    };
 }
