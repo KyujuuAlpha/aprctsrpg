@@ -17,10 +17,12 @@ public class Window extends JFrame implements ActionListener {
     private static JPanel statsMenu;
     private static JPanel ostatsMenu;
     private static JPanel displayMenu;
-    private static JPanel imageMenu;
+    private static ImagePanel imageMenu;
     
     private static JPanel ioMenu;
     private static JPanel inMenu;
+    
+    private static JLabel dialog;
     
     public static void init() {
         windowVar = new Window("RPG");
@@ -30,18 +32,20 @@ public class Window extends JFrame implements ActionListener {
     public Window(String str) {
         super(str);
         this.setSize(800,600);
-        painterVar = new Painter();
         displayMenu = new JPanel();
         statsMenu = new JPanel();
         ostatsMenu = new JPanel();
         actionsMenu = new JPanel();
-        imageMenu = new JPanel();
+        imageMenu = new ImagePanel();
         ioMenu = new JPanel();
         inMenu = new JPanel();
         this.setLayout(new BorderLayout());
         displayMenu.setLayout(new GridLayout(1,2));
         ioMenu.setLayout(new GridLayout(2,1));
-        ioMenu.add(painterVar);
+        JPanel temp = new JPanel();
+        dialog = new JLabel(" ");
+        temp.add(dialog, BorderLayout.WEST);
+        ioMenu.add(temp, BorderLayout.WEST);
         ioMenu.add(inMenu);
         displayMenu.add(ioMenu);
         displayMenu.add(imageMenu);
@@ -52,10 +56,15 @@ public class Window extends JFrame implements ActionListener {
         this.setVisible(true);
     }
     
+    public static void updateText() {
+        dialog.setText(" " + Stage.getStage().getDialog());
+    }
+    
     public static void renderDisplay() {
         displayMenu.revalidate();
         displayMenu.repaint();
-        painterVar.repaint();
+        updateText();
+        syncImages();
     }
     
     public static void syncInputs() {
@@ -87,8 +96,6 @@ public class Window extends JFrame implements ActionListener {
             jl.setIcon(new ImageIcon(image));
             imageMenu.add(jl);
         }
-        imageMenu.revalidate();
-        imageMenu.repaint();
     }
     
     public static void syncChoices() {
@@ -127,13 +134,12 @@ public class Window extends JFrame implements ActionListener {
         renderDisplay();
     }
     
-    static class Painter extends JComponent {
+    static class ImagePanel extends JPanel {
         @Override
-        public void paintComponent(Graphics g) {
-            Graphics2D render = (Graphics2D)g;
-            syncImages();
-            render.setPaint(Color.BLACK);
-            render.drawString(Stage.getStage().getDialog(), 0, 20);
-        }
+        public void repaint() {
+            syncChoices();
+            super.revalidate();
+            super.repaint();
+        };
     };
 }
