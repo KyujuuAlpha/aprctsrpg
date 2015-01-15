@@ -1,9 +1,10 @@
-package ui;
+package ui.elem;
+
+import ui.*;
 
 import javax.swing.*;
 
-import java.awt.*;
-import java.awt.event.*;
+import java.awt.Component;
 
 public abstract class Element {
     public static void sync(Stage stageVar) { }

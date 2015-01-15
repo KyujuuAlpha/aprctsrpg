@@ -1,5 +1,7 @@
 package ui;
 
+import ui.elem.*;
+
 import java.util.ArrayList;
 
 public class Stage
@@ -45,7 +47,7 @@ public class Stage
     }
     
     /**
-     * Set the current images for this stage
+     * Set the current text boxes for this stage
      */
     public void setInputs(Input... input) {
         inputs = input;
@@ -53,7 +55,7 @@ public class Stage
     }
     
     /**
-     * Get the current images for this stage
+     * Get the current text boxes for this stage
      */
     public Input[] getInputs() {
         return inputs;

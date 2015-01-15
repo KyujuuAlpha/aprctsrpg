@@ -1,5 +1,7 @@
 package ui;
 
+import ui.elem.*;
+
 import javax.swing.*;
 
 import java.awt.*;
