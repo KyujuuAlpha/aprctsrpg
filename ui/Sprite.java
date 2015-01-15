@@ -8,7 +8,7 @@ import java.awt.image.*;
 
 import java.io.*;
 
-public class Sprite {
+public class Sprite extends Element {
     private String url;
     
     public Sprite(String stringVar) {
@@ -20,7 +20,7 @@ public class Sprite {
     }
     
     public static void sync(Stage stageVar) {
-        JPanel panelVar = Window.getComponentPanel("image");
+        JPanel panelVar = getComponentPanel("image");
         if(stageVar.getSprites() == null) return;
         else panelVar.removeAll();
         panelVar.setLayout(new GridLayout(1, stageVar.getSprites().length));

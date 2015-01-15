@@ -3,7 +3,7 @@ package ui;
 import javax.swing.*;
 import java.awt.*;
 
-public class Input {
+public class Input extends Element {
     private static int idCount = 0;
     
     private int id;
@@ -27,13 +27,13 @@ public class Input {
     
     public String getText() {
         if(arrayId > -1) {
-            return Window.getTextFromField(arrayId);
+            return getTextFromField(arrayId);
         }
         return "";
     }
     
     public static void sync(Stage stageVar) {
-        JPanel panelVar = Window.getComponentPanel("input");
+        JPanel panelVar = getComponentPanel("input");
         if(stageVar.getInputs() == null) return;
         else panelVar.removeAll();
         panelVar.setLayout(new BoxLayout(panelVar, BoxLayout.Y_AXIS));
