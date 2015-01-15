@@ -1,6 +1,8 @@
 package util;
+import java.util.Random;
 
 public class Creature_MasterKey {
+	static Random gen = new Random();
 	private static double[] stats_Value = new double[3];
 	private static String[] stats_Name = {"health", "armor", "speed", "attackDamage"};
 	public static void set_Stats(double health , double armor, double speed, double attackDamage)
@@ -31,6 +33,12 @@ public class Creature_MasterKey {
 			temp_01 = damage - (stats_Value[1] * damage);
 			health_Mutator(temp_01);
 			
+		}
+	public static int randomDrop_Gen()
+		{
+			int temp;
+			temp = gen.nextInt(20);
+			return temp;
 		}
 	
 	
