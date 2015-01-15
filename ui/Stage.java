@@ -9,11 +9,12 @@ public class Stage
     private static ArrayList<Stage> stageList = new ArrayList<Stage>();
     
     private String dialogText = "";
+    
     private Sprite[] imageDisplay = {};
     
     private Choice[] choices;
     
-    private int[] inputs;
+    private Input[] inputs;
     
     /**
      * Initial method that is called upon when stage starts
@@ -44,25 +45,17 @@ public class Stage
     }
     
     /**
-     * get the text from an input
+     * Set the current images for this stage
      */
-    public String getInputText(int id) {
-        if(inputs.length < 1) return null;
-        return Window.getTextFromField(id);
+    public void setInputs(Input... input) {
+        inputs = input;
+        Input.sync(this);
     }
     
     /**
-     * Set the current inputs for this stage
+     * Get the current images for this stage
      */
-    public void setInputs(int... inputsVar) {
-        inputs = inputsVar;
-        Window.syncInputs();
-    }
-    
-    /**
-     * Get the current inputs for this stage
-     */
-    public int[] getInputLengths() {
+    public Input[] getInputs() {
         return inputs;
     }
     

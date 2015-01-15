@@ -1,13 +1,11 @@
-import ui.Stage;
-import ui.Choice;
-import ui.Sprite;
+import ui.*;
 
 public class StageMenu extends Stage {
     @Override
     public void choiceDone(String a) {
         setDialog("Minimized");
         setSprites(new Sprite("troi"), new Sprite("troi"));
-        if(a.equals("Click To Expand")) setChoices(new Choice("Click To Minimize"), new Choice("Disable Me"), new Choice("Disable Me"), new Choice("Disable Me"), new Choice("Disable Me"), new Choice(getInputText(0)));
+        if(a.equals("Click To Expand")) setChoices(new Choice("Click To Minimize"), new Choice("Disable Me"), new Choice("Disable Me"), new Choice("Disable Me"), new Choice("Disable Me"), new Choice(getInputs()[0].getText()));
         else if(a.equals("Click To Minimize")) init();
     }
     
@@ -15,7 +13,7 @@ public class StageMenu extends Stage {
     public void init() {
         setDialog("Maximized");
         setSprites(new Sprite("troi"));
-        setInputs(5,10);
+        setInputs(new Input(5), new Input(10));
         setChoices(new Choice("Click To Expand"), new Choice("Disable Me"));
     }
 }
