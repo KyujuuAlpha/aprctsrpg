@@ -98,27 +98,21 @@ public class Window extends JFrame implements ActionListener {
         }
     }
     
-    public static void syncChoices() {
-        if(Stage.getStage().getChoices() == null) return;
-        else actionsMenu.removeAll();
-        actionsMenu.setLayout(new GridLayout(Stage.getStage().getChoices().length, 1));
-        for(int i = 0; i < Stage.getStage().getChoices().length; i++) {
-            JButton jb = new JButton(Stage.getStage().getChoices()[i]);
-            jb.addActionListener(windowVar);
-            actionsMenu.add(jb);
+    public static Window getInstance() {
+        return windowVar;
+    }
+    
+    public static JPanel getComponentPanel(String type) {
+        switch(type) {
+            case "choice": return actionsMenu;
+            case "image": return imageMenu;
+            case "input": return inMenu;
+            default: return null;
         }
-        actionsMenu.revalidate();
-        actionsMenu.repaint();
-        renderDisplay();
     }
     
     public static Component[] getComponentArray(String type) {
-        switch(type) {
-            case "choice": return actionsMenu.getComponents();
-            case "image": return imageMenu.getComponents();
-            case "input": return inMenu.getComponents();
-            default: return null;
-        }
+        return getComponentPanel(type).getComponents();
     }
     
     public static String getTextFromField(int id) {
@@ -137,7 +131,6 @@ public class Window extends JFrame implements ActionListener {
     static class ImagePanel extends JPanel {
         @Override
         public void repaint() {
-            syncChoices();
             super.revalidate();
             super.repaint();
         };

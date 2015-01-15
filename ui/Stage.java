@@ -11,7 +11,7 @@ public class Stage
     private String dialogText = "";
     private String[] imageDisplay = {""};
     
-    private String[] choices;
+    private Choice[] choices;
     
     private int[] inputs;
     
@@ -80,16 +80,16 @@ public class Stage
         return imageDisplay;
     }
     
-    public String[] getChoices() {
+    public Choice[] getChoices() {
         return choices;
     }
     
     /**
      * Set the current choices for this stage
      */
-    public void setChoices(String... buttons) {
+    public void setChoices(Choice... buttons) {
         choices = buttons;
-        Window.syncChoices();
+        Choice.sync(this);
     }
 
     public static void begin() {
@@ -109,7 +109,7 @@ public class Stage
     public static void nextStage() {
         currentStage++;
         if(currentStage < stageList.size()) stageList.get(currentStage).init();
-        Window.syncChoices();
+        Choice.sync(stageList.get(currentStage));
     }
     
     /**
@@ -119,7 +119,7 @@ public class Stage
         if(currentStage > 0) currentStage--;
         if(currentStage < stageList.size()) stageList.get(currentStage).init();
         else if(stageList.size() > 0) stageList.get(stageList.size()-1).init();
-        Window.syncChoices();
+        Choice.sync(stageList.get(currentStage));
     }
     
     /**
