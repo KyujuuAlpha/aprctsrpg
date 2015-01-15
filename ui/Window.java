@@ -1,13 +1,9 @@
 package ui;
 
 import javax.swing.*;
-import javax.imageio.*;
 
 import java.awt.*;
 import java.awt.event.*;
-import java.awt.image.*;
-
-import java.io.*;
 
 public class Window extends JFrame implements ActionListener { 
     private static Painter painterVar;
@@ -64,7 +60,6 @@ public class Window extends JFrame implements ActionListener {
         displayMenu.revalidate();
         displayMenu.repaint();
         updateText();
-        syncImages();
     }
     
     public static void syncInputs() {
@@ -82,21 +77,7 @@ public class Window extends JFrame implements ActionListener {
         renderDisplay();
     }
     
-    private static void syncImages() { //MY way of adding images next to eachother without adding another painter
-        if(Stage.getStage().getImages() == null) return;
-        else imageMenu.removeAll();
-        imageMenu.setLayout(new GridLayout(1, Stage.getStage().getImages().length));
-        for(int i = 0; i < Stage.getStage().getImages().length; i++) {
-            if(Stage.getStage().getImages()[i].length() < 1) continue;
-            JLabel jl = new JLabel();
-            BufferedImage bufferedImage;
-            try { bufferedImage = ImageIO.read(new File("resources/" + Stage.getStage().getImages()[i] + ".png"));
-            } catch(Exception e) { bufferedImage = null; }
-            Image image = bufferedImage.getScaledInstance(bufferedImage.getWidth() / bufferedImage.getHeight() * imageMenu.getHeight(), imageMenu.getHeight(), Image.SCALE_FAST);
-            jl.setIcon(new ImageIcon(image));
-            imageMenu.add(jl);
-        }
-    }
+    
     
     public static Window getInstance() {
         return windowVar;
