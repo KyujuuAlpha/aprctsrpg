@@ -28,13 +28,18 @@ public class Sprite extends Element {
         panelVar.setLayout(new GridLayout(1, stageVar.getSprites().length));
         for(int i = 0; i < stageVar.getSprites().length; i++) {
             if(stageVar.getSprites()[i].getURL().length() < 1) continue;
-            JLabel jl = new JLabel();
+            JPanel temp = new JPanel();
+            panelVar.add(temp);
+            //JLabel jl = new JLabel();
             BufferedImage bufferedImage;
             try { bufferedImage = ImageIO.read(new File("resources/" + stageVar.getSprites()[i].getURL() + ".png"));
             } catch(Exception e) { bufferedImage = null; }
-            Image image = bufferedImage.getScaledInstance(bufferedImage.getWidth() / bufferedImage.getHeight() * panelVar.getHeight(), panelVar.getHeight(), Image.SCALE_FAST);
-            jl.setIcon(new ImageIcon(image));
-            panelVar.add(jl);
+            Image image = bufferedImage.getScaledInstance(bufferedImage.getWidth() / bufferedImage.getHeight() * panelVar.getHeight(), panelVar.getHeight(), Image.SCALE_SMOOTH);
+            Graphics g = image.createGraphics();
+            g.drawImage(image, 0, 0, image.getWidth(), image.getHeight(), null);
+            g.dispose();
+            //jl.setIcon(new ImageIcon(image));
+            //panelVar.add(jl);
         }
     }
 }
