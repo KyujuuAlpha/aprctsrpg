@@ -14,9 +14,9 @@ public class Stage
     
     private Sprite[] imageDisplay = {};
     
-    private Choice[] choices;
+    private Choice[] choicesVar;
     
-    private Input[] inputs;
+    private Input[] inputsVar;
     
     /**
      * Initial method that is called upon when stage starts
@@ -27,7 +27,6 @@ public class Stage
     
     /**
      * Method that activates when one of the choices is clicked
-     * 1 Parameter: the button's name
      */
     public void choiceDone(String button) {
     }
@@ -51,19 +50,19 @@ public class Stage
      * Set the current text boxes for this stage
      */
     public void setInputs(Input... input) {
-        inputs = input;
+        inputsVar = input;
         Input.sync(this);
     }
     
     /**
-     * Get the current text boxes for this stage
+     * Get the current text boxe array for this stage
      */
     public Input[] getInputs() {
-        return inputs;
+        return inputsVar;
     }
     
     /**
-     * Set the current images for this stage
+     * Set the current image array for this stage
      */
     public void setSprites(Sprite... images) {
         imageDisplay = images;
@@ -71,24 +70,30 @@ public class Stage
     }
     
     /**
-     * Get the current images for this stage
+     * Get the current sprite array for this stage
      */
     public Sprite[] getSprites() {
         return imageDisplay;
     }
     
+    /**
+     * Get the current choice array for this stage
+     */
     public Choice[] getChoices() {
-        return choices;
+        return choicesVar;
     }
     
     /**
      * Set the current choices for this stage
      */
     public void setChoices(Choice... buttons) {
-        choices = buttons;
+        choicesVar = buttons;
         Choice.sync(this);
     }
 
+    /**
+     * Begin the game starting at stage 0d
+     */
     public static void begin() {
         if(stageList.size() > 0) stageList.get(0).init();
     }

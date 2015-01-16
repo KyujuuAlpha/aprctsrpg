@@ -15,7 +15,7 @@ public class Window extends JFrame implements ActionListener {
     private static JPanel statsMenu;
     private static JPanel ostatsMenu;
     private static JPanel displayMenu;
-    private static SpritePanel imageMenu;
+    private static JPanel imageMenu;
     
     private static JPanel ioMenu;
     private static JPanel inMenu;
@@ -34,7 +34,7 @@ public class Window extends JFrame implements ActionListener {
         statsMenu = new JPanel(new FlowLayout(FlowLayout.LEFT));
         ostatsMenu = new JPanel(new FlowLayout(FlowLayout.LEFT));
         actionsMenu = new JPanel();
-        imageMenu = new SpritePanel();
+        imageMenu = new JPanel();
         ioMenu = new JPanel();
         inMenu = new JPanel(new FlowLayout(FlowLayout.LEFT));
         this.setLayout(new BorderLayout());
@@ -52,11 +52,6 @@ public class Window extends JFrame implements ActionListener {
         this.add(ostatsMenu, BorderLayout.SOUTH);
         this.add(actionsMenu, BorderLayout.WEST);
         this.setVisible(true);
-    }
-    
-    public static void renderDisplay() {
-        displayMenu.revalidate();
-        displayMenu.repaint();
     }
     
     public static Window getInstance() {
@@ -96,6 +91,5 @@ public class Window extends JFrame implements ActionListener {
             actionsMenu.getComponents()[i].setEnabled(false);
         }
         Stage.getStage().choiceDone(((JButton)e.getSource()).getText());
-        renderDisplay();
     }
 }
