@@ -43,9 +43,13 @@ public class Character {
 				
 		
 		}
-	public static void speed_Multiplier_Mutator(String item_Name){
-		
-	}
+	public static void speed_Multiplier_Mutator(double input){
+			if (input > 0 && input < 100) stat_Value[2] = input;
+			else stat_Value[2] = 0;
+		}
+	public static void weapond_Damage_Mutator(double input){
+			if (input > 0 && input < 100) stat_Value[5] = input;
+		}
 		
 	
 	
