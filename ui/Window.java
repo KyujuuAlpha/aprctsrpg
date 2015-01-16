@@ -87,7 +87,7 @@ public class Window extends JFrame implements ActionListener {
     }
     
     public static String getTextFromField(int id) {
-        return ((JTextField)getComponentArray("input")[id]).getText();
+        return ((JTextField)((JPanel)getComponentArray("input")[id]).getComponents()[1]).getText();
     }
 
     @Override

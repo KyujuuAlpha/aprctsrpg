@@ -13,8 +13,12 @@ import java.io.*;
 public class Dialog extends Element {
     private String text;
     
-    public Dialog(String stringVar) {
-        this.text = stringVar;
+    public Dialog(String... stringVar) {
+        if(stringVar.length > 1) {
+            this.text = "<html>";
+            for(int i = 0; i < stringVar.length; i++) this.text += stringVar[i] + "<br>";
+            this.text += "</html>";
+        } else this.text = stringVar[0];
     }
     
     public String getText() {
