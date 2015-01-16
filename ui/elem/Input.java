@@ -6,25 +6,22 @@ import javax.swing.*;
 import java.awt.*;
 
 public class Input extends Element {
-    private static int idCount = 0;
-    
-    private int id;
     private int size;
+    private String name;
     
     public int arrayId = -1;
     
-    public Input(int intVar) {
+    public Input(String stringVar, int intVar) {
         this.size = intVar;
-        this.id = idCount;
-        idCount++;
+        this.name = stringVar;
     }
     
     public int getSize() {
         return this.size;
     }
     
-    public int getID() {
-        return this.id;
+    public String getName() {
+        return this.name;
     }
     
     public String getText() {
@@ -41,10 +38,13 @@ public class Input extends Element {
         panelVar.setLayout(new BoxLayout(panelVar, BoxLayout.Y_AXIS));
         for(int i = 0; i < stageVar.getInputs().length; i++) {
             stageVar.getInputs()[i].arrayId = i;
+            JPanel temp = new JPanel();
+            temp.setLayout(new FlowLayout(FlowLayout.LEFT));
+            temp.add(new JLabel(stageVar.getInputs()[i].getName() + ": "));
             JTextField jT = new JTextField(stageVar.getInputs()[i].getSize());
-            jT.setMaximumSize(jT.getPreferredSize());
-            jT.setAlignmentX(0.0F);
-            panelVar.add(jT);
+            temp.setMaximumSize(new Dimension((int)panelVar.getWidth(), (int)jT.getPreferredSize().getHeight() + 10));
+            temp.add(jT);
+            panelVar.add(temp);
         }
         panelVar.revalidate();
         panelVar.repaint();

@@ -14,7 +14,7 @@ public class StageMenu extends Stage {
     public void init() {
         setDialog(new Dialog("Maximized"));
         setSprites(new Sprite("troi"));
-        setInputs(new Input(5), new Input(10));
+        setInputs(new Input("Name", 5), new Input("Troi", 10));
         setChoices(new Choice("Click To Expand"), new Choice("Disable Me"));
     }
 }
