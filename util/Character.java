@@ -3,6 +3,7 @@ package util;
 public class Character {
 	static private double[] stat_Value = new double[6];
 	static private String[] stats_Name = {"health", "armor", "speed", "speed_Multiplier", "attackDamage", "weapon_Dmg","Gold","Backpack"};
+	static private int[] backpack = new int[19];
 	public static void character_Stats()
 		{
 			stat_Value[0] = 100;
@@ -50,6 +51,15 @@ public class Character {
 	public static void weapond_Damage_Mutator(double input){
 			if (input > 0 && input < 100) stat_Value[5] = input;
 		}
+	public static void backpack_Add(int id_Number){
+		for (int i = 0; i<backpack.length;i++)
+			{
+				if (backpack[i]==0)
+					{
+						backpack[i] =id_Number;
+					}
+			}
+	}
 		
 	
 	
