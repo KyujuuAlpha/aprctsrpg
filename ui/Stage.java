@@ -10,7 +10,7 @@ public class Stage
     
     private static ArrayList<Stage> stageList = new ArrayList<Stage>();
     
-    private String dialogText = "";
+    private Dialog dialogVar;
     
     private Sprite[] imageDisplay = {};
     
@@ -35,15 +35,16 @@ public class Stage
     /**
      * Set the current dialog for this stage
      */
-    public void setDialog(String str) {
-        dialogText = str;
+    public void setDialog(Dialog dialogVar_2) {
+        dialogVar = dialogVar_2;
+        Dialog.sync(this);
     }
     
     /**
      * Get the current dialog for this stage
      */
-    public String getDialog() {
-        return dialogText;
+    public Dialog getDialog() {
+        return dialogVar;
     }
     
     /**

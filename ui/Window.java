@@ -54,18 +54,23 @@ public class Window extends JFrame implements ActionListener {
         this.setVisible(true);
     }
     
-    public static void updateText() {
-        dialog.setText(" " + Stage.getStage().getDialog());
-    }
-    
     public static void renderDisplay() {
         displayMenu.revalidate();
         displayMenu.repaint();
-        updateText();
     }
     
     public static Window getInstance() {
         return windowVar;
+    }
+    
+    public static Component getComponent(String type) {
+        switch(type) {
+            case "choice": return actionsMenu;
+            case "image": return imageMenu;
+            case "input": return inMenu;
+            case "text": return dialog;
+            default: return null;
+        }
     }
     
     public static JPanel getComponentPanel(String type) {

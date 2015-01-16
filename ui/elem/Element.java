@@ -13,6 +13,10 @@ public abstract class Element {
         return Window.getInstance();
     }
     
+    public static Component getComponent(String type) {
+        return Window.getComponent(type);
+    }
+    
     public static JPanel getComponentPanel(String type) {
         return Window.getComponentPanel(type);
     }
