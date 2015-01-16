@@ -42,7 +42,7 @@ public class Input extends Element {
             temp.setLayout(new FlowLayout(FlowLayout.LEFT));
             temp.add(new JLabel(stageVar.getInputs()[i].getName() + ": "));
             JTextField jT = new JTextField(stageVar.getInputs()[i].getSize());
-            temp.setMaximumSize(new Dimension((int)panelVar.getWidth(), (int)jT.getPreferredSize().getHeight() + 10));
+            temp.setMaximumSize(new Dimension(Integer.MAX_VALUE, (int)jT.getPreferredSize().getHeight() + 10));
             temp.add(jT);
             panelVar.add(temp);
         }
