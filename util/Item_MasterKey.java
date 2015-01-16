@@ -1,12 +1,13 @@
 package util;
 public class Item_MasterKey {
 	static double[] stats_Value = new double[2];
-	static String[] stats_Name = {"damage", "drop_Num","poisonDotDamage"};
-	public static void set_Stats(double damage, double drop_Num,double poisonDotDmg)
+	static String[] stats_Name = {"damage", "drop_Num","poisonDotDamage","ID_Num"};
+	public static void set_Stats(double damage, double drop_Num,double poisonDotDmg, )
 		{
 			stats_Value[0] = damage;
 			stats_Value[1] = drop_Num;
 			stats_Value[2] = poisonDotDmg;
+			stats_Value[3] = 
 		}
 	public static double stat_Return(String stat)
 		{
