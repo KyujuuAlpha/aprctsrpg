@@ -5,9 +5,9 @@ Contributors: Troi-Ryan Stoeffler, Alexander Patapoff, and Ryan Chen
 
 Classes:
 
-• Building (Where you start) Ryan
+• Building (Where you start) - Ryan
 
-• Character (contains health, weapon selection) Akex
+• Character (contains health, weapon selection) - Alex
 
 • Creature (types of Zombies?) - Alex
 
