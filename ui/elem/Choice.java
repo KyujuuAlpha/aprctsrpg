@@ -7,12 +7,13 @@ import java.awt.*;
 
 public class Choice implements Element {
     private JButton guiElement = null;
+    
     private String text;
 
     public Choice(String stringVar) {
         this.text = stringVar;
         syncElement();
-        WindowUtilities.getComponentPanel("choice").add(guiElement);
+        createElement();
     }
     
     public String getLabel() {
@@ -27,6 +28,10 @@ public class Choice implements Element {
         this.guiElement = new JButton(getLabel());
         this.guiElement.addActionListener(WindowUtilities.getWindowInstance());
         this.guiElement.setAlignmentX(Component.CENTER_ALIGNMENT);
+    }
+    
+    private void createElement() {
+        WindowUtilities.getComponentPanel("choice").add(guiElement);
     }
     
     @Override

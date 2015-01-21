@@ -35,7 +35,8 @@ public class Window extends JFrame implements ActionListener {
         actionsMenu = new JPanel();
         imageMenu = new JPanel();
         ioMenu = new JPanel();
-        inMenu = new JPanel(new FlowLayout(FlowLayout.LEFT));
+        inMenu = new JPanel();
+        inMenu.setLayout(new BoxLayout(inMenu, BoxLayout.Y_AXIS));
         this.setLayout(new BorderLayout());
         displayMenu.setLayout(new GridLayout(1,2));
         ioMenu.setLayout(new GridLayout(2,1));

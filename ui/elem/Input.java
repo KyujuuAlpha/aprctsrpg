@@ -6,14 +6,17 @@ import javax.swing.*;
 import java.awt.*;
 
 public class Input implements Element {
+    private JTextField guiElement = null;
+    private JLabel guiElementText = null;
+    
     private int size;
     private String name;
-    
-    public int arrayId = -1;
     
     public Input(String stringVar, int intVar) {
         this.size = intVar;
         this.name = stringVar;
+        syncElement();
+        createElement();
     }
     
     public int getSize() {
@@ -24,29 +27,27 @@ public class Input implements Element {
         return this.name;
     }
     
-    /*public String getText() {
-        if(arrayId > -1) {
-            return getTextFromField(arrayId);
-        }
-        return "";
-    }*/
+    public String getText() {
+        return this.guiElement.getText();
+    }
+    
+    private void syncElement() {
+        this.guiElement = new JTextField(getSize());
+        this.guiElementText = new JLabel(getName() + ": ");
+    }
+    
+    private void createElement() {
+        JPanel temp = new JPanel();
+        temp.setLayout(new FlowLayout(FlowLayout.LEFT));
+        temp.add(this.guiElementText);
+        temp.setMaximumSize(new Dimension(Integer.MAX_VALUE, (int)this.guiElement.getPreferredSize().getHeight() + 10));
+        temp.add(this.guiElement);
+        WindowUtilities.getComponentPanel("input").add(temp);
+    }
     
     public void draw(Stage stageVar) {
-        /*JPanel panelVar = getComponentPanel("input");
-        if(stageVar.getInputs() == null) return;
-        else panelVar.removeAll();
-        panelVar.setLayout(new BoxLayout(panelVar, BoxLayout.Y_AXIS));
-        for(int i = 0; i < stageVar.getInputs().length; i++) {
-            stageVar.getInputs()[i].arrayId = i;
-            JPanel temp = new JPanel();
-            temp.setLayout(new FlowLayout(FlowLayout.LEFT));
-            temp.add(new JLabel(stageVar.getInputs()[i].getName() + ": "));
-            JTextField jT = new JTextField(stageVar.getInputs()[i].getSize());
-            temp.setMaximumSize(new Dimension(Integer.MAX_VALUE, (int)jT.getPreferredSize().getHeight() + 10));
-            temp.add(jT);
-            panelVar.add(temp);
-        }
+        JPanel panelVar = WindowUtilities.getComponentPanel("input");
         panelVar.revalidate();
-        panelVar.repaint();*/
+        panelVar.repaint();
     }
 }
