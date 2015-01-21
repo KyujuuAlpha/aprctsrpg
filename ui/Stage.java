@@ -62,7 +62,6 @@ public abstract class Stage {
         currentStage++;
         WindowUtilities.clearAllComponents();
         if(currentStage < stageList.size()) stageList.get(currentStage).init();
-        WindowUtilities.clearAllComponents();
         getStage().syncElements();
     }
     
