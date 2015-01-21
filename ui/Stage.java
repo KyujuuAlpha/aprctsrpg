@@ -28,7 +28,19 @@ public abstract class Stage {
      * Add a new element to this stage;
      */
     public void addElement(Element... elementVar) {
-        for(Element element : elementVar) elementList.add(element);
+        for(Element element : elementVar) {
+            if(elementList.indexOf(elementVar) < 0) elementList.add(element);
+        }
+        syncElements();
+    }
+    
+    /**
+     * Remove the given elements from this stage
+     */
+    public void removeElement(Element... elementVar) {
+        for(Element element : elementVar) {
+            if(elementList.indexOf(elementVar) > -1) elementList.remove(element);
+        }
         syncElements();
     }
     
