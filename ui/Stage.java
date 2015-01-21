@@ -47,6 +47,13 @@ public abstract class Stage {
     public void syncElements() {
         for(int i = 0; i < elementList.size(); i++) {
             Element elementVar = elementList.get(i);
+            elementVar.sync();
+        }
+    }
+    
+    public void drawElements() {
+        for(int i = 0; i < elementList.size(); i++) {
+            Element elementVar = elementList.get(i);
             elementVar.draw(this);
         }
     }
@@ -75,6 +82,7 @@ public abstract class Stage {
         WindowUtilities.clearAllComponents();
         if(currentStage < stageList.size()) stageList.get(currentStage).init();
         getStage().syncElements();
+        getStage().drawElements();
     }
     
     /**
@@ -86,6 +94,7 @@ public abstract class Stage {
         if(currentStage < stageList.size()) stageList.get(currentStage).init();
         else if(stageList.size() > 0) stageList.get(stageList.size()-1).init();
         getStage().syncElements();
+        getStage().drawElements();
     }
     
     /**

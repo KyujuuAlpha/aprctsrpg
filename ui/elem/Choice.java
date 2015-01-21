@@ -12,8 +12,8 @@ public class Choice implements Element {
 
     public Choice(String stringVar) {
         this.text = stringVar;
-        syncElement();
         createElement();
+        sync();
     }
     
     public String getLabel() {
@@ -24,14 +24,16 @@ public class Choice implements Element {
         this.text = stringVar;
     }
     
-    private void syncElement() {
+    private void createElement() {
         this.guiElement = new JButton(getLabel());
         this.guiElement.addActionListener(WindowUtilities.getWindowInstance());
         this.guiElement.setAlignmentX(Component.CENTER_ALIGNMENT);
+        WindowUtilities.getComponentPanel("choice").add(guiElement);
     }
     
-    private void createElement() {
-        WindowUtilities.getComponentPanel("choice").add(guiElement);
+    @Override
+    public void sync() {
+        this.guiElement.setText(getLabel());
     }
     
     @Override

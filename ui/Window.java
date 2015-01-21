@@ -55,6 +55,12 @@ public class Window extends JFrame implements ActionListener {
         this.setVisible(true);
     }
     
+    @Override
+    public void paint(Graphics g) {
+        Stage.getStage().syncElements();
+        super.paint(g);
+    }
+    
     public static Window getInstance() {
         return windowVar;
     }

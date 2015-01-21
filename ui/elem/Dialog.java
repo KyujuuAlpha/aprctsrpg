@@ -15,7 +15,7 @@ public class Dialog implements Element {
     
     public Dialog(String... stringVar) {
         handleText(stringVar);
-        syncElement();
+        sync();
     }
     
     public String getText() {
@@ -24,7 +24,7 @@ public class Dialog implements Element {
     
     public void setText(String... stringVar) {
         handleText(stringVar);
-        syncElement();
+        sync();
     }
     
     private void handleText(String[] stringVar) {
@@ -35,7 +35,8 @@ public class Dialog implements Element {
         } else this.text = stringVar[0];
     }
     
-    private void syncElement() {
+    @Override
+    public void sync() {
         JLabel labelVar = (JLabel)WindowUtilities.getComponent("text");
         labelVar.setText(this.text);
     }

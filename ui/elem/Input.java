@@ -15,8 +15,8 @@ public class Input implements Element {
     public Input(String stringVar, int intVar) {
         this.size = intVar;
         this.name = stringVar;
-        syncElement();
         createElement();
+        sync();
     }
     
     public int getSize() {
@@ -31,12 +31,9 @@ public class Input implements Element {
         return this.guiElement.getText();
     }
     
-    private void syncElement() {
+    private void createElement() {
         this.guiElement = new JTextField(getSize());
         this.guiElementText = new JLabel(getName() + ": ");
-    }
-    
-    private void createElement() {
         JPanel temp = new JPanel();
         temp.setLayout(new FlowLayout(FlowLayout.LEFT));
         temp.add(this.guiElementText);
@@ -45,6 +42,13 @@ public class Input implements Element {
         WindowUtilities.getComponentPanel("input").add(temp);
     }
     
+    @Override
+    public void sync() {
+        this.guiElement.setColumns(getSize());
+        this.guiElementText.setText(getName() + ": ");
+    }
+    
+    @Override
     public void draw(Stage stageVar) {
         JPanel panelVar = WindowUtilities.getComponentPanel("input");
         panelVar.revalidate();

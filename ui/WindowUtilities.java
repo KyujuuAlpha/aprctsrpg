@@ -34,6 +34,7 @@ public abstract class WindowUtilities {
     }
     
     public static Component[] getComponentArray(String type) {
+        if(type == "text") return null;
         return getComponentPanel(type).getComponents();
     }
 }
