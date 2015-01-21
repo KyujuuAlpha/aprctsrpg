@@ -12,6 +12,7 @@ public class Character {
 			stat_Value[3] = 0.05;
 			stat_Value[4] = 5.0;
 			stat_Value[5] = 0;
+			stat_Value[6] = 0;
 			
 		}
 	public static double character_Stats_Return (String stat_Name)
@@ -59,6 +60,16 @@ public class Character {
 						backpack[i] =id_Number;
 					}
 			}
+	}
+	public static int backpack_Item_Return(int id){
+		for (int i = 0; i <backpack.length;i++)
+		{
+			if (backpack[i] == id)
+			{
+				return id;
+			}
+		}
+		return 0;
 	}
 		
 	

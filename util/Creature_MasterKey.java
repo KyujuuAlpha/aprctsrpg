@@ -1,10 +1,10 @@
 package util;
 import java.util.Random;
 
-public class Creature_MasterKey {
+public class Creature_MasterKey{
 	static Random gen = new Random();
 	private static double[] stats_Value = new double[3];
-	private static String[] stats_Name = {"health", "armor", "speed", "attackDamage"};
+	private static String[] stats_Name = {"health", "armor", "speed", "attackDamage",};
 	public static void set_Stats(double health , double armor, double speed, double attackDamage)
 		{
 			stats_Value[0] = health;
@@ -40,6 +40,12 @@ public class Creature_MasterKey {
 			temp = gen.nextInt(20);
 			return temp;
 		}
+	
+	public static int randomGold_Drop_Multiplier(int input)
+		{
+			return gen.nextInt(5) * input;
+		}
+	
 	
 	
 }
