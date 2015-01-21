@@ -14,6 +14,20 @@ public class Dialog implements Element {
     private String text;
     
     public Dialog(String... stringVar) {
+        handleText(stringVar);
+        syncElement();
+    }
+    
+    public String getText() {
+        return this.text;
+    }
+    
+    public void setText(String... stringVar) {
+        handleText(stringVar);
+        syncElement();
+    }
+    
+    private void handleText(String[] stringVar) {
         if(stringVar.length > 1) {
             this.text = "<html>";
             for(int i = 0; i < stringVar.length; i++) this.text += stringVar[i] + "<br>";
@@ -21,12 +35,14 @@ public class Dialog implements Element {
         } else this.text = stringVar[0];
     }
     
-    public String getText() {
-        return this.text;
+    private void syncElement() {
+        JLabel labelVar = (JLabel)WindowUtilities.getComponent("text");
+        labelVar.setText(this.text);
     }
     
     public void draw(Stage stageVar) {
-        /*JLabel jL = (JLabel)getComponent("text");
-        jL.setText(stageVar.getDialog().getText());*/
+        JLabel labelVar = (JLabel)WindowUtilities.getComponent("text");
+        labelVar.revalidate();
+        labelVar.repaint();
     }
 }
