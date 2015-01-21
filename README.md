@@ -5,26 +5,26 @@ Contributors: Troi-Ryan Stoeffler, Alexander Patapoff, and Ryan Chen
 
 Classes:
 
-• Building (Where you start) R
+• Building (Where you start) Ryan
 
-• Character (contains health, weapon selection) A
+• Character (contains health, weapon selection) Akex
 
-• Creature (types of Zombies?) A
+• Creature (types of Zombies?) - Alex
 
-• Dock (Location) R
+• Dock (Location) - Ryan
 
-• Game R/T
+• Core Game - Ryan / Troi
 
-• Items A
+• Items - Alex
 
-• Factions(Interface for missions) R
+• Factions(Interface for missions) - Ryan
 
-• Food (Health) R
+• Food (Health) - Ryan
 
-• Random (Having to do with random gold drop, weapon drop, exp, etc.) A
+• Random (Having to do with random gold drop, weapon drop, exp, etc.) - Alex
 
 • Score (TBD)
 
-• Shop (Upgrade Weapons and Buy Food) R
+• Shop (Upgrade Weapons and Buy Food) - Ryan
 
-• UI T
+• UI - Troi
