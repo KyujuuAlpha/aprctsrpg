@@ -12,6 +12,12 @@ public abstract class WindowUtilities {
         return Window.getInstance();
     }
     
+    public static void clearAllComponents() {
+        Window.actionsMenu.removeAll();
+        Window.imageMenu.removeAll();
+        Window.inMenu.removeAll();
+    }
+    
     public static Component getComponent(String type) {
         switch(type) {
             case "choice": return Window.actionsMenu;

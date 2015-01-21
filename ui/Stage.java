@@ -60,7 +60,9 @@ public abstract class Stage {
      */
     public static void nextStage() {
         currentStage++;
+        WindowUtilities.clearAllComponents();
         if(currentStage < stageList.size()) stageList.get(currentStage).init();
+        WindowUtilities.clearAllComponents();
         getStage().syncElements();
     }
     
@@ -68,6 +70,7 @@ public abstract class Stage {
      * Go back one stage on the list
      */
     public static void prevStage() {
+        WindowUtilities.clearAllComponents();
         if(currentStage > 0) currentStage--;
         if(currentStage < stageList.size()) stageList.get(currentStage).init();
         else if(stageList.size() > 0) stageList.get(stageList.size()-1).init();
