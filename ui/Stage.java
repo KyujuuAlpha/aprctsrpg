@@ -4,19 +4,12 @@ import ui.elem.*;
 
 import java.util.ArrayList;
 
-public class Stage
-{
+public abstract class Stage {
     private static int currentStage = 0;
     
     private static ArrayList<Stage> stageList = new ArrayList<Stage>();
     
-    private Dialog dialogVar;
-    
-    private Sprite[] imageDisplay = {};
-    
-    private Choice[] choicesVar;
-    
-    private Input[] inputsVar;
+    private ArrayList<Element> elementList = new ArrayList<Element>();
     
     /**
      * Initial method that is called upon when stage starts
@@ -28,71 +21,28 @@ public class Stage
     /**
      * Method that activates when one of the choices is clicked
      */
-    public void choiceDone(String button) {
+    public void choiceDone(String buttonName) {
     }
     
     /**
-     * Set the current dialog for this stage
+     * Add a new element to this stage;
      */
-    public void setDialog(Dialog dialogVar_2) {
-        dialogVar = dialogVar_2;
-        Dialog.sync(this);
+    public void addElement(Element... elementVar) {
+        for(Element element : elementVar) elementList.add(element);
+        syncElements();
     }
     
-    /**
-     * Get the current dialog for this stage
-     */
-    public Dialog getDialog() {
-        return dialogVar;
+    public void syncElements() {
+        for(int i = 0; i < elementList.size(); i++) {
+            Element elementVar = elementList.get(i);
+            elementVar.draw(this);
+        }
     }
     
-    /**
-     * Set the current text boxes for this stage
-     */
-    public void setInputs(Input... input) {
-        inputsVar = input;
-        Input.sync(this);
-    }
-    
-    /**
-     * Get the current text boxe array for this stage
-     */
-    public Input[] getInputs() {
-        return inputsVar;
-    }
-    
-    /**
-     * Set the current image array for this stage
-     */
-    public void setSprites(Sprite... images) {
-        imageDisplay = images;
-        Sprite.sync(this);
-    }
-    
-    /**
-     * Get the current sprite array for this stage
-     */
-    public Sprite[] getSprites() {
-        return imageDisplay;
-    }
-    
-    /**
-     * Get the current choice array for this stage
-     */
-    public Choice[] getChoices() {
-        return choicesVar;
-    }
-    
-    /**
-     * Set the current choices for this stage
-     */
-    public void setChoices(Choice... buttons) {
-        choicesVar = buttons;
-        Choice.sync(this);
-    }
+    //STATIC METHODS
 
     /**
-     * Begin the game starting at stage 0d
+     * Begin the game starting at stage 0
      */
     public static void begin() {
         if(stageList.size() > 0) stageList.get(0).init();
@@ -111,7 +61,7 @@ public class Stage
     public static void nextStage() {
         currentStage++;
         if(currentStage < stageList.size()) stageList.get(currentStage).init();
-        Choice.sync(stageList.get(currentStage));
+        getStage().syncElements();
     }
     
     /**
@@ -121,7 +71,7 @@ public class Stage
         if(currentStage > 0) currentStage--;
         if(currentStage < stageList.size()) stageList.get(currentStage).init();
         else if(stageList.size() > 0) stageList.get(stageList.size()-1).init();
-        Choice.sync(stageList.get(currentStage));
+        getStage().syncElements();
     }
     
     /**

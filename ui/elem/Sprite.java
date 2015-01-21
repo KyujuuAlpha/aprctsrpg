@@ -10,7 +10,7 @@ import java.awt.image.*;
 
 import java.io.*;
 
-public class Sprite extends Element {
+public class Sprite implements Element {
     private String url;
     private BufferedImage bufferedImage;
     
@@ -28,8 +28,8 @@ public class Sprite extends Element {
         return bufferedImage;
     }
     
-    public static void sync(Stage stageVar) {
-        JPanel panelVar = getComponentPanel("image");
+    public void draw(Stage stageVar) {
+        /*JPanel panelVar = getComponentPanel("image");
         if(stageVar.getSprites() == null) return;
         else panelVar.removeAll();
         panelVar.setLayout(new GridLayout(1, stageVar.getSprites().length));
@@ -40,6 +40,6 @@ public class Sprite extends Element {
             if(bufferedImage2 == null) continue;
             jl.setIcon(new ImageIcon(bufferedImage2.getScaledInstance(bufferedImage2.getWidth() / bufferedImage2.getHeight() * panelVar.getHeight(), panelVar.getHeight(), Image.SCALE_FAST)));
             panelVar.add(jl);
-        }
+        }*/
     }
 }

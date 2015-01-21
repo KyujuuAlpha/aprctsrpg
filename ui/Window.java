@@ -8,19 +8,18 @@ import java.awt.*;
 import java.awt.event.*;
 
 public class Window extends JFrame implements ActionListener { 
-    private static Painter painterVar;
     private static Window windowVar;
     
-    private static JPanel actionsMenu;
-    private static JPanel statsMenu;
-    private static JPanel ostatsMenu;
-    private static JPanel displayMenu;
-    private static JPanel imageMenu;
+    public static JPanel actionsMenu;
+    public static JPanel statsMenu;
+    public static JPanel ostatsMenu;
+    public static JPanel displayMenu;
+    public static JPanel imageMenu;
     
-    private static JPanel ioMenu;
-    private static JPanel inMenu;
+    public static JPanel ioMenu;
+    public static JPanel inMenu;
     
-    private static JLabel dialog;
+    public static JLabel dialog;
     
     public static void init() {
         windowVar = new Window("RPG");
@@ -47,6 +46,7 @@ public class Window extends JFrame implements ActionListener {
         ioMenu.add(inMenu);
         displayMenu.add(ioMenu);
         displayMenu.add(imageMenu);
+        actionsMenu.setLayout(new BoxLayout(actionsMenu, BoxLayout.Y_AXIS));
         this.add(displayMenu, BorderLayout.CENTER);
         this.add(statsMenu, BorderLayout.NORTH);
         this.add(ostatsMenu, BorderLayout.SOUTH);
@@ -58,33 +58,6 @@ public class Window extends JFrame implements ActionListener {
         return windowVar;
     }
     
-    public static Component getComponent(String type) {
-        switch(type) {
-            case "choice": return actionsMenu;
-            case "image": return imageMenu;
-            case "input": return inMenu;
-            case "text": return dialog;
-            default: return null;
-        }
-    }
-    
-    public static JPanel getComponentPanel(String type) {
-        switch(type) {
-            case "choice": return actionsMenu;
-            case "image": return imageMenu;
-            case "input": return inMenu;
-            default: return null;
-        }
-    }
-    
-    public static Component[] getComponentArray(String type) {
-        return getComponentPanel(type).getComponents();
-    }
-    
-    public static String getTextFromField(int id) {
-        return ((JTextField)((JPanel)getComponentArray("input")[id]).getComponents()[1]).getText();
-    }
-
     @Override
     public void actionPerformed(ActionEvent e) {
         for(int i = 0; i < actionsMenu.getComponents().length; i++) {

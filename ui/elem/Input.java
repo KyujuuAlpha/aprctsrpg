@@ -5,7 +5,7 @@ import ui.*;
 import javax.swing.*;
 import java.awt.*;
 
-public class Input extends Element {
+public class Input implements Element {
     private int size;
     private String name;
     
@@ -24,15 +24,15 @@ public class Input extends Element {
         return this.name;
     }
     
-    public String getText() {
+    /*public String getText() {
         if(arrayId > -1) {
             return getTextFromField(arrayId);
         }
         return "";
-    }
+    }*/
     
-    public static void sync(Stage stageVar) {
-        JPanel panelVar = getComponentPanel("input");
+    public void draw(Stage stageVar) {
+        /*JPanel panelVar = getComponentPanel("input");
         if(stageVar.getInputs() == null) return;
         else panelVar.removeAll();
         panelVar.setLayout(new BoxLayout(panelVar, BoxLayout.Y_AXIS));
@@ -47,6 +47,6 @@ public class Input extends Element {
             panelVar.add(temp);
         }
         panelVar.revalidate();
-        panelVar.repaint();
+        panelVar.repaint();*/
     }
 }

@@ -6,26 +6,8 @@ import javax.swing.*;
 
 import java.awt.Component;
 
-public abstract class Element {
-    public static void sync(Stage stageVar) { }
+public interface Element {
+    public final int priority = 0;
     
-    public static Window getWindowInstance() {
-        return Window.getInstance();
-    }
-    
-    public static Component getComponent(String type) {
-        return Window.getComponent(type);
-    }
-    
-    public static JPanel getComponentPanel(String type) {
-        return Window.getComponentPanel(type);
-    }
-    
-    public static Component[] getComponentArray(String type) {
-        return Window.getComponentArray(type);
-    }
-    
-    public static String getTextFromField(int id) {
-        return Window.getTextFromField(id);
-    }
+    public void draw(Stage stageVar);
 }

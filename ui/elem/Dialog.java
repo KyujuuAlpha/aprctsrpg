@@ -10,7 +10,7 @@ import java.awt.image.*;
 
 import java.io.*;
 
-public class Dialog extends Element {
+public class Dialog implements Element {
     private String text;
     
     public Dialog(String... stringVar) {
@@ -25,8 +25,8 @@ public class Dialog extends Element {
         return this.text;
     }
     
-    public static void sync(Stage stageVar) {
-        JLabel jL = (JLabel)getComponent("text");
-        jL.setText(stageVar.getDialog().getText());
+    public void draw(Stage stageVar) {
+        /*JLabel jL = (JLabel)getComponent("text");
+        jL.setText(stageVar.getDialog().getText());*/
     }
 }
