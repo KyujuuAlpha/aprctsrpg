@@ -6,7 +6,8 @@ import javax.swing.*;
 import java.awt.*;
 
 public class Input implements Element {
-    private JTextField guiElement = null;
+    private Component guiElement;
+    private JTextField guiElementField = null;
     private JLabel guiElementText = null;
     
     private int size;
@@ -15,7 +16,7 @@ public class Input implements Element {
     public Input(String stringVar, int intVar) {
         this.size = intVar;
         this.name = stringVar;
-        createElement();
+        createElement(false);
         sync();
     }
     
@@ -28,23 +29,30 @@ public class Input implements Element {
     }
     
     public String getText() {
-        return this.guiElement.getText();
+        return this.guiElementField.getText();
     }
     
-    private void createElement() {
-        this.guiElement = new JTextField(getSize());
+    @Override
+    public void createElement(boolean flag) {
+        this.guiElementField = new JTextField(getSize());
         this.guiElementText = new JLabel(getName() + ": ");
-        JPanel temp = new JPanel();
+        this.guiElement = new JPanel();
+        JPanel temp = ((JPanel)this.guiElement);
         temp.setLayout(new FlowLayout(FlowLayout.LEFT));
         temp.add(this.guiElementText);
-        temp.setMaximumSize(new Dimension(Integer.MAX_VALUE, (int)this.guiElement.getPreferredSize().getHeight() + 10));
-        temp.add(this.guiElement);
-        WindowUtilities.getComponentPanel("input").add(temp);
+        temp.setMaximumSize(new Dimension(Integer.MAX_VALUE, (int)this.guiElementField.getPreferredSize().getHeight() + 10));
+        temp.add(this.guiElementField);
+        if(flag) WindowUtilities.getComponentPanel("input").add(this.guiElement);
+    }
+    
+    @Override
+    public void removeElement() {
+        WindowUtilities.getComponentPanel("input").remove(this.guiElement);
     }
     
     @Override
     public void sync() {
-        this.guiElement.setColumns(getSize());
+        this.guiElementField.setColumns(getSize());
         this.guiElementText.setText(getName() + ": ");
     }
     

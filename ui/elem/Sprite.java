@@ -11,14 +11,14 @@ import java.awt.image.*;
 import java.io.*;
 
 public class Sprite implements Element {
-    private JLabel guiElement = null;
+    private Component guiElement;
     
     private String url;
     private BufferedImage bufferedImage;
     
     public Sprite(String stringVar) {
         setURL(stringVar);
-        createElement();
+        createElement(false);
         sync();
     }
     
@@ -36,16 +36,22 @@ public class Sprite implements Element {
         return bufferedImage;
     }
     
-    private void createElement() {
+    @Override
+    public void createElement(boolean flag) {
         guiElement = new JLabel();
-        WindowUtilities.getComponentPanel("image").add(guiElement);
+        if(flag) WindowUtilities.getComponentPanel("image").add(guiElement);
+    }
+    
+    @Override
+    public void removeElement() {
+        WindowUtilities.getComponentPanel("image").remove(this.guiElement);
     }
     
     @Override
     public void sync() {
         if(getImage() == null) return;
         JPanel panelVar = WindowUtilities.getComponentPanel("image");
-        guiElement.setIcon(new ImageIcon(getImage().getScaledInstance(getImage().getWidth() / getImage().getHeight() * panelVar.getHeight(), panelVar.getHeight(), Image.SCALE_FAST)));
+        ((JLabel)this.guiElement).setIcon(new ImageIcon(getImage().getScaledInstance(getImage().getWidth() / getImage().getHeight() * panelVar.getHeight(), panelVar.getHeight(), Image.SCALE_FAST)));
     }
     
     @Override

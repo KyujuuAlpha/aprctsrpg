@@ -43,15 +43,18 @@ public class Window extends JFrame implements ActionListener {
         JPanel temp = new JPanel(new FlowLayout(FlowLayout.LEFT));
         dialog = new JLabel(" ");
         temp.add(dialog, BorderLayout.WEST);
-        ioMenu.add(temp, BorderLayout.WEST);
-        ioMenu.add(inMenu);
+        JScrollPane temp2 = new JScrollPane(temp);
+        ioMenu.add(temp2, BorderLayout.WEST);
+        temp2 = new JScrollPane(inMenu);
+        ioMenu.add(temp2);
         displayMenu.add(ioMenu);
         displayMenu.add(imageMenu);
         actionsMenu.setLayout(new BoxLayout(actionsMenu, BoxLayout.Y_AXIS));
         this.add(displayMenu, BorderLayout.CENTER);
         this.add(statsMenu, BorderLayout.NORTH);
         this.add(ostatsMenu, BorderLayout.SOUTH);
-        this.add(actionsMenu, BorderLayout.WEST);
+        temp2 = new JScrollPane(actionsMenu);
+        this.add(temp2, BorderLayout.WEST);
         this.setVisible(true);
     }
     
@@ -70,6 +73,7 @@ public class Window extends JFrame implements ActionListener {
         for(int i = 0; i < actionsMenu.getComponents().length; i++) {
             actionsMenu.getComponents()[i].setEnabled(false);
         }
+        Stage.getStage().syncElements();
         Stage.getStage().choiceDone(((JButton)e.getSource()).getText());
     }
 }

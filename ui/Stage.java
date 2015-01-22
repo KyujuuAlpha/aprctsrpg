@@ -29,7 +29,10 @@ public abstract class Stage {
      */
     public void addElement(Element... elementVar) {
         for(Element element : elementVar) {
-            if(elementList.indexOf(elementVar) < 0) elementList.add(element);
+            if(elementList.indexOf(elementVar) < 0) {
+                elementList.add(element);
+                element.createElement(true);
+            }
         }
         syncElements();
     }
@@ -39,22 +42,37 @@ public abstract class Stage {
      */
     public void removeElement(Element... elementVar) {
         for(Element element : elementVar) {
-            if(elementList.indexOf(elementVar) > -1) elementList.remove(element);
+            elementList.remove(element);
+            element.removeElement();
         }
         syncElements();
     }
     
     public void syncElements() {
         for(int i = 0; i < elementList.size(); i++) {
-            Element elementVar = elementList.get(i);
-            elementVar.sync();
+            Element element = elementList.get(i);
+            element.sync();
         }
     }
     
     public void drawElements() {
         for(int i = 0; i < elementList.size(); i++) {
-            Element elementVar = elementList.get(i);
-            elementVar.draw(this);
+            Element element = elementList.get(i);
+            element.draw(this);
+        }
+    }
+    
+    public void removeElements() {
+        for(int i = 0; i < elementList.size(); i++) {
+            Element element = elementList.get(i);
+            element.removeElement();
+        }
+    }
+    
+    public void createElements() {
+        for(int i = 0; i < elementList.size(); i++) {
+            Element element = elementList.get(i);
+            element.createElement(true);
         }
     }
     
@@ -79,8 +97,9 @@ public abstract class Stage {
      */
     public static void nextStage() {
         currentStage++;
-        WindowUtilities.clearAllComponents();
+        getStage().removeElements();
         if(currentStage < stageList.size()) stageList.get(currentStage).init();
+        getStage().createElements();
         getStage().syncElements();
         getStage().drawElements();
     }
@@ -89,10 +108,11 @@ public abstract class Stage {
      * Go back one stage on the list
      */
     public static void prevStage() {
-        WindowUtilities.clearAllComponents();
+        getStage().removeElements();
         if(currentStage > 0) currentStage--;
         if(currentStage < stageList.size()) stageList.get(currentStage).init();
         else if(stageList.size() > 0) stageList.get(stageList.size()-1).init();
+        getStage().createElements();
         getStage().syncElements();
         getStage().drawElements();
     }

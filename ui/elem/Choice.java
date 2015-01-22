@@ -6,13 +6,12 @@ import javax.swing.*;
 import java.awt.*;
 
 public class Choice implements Element {
-    private JButton guiElement = null;
-    
+    private Component guiElement;
     private String text;
 
     public Choice(String stringVar) {
         this.text = stringVar;
-        createElement();
+        createElement(false);
         sync();
     }
     
@@ -24,16 +23,23 @@ public class Choice implements Element {
         this.text = stringVar;
     }
     
-    private void createElement() {
+    @Override
+    public void createElement(boolean flag) {
         this.guiElement = new JButton(getLabel());
-        this.guiElement.addActionListener(WindowUtilities.getWindowInstance());
-        this.guiElement.setAlignmentX(Component.CENTER_ALIGNMENT);
-        WindowUtilities.getComponentPanel("choice").add(guiElement);
+        JButton temp = (JButton)this.guiElement;
+        temp.addActionListener(WindowUtilities.getWindowInstance());
+        temp.setAlignmentX(Component.CENTER_ALIGNMENT);
+        if(flag) WindowUtilities.getComponentPanel("choice").add(this.guiElement);
+    }
+    
+    @Override
+    public void removeElement() {
+        WindowUtilities.getComponentPanel("choice").remove(this.guiElement);
     }
     
     @Override
     public void sync() {
-        this.guiElement.setText(getLabel());
+        ((JButton)this.guiElement).setText(getLabel());
     }
     
     @Override

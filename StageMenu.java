@@ -2,14 +2,18 @@ import ui.*;
 import ui.elem.*;
 
 public class StageMenu extends Stage {
+    Input inputVar;
+    
     @Override
     public void choiceDone(String a) {
-        //addElement(new Choice("Click To Expand"), new Choice("Click To JUMP"), new Choice("Click To JUMP"), new Choice("Click To JUMP"));
-        addElement(new Input("HI2", 10), new Dialog("test"), new Sprite("troi"));
+        removeElement(inputVar);
+        addElement(new Input("HI2", 10), new Dialog("test"));
+        nextStage();
     }
     
     @Override
     public void init() {
-        addElement(new Choice("Click To Expand"), new Choice("Click To JUMP"), new Choice("Click To JUMP"), new Choice("Click To JUMP"), new Input("HI", 10), new Sprite("troi"));
+        inputVar = new Input("HI", 10);
+        addElement(new Choice("Click To Expand"), new Choice("Click To JUMP"), new Choice("Click To JUMP"), new Choice("Click To JUMP"), inputVar, new Sprite("troi"));
     }
 }
