@@ -12,10 +12,12 @@ public class Input implements Element {
     
     private int size;
     private String name;
+    private String text;
     
     public Input(String stringVar, int intVar) {
         this.size = intVar;
         this.name = stringVar;
+        this.text = "";
         createElement(false);
         sync();
     }
@@ -29,6 +31,7 @@ public class Input implements Element {
     }
     
     public String getText() {
+        this.text = this.guiElementField.getText();
         return this.guiElementField.getText();
     }
     
@@ -50,6 +53,7 @@ public class Input implements Element {
     @Override
     public void createElement(boolean flag) {
         this.guiElementField = new JTextField(getSize());
+        this.guiElementField.setText(this.text);
         this.guiElementText = new JLabel(getName() + ": ");
         this.guiElement = new JPanel();
         JPanel temp = ((JPanel)this.guiElement);
@@ -67,6 +71,7 @@ public class Input implements Element {
     
     @Override
     public void sync() {
+        this.text = this.guiElementField.getText();
         this.guiElementField.setColumns(getSize());
         this.guiElementText.setText(getName() + ": ");
     }
