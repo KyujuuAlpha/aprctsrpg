@@ -17,9 +17,8 @@ public class Sprite implements Element {
     private BufferedImage bufferedImage;
     
     public Sprite(String stringVar) {
-        setURL(stringVar);
         createElement(false);
-        sync();
+        setURL(stringVar);
     }
     
     public void setURL(String stringVar) {
