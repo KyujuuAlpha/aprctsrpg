@@ -32,6 +32,21 @@ public class Input implements Element {
         return this.guiElementField.getText();
     }
     
+    public void setName(String stringVar) {
+        this.name = stringVar;
+        sync();
+    }
+    
+    public void setText(String stringVar) {
+        this.guiElementField.setText(stringVar);
+        sync();
+    }
+    
+    public void setSize(int intVar) {
+        this.size = intVar;
+        sync();
+    }
+    
     @Override
     public void createElement(boolean flag) {
         this.guiElementField = new JTextField(getSize());

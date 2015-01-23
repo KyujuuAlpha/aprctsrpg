@@ -26,6 +26,7 @@ public class Sprite implements Element {
         this.url = stringVar;
         try { this.bufferedImage = ImageIO.read(new File("resources/" + this.url + ".png"));
         } catch(Exception e) { this.bufferedImage = null; }
+        sync();
     }
     
     public String getURL() {
