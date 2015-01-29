@@ -8,7 +8,6 @@ public class StageMenu extends Stage {
     @Override
     public void choiceDone(String a) {
         removeElement(inputVar);
-        this.delay(2000);
         Input temp = new Input("HI2", 10);
         temp.setText(a);
         addElement(temp, new Dialog("test"));

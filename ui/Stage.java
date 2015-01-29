@@ -53,6 +53,8 @@ public abstract class Stage {
             Element element = elementList.get(i);
             element.sync();
         }
+        WindowUtilities.getWindowInstance().revalidate();
+        WindowUtilities.getWindowInstance().repaint();
     }
     
     public void drawElements() {
@@ -60,6 +62,8 @@ public abstract class Stage {
             Element element = elementList.get(i);
             element.draw(this);
         }
+        WindowUtilities.getWindowInstance().revalidate();
+        WindowUtilities.getWindowInstance().repaint();
     }
     
     public void removeElements() {
