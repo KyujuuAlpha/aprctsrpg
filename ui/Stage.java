@@ -132,4 +132,9 @@ public abstract class Stage {
         else if(stageList.size() > 0) return stageList.get(stageList.size()-1);
         return null;
     }
+    
+    public static void delay(long mili) {
+        try { Thread.sleep(mili);
+        } catch(InterruptedException e) { System.out.println("Delay interrupted, no delay issued"); }
+    }
 }

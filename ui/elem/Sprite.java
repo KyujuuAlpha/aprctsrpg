@@ -51,7 +51,7 @@ public class Sprite implements Element {
     public void sync() {
         if(getImage() == null) return;
         JPanel panelVar = WindowUtilities.getComponentPanel("image");
-        ((JLabel)this.guiElement).setIcon(new ImageIcon(getImage().getScaledInstance(getImage().getWidth() / getImage().getHeight() * panelVar.getHeight(), panelVar.getHeight(), Image.SCALE_FAST)));
+        ((JLabel)this.guiElement).setIcon(new ImageIcon(getImage().getScaledInstance((int)(panelVar.getHeight() * (getImage().getWidth() / getImage().getHeight())), panelVar.getHeight(), Image.SCALE_FAST)));
     }
     
     @Override
