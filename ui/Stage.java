@@ -11,6 +11,8 @@ public abstract class Stage {
     
     private ArrayList<Element> elementList = new ArrayList<Element>();
     
+    private static long tickDelay = 0;
+    
     /**
      * Initial method that is called upon when stage starts
      */
@@ -22,6 +24,25 @@ public abstract class Stage {
      * Method that activates when one of the choices is clicked
      */
     public void choiceDone(String buttonName) {
+    }
+    
+    /**
+     * Method that activates after a task is scheduled and is performed
+     */
+    public void taskPerformed() { 
+    }
+    
+    public void scheduleTask(long ticks) { 
+        tickDelay = ticks;
+    }
+    
+    public void countDown() {
+        boolean flag = false;
+        if(tickDelay > 0) {
+            if(tickDelay == 1) flag = true;
+            tickDelay--;
+        }
+        if(flag) this.taskPerformed();
     }
     
     /**
@@ -53,8 +74,6 @@ public abstract class Stage {
             Element element = elementList.get(i);
             element.sync();
         }
-        WindowUtilities.getWindowInstance().revalidate();
-        WindowUtilities.getWindowInstance().repaint();
     }
     
     public void drawElements() {
@@ -62,8 +81,6 @@ public abstract class Stage {
             Element element = elementList.get(i);
             element.draw(this);
         }
-        WindowUtilities.getWindowInstance().revalidate();
-        WindowUtilities.getWindowInstance().repaint();
     }
     
     public void removeElements() {
@@ -135,10 +152,5 @@ public abstract class Stage {
         if(currentStage < stageList.size()) return stageList.get(currentStage);
         else if(stageList.size() > 0) return stageList.get(stageList.size()-1);
         return null;
-    }
-    
-    public static void delay(long mili) {
-        try { Thread.sleep(mili);
-        } catch(InterruptedException e) { System.out.println("Delay interrupted, no delay issued"); }
     }
 }

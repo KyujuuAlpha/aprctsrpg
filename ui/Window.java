@@ -57,7 +57,10 @@ public class Window extends JFrame implements ActionListener {
         this.add(statsMenu2, BorderLayout.SOUTH);
         temp2 = new JScrollPane(actionsMenu); //actions
         this.add(temp2, BorderLayout.WEST);
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setVisible(true);
+        Timer timerVar = new Timer(50, this);
+        timerVar.start();
     }
     
     @Override
@@ -72,10 +75,16 @@ public class Window extends JFrame implements ActionListener {
     
     @Override
     public void actionPerformed(ActionEvent e) {
+        if(e.getSource() instanceof Timer) {
+            Stage.getStage().countDown();
+            Stage.getStage().syncElements();
+            this.revalidate();
+            this.repaint();
+            return;
+        }
         for(int i = 0; i < actionsMenu.getComponents().length; i++) {
             actionsMenu.getComponents()[i].setEnabled(false);
         }
-        Stage.getStage().syncElements();
         Stage.getStage().choiceDone(((JButton)e.getSource()).getText());
     }
 }
