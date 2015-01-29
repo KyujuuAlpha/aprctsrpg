@@ -10,7 +10,6 @@ public class StageMenu extends Stage {
         Input temp = new Input("HI2", 10);
         temp.setText(a);
         addElement(temp, new Dialog("test"));
-        init();
     }
     
     @Override

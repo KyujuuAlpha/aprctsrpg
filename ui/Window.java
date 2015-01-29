@@ -12,14 +12,13 @@ public class Window extends JFrame implements ActionListener {
     
     public static JPanel actionsMenu;
     public static JPanel statsMenu;
-    public static JPanel ostatsMenu;
-    public static JPanel displayMenu;
+    public static JPanel statsMenu2;
     public static JPanel imageMenu;
-    
-    public static JPanel ioMenu;
     public static JPanel inMenu;
     
     public static JLabel dialog;
+    public static JLabel stats;
+    public static JLabel stats2;
     
     public static void init() {
         windowVar = new Window("RPG");
@@ -29,31 +28,34 @@ public class Window extends JFrame implements ActionListener {
     public Window(String str) {
         super(str);
         this.setSize(800,600);
-        displayMenu = new JPanel();
-        statsMenu = new JPanel(new FlowLayout(FlowLayout.LEFT));
-        ostatsMenu = new JPanel(new FlowLayout(FlowLayout.LEFT));
-        actionsMenu = new JPanel();
-        imageMenu = new JPanel();
-        ioMenu = new JPanel();
+        JPanel subContainerA = new JPanel(new GridLayout(1,2));
+        JPanel subContainerB = new JPanel(new GridLayout(2,1));
+        subContainerA.add(subContainerB);
+        this.add(subContainerA, BorderLayout.CENTER);
+        JPanel temp;
+        JScrollPane temp2;
+        actionsMenu = new JPanel(new BoxLayout(actionsMenu, BoxLayout.Y_AXIS));
+        imageMenu = new JPanel(); //imageMenu
+        subContainerA.add(imageMenu);
         inMenu = new JPanel();
         inMenu.setLayout(new BoxLayout(inMenu, BoxLayout.Y_AXIS));
-        this.setLayout(new BorderLayout());
-        displayMenu.setLayout(new GridLayout(1,2));
-        ioMenu.setLayout(new GridLayout(2,1));
-        JPanel temp = new JPanel(new FlowLayout(FlowLayout.LEFT));
-        dialog = new JLabel(" ");
-        temp.add(dialog, BorderLayout.WEST);
-        JScrollPane temp2 = new JScrollPane(temp);
-        ioMenu.add(temp2, BorderLayout.WEST);
-        temp2 = new JScrollPane(inMenu);
-        ioMenu.add(temp2);
-        displayMenu.add(ioMenu);
-        displayMenu.add(imageMenu);
+        temp = new JPanel(new FlowLayout(FlowLayout.LEFT));
+        dialog = new JLabel("");
+        temp.add(dialog);
+        temp2 = new JScrollPane(temp); //dialog
+        subContainerB.add(temp2);
+        temp2 = new JScrollPane(inMenu); //inputs
+        subContainerB.add(temp2);
         actionsMenu.setLayout(new BoxLayout(actionsMenu, BoxLayout.Y_AXIS));
-        this.add(displayMenu, BorderLayout.CENTER);
+        statsMenu = new JPanel(new FlowLayout(FlowLayout.RIGHT));
+        statsMenu2 = new JPanel(new FlowLayout(FlowLayout.RIGHT));
+        stats = new JLabel("f");
+        stats2 = new JLabel("g");
+        statsMenu.add(stats); //statistics
         this.add(statsMenu, BorderLayout.NORTH);
-        this.add(ostatsMenu, BorderLayout.SOUTH);
-        temp2 = new JScrollPane(actionsMenu);
+        statsMenu2.add(stats2); //stats 2
+        this.add(statsMenu2, BorderLayout.SOUTH);
+        temp2 = new JScrollPane(actionsMenu); //actions
         this.add(temp2, BorderLayout.WEST);
         this.setVisible(true);
     }
