@@ -1,18 +1,16 @@
 import ui.*;
 import ui.elem.*;
 
-public class StageMenu extends Stage {
+public class StageTest extends Stage {
     private Dialog mainDialog;
-
+    
     @Override
     public void choiceDone(String a) {
-        nextStage();
     }
     
     @Override
     public void taskPerformed() {
-        addElement(new Choice("Option1"));
-        mainDialog.setText("Choose an option");
+        mainDialog.setText("Sorry");
     }
 
     @Override
@@ -24,6 +22,6 @@ public class StageMenu extends Stage {
     public void start() {
         addElement(mainDialog);
         mainDialog.setText("Welcome to this place!");
-        scheduleTask(100);
+        scheduleTask(200);
     }
 }

@@ -121,8 +121,8 @@ public abstract class Stage {
      * Move onto the next stage on the list
      */
     public static void nextStage() {
-        currentStage++;
         getStage().removeElements();
+        currentStage++;
         if(currentStage < stageList.size()) stageList.get(currentStage).init();
         getStage().createElements();
         getStage().syncElements();
