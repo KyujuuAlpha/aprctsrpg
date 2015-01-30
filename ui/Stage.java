@@ -32,6 +32,10 @@ public abstract class Stage {
     public void taskPerformed() { 
     }
     
+    /**
+     * Simple task scheduling method, after specified number of ticks, run taskPerformed
+     * 1 tick is equivalent to 1 twentieth of a second
+     */
     public void scheduleTask(long ticks) { 
         tickDelay = ticks;
     }

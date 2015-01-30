@@ -2,27 +2,30 @@ import ui.*;
 import ui.elem.*;
 
 public class StageMenu extends Stage {
-    Input inputVar;
-    Sprite test;
-    
+    private Dialog mainDialog;
+    private Sprite troi;
+
     @Override
     public void choiceDone(String a) {
-        removeElement(inputVar);
-        Input temp = new Input("HI2", 10);
-        temp.setText(a);
-        addElement(temp, new Dialog("test"));
-        scheduleTask(20);
+        addElement(troi);
     }
     
     @Override
     public void taskPerformed() {
-        removeElement(test);
+        addElement(new Choice("Option1"));
+        mainDialog.setText("Choose an option");
     }
 
     @Override
-    public void init() {
-        test = new Sprite("troi");
-        inputVar = new Input("HI", 10);
-        addElement(new Choice("TestButton"), inputVar, test);
+    public void init() { //basically initializing most main variables and loading sprites
+        mainDialog = new Dialog("");
+        troi = new Sprite("troi");
+        start();
+    }
+    
+    public void start() {
+        addElement(mainDialog);
+        mainDialog.setText("Welcome to this place!");
+        scheduleTask(100);
     }
 }

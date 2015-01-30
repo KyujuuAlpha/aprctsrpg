@@ -3,6 +3,7 @@ package ui;
 import ui.elem.*;
 
 import javax.swing.*;
+import javax.swing.border.*;
 
 import java.awt.*;
 import java.awt.event.*;
@@ -36,6 +37,7 @@ public class Window extends JFrame implements ActionListener {
         JScrollPane temp2;
         actionsMenu = new JPanel(new BoxLayout(actionsMenu, BoxLayout.Y_AXIS));
         imageMenu = new JPanel(); //imageMenu
+        imageMenu.setBorder(BorderFactory.createEtchedBorder(EtchedBorder.LOWERED));
         subContainerA.add(imageMenu);
         inMenu = new JPanel();
         inMenu.setLayout(new BoxLayout(inMenu, BoxLayout.Y_AXIS));
@@ -43,23 +45,26 @@ public class Window extends JFrame implements ActionListener {
         dialog = new JLabel("");
         temp.add(dialog);
         temp2 = new JScrollPane(temp); //dialog
+        temp2.setBorder(BorderFactory.createEtchedBorder(EtchedBorder.LOWERED));
         subContainerB.add(temp2);
+        temp2.setBorder(BorderFactory.createEtchedBorder(EtchedBorder.LOWERED));
         temp2 = new JScrollPane(inMenu); //inputs
         subContainerB.add(temp2);
         actionsMenu.setLayout(new BoxLayout(actionsMenu, BoxLayout.Y_AXIS));
         statsMenu = new JPanel(new FlowLayout(FlowLayout.RIGHT));
         statsMenu2 = new JPanel(new FlowLayout(FlowLayout.RIGHT));
-        stats = new JLabel("f");
-        stats2 = new JLabel("g");
+        stats = new JLabel("");
+        stats2 = new JLabel("");
         statsMenu.add(stats); //statistics
         this.add(statsMenu, BorderLayout.NORTH);
         statsMenu2.add(stats2); //stats 2
         this.add(statsMenu2, BorderLayout.SOUTH);
         temp2 = new JScrollPane(actionsMenu); //actions
+        temp2.setBorder(BorderFactory.createEtchedBorder(EtchedBorder.LOWERED));
         this.add(temp2, BorderLayout.WEST);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setVisible(true);
-        Timer timerVar = new Timer(50, this);
+        Timer timerVar = new Timer(50, this); //ticking timer
         timerVar.start();
     }
     
