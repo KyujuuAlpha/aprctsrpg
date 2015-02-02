@@ -12,6 +12,7 @@ import java.io.*;
 
 public class Stat implements Element {
     private String text;
+    private boolean canSync = false;
     
     public Stat(String... stringVar) {
         handleText(stringVar);
@@ -36,7 +37,10 @@ public class Stat implements Element {
     }
     
     @Override
-    public void createElement(boolean flag) {}
+    public void createElement(boolean flag) {
+        if(flag) canSync = true;
+        sync();
+    }
     
     @Override
     public void removeElement() {
@@ -45,7 +49,7 @@ public class Stat implements Element {
     
     @Override
     public void sync() {
-        ((JLabel)WindowUtilities.getComponent("stats")).setText(this.text);
+        if(canSync) ((JLabel)WindowUtilities.getComponent("stats")).setText(this.text);
     }
     
     public void draw(Stage stageVar) {
