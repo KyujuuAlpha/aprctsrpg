@@ -18,17 +18,17 @@ public class Sprite implements Element {
     
     public Sprite(String stringVar) {
         createElement(false);
-        setURL(stringVar);
+        setName(stringVar);
     }
     
-    public void setURL(String stringVar) {
+    public void setName(String stringVar) {
         this.url = stringVar;
         try { this.bufferedImage = ImageIO.read(new File("resources/" + this.url + ".png"));
         } catch(Exception e) { this.bufferedImage = null; }
         sync();
     }
     
-    public String getURL() {
+    public String getName() {
         return this.url;
     }
     
