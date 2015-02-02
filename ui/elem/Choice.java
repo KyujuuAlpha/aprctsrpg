@@ -23,6 +23,15 @@ public class Choice implements Element {
         this.text = stringVar;
     }
     
+    public void setLabel(String stringVar, boolean flag) {
+        this.text = stringVar;
+        this.setEnabled(flag);
+    }
+    
+    public void setEnabled(boolean flag) {
+        ((JButton)guiElement).setEnabled(flag);
+    }
+    
     @Override
     public void createElement(boolean flag) {
         this.guiElement = new JButton(getLabel());
