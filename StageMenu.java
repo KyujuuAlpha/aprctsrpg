@@ -3,27 +3,33 @@ import ui.elem.*;
 
 public class StageMenu extends Stage {
     private Dialog mainDialog;
-
+    private Choice a;
+    private Choice b;
     @Override
     public void choiceDone(String a) {
-        nextStage();
+        if(a.equals("START")){
+            
+            stageOne();
+        }else if(a.equals("QUIT")){
+        }
     }
     
     @Override
     public void taskPerformed() {
-        addElement(new Choice("Option1"));
-        mainDialog.setText("Choose an option");
+        
     }
 
     @Override
     public void init() { //basically initializing most main variables and loading sprites
+        a = new Choice("START");
+        b = new Choice("QUIT");
         mainDialog = new Dialog("");
-        start();
+        mainDialog.setText("Hello! Welcome to the Game!", "Press START to Continue");
+        this.addElement(mainDialog, a, b);
     }
     
-    public void start() {
-        addElement(mainDialog);
-        mainDialog.setText("Welcome to this place!");
-        scheduleTask(100);
+    public void stageOne(){
+        mainDialog.setText("It's the year 151515...", "Press A to Continue");
+        this.addElement(mainDialog, new Choice("A"));
     }
 }
