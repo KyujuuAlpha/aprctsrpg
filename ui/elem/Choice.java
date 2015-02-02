@@ -47,6 +47,7 @@ public class Choice implements Element {
     
     @Override
     public void sync() {
+        if(this.guiElement == null) return;
         ((JButton)this.guiElement).setText(getLabel());
     }
     

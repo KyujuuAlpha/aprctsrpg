@@ -49,7 +49,7 @@ public class Sprite implements Element {
     
     @Override
     public void sync() {
-        if(getImage() == null) return;
+        if(getImage() == null || this.guiElement == null) return;
         JPanel panelVar = WindowUtilities.getComponentPanel("image");
         ((JLabel)this.guiElement).setIcon(new ImageIcon(getImage().getScaledInstance((int)(panelVar.getHeight() * (getImage().getWidth() / getImage().getHeight())), panelVar.getHeight(), Image.SCALE_FAST)));
     }

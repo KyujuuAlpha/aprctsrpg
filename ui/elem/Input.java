@@ -71,6 +71,7 @@ public class Input implements Element {
     
     @Override
     public void sync() {
+        if(this.guiElement == null) return;
         this.text = this.guiElementField.getText();
         this.guiElementField.setColumns(getSize());
         this.guiElementText.setText(getName() + ": ");
