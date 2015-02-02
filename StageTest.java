@@ -5,7 +5,7 @@ public class StageTest extends Stage {
     private Dialog mainDialog;
     
     @Override
-    public void choiceDone(String a) {
+    public void choiceClicked(String a) {
     }
     
     @Override

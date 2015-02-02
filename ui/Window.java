@@ -90,6 +90,6 @@ public class Window extends JFrame implements ActionListener {
         for(int i = 0; i < actionsMenu.getComponents().length; i++) {
             actionsMenu.getComponents()[i].setEnabled(false);
         }
-        Stage.getStage().choiceDone(((JButton)e.getSource()).getText());
+        Stage.getStage().choiceClicked(((JButton)e.getSource()).getText());
     }
 }

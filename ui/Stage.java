@@ -23,7 +23,7 @@ public abstract class Stage {
     /**
      * Method that activates when one of the choices is clicked
      */
-    public void choiceDone(String buttonName) {
+    public void choiceClicked(String buttonName) {
     }
     
     /**

@@ -6,7 +6,7 @@ public class StageMenu extends Stage {
     private Choice a;
     private Choice b;
     @Override
-    public void choiceDone(String choiceName) {
+    public void choiceClicked(String choiceName) {
         if(choiceName.equals("START")){
             a.setLabel("A", true);
             b.setLabel("B", false);
