@@ -61,12 +61,12 @@ public class Input implements Element {
         temp.add(this.guiElementText);
         temp.setMaximumSize(new Dimension(Integer.MAX_VALUE, (int)this.guiElementField.getPreferredSize().getHeight() + 10));
         temp.add(this.guiElementField);
-        if(flag) WindowUtilities.getComponentPanel("input").add(this.guiElement);
+        if(flag) Display.getComponentPanel("input").add(this.guiElement);
     }
     
     @Override
     public void removeElement() {
-        WindowUtilities.getComponentPanel("input").remove(this.guiElement);
+        Display.getComponentPanel("input").remove(this.guiElement);
     }
     
     @Override
@@ -79,7 +79,7 @@ public class Input implements Element {
     
     @Override
     public void draw(Stage stageVar) {
-        JPanel panelVar = WindowUtilities.getComponentPanel("input");
+        JPanel panelVar = Display.getComponentPanel("input");
         panelVar.revalidate();
         panelVar.repaint();
     }

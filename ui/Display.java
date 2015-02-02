@@ -8,8 +8,8 @@ import javax.swing.border.*;
 import java.awt.*;
 import java.awt.event.*;
 
-public class Window extends JFrame implements ActionListener { 
-    private static Window windowVar;
+public class Display extends JFrame implements ActionListener { 
+    private static Display displayVar;
     
     public static JPanel actionsMenu;
     public static JPanel statsMenu;
@@ -22,11 +22,11 @@ public class Window extends JFrame implements ActionListener {
     public static JLabel stats2;
     
     public static void init() {
-        windowVar = new Window("RPG");
+        displayVar = new Display("RPG");
         Stage.begin();
     }
     
-    public Window(String str) {
+    public Display(String str) {
         super(str);
         this.setSize(800,600);
         JPanel subContainerA = new JPanel(new GridLayout(1,2));
@@ -74,10 +74,6 @@ public class Window extends JFrame implements ActionListener {
         super.paint(g);
     }
     
-    public static Window getInstance() {
-        return windowVar;
-    }
-    
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() instanceof Timer) {
@@ -91,5 +87,31 @@ public class Window extends JFrame implements ActionListener {
             actionsMenu.getComponents()[i].setEnabled(false);
         }
         Stage.getStage().choiceClicked(((JButton)e.getSource()).getText());
+    }
+    
+    public static Display getInstance() {
+        return displayVar;
+    }
+
+    public static Component getComponent(String type) {
+        switch(type) {
+            case "choice": return actionsMenu;
+            case "image": return imageMenu;
+            case "input": return inMenu;
+            case "text": return dialog;
+            case "stats": return stats;
+            case "stats2": return stats2;
+            default: return null;
+        }
+    }
+    
+    public static JPanel getComponentPanel(String type) {
+       if(type == "text" || type == "stats" || type == "stats2") return null;
+       return (JPanel)getComponent(type);
+    }
+    
+    public static Component[] getComponentArray(String type) {
+        if(type == "text" || type == "stats" || type == "stats2") return null;
+        return getComponentPanel(type).getComponents();
     }
 }

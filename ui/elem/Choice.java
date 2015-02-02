@@ -36,14 +36,14 @@ public class Choice implements Element {
     public void createElement(boolean flag) {
         this.guiElement = new JButton(getLabel());
         JButton temp = (JButton)this.guiElement;
-        temp.addActionListener(WindowUtilities.getWindowInstance());
+        temp.addActionListener(Display.getInstance());
         temp.setAlignmentX(Component.CENTER_ALIGNMENT);
-        if(flag) WindowUtilities.getComponentPanel("choice").add(this.guiElement);
+        if(flag) Display.getComponentPanel("choice").add(this.guiElement);
     }
     
     @Override
     public void removeElement() {
-        WindowUtilities.getComponentPanel("choice").remove(this.guiElement);
+        Display.getComponentPanel("choice").remove(this.guiElement);
     }
     
     @Override
@@ -54,7 +54,7 @@ public class Choice implements Element {
     
     @Override
     public void draw(Stage stageVar) {
-        JPanel panelVar = WindowUtilities.getComponentPanel("choice");
+        JPanel panelVar = Display.getComponentPanel("choice");
         panelVar.revalidate();
         panelVar.repaint();
     }

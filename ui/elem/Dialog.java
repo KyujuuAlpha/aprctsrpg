@@ -44,16 +44,16 @@ public class Dialog implements Element {
     
     @Override
     public void removeElement() {
-        ((JLabel)WindowUtilities.getComponent("text")).setText("");
+        ((JLabel)Display.getComponent("text")).setText("");
     }
     
     @Override
     public void sync() {
-        if(canSync) ((JLabel)WindowUtilities.getComponent("text")).setText(this.text);
+        if(canSync) ((JLabel)Display.getComponent("text")).setText(this.text);
     }
     
     public void draw(Stage stageVar) {
-        JLabel labelVar = (JLabel)WindowUtilities.getComponent("text");
+        JLabel labelVar = (JLabel)Display.getComponent("text");
         labelVar.revalidate();
         labelVar.repaint();
     }

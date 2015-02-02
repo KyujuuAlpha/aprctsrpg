@@ -44,16 +44,16 @@ public class Stat implements Element {
     
     @Override
     public void removeElement() {
-        ((JLabel)WindowUtilities.getComponent("stats")).setText("");
+        ((JLabel)Display.getComponent("stats")).setText("");
     }
     
     @Override
     public void sync() {
-        if(canSync) ((JLabel)WindowUtilities.getComponent("stats")).setText(this.text);
+        if(canSync) ((JLabel)Display.getComponent("stats")).setText(this.text);
     }
     
     public void draw(Stage stageVar) {
-        JLabel labelVar = (JLabel)WindowUtilities.getComponent("stats");
+        JLabel labelVar = (JLabel)Display.getComponent("stats");
         labelVar.revalidate();
         labelVar.repaint();
     }

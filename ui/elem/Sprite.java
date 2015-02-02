@@ -39,25 +39,25 @@ public class Sprite implements Element {
     @Override
     public void createElement(boolean flag) {
         guiElement = new JLabel();
-        if(flag) WindowUtilities.getComponentPanel("image").add(guiElement);
+        if(flag) Display.getComponentPanel("image").add(guiElement);
     }
     
     @Override
     public void removeElement() {
-        WindowUtilities.getComponentPanel("image").remove(this.guiElement);
+        Display.getComponentPanel("image").remove(this.guiElement);
     }
     
     @Override
     public void sync() {
         if(getImage() == null || this.guiElement == null) return;
-        JPanel panelVar = WindowUtilities.getComponentPanel("image");
+        JPanel panelVar = Display.getComponentPanel("image");
         ((JLabel)this.guiElement).setIcon(new ImageIcon(getImage().getScaledInstance((int)(panelVar.getHeight() * (getImage().getWidth() / getImage().getHeight())), panelVar.getHeight(), Image.SCALE_FAST)));
     }
     
     @Override
     public void draw(Stage stageVar) {
-        JPanel panelVar = WindowUtilities.getComponentPanel("image");
-        panelVar.setLayout(new GridLayout(1, WindowUtilities.getComponentArray("image").length));
+        JPanel panelVar = Display.getComponentPanel("image");
+        panelVar.setLayout(new GridLayout(1, Display.getComponentArray("image").length));
         panelVar.revalidate();
         panelVar.repaint();
     }

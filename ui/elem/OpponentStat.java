@@ -44,16 +44,16 @@ public class OpponentStat implements Element {
     
     @Override
     public void removeElement() {
-        ((JLabel)WindowUtilities.getComponent("stats2")).setText("");
+        ((JLabel)Display.getComponent("stats2")).setText("");
     }
     
     @Override
     public void sync() {
-        if(canSync) ((JLabel)WindowUtilities.getComponent("stats2")).setText(this.text);
+        if(canSync) ((JLabel)Display.getComponent("stats2")).setText(this.text);
     }
     
     public void draw(Stage stageVar) {
-        JLabel labelVar = (JLabel)WindowUtilities.getComponent("stats2");
+        JLabel labelVar = (JLabel)Display.getComponent("stats2");
         labelVar.revalidate();
         labelVar.repaint();
     }
