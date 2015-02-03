@@ -3,8 +3,9 @@ import ui.Stage;
 
 public class Engine {
     public static void main(String[] args) {
-        Stage.addStage(new StageMenu());
-        Stage.addStage(new StageTest());
-        Display.init();
+        Display displayVar = new Display("Window");
+        displayVar.addStage(new StageMenu());
+        displayVar.addStage(new StageTest());
+        displayVar.begin();
     }
 }

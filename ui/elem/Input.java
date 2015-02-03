@@ -14,12 +14,19 @@ public class Input implements Element {
     private String name;
     private String text;
     
+    private Display gameVar;
+    
     public Input(String stringVar, int intVar) {
         this.size = intVar;
         this.name = stringVar;
         this.text = "";
         createElement(false);
         sync();
+    }
+    
+    @Override
+    public void setGameInstance(Display displayVar) {
+        gameVar = displayVar;
     }
     
     public int getSize() {
@@ -61,12 +68,12 @@ public class Input implements Element {
         temp.add(this.guiElementText);
         temp.setMaximumSize(new Dimension(Integer.MAX_VALUE, (int)this.guiElementField.getPreferredSize().getHeight() + 10));
         temp.add(this.guiElementField);
-        if(flag) Display.getComponentPanel("input").add(this.guiElement);
+        if(flag) gameVar.getComponentPanel("input").add(this.guiElement); sync();
     }
     
     @Override
     public void removeElement() {
-        Display.getComponentPanel("input").remove(this.guiElement);
+        gameVar.getComponentPanel("input").remove(this.guiElement);
     }
     
     @Override
@@ -79,7 +86,7 @@ public class Input implements Element {
     
     @Override
     public void draw(Stage stageVar) {
-        JPanel panelVar = Display.getComponentPanel("input");
+        JPanel panelVar = gameVar.getComponentPanel("input");
         panelVar.revalidate();
         panelVar.repaint();
     }

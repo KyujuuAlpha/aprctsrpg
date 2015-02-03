@@ -14,9 +14,15 @@ public class Dialog implements Element {
     private String text;
     private boolean canSync = false;
     
+    private Display gameVar;
+    
     public Dialog(String... stringVar) {
         handleText(stringVar);
-        sync();
+    }
+    
+    @Override
+    public void setGameInstance(Display displayVar) {
+        gameVar = displayVar;
     }
     
     public String getText() {
@@ -25,7 +31,6 @@ public class Dialog implements Element {
     
     public void setText(String... stringVar) {
         handleText(stringVar);
-        sync();
     }
     
     private void handleText(String[] stringVar) {
@@ -44,16 +49,17 @@ public class Dialog implements Element {
     
     @Override
     public void removeElement() {
-        ((JLabel)Display.getComponent("text")).setText("");
+        ((JLabel)gameVar.getComponent("text")).setText("");
+        canSync = false;
     }
     
     @Override
     public void sync() {
-        if(canSync) ((JLabel)Display.getComponent("text")).setText(this.text);
+        if(canSync) ((JLabel)gameVar.getComponent("text")).setText(this.text);
     }
     
     public void draw(Stage stageVar) {
-        JLabel labelVar = (JLabel)Display.getComponent("text");
+        JLabel labelVar = (JLabel)gameVar.getComponent("text");
         labelVar.revalidate();
         labelVar.repaint();
     }

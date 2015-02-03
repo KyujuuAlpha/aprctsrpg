@@ -8,23 +8,24 @@ import javax.swing.border.*;
 import java.awt.*;
 import java.awt.event.*;
 
+import java.util.ArrayList;
+
 public class Display extends JFrame implements ActionListener { 
-    private static Display displayVar;
+    private Display displayVar;
     
-    private static JPanel actionsMenu;
-    private static JPanel statsMenu;
-    private static JPanel statsMenu2;
-    private static JPanel imageMenu;
-    private static JPanel inMenu;
+    private JPanel actionsMenu;
+    private JPanel statsMenu;
+    private JPanel statsMenu2;
+    private JPanel imageMenu;
+    private JPanel inMenu;
     
-    private static JLabel dialog;
-    private static JLabel stats;
-    private static JLabel stats2;
+    private JLabel dialog;
+    private JLabel stats;
+    private JLabel stats2;
     
-    public static void init() {
-        displayVar = new Display("RPG");
-        Stage.begin();
-    }
+    private int currentStage = 0;
+    
+    private ArrayList<Stage> stageList = new ArrayList<Stage>();
     
     public Display(String str) {
         super(str);
@@ -70,15 +71,15 @@ public class Display extends JFrame implements ActionListener {
     
     @Override
     public void paint(Graphics g) {
-        Stage.getStage().syncElements();
+        getStage().syncElements();
         super.paint(g);
     }
     
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() instanceof Timer) {
-            Stage.getStage().countDown();
-            Stage.getStage().syncElements();
+            getStage().countDown();
+            getStage().syncElements();
             this.revalidate();
             this.repaint();
             return;
@@ -86,14 +87,10 @@ public class Display extends JFrame implements ActionListener {
         for(int i = 0; i < actionsMenu.getComponents().length; i++) {
             actionsMenu.getComponents()[i].setEnabled(false);
         }
-        Stage.getStage().choiceClicked(((JButton)e.getSource()).getText());
-    }
-    
-    public static Display getInstance() {
-        return displayVar;
+        getStage().choiceClicked(((JButton)e.getSource()).getText());
     }
 
-    public static Component getComponent(String type) {
+    public Component getComponent(String type) {
         switch(type) {
             case "choice": return actionsMenu;
             case "image": return imageMenu;
@@ -105,13 +102,69 @@ public class Display extends JFrame implements ActionListener {
         }
     }
     
-    public static JPanel getComponentPanel(String type) {
+    public JPanel getComponentPanel(String type) {
        if(type == "text" || type == "stats" || type == "stats2") return null;
        return (JPanel)getComponent(type);
     }
     
-    public static Component[] getComponentArray(String type) {
+    public Component[] getComponentArray(String type) {
         if(type == "text" || type == "stats" || type == "stats2") return null;
         return getComponentPanel(type).getComponents();
+    }
+    
+    /**
+     * Begin the game starting at stage 0
+     */
+    public void begin() {
+        if(stageList.size() > 0) stageList.get(0).init();
+    }
+    
+    /**
+     * Add a new stage to the list
+     */
+    public void addStage(Stage stageVar) {
+        stageVar.setGameInstance(this);
+        stageList.add(stageVar);
+    }
+    
+    /**
+     * Move onto the next stage on the list
+     */
+    public void nextStage() {
+        getStage().removeElements();
+        currentStage++;
+        if(currentStage < stageList.size()) stageList.get(currentStage).init();
+        getStage().createElements();
+        getStage().syncElements();
+        getStage().drawElements();
+    }
+    
+    /**
+     * Go back one stage on the list
+     */
+    public void prevStage() {
+        getStage().removeElements();
+        if(currentStage > 0) currentStage--;
+        if(currentStage < stageList.size()) stageList.get(currentStage).init();
+        else if(stageList.size() > 0) stageList.get(stageList.size()-1).init();
+        getStage().createElements();
+        getStage().syncElements();
+        getStage().drawElements();
+    }
+    
+    /**
+     * Get the current stage this game is on
+     */
+    public int getStageNumber() { 
+        return currentStage; 
+    }
+    
+    /**
+     * Get the actual current stage object
+     */
+    public Stage getStage() {
+        if(currentStage < stageList.size()) return stageList.get(currentStage);
+        else if(stageList.size() > 0) return stageList.get(stageList.size()-1);
+        return null;
     }
 }

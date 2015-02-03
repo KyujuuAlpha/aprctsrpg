@@ -26,7 +26,7 @@ public class StageMenu extends Stage {
         b = new Choice("QUIT");
         mainDialog = new Dialog("");
         mainDialog.setText("Hello! Welcome to the Game!", "Press START to Continue");
-        this.addElement(mainDialog, a, b);
+        this.addElement(mainDialog, a, b, new Sprite("troi"));
     }
     
     public void stageOnePointOne(){

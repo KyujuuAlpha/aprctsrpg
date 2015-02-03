@@ -8,11 +8,16 @@ import java.awt.*;
 public class Choice implements Element {
     private Component guiElement;
     private String text;
+    
+    private Display gameVar;
 
     public Choice(String stringVar) {
         this.text = stringVar;
-        createElement(false);
-        sync();
+    }
+    
+    @Override
+    public void setGameInstance(Display displayVar) {
+        gameVar = displayVar;
     }
     
     public String getLabel() {
@@ -36,14 +41,14 @@ public class Choice implements Element {
     public void createElement(boolean flag) {
         this.guiElement = new JButton(getLabel());
         JButton temp = (JButton)this.guiElement;
-        temp.addActionListener(Display.getInstance());
+        temp.addActionListener(gameVar);
         temp.setAlignmentX(Component.CENTER_ALIGNMENT);
-        if(flag) Display.getComponentPanel("choice").add(this.guiElement);
+        if(flag) gameVar.getComponentPanel("choice").add(this.guiElement); sync();
     }
     
     @Override
     public void removeElement() {
-        Display.getComponentPanel("choice").remove(this.guiElement);
+        gameVar.getComponentPanel("choice").remove(this.guiElement);
     }
     
     @Override
@@ -54,7 +59,7 @@ public class Choice implements Element {
     
     @Override
     public void draw(Stage stageVar) {
-        JPanel panelVar = Display.getComponentPanel("choice");
+        JPanel panelVar = gameVar.getComponentPanel("choice");
         panelVar.revalidate();
         panelVar.repaint();
     }

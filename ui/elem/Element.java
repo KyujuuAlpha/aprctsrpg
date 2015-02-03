@@ -11,4 +11,5 @@ public interface Element {
     public void sync();
     public void createElement(boolean flag);
     public void removeElement();
+    public void setGameInstance(Display displayVar);
 }
