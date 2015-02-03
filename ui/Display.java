@@ -11,15 +11,15 @@ import java.awt.event.*;
 public class Display extends JFrame implements ActionListener { 
     private static Display displayVar;
     
-    public static JPanel actionsMenu;
-    public static JPanel statsMenu;
-    public static JPanel statsMenu2;
-    public static JPanel imageMenu;
-    public static JPanel inMenu;
+    private static JPanel actionsMenu;
+    private static JPanel statsMenu;
+    private static JPanel statsMenu2;
+    private static JPanel imageMenu;
+    private static JPanel inMenu;
     
-    public static JLabel dialog;
-    public static JLabel stats;
-    public static JLabel stats2;
+    private static JLabel dialog;
+    private static JLabel stats;
+    private static JLabel stats2;
     
     public static void init() {
         displayVar = new Display("RPG");
