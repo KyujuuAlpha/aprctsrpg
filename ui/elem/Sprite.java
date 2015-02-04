@@ -18,6 +18,10 @@ public class Sprite implements Element {
     
     private Display gameVar;
     
+    public Sprite() {
+        setSource("");
+    }
+    
     /**
      * Create a new sprite element
      * Sets the target resource to specified image located in the resources/ directory: new Sprite("troi.png");

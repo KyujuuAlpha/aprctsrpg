@@ -13,6 +13,11 @@ public class Choice implements Element, ActionListener {
     private boolean enabled;
     
     private Display gameVar;
+    
+    public Choice() {
+        this.text = "Choice";
+        this.enabled = true;
+    }
 
     /**
      * Construct a new choice object;

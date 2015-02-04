@@ -16,6 +16,10 @@ public class Dialog implements Element {
     
     protected Display gameVar;
     
+    public Dialog() {
+        this.text = "";
+    }
+    
     /**
      * Create a new dialog element
      * Set the dialog's contents to specified text
@@ -29,7 +33,7 @@ public class Dialog implements Element {
      * Get the dialog's text
      */
     public String getText() {
-        return this.text;
+        return this.text.replaceAll("<br>","\n").replace("<html>", "").replace("</html>", "");
     }
     
     /**

@@ -16,6 +16,12 @@ public class Input implements Element {
     
     private Display gameVar;
     
+    public Input() {
+        this.size = 6;
+        this.name = "TextBox";
+        this.text = "";
+    }
+    
     /**
      * Construct a new input;
      * Sets the name and the size of the input 
