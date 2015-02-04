@@ -1,7 +1,7 @@
 import ui.*;
 import ui.elem.*;
 
-public class StageMenu extends Stage {
+public class StagePrologue extends Stage {
     private Dialog mainDialog;
     private Choice a;
     private Choice b;
@@ -13,6 +13,7 @@ public class StageMenu extends Stage {
         Choice choiceObject = (Choice)elementVar;
         c.setName("TESTETS");
         c.setText("TESTTSET");
+        boolean continue = j
         if(choiceObject.getLabel().equals("START")){
             a.setLabel("A", true);
             b.setLabel("B", false);
