@@ -12,12 +12,12 @@ public class StageMenu extends Stage {
             b.setLabel("B", false);
             stageOnePointOne();
         }else if(choiceName.equals("QUIT")){
+            this.nextStage();
         }
     }
     
     @Override
     public void taskPerformed() {
-        
     }
 
     @Override
@@ -26,7 +26,7 @@ public class StageMenu extends Stage {
         b = new Choice("QUIT");
         mainDialog = new Dialog("");
         mainDialog.setText("Hello! Welcome to the Game!", "Press START to Continue");
-        this.addElement(mainDialog, a, b, new Sprite("troi"));
+        this.addElement(mainDialog, a, b, new Sprite("troi.png"));
     }
     
     public void stageOnePointOne(){

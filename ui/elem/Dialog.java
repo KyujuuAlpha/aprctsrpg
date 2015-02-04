@@ -17,7 +17,7 @@ public class Dialog implements Element {
     private Display gameVar;
     
     public Dialog(String... stringVar) {
-        handleText(stringVar);
+        this.text = handleText(stringVar);
     }
     
     @Override
@@ -30,15 +30,28 @@ public class Dialog implements Element {
     }
     
     public void setText(String... stringVar) {
-        handleText(stringVar);
+        this.text = handleText(stringVar);
     }
     
-    private void handleText(String[] stringVar) {
+    public void appendText(String... stringVar) {
+        String temp = handleText(stringVar);
+        this.text = this.text.replace("</html>", "").replace("<html>", ""); 
+        temp = temp.replace("</html>", "").replace("<html>", ""); 
+        this.text = "<html>" + this.text + temp + "</html>";
+    }
+    
+    public void replaceText(String stringVar0, String stringVar1) {
+        this.text = this.text.replaceAll(stringVar0, stringVar1);
+    }
+    
+    private String handleText(String[] stringVar) {
+        String temp = "<html>";
         if(stringVar.length > 1) {
-            this.text = "<html>";
-            for(int i = 0; i < stringVar.length; i++) this.text += stringVar[i] + "<br>";
-            this.text += "</html>";
-        } else this.text = stringVar[0];
+            for(int i = 0; i < stringVar.length - 1; i++) temp += stringVar[i] + "<br>";
+            temp += stringVar[stringVar.length - 1];
+        } else temp = stringVar[0];
+        temp += "</html>";
+        return temp;
     }
     
     @Override

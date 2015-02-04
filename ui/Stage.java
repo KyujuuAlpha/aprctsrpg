@@ -99,6 +99,20 @@ public abstract class Stage {
         }
     }
     
+    /**
+     * Go to the next stage in the list
+     */
+    public void nextStage() {
+        gameVar.nextStage();
+    }
+    
+    /**
+     * Go to the previous stage in the list
+     */
+    public void prevStage() {
+        gameVar.prevStage();
+    }
+    
     public void setGameInstance(Display displayVar) {
         gameVar = displayVar;
     }

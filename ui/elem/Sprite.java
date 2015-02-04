@@ -19,7 +19,7 @@ public class Sprite implements Element {
     private Display gameVar;
     
     public Sprite(String stringVar) {
-        setName(stringVar);
+        setSource(stringVar);
     }
     
     @Override
@@ -27,13 +27,14 @@ public class Sprite implements Element {
         gameVar = displayVar;
     }
     
-    public void setName(String stringVar) {
+    public void setSource(String stringVar) {
         this.url = stringVar;
-        try { this.bufferedImage = ImageIO.read(new File("resources/" + this.url + ".png"));
-        } catch(Exception e) { this.bufferedImage = null; }
+        try { this.bufferedImage = ImageIO.read(new File("resources/" + this.url));
+        } catch(Exception e) { try { this.bufferedImage = ImageIO.read(new File("resources/unknown.png"));
+        } catch(Exception e2) { this.bufferedImage = null; } }
     }
     
-    public String getName() {
+    public String getSource() {
         return this.url;
     }
     

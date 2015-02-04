@@ -37,6 +37,10 @@ public class Choice implements Element {
         ((JButton)guiElement).setEnabled(flag);
     }
     
+    public boolean isEnabled() {
+        return ((JButton)guiElement).isEnabled();
+    }
+    
     @Override
     public void createElement(boolean flag) {
         this.guiElement = new JButton(getLabel());

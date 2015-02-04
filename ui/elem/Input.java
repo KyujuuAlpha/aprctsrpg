@@ -20,8 +20,6 @@ public class Input implements Element {
         this.size = intVar;
         this.name = stringVar;
         this.text = "";
-        createElement(false);
-        sync();
     }
     
     @Override
@@ -44,17 +42,14 @@ public class Input implements Element {
     
     public void setName(String stringVar) {
         this.name = stringVar;
-        sync();
     }
     
     public void setText(String stringVar) {
         this.guiElementField.setText(stringVar);
-        sync();
     }
     
     public void setSize(int intVar) {
         this.size = intVar;
-        sync();
     }
     
     @Override
