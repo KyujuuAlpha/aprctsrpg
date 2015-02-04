@@ -11,11 +11,6 @@ import java.awt.image.*;
 import java.io.*;
 
 public class Stat extends Dialog {
-    private String text;
-    private boolean canSync = false;
-    
-    private Display gameVar;
-    
     @Override
     public void removeElement() {
         ((JLabel)gameVar.getComponent("stats")).setText("");
@@ -27,6 +22,7 @@ public class Stat extends Dialog {
         if(canSync) ((JLabel)gameVar.getComponent("stats")).setText(this.text);
     }
     
+    @Override
     public void draw(Stage stageVar) {
         JLabel labelVar = (JLabel)gameVar.getComponent("stats");
         labelVar.revalidate();

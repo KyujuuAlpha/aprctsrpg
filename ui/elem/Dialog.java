@@ -11,10 +11,10 @@ import java.awt.image.*;
 import java.io.*;
 
 public class Dialog implements Element {
-    private String text;
-    private boolean canSync = false;
+    protected String text;
+    protected boolean canSync = false;
     
-    private Display gameVar;
+    protected Display gameVar;
     
     /**
      * Create a new dialog element
