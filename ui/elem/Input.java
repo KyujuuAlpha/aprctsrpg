@@ -6,7 +6,7 @@ import javax.swing.*;
 import java.awt.*;
 
 public class Input implements Element {
-    private Component guiElement;
+    private JPanel guiElement;
     private JTextField guiElementField = null;
     private JLabel guiElementText = null;
     
@@ -79,22 +79,21 @@ public class Input implements Element {
     }
     
     @Override
-    public void createElement(boolean flag) {
+    public void createElement() {
         this.guiElementField = new JTextField(getSize());
         this.guiElementField.setText(this.text);
         this.guiElementText = new JLabel(getName() + ": ");
         this.guiElement = new JPanel();
-        JPanel temp = ((JPanel)this.guiElement);
-        temp.setLayout(new FlowLayout(FlowLayout.LEFT));
-        temp.add(this.guiElementText);
-        temp.setMaximumSize(new Dimension(Integer.MAX_VALUE, (int)this.guiElementField.getPreferredSize().getHeight() + 10));
-        temp.add(this.guiElementField);
-        if(flag) gameVar.getComponentPanel("input").add(this.guiElement); sync();
+        this.guiElement.setLayout(new FlowLayout(FlowLayout.LEFT));
+        this.guiElement.setMaximumSize(new Dimension(Integer.MAX_VALUE, (int)this.guiElementField.getPreferredSize().getHeight() + 10));
+        this.guiElement.add(this.guiElementText);
+        this.guiElement.add(this.guiElementField);
+        if(this.gameVar != null) this.gameVar.getComponentPanel("input").add(this.guiElement); sync();
     }
     
     @Override
     public void removeElement() {
-        gameVar.getComponentPanel("input").remove(this.guiElement);
+        this.gameVar.getComponentPanel("input").remove(this.guiElement);
     }
     
     @Override
@@ -102,11 +101,11 @@ public class Input implements Element {
         if(this.guiElement == null) return;
         this.text = this.guiElementField.getText();
         this.guiElementField.setColumns(getSize());
-        this.guiElementText.setText(getName() + ": ");
+        this.guiElementText.setText(this.name + ": ");
     }
     
     @Override
     public void setGameInstance(Display displayVar) {
-        gameVar = displayVar;
+        this.gameVar = displayVar;
     }
 }

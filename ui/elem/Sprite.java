@@ -11,7 +11,7 @@ import java.awt.image.*;
 import java.io.*;
 
 public class Sprite implements Element {
-    private Component guiElement;
+    private JLabel guiElement;
     
     private String url;
     private BufferedImage bufferedImage;
@@ -47,17 +47,10 @@ public class Sprite implements Element {
         return this.url;
     }
     
-    /**
-     * Get the image object of the target resource if it exists
-     */
-    public BufferedImage getImage() {
-        return bufferedImage;
-    }
-    
     @Override
-    public void createElement(boolean flag) {
-        guiElement = new JLabel();
-        if(flag) gameVar.getComponentPanel("image").add(guiElement); sync();
+    public void createElement() {
+        this.guiElement = new JLabel();
+        if(this.gameVar != null) this.gameVar.getComponentPanel("image").add(this.guiElement); sync();
     }
     
     @Override
@@ -67,14 +60,14 @@ public class Sprite implements Element {
     
     @Override
     public void sync() {
-        if(getImage() == null || this.guiElement == null) return;
+        if(bufferedImage == null || this.guiElement == null) return;
         JPanel panelVar = gameVar.getComponentPanel("image");
-        panelVar.setLayout(new GridLayout(1, gameVar.getComponentArray("image").length));
-        ((JLabel)this.guiElement).setIcon(new ImageIcon(getImage().getScaledInstance((int)(panelVar.getHeight() * (getImage().getWidth() / getImage().getHeight())), panelVar.getHeight(), Image.SCALE_FAST)));
+        panelVar.setLayout(new GridLayout(1, this.gameVar.getComponentArray("image").length));
+        this.guiElement.setIcon(new ImageIcon(bufferedImage.getScaledInstance((int)(panelVar.getHeight() * (bufferedImage.getWidth() / bufferedImage.getHeight())), panelVar.getHeight(), Image.SCALE_FAST)));
     }
     
     @Override
     public void setGameInstance(Display displayVar) {
-        gameVar = displayVar;
+        this.gameVar = displayVar;
     }
 }

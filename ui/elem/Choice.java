@@ -8,7 +8,7 @@ import java.awt.*;
 import java.awt.event.*;
 
 public class Choice implements Element, ActionListener {
-    private Component guiElement;
+    private JButton guiElement;
     private String text;
     private boolean enabled;
     
@@ -26,11 +26,6 @@ public class Choice implements Element, ActionListener {
     public Choice(String stringVar) {
         this.text = stringVar;
         this.enabled = true;
-    }
-    
-    @Override
-    public void setGameInstance(Display displayVar) {
-        gameVar = displayVar;
     }
     
     /**
@@ -70,30 +65,33 @@ public class Choice implements Element, ActionListener {
     }
     
     @Override
-    public void createElement(boolean flag) {
+    public void createElement() {
         this.guiElement = new JButton(getLabel());
-        JButton temp = (JButton)this.guiElement;
-        temp.addActionListener(this);
-        temp.setAlignmentX(Component.CENTER_ALIGNMENT);
-        if(flag) gameVar.getComponentPanel("choice").add(this.guiElement); sync();
+        this.guiElement.addActionListener(this);
+        if(this.gameVar != null) this.gameVar.getComponentPanel("choice").add(this.guiElement); sync();
     }
     
     @Override
     public void removeElement() {
-        gameVar.getComponentPanel("choice").remove(this.guiElement);
+        this.gameVar.getComponentPanel("choice").remove(this.guiElement);
     }
     
     @Override
     public void sync() {
         if(this.guiElement == null) return;
-        ((JButton)this.guiElement).setText(this.text);
-        ((JButton)this.guiElement).setEnabled(this.enabled);
+        this.guiElement.setText(this.text);
+        this.guiElement.setEnabled(this.enabled);
     }
     
     @Override
     public void actionPerformed(ActionEvent e) {
-        if(gameVar == null) return;
-        else if(gameVar.getStage() == null) return;
-        gameVar.getStage().choiceClicked(this);
+        if(this.gameVar == null) return;
+        else if(this.gameVar.getStage() == null) return;
+        this.gameVar.getStage().choiceClicked(this);
+    }
+    
+    @Override
+    public void setGameInstance(Display displayVar) {
+        this.gameVar = displayVar;
     }
 }

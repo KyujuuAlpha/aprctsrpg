@@ -51,7 +51,7 @@ public abstract class Stage {
             if(elementList.indexOf(elementVar) < 0) {
                 elementList.add(element);
                 element.setGameInstance(gameVar);
-                element.createElement(true);
+                element.createElement();
             }
         }
         syncElements();
@@ -86,7 +86,7 @@ public abstract class Stage {
         for(int i = 0; i < elementList.size(); i++) {
             Element element = elementList.get(i);
             element.setGameInstance(gameVar);
-            element.createElement(true);
+            element.createElement();
         }
     }
     

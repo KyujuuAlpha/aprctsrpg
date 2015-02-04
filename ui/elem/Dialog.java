@@ -73,8 +73,8 @@ public class Dialog implements Element {
     }
     
     @Override
-    public void createElement(boolean flag) {
-        if(flag) canSync = true;
+    public void createElement() {
+        canSync = true;
         sync();
     }
     
