@@ -16,40 +16,60 @@ public class Input implements Element {
     
     private Display gameVar;
     
+    /**
+     * Construct a new input;
+     * Sets the name and the size of the input 
+     */
     public Input(String stringVar, int intVar) {
         this.size = intVar;
         this.name = stringVar;
         this.text = "";
     }
     
-    @Override
-    public void setGameInstance(Display displayVar) {
-        gameVar = displayVar;
-    }
-    
+    /**
+     * Get the current size of this input
+     */
     public int getSize() {
         return this.size;
     }
     
+    /**
+     * Set the current size of this input
+     */
+    public void setSize(int intVar) {
+        this.size = intVar;
+    }
+    
+    /**
+     * Get the name of this input
+     */
     public String getName() {
         return this.name;
     }
     
-    public String getText() {
-        this.text = this.guiElementField.getText();
-        return this.guiElementField.getText();
-    }
-    
+    /**
+     * Set the name of this input
+     */
     public void setName(String stringVar) {
         this.name = stringVar;
     }
     
-    public void setText(String stringVar) {
-        this.guiElementField.setText(stringVar);
+    /**
+     * Get the current text of this input
+     */
+    public String getText() {
+        if(this.guiElementField == null) return this.text;
+        this.text = this.guiElementField.getText();
+        return this.guiElementField.getText();
     }
     
-    public void setSize(int intVar) {
-        this.size = intVar;
+    /**
+     * Set the current text of this input
+     */
+    public void setText(String stringVar) {
+        this.text = stringVar;
+        if(this.guiElementField == null) return;
+        this.guiElementField.setText(stringVar);
     }
     
     @Override
@@ -84,5 +104,10 @@ public class Input implements Element {
         JPanel panelVar = gameVar.getComponentPanel("input");
         panelVar.revalidate();
         panelVar.repaint();
+    }
+    
+    @Override
+    public void setGameInstance(Display displayVar) {
+        gameVar = displayVar;
     }
 }

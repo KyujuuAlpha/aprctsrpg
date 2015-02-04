@@ -18,15 +18,17 @@ public class Sprite implements Element {
     
     private Display gameVar;
     
+    /**
+     * Create a new sprite element
+     * Sets the target resource to specified image located in the resources/ directory: new Sprite("troi.png");
+     */
     public Sprite(String stringVar) {
         setSource(stringVar);
     }
     
-    @Override
-    public void setGameInstance(Display displayVar) {
-        gameVar = displayVar;
-    }
-    
+    /**
+     * Sets the target resource to specified image located in the resources/ directory: spriteVar.setSource("troi.png");
+     */
     public void setSource(String stringVar) {
         this.url = stringVar;
         try { this.bufferedImage = ImageIO.read(new File("resources/" + this.url));
@@ -34,10 +36,16 @@ public class Sprite implements Element {
         } catch(Exception e2) { this.bufferedImage = null; } }
     }
     
+    /**
+     * Get the target resource's name
+     */
     public String getSource() {
         return this.url;
     }
     
+    /**
+     * Get the image object of the target resource if it exists
+     */
     public BufferedImage getImage() {
         return bufferedImage;
     }
@@ -66,5 +74,10 @@ public class Sprite implements Element {
         panelVar.setLayout(new GridLayout(1, gameVar.getComponentArray("image").length));
         panelVar.revalidate();
         panelVar.repaint();
+    }
+    
+    @Override
+    public void setGameInstance(Display displayVar) {
+        gameVar = displayVar;
     }
 }

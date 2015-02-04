@@ -20,7 +20,7 @@ public abstract class Stage {
     /**
      * Method that activates when one of the choices is clicked
      */
-    public void choiceClicked(String buttonName) {
+    public void choiceClicked(Element elementVar) {
     }
     
     /**
@@ -95,6 +95,7 @@ public abstract class Stage {
     public void createElements() {
         for(int i = 0; i < elementList.size(); i++) {
             Element element = elementList.get(i);
+            element.setGameInstance(gameVar);
             element.createElement(true);
         }
     }

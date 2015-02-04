@@ -71,23 +71,20 @@ public class Display extends JFrame implements ActionListener {
     
     @Override
     public void paint(Graphics g) {
-        getStage().syncElements();
+        if(getStage() != null) getStage().syncElements();
         super.paint(g);
     }
     
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() instanceof Timer) {
+            if(getStage() == null) return;
             getStage().countDown();
             getStage().syncElements();
             this.revalidate();
             this.repaint();
             return;
         }
-        for(int i = 0; i < actionsMenu.getComponents().length; i++) {
-            actionsMenu.getComponents()[i].setEnabled(false);
-        }
-        getStage().choiceClicked(((JButton)e.getSource()).getText());
     }
 
     public Component getComponent(String type) {
