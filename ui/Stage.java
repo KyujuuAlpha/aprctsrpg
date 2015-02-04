@@ -4,12 +4,27 @@ import ui.elem.*;
 
 import java.util.ArrayList;
 
-public abstract class Stage implements StageMethods {
+public abstract class Stage {
     private ArrayList<Element> elementList = new ArrayList<Element>();
     
     private Display gameVar;
     
     private long tickDelay = 0;
+    
+    /**
+     * Called when this stage becomes the current stage
+     */
+    public abstract void init();
+    
+    /**
+     * Called whenever a choice is clicked by the mouse
+     */
+    public abstract void choiceClicked(Element elementVar);
+    
+    /**
+     * Called after a task is scheduled after certain amount of ticks
+     */
+    public abstract void taskPerformed();
     
     /**
      * Simple task scheduling method, after specified number of ticks, run taskPerformed
