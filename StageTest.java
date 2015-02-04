@@ -22,7 +22,6 @@ public class StageTest extends Stage {
     public void start() {
         addElement(mainDialog);
         mainDialog.setText("Welcome to this place!");
-        System.out.println(mainDialog.getText());
         scheduleTask(200);
     }
 }
