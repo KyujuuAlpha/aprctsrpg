@@ -10,20 +10,15 @@ public class StageMenu extends Stage {
     
     @Override
     public void choiceClicked(Element elementVar) {
-        Choice choiceName = (Choice)elementVar;
+        Choice choiceObject = (Choice)elementVar;
         c.setName("TESTETS");
         c.setText("TESTTSET");
-        if(choiceName.getLabel().equals("START")){
+        if(choiceObject.getLabel().equals("START")){
             a.setLabel("A", true);
             b.setLabel("B", false);
-<<<<<<< HEAD
             stagePre();
-        }else if(choiceName.equals("QUIT")){
-=======
-            stageOnePointOne();
-        }else if(choiceName.getLabel().equals("QUIT")){
-            this.nextStage();
->>>>>>> origin/master
+        }else if(choiceObject.getLabel().equals("QUIT")){
+            stagePre();
         }
     }
     
