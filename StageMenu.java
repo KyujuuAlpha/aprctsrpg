@@ -5,28 +5,39 @@ public class StageMenu extends Stage {
     private Dialog mainDialog;
     private Choice a;
     private Choice b;
+    
+    private Input c = new Input("test", 10);
+    
     @Override
-    public void choiceDone(String choiceName) {
-        if(choiceName.equals("START")){
+    public void choiceClicked(Element elementVar) {
+        Choice choiceName = (Choice)elementVar;
+        c.setName("TESTETS");
+        c.setText("TESTTSET");
+        if(choiceName.getLabel().equals("START")){
             a.setLabel("A", true);
             b.setLabel("B", false);
+<<<<<<< HEAD
             stagePre();
         }else if(choiceName.equals("QUIT")){
+=======
+            stageOnePointOne();
+        }else if(choiceName.getLabel().equals("QUIT")){
+            this.nextStage();
+>>>>>>> origin/master
         }
     }
     
     @Override
     public void taskPerformed() {
-        
     }
 
     @Override
-    public void init() { //basically initializing most main variables and loading sprites
+    public void init() {
         a = new Choice("START");
         b = new Choice("QUIT");
         mainDialog = new Dialog("");
+        this.addElement(mainDialog, a, b, new Sprite("troi.png"), c);
         mainDialog.setText("Hello! Welcome to the Game!", "Press START to Continue");
-        this.addElement(mainDialog, a, b);
     }
     
     public void stagePre(){

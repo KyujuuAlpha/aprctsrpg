@@ -5,7 +5,7 @@ public class StageTest extends Stage {
     private Dialog mainDialog;
     
     @Override
-    public void choiceDone(String a) {
+    public void choiceClicked(Element a) {
     }
     
     @Override
@@ -14,7 +14,7 @@ public class StageTest extends Stage {
     }
 
     @Override
-    public void init() { //basically initializing most main variables and loading sprites
+    public void init() {
         mainDialog = new Dialog("");
         start();
     }

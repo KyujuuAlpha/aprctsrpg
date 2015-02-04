@@ -16,22 +16,36 @@ public class Sprite implements Element {
     private String url;
     private BufferedImage bufferedImage;
     
+    private Display gameVar;
+    
+    /**
+     * Create a new sprite element
+     * Sets the target resource to specified image located in the resources/ directory: new Sprite("troi.png");
+     */
     public Sprite(String stringVar) {
-        createElement(false);
-        setURL(stringVar);
+        setSource(stringVar);
     }
     
-    public void setURL(String stringVar) {
+    /**
+     * Sets the target resource to specified image located in the resources/ directory: spriteVar.setSource("troi.png");
+     */
+    public void setSource(String stringVar) {
         this.url = stringVar;
-        try { this.bufferedImage = ImageIO.read(new File("resources/" + this.url + ".png"));
-        } catch(Exception e) { this.bufferedImage = null; }
-        sync();
+        try { this.bufferedImage = ImageIO.read(new File("resources/" + this.url));
+        } catch(Exception e) { try { this.bufferedImage = ImageIO.read(new File("resources/unknown.png"));
+        } catch(Exception e2) { this.bufferedImage = null; } }
     }
     
-    public String getURL() {
+    /**
+     * Get the target resource's name
+     */
+    public String getSource() {
         return this.url;
     }
     
+    /**
+     * Get the image object of the target resource if it exists
+     */
     public BufferedImage getImage() {
         return bufferedImage;
     }
@@ -39,26 +53,31 @@ public class Sprite implements Element {
     @Override
     public void createElement(boolean flag) {
         guiElement = new JLabel();
-        if(flag) WindowUtilities.getComponentPanel("image").add(guiElement);
+        if(flag) gameVar.getComponentPanel("image").add(guiElement); sync();
     }
     
     @Override
     public void removeElement() {
-        WindowUtilities.getComponentPanel("image").remove(this.guiElement);
+        gameVar.getComponentPanel("image").remove(this.guiElement);
     }
     
     @Override
     public void sync() {
-        if(getImage() == null) return;
-        JPanel panelVar = WindowUtilities.getComponentPanel("image");
+        if(getImage() == null || this.guiElement == null) return;
+        JPanel panelVar = gameVar.getComponentPanel("image");
         ((JLabel)this.guiElement).setIcon(new ImageIcon(getImage().getScaledInstance((int)(panelVar.getHeight() * (getImage().getWidth() / getImage().getHeight())), panelVar.getHeight(), Image.SCALE_FAST)));
     }
     
     @Override
     public void draw(Stage stageVar) {
-        JPanel panelVar = WindowUtilities.getComponentPanel("image");
-        panelVar.setLayout(new GridLayout(1, WindowUtilities.getComponentArray("image").length));
+        JPanel panelVar = gameVar.getComponentPanel("image");
+        panelVar.setLayout(new GridLayout(1, gameVar.getComponentArray("image").length));
         panelVar.revalidate();
         panelVar.repaint();
+    }
+    
+    @Override
+    public void setGameInstance(Display displayVar) {
+        gameVar = displayVar;
     }
 }

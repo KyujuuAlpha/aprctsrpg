@@ -7,10 +7,9 @@ import javax.swing.*;
 import java.awt.Component;
 
 public interface Element {
-    public final int priority = 0;
-    
     public void draw(Stage stageVar);
     public void sync();
     public void createElement(boolean flag);
     public void removeElement();
+    public void setGameInstance(Display displayVar);
 }
