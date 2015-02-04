@@ -74,14 +74,7 @@ public abstract class Stage {
             element.sync();
         }
     }
-    
-    public void drawElements() {
-        for(int i = 0; i < elementList.size(); i++) {
-            Element element = elementList.get(i);
-            element.draw(this);
-        }
-    }
-    
+
     public void removeElements() {
         for(int i = 0; i < elementList.size(); i++) {
             Element element = elementList.get(i);

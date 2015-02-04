@@ -21,11 +21,4 @@ public class OpponentStat extends Dialog {
     public void sync() {
         if(canSync) ((JLabel)gameVar.getComponent("stats2")).setText(this.text);
     }
-    
-    @Override
-    public void draw(Stage stageVar) {
-        JLabel labelVar = (JLabel)gameVar.getComponent("stats2");
-        labelVar.revalidate();
-        labelVar.repaint();
-    }
 }

@@ -70,21 +70,12 @@ public class Display extends JFrame implements ActionListener {
     }
     
     @Override
-    public void paint(Graphics g) {
-        if(getStage() != null) getStage().syncElements();
-        super.paint(g);
-    }
-    
-    @Override
     public void actionPerformed(ActionEvent e) {
-        if(e.getSource() instanceof Timer) {
-            if(getStage() == null) return;
-            getStage().countDown();
-            getStage().syncElements();
-            this.revalidate();
-            this.repaint();
-            return;
-        }
+        if(getStage() == null) return;
+        getStage().countDown();
+        getStage().syncElements();
+        this.revalidate();
+        this.repaint();
     }
 
     public Component getComponent(String type) {
@@ -130,10 +121,11 @@ public class Display extends JFrame implements ActionListener {
     public void nextStage() {
         getStage().removeElements();
         currentStage++;
-        if(currentStage < stageList.size()) stageList.get(currentStage).init();
+        getStage().init();
         getStage().createElements();
         getStage().syncElements();
-        getStage().drawElements();
+        this.revalidate();
+        this.repaint();
     }
     
     /**
@@ -142,11 +134,11 @@ public class Display extends JFrame implements ActionListener {
     public void prevStage() {
         getStage().removeElements();
         if(currentStage > 0) currentStage--;
-        if(currentStage < stageList.size()) stageList.get(currentStage).init();
-        else if(stageList.size() > 0) stageList.get(stageList.size()-1).init();
+        getStage().init();
         getStage().createElements();
         getStage().syncElements();
-        getStage().drawElements();
+        this.revalidate();
+        this.repaint();
     }
     
     /**

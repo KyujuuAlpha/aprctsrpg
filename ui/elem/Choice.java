@@ -91,13 +91,6 @@ public class Choice implements Element, ActionListener {
     }
     
     @Override
-    public void draw(Stage stageVar) {
-        JPanel panelVar = gameVar.getComponentPanel("choice");
-        panelVar.revalidate();
-        panelVar.repaint();
-    }
-    
-    @Override
     public void actionPerformed(ActionEvent e) {
         if(gameVar == null) return;
         else if(gameVar.getStage() == null) return;

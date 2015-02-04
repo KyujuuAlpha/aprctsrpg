@@ -106,13 +106,6 @@ public class Input implements Element {
     }
     
     @Override
-    public void draw(Stage stageVar) {
-        JPanel panelVar = gameVar.getComponentPanel("input");
-        panelVar.revalidate();
-        panelVar.repaint();
-    }
-    
-    @Override
     public void setGameInstance(Display displayVar) {
         gameVar = displayVar;
     }

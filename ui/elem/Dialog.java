@@ -90,13 +90,6 @@ public class Dialog implements Element {
     }
     
     @Override
-    public void draw(Stage stageVar) {
-        JLabel labelVar = (JLabel)gameVar.getComponent("text");
-        labelVar.revalidate();
-        labelVar.repaint();
-    }
-    
-    @Override
     public void setGameInstance(Display displayVar) {
         gameVar = displayVar;
     }

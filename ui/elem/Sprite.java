@@ -69,15 +69,8 @@ public class Sprite implements Element {
     public void sync() {
         if(getImage() == null || this.guiElement == null) return;
         JPanel panelVar = gameVar.getComponentPanel("image");
-        ((JLabel)this.guiElement).setIcon(new ImageIcon(getImage().getScaledInstance((int)(panelVar.getHeight() * (getImage().getWidth() / getImage().getHeight())), panelVar.getHeight(), Image.SCALE_FAST)));
-    }
-    
-    @Override
-    public void draw(Stage stageVar) {
-        JPanel panelVar = gameVar.getComponentPanel("image");
         panelVar.setLayout(new GridLayout(1, gameVar.getComponentArray("image").length));
-        panelVar.revalidate();
-        panelVar.repaint();
+        ((JLabel)this.guiElement).setIcon(new ImageIcon(getImage().getScaledInstance((int)(panelVar.getHeight() * (getImage().getWidth() / getImage().getHeight())), panelVar.getHeight(), Image.SCALE_FAST)));
     }
     
     @Override
