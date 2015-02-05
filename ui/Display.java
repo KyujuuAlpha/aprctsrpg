@@ -11,19 +11,19 @@ import java.awt.event.*;
 import java.util.ArrayList;
 
 public class Display extends JFrame implements ActionListener { 
-    private JPanel actionsMenu;
     private JPanel statsMenu;
     private JPanel statsMenu2;
-    private JPanel imageMenu;
-    private JPanel inMenu;
-    
-    private JLabel dialog;
-    private JLabel stats;
-    private JLabel stats2;
     
     private int currentStage = 0;
     
     private ArrayList<Stage> stageList = new ArrayList<Stage>();
+    
+    public final JPanel actionsMenu;
+    public final JPanel imageMenu;
+    public final JPanel inputMenu;
+    public final JLabel dialog;
+    public final JLabel stats;
+    public final JLabel stats2;
     
     public Display(String str) {
         super(str);
@@ -34,12 +34,13 @@ public class Display extends JFrame implements ActionListener {
         this.add(subContainerA, BorderLayout.CENTER);
         JPanel temp;
         JScrollPane temp2;
-        actionsMenu = new JPanel(new BoxLayout(actionsMenu, BoxLayout.Y_AXIS));
+        actionsMenu = new JPanel();
+        actionsMenu.setLayout(new BoxLayout(actionsMenu, BoxLayout.Y_AXIS));
         imageMenu = new JPanel(); //imageMenu
         imageMenu.setBorder(BorderFactory.createEtchedBorder(EtchedBorder.LOWERED));
         subContainerA.add(imageMenu);
-        inMenu = new JPanel();
-        inMenu.setLayout(new BoxLayout(inMenu, BoxLayout.Y_AXIS));
+        inputMenu = new JPanel();
+        inputMenu.setLayout(new BoxLayout(inputMenu, BoxLayout.Y_AXIS));
         temp = new JPanel(new FlowLayout(FlowLayout.LEFT));
         dialog = new JLabel("");
         temp.add(dialog);
@@ -47,7 +48,7 @@ public class Display extends JFrame implements ActionListener {
         temp2.setBorder(BorderFactory.createEtchedBorder(EtchedBorder.LOWERED));
         subContainerB.add(temp2);
         temp2.setBorder(BorderFactory.createEtchedBorder(EtchedBorder.LOWERED));
-        temp2 = new JScrollPane(inMenu); //inputs
+        temp2 = new JScrollPane(inputMenu); //inputs
         subContainerB.add(temp2);
         actionsMenu.setLayout(new BoxLayout(actionsMenu, BoxLayout.Y_AXIS));
         statsMenu = new JPanel(new FlowLayout(FlowLayout.RIGHT));
@@ -74,28 +75,6 @@ public class Display extends JFrame implements ActionListener {
         getStage().syncElements();
         this.revalidate();
         this.repaint();
-    }
-
-    public Component getComponent(String type) {
-        switch(type) {
-            case "choice": return actionsMenu;
-            case "image": return imageMenu;
-            case "input": return inMenu;
-            case "text": return dialog;
-            case "stats": return stats;
-            case "stats2": return stats2;
-            default: return null;
-        }
-    }
-    
-    public JPanel getComponentPanel(String type) {
-       if(type == "text" || type == "stats" || type == "stats2") return null;
-       return (JPanel)getComponent(type);
-    }
-    
-    public Component[] getComponentArray(String type) {
-        if(type == "text" || type == "stats" || type == "stats2") return null;
-        return getComponentPanel(type).getComponents();
     }
     
     /**

@@ -13,12 +13,12 @@ import java.io.*;
 public class Stat extends Dialog {
     @Override
     public void removeElement() {
-        ((JLabel)gameVar.getComponent("stats")).setText("");
+        gameVar.stats.setText("");
         canSync = false;
     }
     
     @Override
     public void sync() {
-        if(canSync) ((JLabel)gameVar.getComponent("stats")).setText(this.text);
+        if(canSync) gameVar.stats.setText(this.text);
     }
 }

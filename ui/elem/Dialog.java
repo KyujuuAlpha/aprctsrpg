@@ -80,13 +80,13 @@ public class Dialog implements Element {
     
     @Override
     public void removeElement() {
-        ((JLabel)gameVar.getComponent("text")).setText("");
+        gameVar.dialog.setText("");
         canSync = false;
     }
     
     @Override
     public void sync() {
-        if(canSync && gameVar != null) ((JLabel)gameVar.getComponent("text")).setText(this.text);
+        if(canSync && gameVar != null) gameVar.dialog.setText(this.text);
     }
     
     @Override

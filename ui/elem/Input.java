@@ -88,12 +88,12 @@ public class Input implements Element {
         this.guiElement.setMaximumSize(new Dimension(Integer.MAX_VALUE, (int)this.guiElementField.getPreferredSize().getHeight() + 10));
         this.guiElement.add(this.guiElementText);
         this.guiElement.add(this.guiElementField);
-        if(this.gameVar != null) this.gameVar.getComponentPanel("input").add(this.guiElement); sync();
+        if(this.gameVar != null) this.gameVar.inputMenu.add(this.guiElement); sync();
     }
     
     @Override
     public void removeElement() {
-        this.gameVar.getComponentPanel("input").remove(this.guiElement);
+        this.gameVar.inputMenu.remove(this.guiElement);
     }
     
     @Override

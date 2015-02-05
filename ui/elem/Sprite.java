@@ -50,19 +50,19 @@ public class Sprite implements Element {
     @Override
     public void createElement() {
         this.guiElement = new JLabel();
-        if(this.gameVar != null) this.gameVar.getComponentPanel("image").add(this.guiElement); sync();
+        if(this.gameVar != null) this.gameVar.imageMenu.add(this.guiElement); sync();
     }
     
     @Override
     public void removeElement() {
-        gameVar.getComponentPanel("image").remove(this.guiElement);
+        gameVar.imageMenu.remove(this.guiElement);
     }
     
     @Override
     public void sync() {
         if(bufferedImage == null || this.guiElement == null) return;
-        JPanel panelVar = gameVar.getComponentPanel("image");
-        panelVar.setLayout(new GridLayout(1, this.gameVar.getComponentArray("image").length));
+        JPanel panelVar = gameVar.imageMenu;
+        panelVar.setLayout(new GridLayout(1, panelVar.getComponents().length));
         this.guiElement.setIcon(new ImageIcon(bufferedImage.getScaledInstance((int)(panelVar.getHeight() * (bufferedImage.getWidth() / bufferedImage.getHeight())), panelVar.getHeight(), Image.SCALE_FAST)));
     }
     

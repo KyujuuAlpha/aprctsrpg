@@ -68,12 +68,12 @@ public class Choice implements Element, ActionListener {
     public void createElement() {
         this.guiElement = new JButton(getLabel());
         this.guiElement.addActionListener(this);
-        if(this.gameVar != null) this.gameVar.getComponentPanel("choice").add(this.guiElement); sync();
+        if(this.gameVar != null) this.gameVar.actionsMenu.add(this.guiElement); sync();
     }
     
     @Override
     public void removeElement() {
-        this.gameVar.getComponentPanel("choice").remove(this.guiElement);
+        this.gameVar.actionsMenu.remove(this.guiElement);
     }
     
     @Override
