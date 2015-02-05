@@ -11,8 +11,6 @@ import java.awt.event.*;
 import java.util.ArrayList;
 
 public class Display extends JFrame implements ActionListener { 
-    private Display displayVar;
-    
     private JPanel actionsMenu;
     private JPanel statsMenu;
     private JPanel statsMenu2;
