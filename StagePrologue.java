@@ -4,20 +4,17 @@ import ui.elem.*;
 public class StagePrologue extends Stage {
     private Dialog mainDialog;
     private Choice a;
-    private Choice b;
-    
-    private Input c = new Input("test", 10);
-    
+    private Choice b;    
     @Override
     public void choiceClicked(Element elementVar) {
         Choice choiceObject = (Choice)elementVar;
-        c.setName("TESTETS");
-        c.setText("TESTTSET");
-        boolean continue = j
+        boolean cont = false;
         if(choiceObject.getLabel().equals("START")){
             a.setLabel("A", true);
             b.setLabel("B", false);
             stagePre();
+            if(choiceObject.getLabel().equals("A")) cont = true;
+            if(cont == true) nextStage();
         }else if(choiceObject.getLabel().equals("QUIT")){
             stagePre();
         }
@@ -32,7 +29,7 @@ public class StagePrologue extends Stage {
         a = new Choice("START");
         b = new Choice("QUIT");
         mainDialog = new Dialog("");
-        this.addElement(mainDialog, a, b, new Sprite("troi.png"), c);
+        this.addElement(mainDialog, a, b, new Sprite("troi.png"));
         mainDialog.setText("Hello! Welcome to the Game!", "Press START to Continue");
     }
     
