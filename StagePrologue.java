@@ -13,11 +13,11 @@ public class StagePrologue extends Stage {
             a.setLabel("A", true);
             b.setLabel("B", false);
             stagePre();
-            if(choiceObject.getLabel().equals("A")) cont = true;
-            if(cont == true) nextStage();
-        }else if(choiceObject.getLabel().equals("QUIT")){
+        } else if(choiceObject.getLabel().equals("QUIT")){
             stagePre();
-        }
+        } else if(choiceObject.getLabel().equals("A")) cont = true;
+        
+        if(cont == true) nextStage();
     }
     
     @Override
