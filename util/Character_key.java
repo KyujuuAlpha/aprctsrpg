@@ -20,7 +20,7 @@ public class Character_key {
 	 */
 	public static void health_M(Creature_key creature)
 		{
-			health = health - (creature.returnD - (creature.returnD * armor));
+			health = health - (creature.returnD() - (creature.returnD() * armor));
 		}
 	/**
 	 * health reset / only use in between stages
