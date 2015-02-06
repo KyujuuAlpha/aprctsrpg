@@ -1,7 +1,7 @@
 package util;
 
 public class Potions implements Item_Interface {
-	private double damage;
+	private double damage, armor, speed;
 	private int drop_num;
 	private String name;
 	private int health;
@@ -11,8 +11,10 @@ public class Potions implements Item_Interface {
 		name = "null";
 		drop_num = 0;
 		health = 0;
+		speed = 0;
+		
 	}
-	public Potions(double Damage, String Name, int Drop_num, int Health)
+	public Potions(double Damage, String Name, int Drop_num, int Health, double Armor, double Speed)
 	{
 		health = Health;
 		damage = Damage;

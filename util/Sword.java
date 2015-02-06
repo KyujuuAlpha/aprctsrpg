@@ -1,7 +1,7 @@
 package util;
 
 public class Sword implements Item_Interface {
-	private double damage;
+	private double damage, armor, speed;
 	private int drop_num;
 	private String name;
 	private int health;
@@ -10,10 +10,16 @@ public class Sword implements Item_Interface {
 		damage = 0;
 		name = "null";
 		drop_num = 0;
-	}
-	public Sword(double Damage, String Name, int Drop_num)
-	{
+		health = 0;
+		speed = 0;
 		
+	}
+	public Sword(double Damage, String Name, int Drop_num, int Health, double Armor, double Speed)
+	{
+		health = Health;
+		damage = Damage;
+		name = Name;
+		drop_num = Drop_num;
 	}
 	public double returnD()
 	{
@@ -22,6 +28,18 @@ public class Sword implements Item_Interface {
 	public double returnHG()
 	{
 		return health;
+	}
+	public double returnDN()
+	{
+		return drop_num;
+	}
+	public String name()
+	{
+		return name;
+	}
+	public double returnSPD()
+	{
+		return speed;
 	}
 	
 	

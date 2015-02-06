@@ -41,7 +41,7 @@ public class Character_key {
 	 */
 	public static void health_A(Item_Interface item)
 		{
-			health = health + item.pot_H;
+			health = health + item.returnHG();
 				if (health > org.returnH())
 				{
 					health = org.returnH();
@@ -54,5 +54,12 @@ public class Character_key {
 		{
 			return damage;
 		}
+	/**
+	 * Returns health
+	 */
+	public static double returnH()
+	{
+		return health;
+	}
 	
 }
