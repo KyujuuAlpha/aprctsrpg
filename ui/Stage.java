@@ -46,7 +46,7 @@ public abstract class Stage {
     /**
      * Add a new element to this stage;
      */
-    public void addElement(Element... elementVar) {
+    public void addElements(Element... elementVar) {
         for(Element element : elementVar) {
             if(elementList.indexOf(elementVar) < 0) {
                 elementList.add(element);
@@ -60,7 +60,7 @@ public abstract class Stage {
     /**
      * Remove the given elements from this stage
      */
-    public void removeElement(Element... elementVar) {
+    public void removeElements(Element... elementVar) {
         for(Element element : elementVar) {
             elementList.remove(element);
             element.removeElement();

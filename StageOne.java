@@ -23,7 +23,7 @@ public class StageOne extends Stage {
         a = new Choice("START");
         b = new Choice("QUIT");
         mainDialog = new Dialog("");
-        this.addElement(mainDialog, a, b, new Sprite("troi.png"));
+        this.addElements(mainDialog, a, b, new Sprite("troi.png"));
         mainDialog.setText("You wake up and get ready to leave your apartment.", "What weapon will you take?", "Option 1: Bow and Arrow", "Option 2: iPad Special Weapon", "Pistol");
     }
     

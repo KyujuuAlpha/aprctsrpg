@@ -29,7 +29,7 @@ public class StagePrologue extends Stage {
         a = new Choice("START");
         b = new Choice("QUIT");
         mainDialog = new Dialog("");
-        this.addElement(mainDialog, a, b, new Sprite("troi.png"));
+        this.addElements(mainDialog, a, b, new Sprite("troi.png"));
         mainDialog.setText("Hello! Welcome to the Game!", "Press START to Continue");
     }
     
