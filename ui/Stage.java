@@ -35,12 +35,10 @@ public abstract class Stage {
     }
     
     public void countDown() {
-        boolean flag = false;
         if(tickDelay > 0) {
-            if(tickDelay == 1) flag = true;
             tickDelay--;
+            if(tickDelay == 0) this.taskPerformed();
         }
-        if(flag) this.taskPerformed();
     }
     
     /**
