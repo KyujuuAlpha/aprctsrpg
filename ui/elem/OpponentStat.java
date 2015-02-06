@@ -11,6 +11,15 @@ import java.awt.image.*;
 import java.io.*;
 
 public class OpponentStat extends Dialog {
+    /**
+     * Create a new opponent stat element
+     * Set the stat's contents to specified text
+     * (ALERT) for multiliners, add another parameter: new OpponentStat("Line1, "Line2");
+     */
+    public OpponentStat(String... stringVar) {
+        super(stringVar);
+    }
+    
     @Override
     public void removeElement() {
         gameVar.stats2.setText("");
