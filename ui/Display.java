@@ -99,8 +99,6 @@ public class Display extends JFrame implements ActionListener {
         getStage().removeElements();
         currentStage++;
         getStage().init();
-        getStage().createElements();
-        getStage().syncElements();
         this.revalidate();
         this.repaint();
     }
@@ -112,8 +110,6 @@ public class Display extends JFrame implements ActionListener {
         getStage().removeElements();
         if(currentStage > 0) currentStage--;
         getStage().init();
-        getStage().createElements();
-        getStage().syncElements();
         this.revalidate();
         this.repaint();
     }
