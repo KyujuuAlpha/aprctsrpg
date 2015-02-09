@@ -81,7 +81,7 @@ public class Display extends JFrame implements ActionListener {
      * Begin the game starting at stage 0
      */
     public void begin() {
-        if(stageList.size() > 0) stageList.get(0).init();
+        if(stageList.size() > 0) getStage().init();
     }
     
     /**
@@ -97,10 +97,8 @@ public class Display extends JFrame implements ActionListener {
      */
     public void nextStage() {
         getStage().removeElements();
-        currentStage++;
+        if(currentStage < stageList.size() - 1) currentStage++;
         getStage().init();
-        this.revalidate();
-        this.repaint();
     }
     
     /**
@@ -110,8 +108,6 @@ public class Display extends JFrame implements ActionListener {
         getStage().removeElements();
         if(currentStage > 0) currentStage--;
         getStage().init();
-        this.revalidate();
-        this.repaint();
     }
     
     /**
