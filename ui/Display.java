@@ -71,7 +71,7 @@ public class Display extends JFrame implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if(getStage() == null) return;
-        getStage().countDown();
+        getStage().decreaseTicks();
         getStage().syncElements();
         this.revalidate();
         this.repaint();

@@ -9,7 +9,7 @@ public abstract class Stage {
     
     private Display gameVar;
     
-    private long tickDelay = 0;
+    private long ticks = 0;
     
     /**
      * Called when this stage becomes the current stage
@@ -30,14 +30,15 @@ public abstract class Stage {
      * Simple task scheduling method, after specified number of ticks, run taskPerformed
      * 1 tick is equivalent to 1 twentieth of a second
      */
-    public void scheduleTask(long ticks) { 
-        tickDelay = ticks;
+    public void scheduleTask(long intVar) { 
+        ticks += intVar;
+        if(ticks == 0 && intVar == 0) this.taskPerformed();
     }
     
-    public void countDown() {
-        if(tickDelay > 0) {
-            tickDelay--;
-            if(tickDelay == 0) this.taskPerformed();
+    public void decreaseTicks() {
+        if(ticks > 0) {
+            ticks--;
+            if(ticks == 0) this.taskPerformed();
         }
     }
     
@@ -77,14 +78,6 @@ public abstract class Stage {
         for(int i = 0; i < elementList.size(); i++) {
             Element element = elementList.get(i);
             element.removeElement();
-        }
-    }
-    
-    public void createElements() {
-        for(int i = 0; i < elementList.size(); i++) {
-            Element element = elementList.get(i);
-            element.setGameInstance(gameVar);
-            element.createElement();
         }
     }
     
