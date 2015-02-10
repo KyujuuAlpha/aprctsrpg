@@ -17,11 +17,11 @@ public class StageTwo extends Stage {
             return;
         }
         if(choiceObject.getLabel().equals("FIGHT")){
-            
+            nextStage();
         }else if(choiceObject.getLabel().equals("JOIN THEM")){
             
         }else if(choiceObject.getLabel().equals("SHOOT 'EM DOWN!!!!")){
-            
+            nextStage();
         }else if(choiceObject.getLabel().equals("JOIN 'EM")){
             
         }
@@ -40,11 +40,11 @@ public class StageTwo extends Stage {
     public void stageMarina(){
         a.setLabel("FIGHT");
         b.setLabel("JOIN THEM");
-        mainDialog.setText("You're on your way to the marina when a SHIELD transport stops you.", "What do you do?");
+        mainDialog.setText("You're on your way to the marina when a SHIELD transport", "stops you.", "What do you do?");
     }
     public void stageTower(){
         a.setLabel("SHOOT 'EM DOWN!!!!");
         b.setLabel("JOIN 'EM");
-        mainDialog.setText("You're on top of the Space Needle when a SHIELD helicopter appears in front of you, ordering you to stand down", "What do you do?");
+        mainDialog.setText("You're on top of the Space Needle when a SHIELD ", "helicopter appears in front of you, ordering you to", "stand down", "What do you do?");
     }
 }
