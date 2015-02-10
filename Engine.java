@@ -6,6 +6,7 @@ public class Engine {
         Display displayVar = new Display("Window");
         displayVar.addStage(new StagePrologue());
         displayVar.addStage(new StageOne());
+        displayVar.addStage(new StageTwo());
         displayVar.begin();
     }
 }
