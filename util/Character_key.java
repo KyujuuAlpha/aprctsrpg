@@ -6,6 +6,9 @@ public class Character_key {
 	private static double armor,damage;
 	static Interface org;
 	
+	public static final Interface TANK = new Tank();
+	public static final Interface ASSA = new Assassin();
+	public static final Interface Norm = new Normal();
 	public Character_key(Interface Class)
 		{
 			Class.initiate();
@@ -39,7 +42,7 @@ public class Character_key {
 	/**
 	 * Used if a health pot is used or a Godly act was given to the player :P
 	 */
-	public static void health_A(Item_Interface item)
+	public static void health_A(Potions item)
 		{
 			health = health + item.returnHG();
 				if (health > org.returnH())

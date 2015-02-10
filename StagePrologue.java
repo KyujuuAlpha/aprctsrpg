@@ -1,6 +1,6 @@
 import ui.*;
 import ui.elem.*;
-
+import util.*;
 public class StagePrologue extends Stage {
     private Dialog mainDialog;
     private Choice a;
@@ -24,9 +24,9 @@ public class StagePrologue extends Stage {
             b.setLabel("Normal", true);
         }
         if(choiceObject.getLabel().equals("Tank")){
-            Character_key mc = new Character_key(Tank);
+        	Character_key mainC = new Character_key(Character_key.TANK);
         }else if(choiceObject.getLabel().equals("Normal")){
-            
+            Character_key mainC = new Character_key(Character_key.Norm);
         }else{
                 
         }
