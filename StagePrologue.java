@@ -5,10 +5,10 @@ public class StagePrologue extends Stage {
     private Dialog mainDialog;
     private Choice a;
     private Choice b;    
+    private Choice c;
     @Override
     public void choiceClicked(Element elementVar) {
         Choice choiceObject = (Choice)elementVar;
-        boolean cont = false;
         String charChoice;
         if(choiceObject.getLabel().equals("START")){
             stagePre();
@@ -16,21 +16,20 @@ public class StagePrologue extends Stage {
             b.setLabel("Cancel", false);
             return;
         }
-        if(choiceObject.getLabel().equals("Next")) stageChooseClass();
-        if(choiceObject.getLabel().equals("Next")){
-            Choice c = new Choice("Assassin");
-            this.addElements(c);
-            a.setLabel("Tank", true);
-            b.setLabel("Normal", true);
+        if(choiceObject.getLabel().equals("Next")){ 
+            stageChooseClass();
+            return;
+        }
+        if(choiceObject.getLabel().equals("Continue")){
+            nextStage();
         }
         if(choiceObject.getLabel().equals("Tank")){
-        	Character_key mainC = new Character_key(Character_key.TANK);
+        	nextStage();
         }else if(choiceObject.getLabel().equals("Normal")){
-            Character_key mainC = new Character_key(Character_key.Norm);
+            nextStage();
         }else{
-                
+            nextStage();
         }
-        if(cont == true) nextStage();
     }
     
     @Override
@@ -41,6 +40,7 @@ public class StagePrologue extends Stage {
     public void init() {
         a = new Choice("START");
         b = new Choice("QUIT");
+        c = new Choice(null);
         mainDialog = new Dialog("");
         this.addElements(mainDialog, a, b);
         mainDialog.setText("Hello! Welcome to the Game!", "Press START to Continue");
@@ -51,7 +51,10 @@ public class StagePrologue extends Stage {
     }
     
     public void stageChooseClass(){
+        a.setLabel("Tank", true);
+        b.setLabel("Normal", true);
+        c.setLabel("Assassin", true);
+        this.addElements(c);
         mainDialog.setText("What CLASS will you choose?", "Tank - High Health", "Normal - Average", "Assassin - High Speed/Attack");
-        
     }
 }
