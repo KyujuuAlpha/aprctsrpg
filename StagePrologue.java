@@ -1,12 +1,11 @@
 import ui.*;
 import ui.elem.*;
 import util.*;
-public class StagePrologue extends Stage {
+public class StagePrologue extends StageMain {
     private Dialog mainDialog;
     private Choice a;
     private Choice b;    
     private Choice c;
-    public static EntityPlayer player;
     @Override
     public void choiceClicked(Element elementVar) {
         Choice choiceObject = (Choice)elementVar;

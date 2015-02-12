@@ -1,7 +1,7 @@
 import ui.*;
 import ui.elem.*;
 import util.*;
-public class StageThree extends Stage {
+public class StageThree extends StageMain {
     private Dialog mainDialog;
     private Choice a;
     private Choice b;
@@ -57,7 +57,7 @@ public class StageThree extends Stage {
         b.setLabel("RUN", true);
         fight = true;
         while(fight){
-            mainDialog.setText("Player Health = " + StagePrologue.player.getHealth(), "Enemy Health = " + c1.getHealth(), "What will you do next?");
+            mainDialog.setText("Player Health = " + player.getHealth(), "Enemy Health = " + c1.getHealth(), "What will you do next?");
             if(c1.getHealth() == 0){
                 fight = false;
             }
