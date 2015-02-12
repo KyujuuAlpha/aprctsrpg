@@ -26,7 +26,7 @@ public class EntityPlayer extends Entity {
 	public void addItem(Item item){
 		if(item instanceof Armor)
 			{
-				this.armor = item.getArmor() + armor;
+				this.armor = ((Armor)item).getArmor() + armor;
 			}
 	}
 }
