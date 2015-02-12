@@ -36,8 +36,7 @@ public class Sprite implements Element {
     public void setSource(String stringVar) {
         this.url = stringVar;
         try { this.bufferedImage = ImageIO.read(new File("resources/" + this.url)); //try to find if the resource exists
-        } catch(Exception e) { try { this.bufferedImage = ImageIO.read(new File("resources/unknown.png")); //if it doesn't replace it with the unknown image resource
-        } catch(Exception e2) { this.bufferedImage = null; } } //if both dont exist for some reason (merge), then dont display the sprite at all
+        } catch(Exception e) { this.bufferedImage = gameVar.getErrorImage(); }
     }
     
     /**
