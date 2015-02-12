@@ -19,7 +19,7 @@ public class Potion extends Item {
 	/*
 	 * returns value of healing ability
 	 */
-	public double healValue() {
+	public double getHeal() {
 		return heal;
 	}
 }

@@ -17,6 +17,16 @@ public class EntityPlayer extends Entity {
 			{
 				health = maxHealth;
 			}
+		
 	}
-
+	
+	public double getSpeed(){
+		return speed;
+	}
+	public void addItem(Item item)
+	switch (item.adjustedStat())
+		{
+			case 1: this.armor = this.armor + item.getArmor();
+			case 2: this.speed = this.speed * item.getSpeedMultiplyer();
+		}
 }

@@ -29,4 +29,5 @@ public class Wand extends Item {
 	public double getSpeedMultiplyer(){
 		return speedX;
 	}
+	
 }
