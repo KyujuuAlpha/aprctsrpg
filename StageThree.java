@@ -4,9 +4,7 @@ import util.*;
 public class StageThree extends Stage {
     private Dialog mainDialog;
     private Choice a;
-    private Choice b;   
-    private Choice c;
-    private Choice d;
+    private Choice b;
     private int x = 0;
     private boolean fight = true;
     @Override
@@ -16,13 +14,11 @@ public class StageThree extends Stage {
     }
     @Override
     public void taskPerformed() {
-        
         if(x == 1){ x++; tutorialOne(); return;}
         if(x == 2){ x++; tutorialTwo(); return;}
         if(x == 3){ x++; tutorialThree(); return;}
         if(x == 4){ x++; tutorialFour(); return;}
-        if(x == 5){ x++; tutorialFive(); return;}
-        if(x == 6){ x++; fight(); return;}
+        if(x == 5){ x++; fight(); return;}
     }
     @Override
     public void init() {
@@ -34,42 +30,38 @@ public class StageThree extends Stage {
     public void tutorialStart(){
         a.setLabel("Punch", false);
         b = new Choice(null);
-        b.setLabel("Weapon Attack 1", false);
-        c = new Choice(null);
-        c.setLabel("Weapon Attack 2", false);
-        d = new Choice(null);
-        d.setLabel("Run!!!", false);
-        this.addElements(b, c, d);
+        b.setLabel("Run!!!", false);
+        this.addElements(b);
         mainDialog.setText("Welcome to the Fight Screen!!!");
         this.scheduleTask(60);
     }
     public void tutorialOne(){
-        mainDialog.setText("On the right, you can see that you have four battle", "options.");
+        mainDialog.setText("On the right, you can see that you have two battle", "options.");
         this.scheduleTask(60);
     }
     public void tutorialTwo(){
-        mainDialog.setText("The first attack is PUNCH, which does minimal damage", "but hits every time.");
+        mainDialog.setText("The first is to attack.");
         this.scheduleTask(60);
     }
     public void tutorialThree(){
-        mainDialog.setText("The second and third options have to do with what", "type of weapon you have.", "If you have a melee weapon, the options will be slash", "and stab.");
+        mainDialog.setText("The last button, RUN, enables you to flee your opponent.", "This only works 0.0005% of the time.");
         this.scheduleTask(120);
     }
     public void tutorialFour(){
-        mainDialog.setText("If you have a ranged weapon, then the attacks will", "be shoot and club.", "The last button, RUN, enables you to flee your opponent.", "This only works 0.0005% of the time.");
-        this.scheduleTask(120);
-    }
-    public void tutorialFive(){
         mainDialog.setText("This is turn-based combat, which should come easily.", "Good Luck!!!, First one to 0 health loses!", "Go get 'em!");
         this.scheduleTask(100);
     }
     public void fight(){
-        
-        a.setLabel("PUNCH", true);
-        b.setLabel("Weapon Attack 1", true);
-        c.setLabel("Weapon Attack 2", true);
-        d.setLabel("Run!!!", true);
+        EntityCreature c1 = new EntityCreature(10.0, 50.0);
+        a.setLabel("ATTACK", true);
+        b.setLabel("RUN", true);
         fight = true;
-        mainDialog.setText("Player Health = " + StagePrologue.player.getHealth(), "Enemy Health = ", "What will you do next?");
+        while(fight){
+            mainDialog.setText("Player Health = " + StagePrologue.player.getHealth(), "Enemy Health = " + c1.getHealth(), "What will you do next?");
+            if(c1.getHealth() == 0){
+                fight = false;
+            }
+        }
+        mainDialog.setText("Congrats!!!", "You killed the SHIELD scoundrels!!!");
     }
 }
