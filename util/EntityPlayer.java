@@ -13,7 +13,7 @@ public class EntityPlayer extends Entity {
 	}
 	
 	public void healPlayer(Potion item){
-		if (item.healValue() + health >= health)
+		if (item.getHeal() + health >= health)
 			{
 				health = maxHealth;
 			}
@@ -23,12 +23,11 @@ public class EntityPlayer extends Entity {
 	public double getSpeed(){
 		return speed;
 	}
-	public void addItem(Item item)
+	public void addItem(Item item){
 		switch (item.adjustedStat())
 			{
 				case 1: this.armor = this.armor + item.getArmor();
 				case 2: this.speed = this.speed * item.getSpeedMultiplyer();
 				case 3: this.damage = this.damage + item.getDamage();
-				case 4: this.health = this.
 			}
 }

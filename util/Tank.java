@@ -8,4 +8,5 @@ public class Tank extends EntityPlayer{
 		this.armor = 0.3;
 		this.maxHealth = this.health;
 	}
+	
 }

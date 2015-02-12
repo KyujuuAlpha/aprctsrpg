@@ -19,4 +19,7 @@ public class Sword extends Item {
 	public double getDamage(){
 		return damage;
 	}
+	public double adjustedStat(){
+		return 3;
+	}
 }

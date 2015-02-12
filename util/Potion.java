@@ -22,4 +22,7 @@ public class Potion extends Item {
 	public double getHeal() {
 		return heal;
 	}
+	public double adjustedStat(){
+		return 2;
+	}
 }

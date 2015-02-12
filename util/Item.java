@@ -12,31 +12,18 @@ public class Item {
 	public static Item getRandomItem() {
 		return itemList.get(new Random().nextInt(itemList.size()));
 	}
-	public double getSpeedMultiplyer(){
-		return 0;
-	}
-	public double getDamage(){
-		return 0;
-	}
-	public double getArmor(){
-		return 0;
-	}
-	public double getHeal(){
-		return 0;
-	}
-	public double adjustedStat(){
-		return 0;
-	}
 
-	public static final Item basicPotion = new Potion(10);
-	public static final Item basicSword = new Sword(30);
-	public static final Item basicWand = new Wand(15,1.1);
+
+
+	public static final Potion basicPotion = new Potion(10);
+	public static final Sword basicSword = new Sword(30);
+	public static final Wand basicWand = new Wand(15);
 	public static final Item normSword = new Sword(40);
 	public static final Item normPotion = new Potion(30);
-	public static final Item normWand = new Wand(20,1.2);
+	public static final Item normWand = new Wand(20);
 	public static final Item advSword = new Sword(50);
 	public static final Item advPotion = new Potion(50);
-	public static final Item advWand = new Wand(30, 2);
+	public static final Item advWand = new Wand(30);
 	
 	
 }
