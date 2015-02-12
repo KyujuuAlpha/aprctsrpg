@@ -6,6 +6,7 @@ public class StagePrologue extends Stage {
     private Choice a;
     private Choice b;    
     private Choice c;
+    public static EntityPlayer player;
     @Override
     public void choiceClicked(Element elementVar) {
         Choice choiceObject = (Choice)elementVar;
@@ -24,10 +25,13 @@ public class StagePrologue extends Stage {
             nextStage();
         }
         if(choiceObject.getLabel().equals("Tank")){
-        	nextStage();
-        }else if(choiceObject.getLabel().equals("Normal")){
+        	player = new Tank();
             nextStage();
-        }else{
+        }else if(choiceObject.getLabel().equals("Normal")){
+            player = new EntityPlayer();
+            nextStage();
+        }else if(choiceObject.getLabel().equals("Assassin")){
+            player = new Assassin();
             nextStage();
         }
     }

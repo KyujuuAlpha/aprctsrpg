@@ -8,6 +8,7 @@ public class StageThree extends Stage {
     private Choice c;
     private Choice d;
     private int x = 0;
+    private boolean fight = true;
     @Override
     public void choiceClicked(Element elementVar) {
         Choice choiceObject = (Choice)elementVar;
@@ -63,10 +64,12 @@ public class StageThree extends Stage {
         this.scheduleTask(100);
     }
     public void fight(){
+        
         a.setLabel("PUNCH", true);
         b.setLabel("Weapon Attack 1", true);
         c.setLabel("Weapon Attack 2", true);
         d.setLabel("Run!!!", true);
-        mainDialog.setText("Player Health = ", "Enemy Health = ", "What will you do next?");
+        fight = true;
+        mainDialog.setText("Player Health = " + StagePrologue.player.getHealth(), "Enemy Health = ", "What will you do next?");
     }
 }
