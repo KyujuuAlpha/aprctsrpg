@@ -11,6 +11,11 @@ public class EntityCreature extends Entity{
 		super();
 		creatureList.add(this);
 	}
+	public EntityCreature(double damage, double health){
+		super();
+		this.health = health;
+		this.damage = damage;
+	}
 	/*
 	 * returns damage
 	 */

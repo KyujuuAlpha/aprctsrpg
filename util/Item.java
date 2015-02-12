@@ -18,12 +18,19 @@ public class Item {
 	public static final Potion basicPotion = new Potion(10);
 	public static final Sword basicSword = new Sword(30);
 	public static final Wand basicWand = new Wand(15);
+	public static final Boots basicBoot = new Boots(1.2);
+	public static final Armor basicArmor = new Armor(0.1);
+	public static final Boots normBoots = new Boots(1.3);
+	public static final Armor normArmor = new Armor(0.3);
 	public static final Sword normSword = new Sword(40);
 	public static final Potion normPotion = new Potion(30);
 	public static final Wand normWand = new Wand(20);
+	public static final Boots advBoots = new Boots(1.5);
+	public static final Armor advArmor = new Armor(0.5);
 	public static final Sword advSword = new Sword(50);
 	public static final Potion advPotion = new Potion(50);
 	public static final Wand advWand = new Wand(30);
+	
 	
 	
 }
