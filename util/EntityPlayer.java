@@ -24,9 +24,11 @@ public class EntityPlayer extends Entity {
 		return speed;
 	}
 	public void addItem(Item item)
-	switch (item.adjustedStat())
-		{
-			case 1: this.armor = this.armor + item.getArmor();
-			case 2: this.speed = this.speed * item.getSpeedMultiplyer();
-		}
+		switch (item.adjustedStat())
+			{
+				case 1: this.armor = this.armor + item.getArmor();
+				case 2: this.speed = this.speed * item.getSpeedMultiplyer();
+				case 3: this.damage = this.damage + item.getDamage();
+				case 4: this.health = this.
+			}
 }

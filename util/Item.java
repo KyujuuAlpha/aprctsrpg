@@ -12,7 +12,22 @@ public class Item {
 	public static Item getRandomItem() {
 		return itemList.get(new Random().nextInt(itemList.size()));
 	}
-	
+	public double getSpeedMultiplyer(){
+		return 0;
+	}
+	public double getDamage(){
+		return 0;
+	}
+	public double getArmor(){
+		return 0;
+	}
+	public double getHeal(){
+		return 0;
+	}
+	public double adjustedStat(){
+		return 0;
+	}
+
 	public static final Item basicPotion = new Potion(10);
 	public static final Item basicSword = new Sword(30);
 	public static final Item basicWand = new Wand(15,1.1);
