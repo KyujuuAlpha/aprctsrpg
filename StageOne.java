@@ -11,7 +11,6 @@ public class StageOne extends Stage {
         boolean cont = false;
         if(choiceObject.getLabel().equals("START")){
         }else if(choiceObject.getLabel().equals("QUIT")){
-            this.prevStage();
         }
     }
     

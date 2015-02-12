@@ -22,10 +22,9 @@ public class StagePrologue extends Stage {
             this.addElements(c);
             a.setLabel("Tank", true);
             b.setLabel("Normal", true);
-            return;
         }
         if(choiceObject.getLabel().equals("Tank")){
-            this.nextStage();
+            Character_key mc = new Character_key(Tank);
         }else if(choiceObject.getLabel().equals("Normal")){
             
         }else{
