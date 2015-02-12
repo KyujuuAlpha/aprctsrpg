@@ -35,22 +35,22 @@ public class Sprite implements Element {
      */
     public void setSource(String stringVar) {
         this.url = stringVar;
-        try { this.bufferedImage = ImageIO.read(new File("resources/" + this.url));
-        } catch(Exception e) { try { this.bufferedImage = ImageIO.read(new File("resources/unknown.png"));
-        } catch(Exception e2) { this.bufferedImage = null; } }
+        try { this.bufferedImage = ImageIO.read(new File("resources/" + this.url)); //try to find if the resource exists
+        } catch(Exception e) { try { this.bufferedImage = ImageIO.read(new File("resources/unknown.png")); //if it doesn't replace it with the unknown image resource
+        } catch(Exception e2) { this.bufferedImage = null; } } //if both dont exist for some reason (merge), then dont display the sprite at all
     }
     
     /**
      * Get the target resource's name
      */
     public String getSource() {
-        return this.url;
+        return this.url; //dont actually return the buffered image
     }
     
     @Override
     public void createElement() {
         this.guiElement = new JLabel();
-        if(this.gameVar != null) this.gameVar.imageMenu.add(this.guiElement); sync();
+        if(this.gameVar != null) this.gameVar.imageMenu.add(this.guiElement);
     }
     
     @Override
@@ -62,8 +62,8 @@ public class Sprite implements Element {
     public void sync() {
         if(bufferedImage == null || this.guiElement == null) return;
         JPanel panelVar = gameVar.imageMenu;
-        panelVar.setLayout(new GridLayout(1, panelVar.getComponents().length));
-        this.guiElement.setIcon(new ImageIcon(bufferedImage.getScaledInstance((int)(panelVar.getHeight() * (bufferedImage.getWidth() / bufferedImage.getHeight())), panelVar.getHeight(), Image.SCALE_FAST)));
+        panelVar.setLayout(new GridLayout(1, panelVar.getComponents().length)); //grid layout rock
+        this.guiElement.setIcon(new ImageIcon(bufferedImage.getScaledInstance((int)(panelVar.getHeight() * (bufferedImage.getWidth() / bufferedImage.getHeight())), panelVar.getHeight(), Image.SCALE_FAST))); //easy way of displaying an image trough a jlabel instead of messing with graphics
     }
     
     @Override

@@ -10,8 +10,8 @@ import java.awt.image.*;
 
 import java.io.*;
 
-public class Dialog implements Element {
-    protected String text;
+public class Dialog implements Element { //w00t inheritance
+    protected String text; //protected to stay private, but to give access to these variables from a child class ;)
     protected boolean canSync = false;
     
     protected Display gameVar;
@@ -33,7 +33,7 @@ public class Dialog implements Element {
      * Get the dialog's text
      */
     public String getText() {
-        return this.text.replaceAll("<br>","\n").replace("<html>", "").replace("</html>", "");
+        return this.text.replaceAll("<br>","\n").replace("<html>", "").replace("</html>", ""); //who wants html artifacts?
     }
     
     /**
@@ -52,7 +52,7 @@ public class Dialog implements Element {
         String temp = handleText(stringVar);
         this.text = this.text.replace("</html>", "").replace("<html>", ""); 
         temp = temp.replace("</html>", "").replace("<html>", ""); 
-        this.text = "<html>" + this.text + temp + "</html>";
+        this.text = "<html>" + this.text + temp + "</html>"; //i should use string builders to save performance, nah.
     }
     
     /**
@@ -62,7 +62,7 @@ public class Dialog implements Element {
         this.text = this.text.replaceAll(stringVar0, stringVar1);
     }
     
-    private String handleText(String[] stringVar) {
+    private String handleText(String[] stringVar) { //handle the basic html text logic 4 multiliners!
         String temp = "<html>";
         if(stringVar.length > 1) {
             for(int i = 0; i < stringVar.length - 1; i++) temp += stringVar[i] + "<br>";
@@ -74,19 +74,18 @@ public class Dialog implements Element {
     
     @Override
     public void createElement() {
-        canSync = true;
-        sync();
+        canSync = true; //you can now change the dialog element!
     }
     
     @Override
     public void removeElement() {
-        gameVar.dialog.setText("");
-        canSync = false;
+        gameVar.dialog.setText(""); //erase the dialog if this element is removed
+        canSync = false; //you cannot change the dialog anymore if you cannot sync
     }
     
     @Override
     public void sync() {
-        if(canSync && gameVar != null) gameVar.dialog.setText(this.text);
+        if(canSync && gameVar != null) gameVar.dialog.setText(this.text); //if you can sync and the display exists, then set  the text of the jlabel!
     }
     
     @Override
