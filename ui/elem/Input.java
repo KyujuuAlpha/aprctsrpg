@@ -14,12 +14,15 @@ public class Input implements Element {
     private String name;
     private String text;
     
+    private boolean overrideRequest;
+    
     private Display gameVar;
     
     public Input() {
         this.size = 6;
         this.name = "TextBox";
         this.text = "";
+        this.overrideRequest = false;
     }
     
     /**
@@ -30,6 +33,7 @@ public class Input implements Element {
         this.size = intVar;
         this.name = stringVar;
         this.text = "";
+        this.overrideRequest = false;
     }
     
     /**
@@ -74,8 +78,7 @@ public class Input implements Element {
      */
     public void setText(String stringVar) {
         this.text = stringVar;
-        if(this.guiElementField == null) return;
-        this.guiElementField.setText(stringVar);
+        this.overrideRequest = true; //request to override the text in the text field instead of retrieving from it next sync
     }
     
     @Override
@@ -84,10 +87,11 @@ public class Input implements Element {
         this.guiElementField.setText(this.text);
         this.guiElementText = new JLabel(getName() + ": ");
         this.guiElement = new JPanel();
-        this.guiElement.setLayout(new FlowLayout(FlowLayout.LEFT));
-        this.guiElement.setMaximumSize(new Dimension(Integer.MAX_VALUE, (int)this.guiElementField.getPreferredSize().getHeight() + 10));
+        this.guiElement.setLayout(new FlowLayout(FlowLayout.LEFT)); //set the layout of the container holding the text field and label
+        this.guiElement.setMaximumSize(new Dimension(Integer.MAX_VALUE, (int)this.guiElementField.getPreferredSize().getHeight() + 10)); //stretch the actual text field
         this.guiElement.add(this.guiElementText);
         this.guiElement.add(this.guiElementField);
+        this.overrideRequest = false;
         if(this.gameVar != null) this.gameVar.inputMenu.add(this.guiElement);
     }
     
@@ -99,9 +103,11 @@ public class Input implements Element {
     @Override
     public void sync() {
         if(this.guiElement == null) return;
-        this.text = this.guiElementField.getText();
+        if(this.overrideRequest) this.guiElementField.setText(this.text); //set the text if the override is requested
+        else this.text = this.guiElementField.getText(); //retrieve instead if it is not
         this.guiElementField.setColumns(getSize());
         this.guiElementText.setText(this.name + ": ");
+        this.overrideRequest = false;
     }
     
     @Override

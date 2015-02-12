@@ -10,14 +10,14 @@ import java.awt.image.*;
 
 import java.io.*;
 
-public class OpponentStat extends Dialog {
+public class OpponentStat extends Dialog { //inherit all methods from the dialog class
     /**
      * Create a new opponent stat element
      * Set the stat's contents to specified text
      * (ALERT) for multiliners, add another parameter: new OpponentStat("Line1, "Line2");
      */
     public OpponentStat(String... stringVar) {
-        super(stringVar);
+        super(stringVar); //call the constructor of the parent class
     }
     
     @Override
