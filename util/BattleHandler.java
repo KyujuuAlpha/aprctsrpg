@@ -22,18 +22,34 @@ public class BattleHandler {
 	 * if missed, the message will be stored to static variable "exception"
 	 */
 	
-	public static void creatureTurn (EntityPlayer player, EntityCreature creature){
+	public static String creatureTurn (EntityPlayer player, EntityCreature creature){
 		if (player.speedX > creature.hitChance())
 			{
 				player.health = player.getHealth();
 				Exeption = "It Missed!!!!!";
+				return Exeption;
 			}
 		else 
 			{
 				player.damagePlayer(creature);
 				playerHealth = player.getHealth();
 				creatureDamage = creature.getDamage();
+				Exeption = "You took damage!!!";
+				return Exeption;
 			}
+		/*
+		 * if this method is invoked, it calculates the propbabiliy of runing away
+		 * 
+		 * takes into account the chance if its a hit or miss
+		 */
+	}
+	public static String Run(EntityPlayer player, EntityCreature creature){
+		if (player.getSpeed() * 2 < creature.hitChance()){
+			return creatureTurn(player, creature);
+		}
+		else {Exeption = "Your ran away!!!!!";
+		return Exeption;
+		}
 	}
 
 }
