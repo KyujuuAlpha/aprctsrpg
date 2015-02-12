@@ -18,8 +18,11 @@ public class Sprite implements Element {
     
     private Display gameVar;
     
+    private boolean resizable;
+    
     public Sprite() {
         setSource("");
+        this.resizable = true;
     }
     
     /**
@@ -28,6 +31,21 @@ public class Sprite implements Element {
      */
     public Sprite(String stringVar) {
         setSource(stringVar);
+        this.resizable = true;
+    }
+    
+    /**
+     * Set if the image should expand to the height of it's container
+     */
+    public void setResizable(boolean flag) {
+        this.resizable = flag;
+    }
+    
+    /**
+     * Check if the image is resizable
+     */
+    public boolean isResizable() {
+        return this.resizable;
     }
     
     /**
@@ -62,7 +80,8 @@ public class Sprite implements Element {
         if(bufferedImage == null || this.guiElement == null) return;
         JPanel panelVar = gameVar.imageMenu;
         panelVar.setLayout(new GridLayout(1, panelVar.getComponents().length)); //grid layout rock
-        this.guiElement.setIcon(new ImageIcon(bufferedImage.getScaledInstance((int)(panelVar.getHeight() * (bufferedImage.getWidth() / bufferedImage.getHeight())), panelVar.getHeight(), Image.SCALE_FAST))); //easy way of displaying an image trough a jlabel instead of messing with graphics
+        if(this.resizable) this.guiElement.setIcon(new ImageIcon(bufferedImage.getScaledInstance((int)(panelVar.getHeight() * (bufferedImage.getWidth() / bufferedImage.getHeight())), panelVar.getHeight(), Image.SCALE_FAST))); //easy way of displaying an image trough a jlabel instead of messing with graphics
+        else this.guiElement.setIcon(new ImageIcon(bufferedImage));
     }
     
     @Override
