@@ -6,10 +6,8 @@ public class StagePrologue extends Stage {
     private Choice a;
     private Choice b;    
     private Choice c;
-    private Sprite ae;
     @Override
     public void choiceClicked(Element elementVar) {
-        ae.setResizable(false);
         Choice choiceObject = (Choice)elementVar;
         String charChoice;
         if(choiceObject.getLabel().equals("START")){
@@ -44,8 +42,7 @@ public class StagePrologue extends Stage {
         b = new Choice("QUIT");
         c = new Choice(null);
         mainDialog = new Dialog("");
-        ae = new Sprite("unknow.png");
-        this.addElements(mainDialog, a, b, ae);
+        this.addElements(mainDialog, a, b);
         mainDialog.setText("Hello! Welcome to the Game!", "Press START to Continue");
     }
     
