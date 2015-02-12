@@ -50,7 +50,7 @@ public class Sprite implements Element {
     @Override
     public void createElement() {
         this.guiElement = new JLabel();
-        if(this.gameVar != null) this.gameVar.imageMenu.add(this.guiElement); sync();
+        if(this.gameVar != null) this.gameVar.imageMenu.add(this.guiElement);
     }
     
     @Override

@@ -75,7 +75,6 @@ public class Dialog implements Element {
     @Override
     public void createElement() {
         canSync = true;
-        sync();
     }
     
     @Override
