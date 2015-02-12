@@ -6,16 +6,39 @@ import java.util.Random;
 public class EntityCreature extends Entity{
 	Random gen = new Random();
 	public static ArrayList<EntityCreature> creatureList = new ArrayList<EntityCreature>();
+	
 	public EntityCreature() {
 		super();
 		creatureList.add(this);
 	}
-	public void damageCreature(EntityPlayer player){
-		this.health = this.health - player.getDamage();
+	/*
+	 * returns damage
+	 */
+	public double getDamage(){
+		return damage;
 	}
+	
+	/*
+	 * effects health of creature thorugh object player
+	 */
+	public void damageCreature(EntityPlayer player){
+		this.health = this.health - player.getDamage() ;
+	}
+	
+	/*
+	 * Returns an object Item based off of what is generated in the Random num genreator
+	 */
 	public Item randomDrop(){
 		int temp = gen.nextInt(Item.itemList.size());
 		return Item.itemList.get(temp);
+	}
+	
+	/*
+	 * returns 0-1 as a percent chance of comparison
+	 */
+	public double hitChance(){
+		int temp = gen.nextInt(100);
+		return temp/100;
 	}
 
 }

@@ -6,6 +6,7 @@ public class Armor extends Item{
 		super();
 	}
 	public Armor(double armor){
+		super();
 		this.armor = armor;
 	}
 	public double getArmor(){
