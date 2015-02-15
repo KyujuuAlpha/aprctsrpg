@@ -6,11 +6,19 @@ public class StageThree extends StageMain {
     private Choice a;
     private Choice b;
     private int x = 0;
-    private boolean fight = true;
+    private boolean fight = false;
     @Override
     public void choiceClicked(Element elementVar) {
         Choice choiceObject = (Choice)elementVar;
         if(choiceObject.getLabel().equals("Continue")){ x++; tutorialStart(); return;} 
+        if(fight){
+            if(choiceObject.getLabel().equals("ATTACK")){
+                BattleHandler.playerTurn(player, opponent);
+                fight();
+            }else if(choiceObject.getLabel().equals("RUN")){
+                
+            }
+        }
     }
     @Override
     public void taskPerformed() {
@@ -22,13 +30,14 @@ public class StageThree extends StageMain {
     }
     @Override
     public void init() {
+        opponent = new EntityCreature(10.0, 50.0);
         a = new Choice("Continue");
         mainDialog = new Dialog("");
         this.addElements(mainDialog, a);
         mainDialog.setText("A wild SHIELD attacked!!!");
     }
     public void tutorialStart(){
-        a.setLabel("Punch", false);
+        a.setLabel("ATTACK", false);
         b = new Choice(null);
         b.setLabel("Run!!!", false);
         this.addElements(b);
@@ -52,16 +61,13 @@ public class StageThree extends StageMain {
         this.scheduleTask(100);
     }
     public void fight(){
-        EntityCreature c1 = new EntityCreature(10.0, 50.0);
         a.setLabel("ATTACK", true);
         b.setLabel("RUN", true);
         fight = true;
-        while(fight){
-            mainDialog.setText("Player Health = " + player.getHealth(), "Enemy Health = " + c1.getHealth(), "What will you do next?");
-            if(c1.getHealth() == 0){
-                fight = false;
-            }
+        mainDialog.setText("Player Health = " + player.getHealth(), "Enemy Health = " + opponent.getHealth(), "What will you do next?");
+        if(opponent.getHealth() <= 0){
+            fight = false;
+            mainDialog.setText("Congrats!!!", "You killed the SHIELD scoundrels!!!");
         }
-        mainDialog.setText("Congrats!!!", "You killed the SHIELD scoundrels!!!");
     }
 }
