@@ -32,7 +32,7 @@ public abstract class Stage {
     
     /**
      * Simple task scheduling method, after specified number of ticks, run taskPerformed
-     * @param intVar The number of ticks, a tick is 1/20 of a second
+     * @param tickNumber The number of ticks, a tick is 1/20 of a second
      */
     public void scheduleTask(long tickNumber) { 
         ticks += tickNumber; //add the specified number of ticks to the countdown 
