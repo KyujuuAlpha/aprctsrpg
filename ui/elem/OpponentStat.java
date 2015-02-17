@@ -1,15 +1,5 @@
 package ui.elem;
 
-import ui.*;
-
-import javax.swing.*;
-import javax.imageio.*;
-
-import java.awt.*;
-import java.awt.image.*;
-
-import java.io.*;
-
 public class OpponentStat extends Dialog { //inherit all methods from the dialog class
     /**
      * Create a new opponent stat element

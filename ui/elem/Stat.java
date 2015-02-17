@@ -1,15 +1,5 @@
 package ui.elem;
 
-import ui.*;
-
-import javax.swing.*;
-import javax.imageio.*;
-
-import java.awt.*;
-import java.awt.image.*;
-
-import java.io.*;
-
 public class Stat extends Dialog {
     /**
      * Create a new stat element

@@ -2,14 +2,6 @@ package ui.elem;
 
 import ui.*;
 
-import javax.swing.*;
-import javax.imageio.*;
-
-import java.awt.*;
-import java.awt.image.*;
-
-import java.io.*;
-
 public class Dialog implements Element { //w00t inheritance
     protected String text; //protected to stay private, but to give access to these variables from a child class ;)
     protected boolean canSync = false;
