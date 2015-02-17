@@ -24,13 +24,13 @@ public class StagePrologue extends Stage {
             nextStage();
         }
         if(choiceObject.getLabel().equals("Tank")){
-        	player = new Tank();
+        	DataHandler.player = new Tank();
             nextStage();
         }else if(choiceObject.getLabel().equals("Normal")){
-            player = new EntityPlayer();
+        	DataHandler.player = new EntityPlayer();
             nextStage();
         }else if(choiceObject.getLabel().equals("Assassin")){
-            player = new Assassin();
+        	DataHandler.player = new Assassin();
             nextStage();
         }
     }
