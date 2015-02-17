@@ -26,7 +26,7 @@ public class BattleHandler {
 		if (player.speedX > creature.hitChance())
 			{
 				player.health = player.getHealth();
-				Exeption = "It Missed!!!!!";
+				Exeption = " But it Missed!!!!!";
 				return Exeption;
 			}
 		else 
@@ -34,7 +34,7 @@ public class BattleHandler {
 				player.damagePlayer(creature);
 				playerHealth = player.getHealth();
 				creatureDamage = creature.getDamage();
-				Exeption = "You took damage!!!";
+				Exeption = "And you took damage!!!";
 				return Exeption;
 			}
 		/*

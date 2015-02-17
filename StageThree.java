@@ -14,6 +14,7 @@ public class StageThree extends StageMain {
         if(fight){
             if(choiceObject.getLabel().equals("ATTACK")){
                 BattleHandler.playerTurn(player, opponent);
+                BattleHandler.creatureTurn(player, opponent);
                 fight();
             }else if(choiceObject.getLabel().equals("RUN")){
                 
@@ -30,11 +31,18 @@ public class StageThree extends StageMain {
     }
     @Override
     public void init() {
-        opponent = new EntityCreature(10.0, 50.0);
+         opponent = new EntityCreature(10.0, 200.0);
         a = new Choice("Continue");
         mainDialog = new Dialog("");
         this.addElements(mainDialog, a);
-        mainDialog.setText("A wild SHIELD attacked!!!");
+        if(SHIELD != true){ 
+			mainDialog.setText("A wild SHIELD attacked!!!");
+		}else{ 
+			tutorialSHIELDStart();
+		}
+    }
+    public void tutorialSHIELDStart(){
+        mainDialog.setText("As you approach the SHIELD soldiers with your hands in the air,", "a zombie pops up behind you!", "Time to show them what you're made of!");
     }
     public void tutorialStart(){
         a.setLabel("ATTACK", false);
@@ -67,7 +75,9 @@ public class StageThree extends StageMain {
         mainDialog.setText("Player Health = " + player.getHealth(), "Enemy Health = " + opponent.getHealth(), "What will you do next?");
         if(opponent.getHealth() <= 0){
             fight = false;
-            mainDialog.setText("Congrats!!!", "You killed the SHIELD scoundrels!!!");
+            if(!SHIELD) mainDialog.setText("Congrats!!!", "You killed the SHIELD scoundrels!!!");
+            if(SHIELD) mainDialog.setText("Phew!", "Got 99 problems but a zombie ain't one...");
+            //nextStage();
         }
     }
 }
