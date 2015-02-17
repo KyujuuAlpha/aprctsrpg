@@ -57,7 +57,7 @@ public class Sprite implements Element {
     public void setSource(String stringVar) {
         this.url = stringVar;
         try { this.bufferedImage = ImageIO.read(new File("resources/" + this.url)); //try to find if the resource exists
-        } catch(Exception e) { this.bufferedImage = gameVar.getErrorImage(); }
+        } catch(Exception e) { if(this.gameVar != null) this.bufferedImage = this.gameVar.getErrorImage(); }
     }
     
     /**
@@ -90,5 +90,6 @@ public class Sprite implements Element {
     @Override
     public void setGameInstance(Display displayVar) {
         this.gameVar = displayVar;
+        if(this.bufferedImage == null) this.bufferedImage = this.gameVar.getErrorImage();
     }
 }
