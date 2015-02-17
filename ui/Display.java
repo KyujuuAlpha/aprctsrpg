@@ -84,7 +84,6 @@ public class Display extends JFrame implements ActionListener {
         getStage().decreaseTicks(); //decreae the stage's ticks, 
         getStage().syncElements(); //sync all it's elements
         this.revalidate(); //revalidate this jframe's elements
-        this.repaint(); //repaint the jframe
     }
     
     /**
