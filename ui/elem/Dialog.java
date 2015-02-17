@@ -2,14 +2,6 @@ package ui.elem;
 
 import ui.*;
 
-import javax.swing.*;
-import javax.imageio.*;
-
-import java.awt.*;
-import java.awt.image.*;
-
-import java.io.*;
-
 public class Dialog implements Element { //w00t inheritance
     protected String text; //protected to stay private, but to give access to these variables from a child class ;)
     protected boolean canSync = false;
@@ -23,7 +15,7 @@ public class Dialog implements Element { //w00t inheritance
     /**
      * Create a new dialog element
      * Set the dialog's contents to specified text
-     * (ALERT) for multiliners, add another parameter: new Dialog("Line1, "Line2");
+     * @param stringVar The text of the dialog, new Dialog("Line 1", "Line 2");
      */
     public Dialog(String... stringVar) {
         this.text = handleText(stringVar);
@@ -38,7 +30,7 @@ public class Dialog implements Element { //w00t inheritance
     
     /**
      * Set the dialog's contents to specified text
-     * (ALERT) for multiliners, add another parameter: dialogVar.setText("Line1, "Line2");
+     * @param stringVar The text of the dialog, var.setText("Line 1", "Line 2");
      */
     public void setText(String... stringVar) {
         this.text = handleText(stringVar);
@@ -46,7 +38,7 @@ public class Dialog implements Element { //w00t inheritance
     
     /**
      * Add text onto the dialog's contents
-     * (ALERT) for multiliners, add another parameter: dialogVar.appendText("Line1, "Line2");
+     * @param stringVar The text of the dialog, var.appendText("Line 1", "Line 2");
      */
     public void appendText(String... stringVar) {
         String temp = handleText(stringVar);
@@ -57,6 +49,8 @@ public class Dialog implements Element { //w00t inheritance
     
     /**
      * Replace ALL certain strings with another
+     * @param stringVar0 The text to replace
+     * @param stringVar1 the text that replaces it
      */
     public void replaceText(String stringVar0, String stringVar1) {
         this.text = this.text.replaceAll(stringVar0, stringVar1);
