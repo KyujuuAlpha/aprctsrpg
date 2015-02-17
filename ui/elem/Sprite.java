@@ -27,7 +27,8 @@ public class Sprite implements Element {
     
     /**
      * Create a new sprite element
-     * Sets the target resource to specified image located in the resources/ directory: new Sprite("troi.png");
+     * Sets the target resource to specified image
+     * @param stringVar The resource file in the resources/ directory
      */
     public Sprite(String stringVar) {
         setSource(stringVar);
@@ -36,6 +37,7 @@ public class Sprite implements Element {
     
     /**
      * Set if the image should expand to the height of it's container
+     * @param flag Whether this sprite resizes with the window
      */
     public void setResizable(boolean flag) {
         this.resizable = flag;
@@ -49,7 +51,8 @@ public class Sprite implements Element {
     }
     
     /**
-     * Sets the target resource to specified image located in the resources/ directory: spriteVar.setSource("troi.png");
+     * Sets the target resource to specified image
+	 * @param stringVar The resource file in the resources/ directory
      */
     public void setSource(String stringVar) {
         this.url = stringVar;
