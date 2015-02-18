@@ -1,7 +1,7 @@
 import ui.*;
 import ui.elem.*;
 import util.*;
-public class StageTwo extends StageMain {
+public class StageTwo extends Stage {
     private Dialog mainDialog;
     private Choice a;
     private Choice b;   

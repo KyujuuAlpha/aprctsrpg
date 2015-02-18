@@ -3,7 +3,6 @@ package ui.elem;
 import ui.*;
 
 import javax.swing.*;
-import java.awt.*;
 
 import java.awt.event.*;
 
@@ -21,8 +20,8 @@ public class Choice implements Element, ActionListener {
     }
 
     /**
-     * Construct a new choice object;
-     * The parameter sets its label
+     * Construct a new choice object
+     * @param stringVar The text displayed inside of the button
      */
     public Choice(String stringVar) {
         this.text = stringVar; //initialize by setting it to the parameter
@@ -38,6 +37,7 @@ public class Choice implements Element, ActionListener {
     
     /**
      * Set a new label for this button
+     * @param stringVar The text inside of the button
      */
     public void setLabel(String stringVar) {
         this.text = stringVar; //set the label of this button element
@@ -45,6 +45,8 @@ public class Choice implements Element, ActionListener {
     
     /**
      * Set the label aswell as setting it's enabled state
+     * @param stringVar The text inside of the button
+     * @param flag Whether this button is enabled or not
      */
     public void setLabel(String stringVar, boolean flag) {
         this.text = stringVar; //set the label as well as it's enabled state
@@ -53,6 +55,7 @@ public class Choice implements Element, ActionListener {
     
     /**
      * Set this button to be enabled or not
+     * @param flag Whether this button is enabled or not
      */
     public void setEnabled(boolean flag) {
         this.enabled = flag; //set whether this button is enabled or not

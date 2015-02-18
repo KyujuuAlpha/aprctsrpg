@@ -21,6 +21,7 @@ public abstract class Stage {
     
     /**
      * Called whenever a choice is clicked by the mouse
+     * @param elementVar The element that invoked this method
      */
     public abstract void choiceClicked(Element elementVar);
     
@@ -31,11 +32,11 @@ public abstract class Stage {
     
     /**
      * Simple task scheduling method, after specified number of ticks, run taskPerformed
-     * 1 tick is equivalent to 1 twentieth of a second
+     * @param tickNumber The number of ticks, a tick is 1/20 of a second
      */
-    public void scheduleTask(long intVar) { 
-        ticks += intVar; //add the specified number of ticks to the countdown 
-        if(ticks == 0 && intVar == 0) this.taskPerformed(); //if for some reason they are both 0, just call the action method
+    public void scheduleTask(long tickNumber) { 
+        ticks += tickNumber; //add the specified number of ticks to the countdown 
+        if(ticks == 0 && tickNumber == 0) this.taskPerformed(); //if for some reason they are both 0, just call the action method
     }
     
     public void decreaseTicks() { //called whenever the timer ticks
@@ -47,6 +48,7 @@ public abstract class Stage {
     
     /**
      * Add a new element to this stage;
+     * @param elementVar The element(s)
      */
     public void addElements(Element... elementVar) {
         for(Element element : elementVar) { //foreach element in the array
@@ -60,6 +62,7 @@ public abstract class Stage {
     
     /**
      * Remove the given elements from this stage
+     * @param elementVar The element(s)
      */
     public void removeElements(Element... elementVar) {
         for(Element element : elementVar) { 

@@ -2,10 +2,6 @@ package ui.elem;
 
 import ui.*;
 
-import javax.swing.*;
-
-import java.awt.Component;
-
 public interface Element {
     public void sync(); //this method is called whenever a tick is ticked, syncs the actual element's data with the gui versions
     public void createElement(); //invoked when the element is added to a stage

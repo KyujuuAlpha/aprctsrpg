@@ -1,7 +1,7 @@
 import ui.*;
 import ui.elem.*;
 import util.*;
-public class StagePrologue extends StageMain {
+public class StagePrologue extends Stage {
     private Dialog mainDialog;
     private Choice a;
     private Choice b;    
@@ -24,13 +24,13 @@ public class StagePrologue extends StageMain {
             nextStage();
         }
         if(choiceObject.getLabel().equals("Tank")){
-        	player = new Tank();
+        	DataHandler.player = new Tank();
             nextStage();
         }else if(choiceObject.getLabel().equals("Normal")){
-            player = new EntityPlayer();
+        	DataHandler.player = new EntityPlayer();
             nextStage();
         }else if(choiceObject.getLabel().equals("Assassin")){
-            player = new Assassin();
+        	DataHandler.player = new Assassin();
             nextStage();
         }
     }

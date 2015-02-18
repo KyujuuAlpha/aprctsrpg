@@ -1,7 +1,7 @@
 import ui.*;
 import ui.elem.*;
 import util.*;
-public class StageThree extends StageMain {
+public class StageThree extends Stage {
     private Dialog mainDialog;
     private Choice a;
     private Choice b;
@@ -72,12 +72,20 @@ public class StageThree extends StageMain {
         a.setLabel("ATTACK", true);
         b.setLabel("RUN", true);
         fight = true;
+<<<<<<< HEAD
         mainDialog.setText("Player Health = " + player.getHealth(), "Enemy Health = " + opponent.getHealth(), "What will you do next?");
         if(opponent.getHealth() <= 0){
             fight = false;
             if(!SHIELD) mainDialog.setText("Congrats!!!", "You killed the SHIELD scoundrels!!!");
             if(SHIELD) mainDialog.setText("Phew!", "Got 99 problems but a zombie ain't one...");
             //nextStage();
+=======
+        while(fight){
+            mainDialog.setText("Player Health = " + DataHandler.player.getHealth(), "Enemy Health = " + c1.getHealth(), "What will you do next?");
+            if(c1.getHealth() == 0){
+                fight = false;
+            }
+>>>>>>> origin/master
         }
     }
 }
