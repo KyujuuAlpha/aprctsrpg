@@ -10,18 +10,15 @@ public class StageOne extends Stage {
     public void choiceClicked(Element elementVar) {
         Choice choiceObject = (Choice)elementVar;
         if(choiceObject.getLabel().equals("Wand")){
-            DataHandler.weapon = new Wand(20);
-            DataHandler.player.addItem(DataHandler.weapon);
+            DataHandler.player.addItem(Item.basicSword);
             stageOne();
             return;
         }else if(choiceObject.getLabel().equals("Holy SFHS iPad")){
-            DataHandler.weapon = new iPad(50);
-            DataHandler.player.addItem(DataHandler.weapon);
+            DataHandler.player.addItem(Item.basicWand);
             stageOne();
             return;
         }else if(choiceObject.getLabel().equals("Pistol")){
-            DataHandler.weapon = new Pistol(75);
-            DataHandler.player.addItem(DataHandler.weapon);
+            DataHandler.player.addItem(Item.Pistol);
             stageOne();
             return;
         }
