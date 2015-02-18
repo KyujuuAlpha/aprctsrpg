@@ -4,8 +4,18 @@ public class EntityPlayer extends Entity {
 	protected double addedArmor,addedDamage,armor,speed,speedX;
 	
 	public EntityPlayer () {
+		super();
 		this.armor = 0.1;
 		this.speed = 0.1;
+	}
+	
+	
+	public EntityPlayer(double armor, double health, double speed, double damage){
+		super(health, damage);
+		this.armor = armor;
+		this.speed = speed;
+		this.maxHealth = health;
+		
 	}
 	/*
 	 * returns damage + the addedDamage combined
