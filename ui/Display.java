@@ -1,18 +1,15 @@
 package ui;
 
-import ui.elem.*;
-
 import javax.swing.*;
 import javax.swing.border.*;
 
 import java.awt.*;
 import java.awt.event.*;
-
 import java.util.ArrayList;
-
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+
 import javax.imageio.ImageIO;
 
 public class Display extends JFrame implements ActionListener { 
@@ -87,7 +84,6 @@ public class Display extends JFrame implements ActionListener {
         getStage().decreaseTicks(); //decreae the stage's ticks, 
         getStage().syncElements(); //sync all it's elements
         this.revalidate(); //revalidate this jframe's elements
-        this.repaint(); //repaint the jframe
     }
     
     /**

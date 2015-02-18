@@ -1,7 +1,7 @@
 import ui.*;
 import ui.elem.*;
 import util.*;
-public class StageOne extends StageMain {
+public class StageOne extends Stage {
     private Dialog mainDialog;
     private Choice a;
     private Choice b;   
@@ -10,12 +10,18 @@ public class StageOne extends StageMain {
     public void choiceClicked(Element elementVar) {
         Choice choiceObject = (Choice)elementVar;
         if(choiceObject.getLabel().equals("Bow and Arrow")){
+            weapon = new BowArrow(20);
+            player.addItem(weapon);
             stageOne();
             return;
         }else if(choiceObject.getLabel().equals("Holy SFHS iPad")){
+            weapon = new iPad(50);
+            player.addItem(weapon);
             stageOne();
             return;
         }else if(choiceObject.getLabel().equals("Pistol")){
+            weapon = new Pistol(75);
+            player.addItem(weapon);
             stageOne();
             return;
         }

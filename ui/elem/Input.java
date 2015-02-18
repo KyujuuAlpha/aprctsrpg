@@ -28,6 +28,8 @@ public class Input implements Element {
     /**
      * Construct a new input;
      * Sets the name and the size of the input 
+     * @param stringVar The name of the input box
+     * @param intVar The number of columns this input box spans
      */
     public Input(String stringVar, int intVar) {
         this.size = intVar;
@@ -45,6 +47,7 @@ public class Input implements Element {
     
     /**
      * Set the current size of this input
+     * @param intVar The number of columns this input box spans
      */
     public void setSize(int intVar) {
         this.size = intVar;
@@ -59,6 +62,7 @@ public class Input implements Element {
     
     /**
      * Set the name of this input
+     * @param stringVar The name of the input box
      */
     public void setName(String stringVar) {
         this.name = stringVar;
@@ -75,6 +79,7 @@ public class Input implements Element {
     
     /**
      * Set the current text of this input
+     * @param stringVar The text inside of the input box
      */
     public void setText(String stringVar) {
         this.text = stringVar;
