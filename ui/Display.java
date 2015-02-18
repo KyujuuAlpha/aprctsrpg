@@ -81,7 +81,8 @@ public class Display extends JFrame implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) { //called whenver the timer ticks
         if(getStage() == null) return; //if the stage does not exist, dont do anything
-        getStage().decreaseTicks(); //decreae the stage's ticks, 
+        switch(getStage().incrementVar()) { case 1: this.nextStage(); return; case 2: this.prevStage(); return; default: break; }
+        getStage().decreaseTicks(); //decrease the stage's ticks, 
         getStage().syncElements(); //sync all it's elements
         this.revalidate(); //revalidate this jframe's elements
     }
@@ -97,7 +98,6 @@ public class Display extends JFrame implements ActionListener {
      * Add a new stage to the list
      */
     public void addStage(Stage stageVar) {
-        stageVar.setGameInstance(this); //set the stage's display instance to this jframe
         stageList.add(stageVar); //add the stage to the stagelist
     }
     
