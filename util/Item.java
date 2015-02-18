@@ -21,7 +21,6 @@ public class Item {
 	public static final Boots basicBoot = new Boots(1.2);
 	public static final Armor basicArmor = new Armor(0.1);
 	public static final iPad basiciPad = new iPad(50);
-	public static final BowArrow basicBowArrow = new BowArrow(20);
 	public static final Pistol Pistol = new Pistol();
 	public static final Boots normBoots = new Boots(1.3);
 	public static final Armor normArmor = new Armor(0.3);

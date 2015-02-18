@@ -19,7 +19,7 @@ public class StageTwo extends Stage {
         if(choiceObject.getLabel().equals("FIGHT")){
             nextStage();
         }else if(choiceObject.getLabel().equals("JOIN 'EM")){
-            SHIELD = true;
+            DataHandler.SHIELD = true;
             nextStage();
         }
     }

@@ -9,19 +9,19 @@ public class StageOne extends Stage {
     @Override
     public void choiceClicked(Element elementVar) {
         Choice choiceObject = (Choice)elementVar;
-        if(choiceObject.getLabel().equals("Bow and Arrow")){
-            weapon = new BowArrow(20);
-            player.addItem(weapon);
+        if(choiceObject.getLabel().equals("Wand")){
+            DataHandler.weapon = new Wand(20);
+            DataHandler.player.addItem(DataHandler.weapon);
             stageOne();
             return;
         }else if(choiceObject.getLabel().equals("Holy SFHS iPad")){
-            weapon = new iPad(50);
-            player.addItem(weapon);
+            DataHandler.weapon = new iPad(50);
+            DataHandler.player.addItem(DataHandler.weapon);
             stageOne();
             return;
         }else if(choiceObject.getLabel().equals("Pistol")){
-            weapon = new Pistol(75);
-            player.addItem(weapon);
+            DataHandler.weapon = new Pistol(75);
+            DataHandler.player.addItem(DataHandler.weapon);
             stageOne();
             return;
         }
@@ -39,7 +39,7 @@ public class StageOne extends Stage {
         c = new Choice("Pistol");
         mainDialog = new Dialog("");
         this.addElements(mainDialog, a, b, c);
-        mainDialog.setText("You wake up and get ready to leave your apartment.", "What weapon will you take?", "Option 1: Bow and Arrow", "Option 2: Holy SFHS iPad", "Option 3: Pistol");
+        mainDialog.setText("You wake up and get ready to leave your apartment.", "What weapon will you take?", "Option 1: Wand", "Option 2: Holy SFHS iPad", "Option 3: Pistol");
     }
     public void stageOne(){
         this.removeElements(b, c);
