@@ -53,7 +53,6 @@ public abstract class Stage {
         for(Element element : elementVar) { //foreach element in the array
             if(elementList.indexOf(elementVar) < 0) { //if that element does not already exist
                 elementList.add(element); //then add it to the element list
-                //element.setGameInstance(gameVar); //sest it's display instance variable
                 element.createElement(); //create it to avoid null pointer exceptions
             }
         }

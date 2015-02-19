@@ -1,13 +1,13 @@
 package ui.elem;
 
+import java.awt.Component;
+
 import ui.*;
 
 public class Dialog implements Element { //w00t inheritance
     protected String text; //protected to stay private, but to give access to these variables from a child class ;)
     protected boolean canSync = false;
-    
-    protected Display gameVar;
-    
+
     public Dialog() {
         this.text = "";
     }
@@ -78,12 +78,12 @@ public class Dialog implements Element { //w00t inheritance
     }
     
     @Override
-    public void sync() {
-        if(canSync && gameVar != null) gameVar.dialog.setText(this.text); //if you can sync and the display exists, then set  the text of the jlabel!
+    public Component getComponent() {
+    	return null;
     }
     
     @Override
-    public void setGameInstance(Display displayVar) {
-        gameVar = displayVar;
+    public void sync() {
+        if(canSync && gameVar != null) gameVar.dialog.setText(this.text); //if you can sync and the display exists, then set  the text of the jlabel!
     }
 }

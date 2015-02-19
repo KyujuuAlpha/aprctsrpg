@@ -4,6 +4,7 @@ import ui.*;
 
 import javax.swing.*;
 
+import java.awt.Component;
 import java.awt.event.*;
 
 public class Choice implements Element, ActionListener {
@@ -11,8 +12,6 @@ public class Choice implements Element, ActionListener {
     
     private String text; //internal data that holds the element's name
     private boolean enabled; //whether the current button is enabled or not
-    
-    private Display gameVar; //the instance of the display
     
     public Choice() { //the default constructor if no parameters are passed
         this.text = "Choice"; //iniialize the internal data of this element
@@ -72,12 +71,10 @@ public class Choice implements Element, ActionListener {
     public void createElement() {
         this.guiElement = new JButton(getLabel()); //initialze the actual gui element
         this.guiElement.addActionListener(this); //add this object as its action listener
-        if(this.gameVar != null) this.gameVar.actionsMenu.add(this.guiElement); //actually add it to the display if it exists
-    }
+   }
     
     @Override
     public void removeElement() {
-        this.gameVar.actionsMenu.remove(this.guiElement); //remove the element from the display
     }
     
     @Override
@@ -88,14 +85,14 @@ public class Choice implements Element, ActionListener {
     }
     
     @Override
+    public Component getComponent() {
+    	return this.guiElement;
+    }
+    
+    @Override
     public void actionPerformed(ActionEvent e) { //basically call the choice clicked method when if this button is activated
         if(this.gameVar == null) return;
         else if(this.gameVar.getStage() == null) return;
         this.gameVar.getStage().choiceClicked(this);
-    }
-    
-    @Override
-    public void setGameInstance(Display displayVar) { 
-        this.gameVar = displayVar; //set the display instance for this element
     }
 }
