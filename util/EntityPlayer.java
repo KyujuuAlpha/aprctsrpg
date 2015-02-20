@@ -1,14 +1,17 @@
 package util;
 
+import java.util.*;
+
 public class EntityPlayer extends Entity {
 	protected double addedArmor,addedDamage,armor,speed,speedX;
-	protected Item[] equppiedItem = new Item[6];
-	protected Item heldItem;
+	protected int heldItemIndex;
+	protected ArrayList<Item> inventory;
 	
 	public EntityPlayer() {
 		super();
 		this.armor = 0.1;
 		this.speed = 0.1;
+		this.inventory = new ArrayList<Item>();
 	}
 	
 	
@@ -17,7 +20,7 @@ public class EntityPlayer extends Entity {
 		this.armor = armor;
 		this.speed = speed;
 		this.maxHealth = health;
-		
+		this.inventory = new ArrayList<Item>();
 	}
 	/*
 	 * returns damage + the addedDamage combined
@@ -32,7 +35,7 @@ public class EntityPlayer extends Entity {
 	 * takes into account armor
 	 */
 	public void damagePlayer(EntityCreature creature){
-		health = health - ( creature.getDamage() - (creature.getDamage() * armor));
+		health = health - ( creature.getDamage() - (creature.getDamage() * (addedArmor + armor)));
 	}
 	
 	/*
@@ -57,33 +60,81 @@ public class EntityPlayer extends Entity {
 		return speed * speedX;
 	}
 	
+	public Item getCurrentHeldItem() {
+		return this.inventory.get(this.heldItemIndex);
+	}
+	
+	public void setHeldItem(Item item) {
+		if(this.inventory.indexOf(item) > -1) this.heldItemIndex = this.inventory.indexOf(item);
+	}
+	
 	/*
 	 * adds item based on type
 	 * 
 	 * works off of instanceof , error will occur if one of the following items aren't used "Armor, Potion, Wand, Sword, Boot"
 	 */
 	public void addItem(Item item){
-		if(item instanceof Armor)
+		if (inventory.size() < 6) {
+			for (int i = 0; i >inventory.size(); i++)
 			{
-				this.addedArmor = ((Armor)item).getArmor() + this.armor;
+					if (inventory.get(i) == item){
+						setHeldItem(item);
+						removeItem(heldItemIndex);	
+					}
+				}
 			}
-		if (item instanceof Potion)
+			if(item instanceof Armor)
+				{
+					this.addedArmor = ((Armor)item).getArmor();
+					inventory.add(item);
+				}
+			else if (item instanceof Potion)
+				{
+					this.health = (healPlayer(((Potion)item).getHeal())); 
+					inventory.add(item);
+				}
+			else if (item instanceof Wand)
+				{
+					this.addedDamage = ((Wand)item).getDamage();
+					inventory.add(item);
+				}
+			else if (item instanceof Sword)
+				{
+					this.addedDamage =((Sword)item).getDamage();
+					inventory.add(item);
+				}
+			else if (item instanceof Boots)
+				{
+					this.speedX = ((Boots)item).getSpeed();
+					inventory.add(item);
+				}
+		}
+		
+	/*
+	 * this is used to elimate item values
+	 * MUST BE USED AFTER THE METHOD "SETHELDITEM"
+	 */
+	
+	public void removeItem(int itemIndex) {
+		if(inventory.get(itemIndex) instanceof Armor)
 			{
-				this.health = (healPlayer(((Potion)item).getHeal())); 
+				addedArmor = 0;
 			}
-		if (item instanceof Wand)
+		else if (inventory.get(itemIndex) instanceof Wand)
 			{
-				this.addedDamage = ((Wand)item).getDamage() + this.damage;
+				addedDamage = 0;
 			}
-		if (item instanceof Sword)
+		else if (inventory.get(itemIndex) instanceof Sword)
 			{
-				this.addedDamage =((Sword)item).getDamage() + this.damage;
+				addedDamage = 0;
 			}
-		if (item instanceof Boots)
+		else if (inventory.get(itemIndex) instanceof Boots)
 			{
-				this.speedX = ((Boots)item).getSpeed();
+				this.speedX = 1;
 			}
+		this.inventory.remove(itemIndex);
 		
 	}
+	
 
 }
