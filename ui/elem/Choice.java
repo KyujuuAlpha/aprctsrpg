@@ -12,6 +12,8 @@ public class Choice implements Element, ActionListener {
     private String text; //internal data that holds the element's name
     private boolean enabled; //whether the current button is enabled or not
     
+    private boolean clickedVar;
+    
     public Choice() { //the default constructor if no parameters are passed
         this.text = "Choice"; //iniialize the internal data of this element
         this.enabled = true;
@@ -97,8 +99,16 @@ public class Choice implements Element, ActionListener {
     
     @Override
     public void actionPerformed(ActionEvent e) { //basically call the choice clicked method when if this button is activated
-        /*if(this.gameVar == null) return;
-        else if(this.gameVar.getStage() == null) return;
-        this.gameVar.getStage().choiceClicked(this);*/
+        if(this.guiElement != null && this.container != null) {
+        	this.clickedVar = true;
+        }
+    }
+    
+    public boolean isClicked() {
+    	if(this.clickedVar) {
+    		this.clickedVar = false; 
+    		return true;
+    	}
+    	return clickedVar;
     }
 }

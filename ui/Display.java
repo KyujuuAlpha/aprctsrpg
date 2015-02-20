@@ -88,6 +88,11 @@ public class Display extends JFrame implements ActionListener {
         		else if(elementVar instanceof ui.elem.Stat) elementVar.setComponent(stats);
         		else if(elementVar instanceof ui.elem.OpponentStat) elementVar.setComponent(stats2);
     			elementVar.createElement();
+        	} else {
+        		if(elementVar instanceof ui.elem.Choice && ((ui.elem.Choice)elementVar).isClicked()) {
+        			getStage().choiceClicked(elementVar);
+        			break;
+        		}
         	}
         }
         getStage().decreaseTicks(); //decrease the stage's ticks, 
