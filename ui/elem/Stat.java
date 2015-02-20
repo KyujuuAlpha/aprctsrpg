@@ -9,15 +9,4 @@ public class Stat extends Dialog {
     public Stat(String... stringVar) {
         super(stringVar);
     }
-    
-    @Override
-    public void removeElement() {
-        gameVar.stats.setText("");
-        canSync = false;
-    }
-    
-    @Override
-    public void sync() {
-        if(canSync) gameVar.stats.setText(this.text);
-    }
 }

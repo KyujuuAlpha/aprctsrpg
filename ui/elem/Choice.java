@@ -1,18 +1,18 @@
 package ui.elem;
 
-import ui.*;
-
 import javax.swing.*;
 
+import java.awt.Component;
 import java.awt.event.*;
 
 public class Choice implements Element, ActionListener {
+	private JPanel container;
     private JButton guiElement; //the gui counter part of this element
     
     private String text; //internal data that holds the element's name
     private boolean enabled; //whether the current button is enabled or not
     
-    private Display gameVar; //the instance of the display
+    private boolean clickedVar;
     
     public Choice() { //the default constructor if no parameters are passed
         this.text = "Choice"; //iniialize the internal data of this element
@@ -72,12 +72,12 @@ public class Choice implements Element, ActionListener {
     public void createElement() {
         this.guiElement = new JButton(getLabel()); //initialze the actual gui element
         this.guiElement.addActionListener(this); //add this object as its action listener
-        if(this.gameVar != null) this.gameVar.actionsMenu.add(this.guiElement); //actually add it to the display if it exists
-    }
+        if(this.container != null) this.container.add(this.guiElement);
+   }
     
     @Override
     public void removeElement() {
-        this.gameVar.actionsMenu.remove(this.guiElement); //remove the element from the display
+    	if(this.container != null) this.container.remove(this.guiElement);
     }
     
     @Override
@@ -88,14 +88,27 @@ public class Choice implements Element, ActionListener {
     }
     
     @Override
-    public void actionPerformed(ActionEvent e) { //basically call the choice clicked method when if this button is activated
-        if(this.gameVar == null) return;
-        else if(this.gameVar.getStage() == null) return;
-        this.gameVar.getStage().choiceClicked(this);
+    public Component getComponent() {
+    	return this.container;
     }
     
     @Override
-    public void setGameInstance(Display displayVar) { 
-        this.gameVar = displayVar; //set the display instance for this element
+    public void setComponent(Component componentVar) {
+    	this.container = (JPanel)componentVar;
+    }
+    
+    @Override
+    public void actionPerformed(ActionEvent e) { //basically call the choice clicked method when if this button is activated
+        if(this.guiElement != null && this.container != null) {
+        	this.clickedVar = true;
+        }
+    }
+    
+    public boolean isClicked() {
+    	return clickedVar;
+    }
+    
+    public void setClicked(boolean flag) {
+    	clickedVar = flag;
     }
 }

@@ -8,11 +8,10 @@ public abstract class Stage {
     //declare and initialize a new arraylist with the type of element
     private ArrayList<Element> elementList = new ArrayList<Element>();
     
-    //declare a Display instance variable
-    private Display gameVar;
-    
     //declare a long variable for task scheduling
     private long ticks = 0;
+    
+    private byte stageIncrement = 0;
     
     /**
      * Called when this stage becomes the current stage
@@ -54,7 +53,6 @@ public abstract class Stage {
         for(Element element : elementVar) { //foreach element in the array
             if(elementList.indexOf(elementVar) < 0) { //if that element does not already exist
                 elementList.add(element); //then add it to the element list
-                element.setGameInstance(gameVar); //sest it's display instance variable
                 element.createElement(); //create it to avoid null pointer exceptions
             }
         }
@@ -86,21 +84,25 @@ public abstract class Stage {
         elementList.clear(); //remove all the elements from the elementList
     }
     
+    public ArrayList<Element> getElements() {
+    	return elementList;
+    }
+    
     /**
      * Go to the next stage in the list
      */
     public void nextStage() {
-        gameVar.nextStage(); //move onto the next stage by invoking the nextstage method from the displayinstance
+    	stageIncrement = 1;
     }
     
     /**
      * Go to the previous stage in the list
      */
     public void prevStage() {
-        gameVar.prevStage(); //invoke the prevstage method from the display instance
+        stageIncrement = 2;
     }
     
-    public void setGameInstance(Display displayVar) {
-        gameVar = displayVar; //set the display instance to the specified parameter
+    public byte incrementVar() {
+    	return stageIncrement;
     }
 }

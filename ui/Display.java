@@ -6,11 +6,8 @@ import javax.swing.border.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.util.ArrayList;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
 
-import javax.imageio.ImageIO;
+import ui.elem.*;
 
 public class Display extends JFrame implements ActionListener { 
     private JPanel statsMenu; //declare new jpanels
@@ -27,7 +24,7 @@ public class Display extends JFrame implements ActionListener {
     public final JLabel stats;
     public final JLabel stats2;
     
-    public BufferedImage errorImage;
+    //public BufferedImage errorImage;
     
     public Display(String str) {
         super(str); //call the parent classes' constructor
@@ -67,23 +64,42 @@ public class Display extends JFrame implements ActionListener {
         temp2.setBorder(BorderFactory.createEtchedBorder(EtchedBorder.LOWERED));
         this.add(temp2, BorderLayout.WEST);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); //kill the java.exe process plz
-        try { this.errorImage = ImageIO.read(new File("resources/unknown.png"));
-        } catch(IOException e) { this.errorImage = null; }
+        /*try { this.errorImage = ImageIO.read(new File("resources/unknown.png"));
+        } catch(IOException e) { this.errorImage = null; }*/
         this.setVisible(true); //set the visibility of this jframe to true
         Timer timerVar = new Timer(50, this); //ticking timer
         timerVar.start(); //invoke the start method from the timervar
     }
     
-    public BufferedImage getErrorImage() {
+    /*public BufferedImage getErrorImage() {
         return this.errorImage;
-    }
+    }*/
     
     @Override
     public void actionPerformed(ActionEvent e) { //called whenver the timer ticks
         if(getStage() == null) return; //if the stage does not exist, dont do anything
-        getStage().decreaseTicks(); //decreae the stage's ticks, 
+        switch(getStage().incrementVar()) { case 1: this.nextStage(); return; case 2: this.prevStage(); return; default: break; }
+        for(Element elementVar : getStage().getElements()) {
+        	if(elementVar.getComponent() == null) {
+        		if(elementVar instanceof ui.elem.Choice) elementVar.setComponent(actionsMenu);
+        		else if(elementVar instanceof ui.elem.Dialog) elementVar.setComponent(dialog);
+        		else if(elementVar instanceof ui.elem.Input) elementVar.setComponent(inputMenu);
+        		else if(elementVar instanceof ui.elem.Sprite) elementVar.setComponent(imageMenu);
+        		else if(elementVar instanceof ui.elem.Stat) elementVar.setComponent(stats);
+        		else if(elementVar instanceof ui.elem.OpponentStat) elementVar.setComponent(stats2);
+    			elementVar.createElement();
+        	} else {
+        		if(elementVar instanceof ui.elem.Choice && ((ui.elem.Choice)elementVar).isClicked()) {
+        			((ui.elem.Choice)elementVar).setClicked(false);
+        			getStage().choiceClicked(elementVar);
+        			break;
+        		}
+        	}
+        }
+        getStage().decreaseTicks(); //decrease the stage's ticks, 
         getStage().syncElements(); //sync all it's elements
         this.revalidate(); //revalidate this jframe's elements
+        this.repaint();
     }
     
     /**
@@ -97,7 +113,6 @@ public class Display extends JFrame implements ActionListener {
      * Add a new stage to the list
      */
     public void addStage(Stage stageVar) {
-        stageVar.setGameInstance(this); //set the stage's display instance to this jframe
         stageList.add(stageVar); //add the stage to the stagelist
     }
     
@@ -111,7 +126,7 @@ public class Display extends JFrame implements ActionListener {
     }
     
     /**
-     * Go back one stage on the list
+     * Go back one stage on the list/
      */
     public void prevStage() {
         getStage().removeElements();

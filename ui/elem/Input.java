@@ -1,8 +1,7 @@
 package ui.elem;
 
-import ui.*;
-
 import javax.swing.*;
+
 import java.awt.*;
 
 public class Input implements Element {
@@ -15,8 +14,6 @@ public class Input implements Element {
     private String text;
     
     private boolean overrideRequest;
-    
-    private Display gameVar;
     
     public Input() {
         this.size = 6;
@@ -97,12 +94,20 @@ public class Input implements Element {
         this.guiElement.add(this.guiElementText);
         this.guiElement.add(this.guiElementField);
         this.overrideRequest = false;
-        if(this.gameVar != null) this.gameVar.inputMenu.add(this.guiElement);
     }
     
     @Override
     public void removeElement() {
-        this.gameVar.inputMenu.remove(this.guiElement);
+    }
+    
+    @Override
+    public Component getComponent() {
+    	return this.guiElement;
+    }
+    
+    @Override
+    public void setComponent(Component componentVar) {
+    	
     }
     
     @Override
@@ -113,10 +118,5 @@ public class Input implements Element {
         this.guiElementField.setColumns(getSize());
         this.guiElementText.setText(this.name + ": ");
         this.overrideRequest = false;
-    }
-    
-    @Override
-    public void setGameInstance(Display displayVar) {
-        this.gameVar = displayVar;
     }
 }

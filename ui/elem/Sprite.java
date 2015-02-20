@@ -1,22 +1,18 @@
 package ui.elem;
 
-import ui.*;
-
 import javax.swing.*;
 import javax.imageio.*;
 
 import java.awt.*;
 import java.awt.image.*;
-
 import java.io.*;
 
 public class Sprite implements Element {
+	private JPanel container;
     private JLabel guiElement;
     
     private String url;
     private BufferedImage bufferedImage;
-    
-    private Display gameVar;
     
     private boolean resizable;
     
@@ -57,7 +53,7 @@ public class Sprite implements Element {
     public void setSource(String stringVar) {
         this.url = stringVar;
         try { this.bufferedImage = ImageIO.read(new File("resources/" + this.url)); //try to find if the resource exists
-        } catch(Exception e) { if(this.gameVar != null) this.bufferedImage = this.gameVar.getErrorImage(); }
+        } catch(Exception e) { this.bufferedImage = null; }
     }
     
     /**
@@ -70,26 +66,27 @@ public class Sprite implements Element {
     @Override
     public void createElement() {
         this.guiElement = new JLabel();
-        if(this.gameVar != null) this.gameVar.imageMenu.add(this.guiElement);
     }
     
     @Override
     public void removeElement() {
-        gameVar.imageMenu.remove(this.guiElement);
+    }
+    
+    @Override
+    public Component getComponent() {
+    	return this.container;
+    }
+    
+    @Override
+    public void setComponent(Component componentVar) {
+    	this.container = (JPanel)componentVar;
     }
     
     @Override
     public void sync() {
         if(bufferedImage == null || this.guiElement == null) return;
-        JPanel panelVar = gameVar.imageMenu;
-        panelVar.setLayout(new GridLayout(1, panelVar.getComponents().length)); //grid layout rock
-        if(this.resizable) this.guiElement.setIcon(new ImageIcon(bufferedImage.getScaledInstance((int)(panelVar.getHeight() * (bufferedImage.getWidth() / bufferedImage.getHeight())), panelVar.getHeight(), Image.SCALE_FAST))); //easy way of displaying an image trough a jlabel instead of messing with graphics
+        this.container.setLayout(new GridLayout(1, this.container.getComponents().length)); //grid layout rock
+        if(this.resizable) this.guiElement.setIcon(new ImageIcon(bufferedImage.getScaledInstance((int)(this.container.getHeight() * (bufferedImage.getWidth() / bufferedImage.getHeight())), this.container.getHeight(), Image.SCALE_FAST))); //easy way of displaying an image trough a jlabel instead of messing with graphics
         else this.guiElement.setIcon(new ImageIcon(bufferedImage));
-    }
-    
-    @Override
-    public void setGameInstance(Display displayVar) {
-        this.gameVar = displayVar;
-        if(this.bufferedImage == null) this.bufferedImage = this.gameVar.getErrorImage();
     }
 }

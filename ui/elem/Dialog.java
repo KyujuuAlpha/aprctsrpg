@@ -1,13 +1,15 @@
 package ui.elem;
 
-import ui.*;
+import java.awt.Component;
+
+import javax.swing.JLabel;
 
 public class Dialog implements Element { //w00t inheritance
     protected String text; //protected to stay private, but to give access to these variables from a child class ;)
     protected boolean canSync = false;
     
-    protected Display gameVar;
-    
+    protected JLabel guiElement;
+
     public Dialog() {
         this.text = "";
     }
@@ -73,17 +75,22 @@ public class Dialog implements Element { //w00t inheritance
     
     @Override
     public void removeElement() {
-        gameVar.dialog.setText(""); //erase the dialog if this element is removed
+        if(this.guiElement != null) this.guiElement.setText(""); //erase the dialog if this element is removed
         canSync = false; //you cannot change the dialog anymore if you cannot sync
     }
     
     @Override
-    public void sync() {
-        if(canSync && gameVar != null) gameVar.dialog.setText(this.text); //if you can sync and the display exists, then set  the text of the jlabel!
+    public Component getComponent() {
+    	return this.guiElement;
     }
     
     @Override
-    public void setGameInstance(Display displayVar) {
-        gameVar = displayVar;
+    public void setComponent(Component componentVar) {
+    	this.guiElement = (JLabel)componentVar;
+    }
+    
+    @Override
+    public void sync() {
+        if(canSync && this.guiElement != null) this.guiElement.setText(this.text); //if you can sync and the display exists, then set  the text of the jlabel!
     }
 }

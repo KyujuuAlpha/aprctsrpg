@@ -9,15 +9,4 @@ public class OpponentStat extends Dialog { //inherit all methods from the dialog
     public OpponentStat(String... stringVar) {
         super(stringVar); //call the constructor of the parent class
     }
-    
-    @Override
-    public void removeElement() {
-        gameVar.stats2.setText("");
-        canSync = false;
-    }
-    
-    @Override
-    public void sync() {
-        if(canSync) gameVar.stats2.setText(this.text);
-    }
 }
