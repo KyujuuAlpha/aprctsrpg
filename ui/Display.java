@@ -74,12 +74,14 @@ public class Display extends JFrame implements ActionListener {
         for(Element elementVar : getStage().getElements()) {
         	if(elementVar.getComponent() == null) {
         		if(elementVar instanceof ui.elem.Choice) elementVar.setComponent(actionsMenu);
-        		else if(elementVar instanceof ui.elem.Dialog) elementVar.setComponent(dialog);
         		else if(elementVar instanceof ui.elem.Input) elementVar.setComponent(inputMenu);
         		else if(elementVar instanceof ui.elem.Sprite) elementVar.setComponent(imageMenu);
-        		else if(elementVar instanceof ui.elem.Stat) elementVar.setComponent(stats);
-        		else if(elementVar instanceof ui.elem.OpponentStat) elementVar.setComponent(stats2);
-    			elementVar.createElement();
+        		else if(elementVar instanceof ui.elem.Dialog) {
+        			if(elementVar instanceof ui.elem.Stat) elementVar.setComponent(stats);
+            		else if(elementVar instanceof ui.elem.OpponentStat) elementVar.setComponent(stats2);
+            		else elementVar.setComponent(dialog);
+        		}
+        		elementVar.createElement();
         	} else {
         		if(elementVar instanceof ui.elem.Choice && ((ui.elem.Choice)elementVar).isClicked()) {
         			((ui.elem.Choice)elementVar).setClicked(false);
