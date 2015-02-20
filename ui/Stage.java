@@ -84,6 +84,10 @@ public abstract class Stage {
         elementList.clear(); //remove all the elements from the elementList
     }
     
+    public ArrayList<Element> getElements() {
+    	return elementList;
+    }
+    
     /**
      * Go to the next stage in the list
      */

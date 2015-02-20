@@ -1,13 +1,12 @@
 package ui.elem;
 
-import ui.*;
-
 import javax.swing.*;
 
 import java.awt.Component;
 import java.awt.event.*;
 
 public class Choice implements Element, ActionListener {
+	private JPanel container;
     private JButton guiElement; //the gui counter part of this element
     
     private String text; //internal data that holds the element's name
@@ -71,10 +70,12 @@ public class Choice implements Element, ActionListener {
     public void createElement() {
         this.guiElement = new JButton(getLabel()); //initialze the actual gui element
         this.guiElement.addActionListener(this); //add this object as its action listener
+        if(this.container != null) this.container.add(this.guiElement);
    }
     
     @Override
     public void removeElement() {
+    	if(this.container != null) this.container.remove(this.guiElement);
     }
     
     @Override
@@ -86,13 +87,18 @@ public class Choice implements Element, ActionListener {
     
     @Override
     public Component getComponent() {
-    	return this.guiElement;
+    	return this.container;
+    }
+    
+    @Override
+    public void setComponent(Component componentVar) {
+    	this.container = (JPanel)componentVar;
     }
     
     @Override
     public void actionPerformed(ActionEvent e) { //basically call the choice clicked method when if this button is activated
-        if(this.gameVar == null) return;
+        /*if(this.gameVar == null) return;
         else if(this.gameVar.getStage() == null) return;
-        this.gameVar.getStage().choiceClicked(this);
+        this.gameVar.getStage().choiceClicked(this);*/
     }
 }

@@ -106,6 +106,11 @@ public class Input implements Element {
     }
     
     @Override
+    public void setComponent(Component componentVar) {
+    	
+    }
+    
+    @Override
     public void sync() {
         if(this.guiElement == null) return;
         if(this.overrideRequest) this.guiElementField.setText(this.text); //set the text if the override is requested

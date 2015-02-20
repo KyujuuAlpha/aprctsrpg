@@ -7,4 +7,5 @@ public interface Element {
     public void createElement(); //invoked when the element is added to a stage
     public void removeElement(); //invoked when the element gui counter part is requested to be removed
     public Component getComponent();
+    public void setComponent(Component componentVar);
 }
