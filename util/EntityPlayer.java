@@ -5,13 +5,13 @@ import java.util.*;
 public class EntityPlayer extends Entity {
 	protected double addedArmor,addedDamage,armor,speed,speedX;
 	protected int heldItemIndex;
-	protected ArrayList<Item> inventory;
+	protected Inventory inventory;
 	
 	public EntityPlayer() {
 		super();
 		this.armor = 0.1;
 		this.speed = 0.1;
-		this.inventory = new ArrayList<Item>();
+		this.inventory = new Inventory(6);
 	}
 	
 	
@@ -20,7 +20,7 @@ public class EntityPlayer extends Entity {
 		this.armor = armor;
 		this.speed = speed;
 		this.maxHealth = health;
-		this.inventory = new ArrayList<Item>();
+		this.inventory = new Inventory(6);
 	}
 	/*
 	 * returns damage + the addedDamage combined
@@ -61,11 +61,11 @@ public class EntityPlayer extends Entity {
 	}
 	
 	public Item getCurrentHeldItem() {
-		return this.inventory.get(this.heldItemIndex);
+		return this.inventory.getItem(this.heldItemIndex);
 	}
 	
 	public void setHeldItem(Item item) {
-		if(this.inventory.indexOf(item) > -1) this.heldItemIndex = this.inventory.indexOf(item);
+		if(this.inventory.getSlot(item) > -1) this.heldItemIndex = this.inventory.getSlot(item);
 	}
 	
 	/*
@@ -74,38 +74,40 @@ public class EntityPlayer extends Entity {
 	 * works off of instanceof , error will occur if one of the following items aren't used "Armor, Potion, Wand, Sword, Boot"
 	 */
 	public void addItem(Item item){
-		if (inventory.size() < 6) {
-			if(inventory.contains(item)) {
+		if (inventory.size() < 5) {
+			for (int i = 0; i > inventory.size(); i++){
+			if(inventory.getItem(i) == item) {
 				setHeldItem(item);
 				removeItem(heldItemIndex);	
+				}	
 			}
 			if(item instanceof Armor)
 				{
 					this.addedArmor = ((Armor)item).getArmor();
-					inventory.add(item);
+					inventory.setSlot(0,item);
 				}
 			else if (item instanceof Potion)
 				{
 					this.health = (healPlayer(((Potion)item).getHeal())); 
-					inventory.add(item);
+					inventory.setSlot(1,item);
 				}
 			else if (item instanceof Wand)
 				{
 					this.addedDamage = ((Wand)item).getDamage();
-					inventory.add(item);
+					inventory.setSlot(2,item);
 				}
 			else if (item instanceof Sword)
 				{
 					this.addedDamage =((Sword)item).getDamage();
-					inventory.add(item);
+					inventory.setSlot(3,item);
 				}
 			else if (item instanceof Boots)
 				{
 					this.speedX = ((Boots)item).getSpeed();
-					inventory.add(item);
+					inventory.setSlot(4,item);
 				}
 		}
-		}
+	}
 		
 	/*
 	 * this is used to elimate item values
@@ -113,27 +115,26 @@ public class EntityPlayer extends Entity {
 	 */
 	
 	public void removeItem(int itemIndex) {
-		if(inventory.get(itemIndex) instanceof Armor)
+		if(inventory.getItem(itemIndex) instanceof Armor)
 			{
 				addedArmor = 0;
-				inventory.remove(itemIndex);
+				inventory.setSlot(itemIndex,null);
 			}
-		else if (inventory.get(itemIndex) instanceof Wand)
+		else if (inventory.getItem(itemIndex) instanceof Wand)
 			{
 				addedDamage = 0;
-				inventory.remove(itemIndex);
+				inventory.setSlot(itemIndex, null);
 			}
-		else if (inventory.get(itemIndex) instanceof Sword)
+		else if (inventory.getItem(itemIndex) instanceof Sword)
 			{
 				addedDamage = 0;
-				inventory.remove(itemIndex);
+				inventory.setSlot(itemIndex,null);
 			}
-		else if (inventory.get(itemIndex) instanceof Boots)
+		else if (inventory.getItem(itemIndex) instanceof Boots)
 			{
 				this.speedX = 1;
-				inventory.remove(itemIndex);
+				inventory.setSlot(itemIndex,null);
 			}
-		this.inventory.remove(itemIndex);
 		
 	}
 	

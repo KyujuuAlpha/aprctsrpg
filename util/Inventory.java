@@ -1,6 +1,7 @@
 package util;
 
 public class Inventory {
+	private int heldItemIndex;
 	private Item[] itemList;
 	
 	public Inventory(int invSize) {
@@ -15,7 +16,15 @@ public class Inventory {
 		this.itemList[slot] = item;
 	}
 	
-	public Item getSlot(int slot) {
+	public Item getItem(int slot) {
 		return this.itemList[slot];
+		
+	}
+	
+	public int getSlot(Item item) {
+		for(int i = 0; i < this.itemList.length; i++) {
+			if(item == this.itemList[i]) return i;
+		}
+		return -1;
 	}
 }
