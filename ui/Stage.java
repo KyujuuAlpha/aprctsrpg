@@ -102,6 +102,10 @@ public abstract class Stage {
         stageIncrement = 2;
     }
     
+    public void setStage(int stageID) {
+    	stageIncrement = 3;
+    }
+    
     public byte incrementVar() {
     	return stageIncrement;
     }
