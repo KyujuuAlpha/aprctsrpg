@@ -11,7 +11,7 @@ public class StageFour extends StageMain {
     @Override
     public void choiceClicked(Element elementVar) {
         Choice choiceObject = (Choice)elementVar;
-        if(choiceObject.getLable().equals(Continue)){
+        if(choiceObject.getLabel().equals("Continue")){
             if(DataHandler.SHIELD){
                 x++;
             }else{
@@ -21,7 +21,7 @@ public class StageFour extends StageMain {
     }
     @Override
     public void taskPerformed() {
-        if(x == 0){ y++ shieldOne();}
+        if(x == 0){ y++; shieldOne();}
     }
     @Override
     public void init() {
@@ -35,6 +35,6 @@ public class StageFour extends StageMain {
         }
     }
     public void shieldOne(){
-        mainDialog.setText("You have four options here at SHIELD.", "1) Go on a Zombie Patrol", "2) Upgrade your weapon", "3) 
+        mainDialog.setText("You have four options here at SHIELD.", "1) Go on a Zombie Patrol", "2) Upgrade your weapon"); 
     }
 }
