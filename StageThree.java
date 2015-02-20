@@ -3,6 +3,8 @@ import ui.elem.*;
 import util.*;
 public class StageThree extends Stage {
     private Dialog mainDialog;
+    private Stat meStat;
+    private OpponentStat oStat;
     private Choice a;
     private Choice b;
     private int x = 0;
@@ -33,9 +35,11 @@ public class StageThree extends Stage {
     @Override
     public void init() {
         c1 = new EntityCreature(10.0, 200.0);
+        meStat = new Stat("");
+        oStat = new OpponentStat("");
         a = new Choice("Continue");
         mainDialog = new Dialog("");
-        this.addElements(mainDialog, a);
+        this.addElements(mainDialog, meStat, oStat, a);
         if(DataHandler.SHIELD != true){ 
             mainDialog.setText("A wild SHIELD attacked!!!");
         }else{ 
@@ -73,7 +77,9 @@ public class StageThree extends Stage {
         a.setLabel("ATTACK", true);
         b.setLabel("RUN", true);
         fight = true;
-        mainDialog.setText("Player Health = " + DataHandler.player.getHealth(), "Enemy Health = " + c1.getHealth(), "What will you do next?");
+        mainDialog.setText("What will you do next?");
+        meStat.setText("Player Health = " + DataHandler.player.getHealth());
+        oStat.setText("Enemy Health = " + c1.getHealth());
         if(c1.getHealth() <= 0){
             fight = false;
             if(!DataHandler.SHIELD) mainDialog.setText("Congrats!!!", "You killed the SHIELD scoundrels!!!");
