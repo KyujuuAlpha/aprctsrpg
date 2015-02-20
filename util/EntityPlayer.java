@@ -75,13 +75,9 @@ public class EntityPlayer extends Entity {
 	 */
 	public void addItem(Item item){
 		if (inventory.size() < 6) {
-			for (int i = 0; i >inventory.size(); i++)
-			{
-					if (inventory.get(i) == item){
-						setHeldItem(item);
-						removeItem(heldItemIndex);	
-					}
-				}
+			if(inventory.contains(item)) {
+				setHeldItem(item);
+				removeItem(heldItemIndex);	
 			}
 			if(item instanceof Armor)
 				{
@@ -109,6 +105,7 @@ public class EntityPlayer extends Entity {
 					inventory.add(item);
 				}
 		}
+		}
 		
 	/*
 	 * this is used to elimate item values
@@ -119,18 +116,22 @@ public class EntityPlayer extends Entity {
 		if(inventory.get(itemIndex) instanceof Armor)
 			{
 				addedArmor = 0;
+				inventory.remove(itemIndex);
 			}
 		else if (inventory.get(itemIndex) instanceof Wand)
 			{
 				addedDamage = 0;
+				inventory.remove(itemIndex);
 			}
 		else if (inventory.get(itemIndex) instanceof Sword)
 			{
 				addedDamage = 0;
+				inventory.remove(itemIndex);
 			}
 		else if (inventory.get(itemIndex) instanceof Boots)
 			{
 				this.speedX = 1;
+				inventory.remove(itemIndex);
 			}
 		this.inventory.remove(itemIndex);
 		
