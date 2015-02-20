@@ -9,4 +9,8 @@ public class OpponentStat extends Dialog { //inherit all methods from the dialog
     public OpponentStat(String... stringVar) {
         super(stringVar); //call the constructor of the parent class
     }
+    
+    public OpponentStat() {
+        super();
+    }
 }

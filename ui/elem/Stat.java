@@ -9,4 +9,8 @@ public class Stat extends Dialog {
     public Stat(String... stringVar) {
         super(stringVar);
     }
+    
+    public Stat() {
+        super();
+    }
 }
