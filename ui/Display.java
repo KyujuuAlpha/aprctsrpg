@@ -24,8 +24,6 @@ public class Display extends JFrame implements ActionListener {
     public final JLabel stats;
     public final JLabel stats2;
     
-    //public BufferedImage errorImage;
-    
     public Display(String str) {
         super(str); //call the parent classes' constructor
         this.setSize(800,600); //set the jpanel's size
@@ -64,16 +62,10 @@ public class Display extends JFrame implements ActionListener {
         temp2.setBorder(BorderFactory.createEtchedBorder(EtchedBorder.LOWERED));
         this.add(temp2, BorderLayout.WEST);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); //kill the java.exe process plz
-        /*try { this.errorImage = ImageIO.read(new File("resources/unknown.png"));
-        } catch(IOException e) { this.errorImage = null; }*/
         this.setVisible(true); //set the visibility of this jframe to true
         Timer timerVar = new Timer(50, this); //ticking timer
         timerVar.start(); //invoke the start method from the timervar
     }
-    
-    /*public BufferedImage getErrorImage() {
-        return this.errorImage;
-    }*/
     
     @Override
     public void actionPerformed(ActionEvent e) { //called whenver the timer ticks
