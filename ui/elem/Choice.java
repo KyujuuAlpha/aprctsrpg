@@ -105,10 +105,10 @@ public class Choice implements Element, ActionListener {
     }
     
     public boolean isClicked() {
-    	if(this.clickedVar) {
-    		this.clickedVar = false; 
-    		return true;
-    	}
     	return clickedVar;
+    }
+    
+    public void setClicked(boolean flag) {
+    	clickedVar = flag;
     }
 }

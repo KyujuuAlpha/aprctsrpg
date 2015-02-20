@@ -90,6 +90,7 @@ public class Display extends JFrame implements ActionListener {
     			elementVar.createElement();
         	} else {
         		if(elementVar instanceof ui.elem.Choice && ((ui.elem.Choice)elementVar).isClicked()) {
+        			((ui.elem.Choice)elementVar).setClicked(false);
         			getStage().choiceClicked(elementVar);
         			break;
         		}
