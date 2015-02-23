@@ -70,7 +70,10 @@ public class Display extends JFrame implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) { //called whenver the timer ticks
         if(getStage() == null) return; //if the stage does not exist, dont do anything
-        switch(getStage().incrementVar()) { case 1: this.nextStage(); return; case 2: this.prevStage(); return; default: break; }
+        int incrementVar = getStage().incrementVar();
+        if(incrementVar == 1)this.nextStage();
+        else if(incrementVar == 2) this.prevStage();
+        else if(incrementVar > 2) this.setStage(incrementVar - 3);
         for(Element elementVar : getStage().getElements()) {
         	if(elementVar.getComponent() == null) {
         		if(elementVar instanceof ui.elem.Choice) elementVar.setComponent(actionsMenu);
@@ -115,16 +118,27 @@ public class Display extends JFrame implements ActionListener {
      */
     public void nextStage() {
         getStage().removeElements(); //remove all the elements from the current stage
-        if(currentStage < stageList.size() - 1) currentStage++; //go to the next stage
+        
         getStage().init(); //invoke the init method from the current stage
     }
     
     /**
-     * Go back one stage on the list/
+     * Go back one stage on the list
      */
     public void prevStage() {
         getStage().removeElements();
         if(currentStage > 0) currentStage--; //go to the previous stage
+        getStage().init();
+    }
+    
+    /**
+     * Set the current stage to the specified stage
+     */
+    public void setStage(int intVar) {
+        getStage().removeElements();
+        currentStage = intVar;
+        if(currentStage < 0) currentStage = 0;
+        if(currentStage >= stageList.size()) currentStage = stageList.size() - 1;
         getStage().init();
     }
     

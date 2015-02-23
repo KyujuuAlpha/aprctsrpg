@@ -11,7 +11,7 @@ public abstract class Stage {
     //declare a long variable for task scheduling
     private long ticks = 0;
     
-    private byte stageIncrement = 0;
+    private int stageIncrement = 0;
     
     /**
      * Called when this stage becomes the current stage
@@ -103,10 +103,10 @@ public abstract class Stage {
     }
     
     public void setStage(int stageID) {
-    	stageIncrement = 3;
+    	stageIncrement = 3 + stageID;
     }
     
-    public byte incrementVar() {
+    public int incrementVar() {
     	return stageIncrement;
     }
 }
