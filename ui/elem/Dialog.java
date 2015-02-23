@@ -65,7 +65,7 @@ public class Dialog implements Element { //w00t inheritance
             temp += stringVar[stringVar.length - 1];
         } else temp += stringVar[0];
         temp += "</html>";
-        return temp;
+        return temp.replaceAll("\n", "<br>");
     }
     
     @Override

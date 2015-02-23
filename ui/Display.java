@@ -18,12 +18,12 @@ public class Display extends JFrame implements ActionListener {
     
     private ArrayList<Stage> stageList = new ArrayList<Stage>(); //declare and intiialize a new arraylist with type being stage
     
-    public final JPanel actionsMenu;
-    public final JPanel imageMenu;
-    public final JPanel inputMenu;
-    public final JLabel dialog;
-    public final JLabel stats;
-    public final JLabel stats2;
+    public final JPanel actionsMenu; //declare the containers for each type of element
+    public final JPanel imageMenu; //sprites
+    public final JPanel inputMenu; //inputs
+    public final JLabel dialog; //dialog
+    public final JLabel stats; //player stats
+    public final JLabel stats2; //opponent stats
     
     public Display(String str) {
         super(str); //call the parent classes' constructor
