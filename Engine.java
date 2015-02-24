@@ -10,6 +10,7 @@ public class Engine {
         displayVar.addStage(new StageTeam());
         displayVar.addStage(new StageBattleTutorial());
         displayVar.addStage(new StageFour());
+        displayVar.addStage(new ZombiePatrol());
         displayVar.begin();
     }
 }

@@ -11,15 +11,15 @@ public class StageBattleTutorial extends Stage {
     
     @Override
     public void init() {
-    	if(DataHandler.battleCompleted) {
-    		DataHandler.battleCompleted = false;
-    		this.nextStage();
-    	}
-        c1 = new EntityCreature(10.0, 200.0);
+    	c1 = new EntityCreature(10.0, 200.0);
         a = new Choice("Continue");
         b = new Choice();
         mainDialog = new Dialog("");
         this.addElements(mainDialog, a);
+        if(DataHandler.battleCompleted) {
+    		DataHandler.battleCompleted = false;
+    		return;
+    	}
         if(DataHandler.SHIELD != true){ 
             mainDialog.setText("A wild SHIELD attacked!!!");
         } else { 
@@ -31,6 +31,7 @@ public class StageBattleTutorial extends Stage {
     public void choiceClicked(Element elementVar) {
         Choice choiceObject = (Choice)elementVar;
         if(choiceObject.getLabel().equals("Continue")){ x++; tutorialStart(); return; } 
+        if(choiceObject.getLabel().equals("Yay!")) nextStage();
     }
     
     @Override
@@ -72,5 +73,9 @@ public class StageBattleTutorial extends Stage {
     public void tutorialFour(){
         mainDialog.setText("This is turn-based combat, which should come easily.", "Your stats are on top, and your opponent's is on bottom. ", "Good Luck!!! First one to 0 health loses!", "Go get 'em!");
         this.scheduleTask(100);
+    }
+    
+    public void endBattle(){
+        if(DataHandler.SHIELD){mainDialog.setText("Whew! 99 Problems but a Zombie ain't one...");}
     }
 }
