@@ -28,6 +28,7 @@ public class StageFour extends Stage{
         }
         if(choiceObject.getLabel().equals("Zombie Patrol")){
             setStage(5);
+        }else if(choiceObject.getLabel().equals("Weapon Upgrade")){
         }
     }
     @Override
