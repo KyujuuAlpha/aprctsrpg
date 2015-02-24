@@ -6,7 +6,7 @@ public class Engine {
     	Utilities.init();
         Display displayVar = new Display("aprctsrpg");
         displayVar.addStage(new StagePrologue());
-        displayVar.addStage(new StageTwo());
+        displayVar.addStage(new StageTeam());
         displayVar.addStage(new StageThree());
         displayVar.addStage(new StageFour());
         displayVar.begin();
