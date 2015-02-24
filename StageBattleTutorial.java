@@ -70,7 +70,7 @@ public class StageBattleTutorial extends Stage {
     }
     
     public void tutorialFour(){
-        mainDialog.setText("This is turn-based combat, which should come easily.", "Good Luck!!!, First one to 0 health loses! Your health is displayed at the top right corner,", "aswell as your opponents at the bottom right corner,", "Go get 'em!");
+        mainDialog.setText("This is turn-based combat, which should come easily.", "Your stats are on top, and your opponent's is on bottom. ", "Good Luck!!! First one to 0 health loses!", "Go get 'em!");
         this.scheduleTask(100);
     }
 }

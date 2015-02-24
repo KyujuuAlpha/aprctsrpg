@@ -84,7 +84,7 @@ public class StagePrologue extends Stage {
     public void chooseItem() {
     	this.removeElements(a, b, c);
     	this.addElements(a, b, c); //make sure they are in order :)
-    	a.setLabel("Bow and Arrow", true);
+    	a.setLabel("Wand", true);
     	b.setLabel("Holy SFHS iPad", true);
     	c.setLabel("Pistol", true);
     	mainDialog.setText("You wake up and get ready to leave your apartment.", "What weapon will you take?", "Option 1: Wand", "Option 2: Holy SFHS iPad", "Option 3: Pistol");
