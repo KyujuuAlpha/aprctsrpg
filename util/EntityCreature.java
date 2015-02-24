@@ -10,11 +10,14 @@ public class EntityCreature extends Entity{
 	public EntityCreature() {
 		super();
 		creatureList.add(this);
+		
 	}
 	public EntityCreature(double damage, double health){
 		super();
-		this.health = health;
 		this.damage = damage;
+		this.health = health;
+		
+		
 	}
 	/*
 	 * returns damage
@@ -47,6 +50,10 @@ public class EntityCreature extends Entity{
 	}
 	public double getXP(){
 		return getDamage() + getHealth();
+	}
+	public void levelUp(EntityPlayer player){
+		this.health = this.health + ((player.getLevel() * health)/5);
+		this.damage = this.damage + ((player.getLevel() * damage)/3);
 	}
 
 }
