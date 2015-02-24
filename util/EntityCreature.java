@@ -45,5 +45,8 @@ public class EntityCreature extends Entity{
 		int temp = gen.nextInt(100);
 		return temp/100;
 	}
+	public double getXP(){
+		return getDamage() + getHealth();
+	}
 
 }

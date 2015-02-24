@@ -6,14 +6,14 @@ public class Potion extends Item {
 	 * defualt
 	 */
 	public Potion (){
-		super();
+		super("Potion");
 		heal = 5;
 	}
 	/*
 	 * required health input
 	 */
-	public Potion(double health){
-		super();
+	public Potion(double health,String name){
+		super(name);
 		this.heal = health;
 	}
 	/*

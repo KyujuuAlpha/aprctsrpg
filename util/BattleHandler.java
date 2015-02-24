@@ -9,6 +9,9 @@ public class BattleHandler {
 	 */
 	public static void playerTurn (EntityPlayer player, EntityCreature creature){
 		creature.damageCreature(player);
+		if (creature.getHealth() <= 0){
+			player.leveling(creature);
+		}
 
 		
 	}

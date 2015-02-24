@@ -1,9 +1,10 @@
 package util;
 
 import java.util.*;
+import java.math.*;
 
 public class EntityPlayer extends Entity {
-	protected double armor,speed,speedX,playerLevelProgress;
+	protected double armor,speed,speedX,level;
 	protected int heldItemIndex;
 	protected Inventory inventory;
 	
@@ -117,11 +118,8 @@ public class EntityPlayer extends Entity {
 	}
 	
 	public void leveling(EntityCreature creature){
-		creature.getLevel();
+		level = level + ((level * Math.sqrt(creature.getXP()))/100);
 		
-	}
-	public double getLevelProgress(){
-		return playerLevelProgress;
 	}
 	
 
