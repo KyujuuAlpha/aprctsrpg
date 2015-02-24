@@ -108,8 +108,8 @@ public class Sprite implements Element {
     public void sync() {
         if(bufferedImage == null || this.guiElement == null || this.container == null) return;
         this.container.setLayout(new GridLayout(1, this.container.getComponents().length)); //grid layout rock
-        if(this.resizable == 1.0f) this.guiElement.setIcon(new ImageIcon(bufferedImage.getScaledInstance(this.container.getHeight() * this.bufferedImage.getWidth() / this.bufferedImage.getHeight(), this.container.getHeight() * this.bufferedImage.getHeight() / this.bufferedImage.getHeight(), Image.SCALE_FAST))); //easy way of displaying an image trough a jlabel instead of messing with graphics
-        else if(this.resizable == 0.5f) this.guiElement.setIcon(new ImageIcon(bufferedImage.getScaledInstance(this.container.getWidth() / this.container.getComponents().length * this.bufferedImage.getWidth() / this.bufferedImage.getWidth(), this.container.getWidth() / this.container.getComponents().length * this.bufferedImage.getHeight() / this.bufferedImage.getWidth(), Image.SCALE_FAST)));
+        if(this.resizable == 1.0f) this.guiElement.setIcon(new ImageIcon(bufferedImage.getScaledInstance(this.container.getHeight() * this.bufferedImage.getWidth() / this.bufferedImage.getHeight(), this.container.getHeight() * this.bufferedImage.getHeight() / this.bufferedImage.getHeight(), Image.SCALE_SMOOTH))); //easy way of displaying an image trough a jlabel instead of messing with graphics
+        else if(this.resizable == 0.5f) this.guiElement.setIcon(new ImageIcon(bufferedImage.getScaledInstance(this.container.getWidth() / this.container.getComponents().length * this.bufferedImage.getWidth() / this.bufferedImage.getWidth(), this.container.getWidth() / this.container.getComponents().length * this.bufferedImage.getHeight() / this.bufferedImage.getWidth(), Image.SCALE_SMOOTH)));
         else if(customWidth > 0 && customHeight > 0) this.guiElement.setIcon(new ImageIcon(bufferedImage.getScaledInstance(customWidth, customHeight, Image.SCALE_FAST)));
         else this.guiElement.setIcon(new ImageIcon(bufferedImage));
     }
