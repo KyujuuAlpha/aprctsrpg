@@ -91,6 +91,7 @@ public class Sprite implements Element {
     
     @Override
     public void removeElement() {
+    	if(this.container != null) this.container.remove(this.guiElement);
     }
     
     @Override
