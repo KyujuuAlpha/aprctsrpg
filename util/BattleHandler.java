@@ -1,6 +1,7 @@
 package util;
 
 public class BattleHandler {
+	private static double playerDamage,playerHealth,creatureDamage,creatureHealth;
 	private static String Exeption;
 	/*
 	 * takes in the EntityPlayer object and the EntityCreature object, using the existing methods inside, applies the damage to creature
@@ -9,7 +10,8 @@ public class BattleHandler {
 	 */
 	public static void playerTurn (EntityPlayer player, EntityCreature creature){
 		creature.damageCreature(player);
-
+		creatureHealth = creature.getHealth();
+		playerDamage = player.getDamage();
 		
 	}
 	/*
@@ -30,6 +32,8 @@ public class BattleHandler {
 		else 
 			{
 				player.damagePlayer(creature);
+				playerHealth = player.getHealth();
+				creatureDamage = creature.getDamage();
 				Exeption = "And you took damage!!!";
 				return Exeption;
 			}
