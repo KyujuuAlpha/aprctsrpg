@@ -1,15 +1,13 @@
-import ui.*;
 import ui.elem.*;
-import util.*;
+import ui.*;
 
-public class StageFour extends StageMain {
+public class StageFour extends Stage{
     private Dialog mainDialog;
     private Choice a;
     private Choice b;
     private Choice c;
     private int x = 0;
     private int y = 0;
-    private boolean fight = false;
     
     @Override
     public void choiceClicked(Element elementVar) {
@@ -27,6 +25,10 @@ public class StageFour extends StageMain {
         }
         if(choiceObject.getLabel().equals("Next")){
          stageOne(); 
+        }
+        if(choiceObject.getLabel().equals("Zombie Patrol")){
+            setStage(5);
+        }else if(choiceObject.getLabel().equals("Weapon Upgrade")){
         }
     }
     @Override
