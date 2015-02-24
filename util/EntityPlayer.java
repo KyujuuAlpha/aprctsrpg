@@ -3,7 +3,7 @@ package util;
 import java.util.*;
 
 public class EntityPlayer extends Entity {
-	protected double addedArmor,addedDamage,armor,speed,speedX;
+	protected double armor,speed,speedX;
 	protected int heldItemIndex;
 	protected Inventory inventory;
 	
@@ -11,7 +11,7 @@ public class EntityPlayer extends Entity {
 		super();
 		this.armor = 0.1;
 		this.speed = 0.1;
-		this.inventory = new Inventory(6);
+		this.inventory = new Inventory(3);
 	}
 	
 	
@@ -20,13 +20,19 @@ public class EntityPlayer extends Entity {
 		this.armor = armor;
 		this.speed = speed;
 		this.maxHealth = health;
-		this.inventory = new Inventory(6);
+		this.inventory = new Inventory(3);
 	}
 	/*
 	 * returns damage + the addedDamage combined
 	 */
 	public double getDamage(){
-		return damage + addedDamage;
+		if(inventory.getItem(0) != null) return armor + ((Armor)inventory.getItem(0)).getArmor();
+		else return armor;
+	}
+	
+	public double getArmor() {
+		if(inventory.getItem(0) != null) return armor + ((Armor)inventory.getItem(0)).getArmor();
+		else return armor;
 	}
 	
 	/*
@@ -35,7 +41,7 @@ public class EntityPlayer extends Entity {
 	 * takes into account armor
 	 */
 	public void damagePlayer(EntityCreature creature){
-		health = health - ( creature.getDamage() - (creature.getDamage() * (addedArmor + armor)));
+		health = health - ( creature.getDamage() - (creature.getDamage() * (getArmor())));
 	}
 	
 	/*
@@ -71,42 +77,33 @@ public class EntityPlayer extends Entity {
 	/*
 	 * adds item based on type
 	 * 
-	 * works off of instanceof , error will occur if one of the following items aren't used "Armor, Potion, Wand, Sword, Boot"
+	 * works off of instanceof , error will occur if one of the following items aren't used "Armor, Potion, Sword, Boot"
 	 */
 	public void addItem(Item item){
-		if (inventory.size() < 5) {
-			for (int i = 0; i > inventory.size(); i++){
+		for (int i = 0; i < inventory.size(); i++){
 			if(inventory.getItem(i) == item) {
 				setHeldItem(item);
 				removeItem(heldItemIndex);	
-				}	
-			}
-			if(item instanceof Armor)
-				{
-					this.addedArmor = ((Armor)item).getArmor();
-					inventory.setSlot(0,item);
-				}
-			else if (item instanceof Potion)
-				{
-					this.health = (healPlayer(((Potion)item).getHeal())); 
-					inventory.setSlot(1,item);
-				}
-			else if (item instanceof Wand)
-				{
-					this.addedDamage = ((Wand)item).getDamage();
-					inventory.setSlot(2,item);
-				}
-			else if (item instanceof Sword)
-				{
-					this.addedDamage =((Sword)item).getDamage();
-					inventory.setSlot(3,item);
-				}
-			else if (item instanceof Boots)
-				{
-					this.speedX = ((Boots)item).getSpeed();
-					inventory.setSlot(4,item);
-				}
+				break;
+			}	
 		}
+		if(item instanceof Armor)
+			{
+				inventory.setSlot(0,item);
+			}
+		else if (item instanceof Potion)
+			{
+				this.health = (healPlayer(((Potion)item).getHeal())); 
+			}
+		else if (item instanceof Sword)
+			{
+				inventory.setSlot(1,item);
+			}
+		else if (item instanceof Boots)
+			{
+				this.speedX = ((Boots)item).getSpeed();
+				inventory.setSlot(2,item);
+			}
 	}
 		
 	/*
@@ -115,26 +112,7 @@ public class EntityPlayer extends Entity {
 	 */
 	
 	public void removeItem(int itemIndex) {
-		if(inventory.getItem(itemIndex) instanceof Armor)
-			{
-				addedArmor = 0;
-				inventory.setSlot(itemIndex,null);
-			}
-		else if (inventory.getItem(itemIndex) instanceof Wand)
-			{
-				addedDamage = 0;
-				inventory.setSlot(itemIndex, null);
-			}
-		else if (inventory.getItem(itemIndex) instanceof Sword)
-			{
-				addedDamage = 0;
-				inventory.setSlot(itemIndex,null);
-			}
-		else if (inventory.getItem(itemIndex) instanceof Boots)
-			{
-				this.speedX = 1;
-				inventory.setSlot(itemIndex,null);
-			}
+			inventory.setSlot(itemIndex,null);
 		
 	}
 	
