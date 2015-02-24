@@ -66,6 +66,7 @@ public class Sprite implements Element {
     @Override
     public void createElement() {
         this.guiElement = new JLabel();
+        if(this.container != null) this.container.add(this.guiElement);
     }
     
     @Override
@@ -84,9 +85,9 @@ public class Sprite implements Element {
     
     @Override
     public void sync() {
-        if(bufferedImage == null || this.guiElement == null) return;
+        if(bufferedImage == null || this.guiElement == null || this.container == null) return;
         this.container.setLayout(new GridLayout(1, this.container.getComponents().length)); //grid layout rock
-        if(this.resizable) this.guiElement.setIcon(new ImageIcon(bufferedImage.getScaledInstance((int)(this.container.getHeight() * (bufferedImage.getWidth() / bufferedImage.getHeight())), this.container.getHeight(), Image.SCALE_FAST))); //easy way of displaying an image trough a jlabel instead of messing with graphics
+        if(this.resizable) this.guiElement.setIcon(new ImageIcon(bufferedImage.getScaledInstance(this.container.getHeight() * this.bufferedImage.getWidth() / this.bufferedImage.getHeight(), (int)this.container.getHeight(), Image.SCALE_FAST))); //easy way of displaying an image trough a jlabel instead of messing with graphics
         else this.guiElement.setIcon(new ImageIcon(bufferedImage));
     }
 }
