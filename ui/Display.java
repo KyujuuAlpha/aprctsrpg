@@ -81,11 +81,9 @@ public class Display extends JFrame implements ActionListener {
         		if(elementVar instanceof ui.elem.Choice) elementVar.setComponent(actionsMenu); //if it is type choice, set the component to the choice container
         		else if(elementVar instanceof ui.elem.Input) elementVar.setComponent(inputMenu); //etcetera "
         		else if(elementVar instanceof ui.elem.Sprite) elementVar.setComponent(imageMenu);
-        		else if(elementVar instanceof ui.elem.Dialog) { //if it is type dialog
-        			if(elementVar instanceof ui.elem.Stat) elementVar.setComponent(stats); //since stat and opponent stat are type dialog, check if it is a stat or opponent stat!
-            		else if(elementVar instanceof ui.elem.OpponentStat) elementVar.setComponent(stats2);
-            		else elementVar.setComponent(dialog); //if not it is a dialog
-        		}
+        		else if(elementVar instanceof ui.elem.Stat) elementVar.setComponent(stats); 
+        		else if(elementVar instanceof ui.elem.OpponentStat) elementVar.setComponent(stats2);
+        		else if(elementVar instanceof ui.elem.Dialog) elementVar.setComponent(dialog);
         		elementVar.createElement(); //create the element while adding it to the element's new container!
         	} else if(!flag) {
         		if(elementVar instanceof ui.elem.Choice && ((ui.elem.Choice)elementVar).isClicked()) { //if it has a container and the button is clicked already, 
