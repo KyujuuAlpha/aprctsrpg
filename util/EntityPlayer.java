@@ -3,7 +3,7 @@ package util;
 import java.util.*;
 
 public class EntityPlayer extends Entity {
-	protected double armor,speed,speedX;
+	protected double armor,speed,speedX,playerLevel;
 	protected int heldItemIndex;
 	protected Inventory inventory;
 	
@@ -113,6 +113,9 @@ public class EntityPlayer extends Entity {
 	
 	public void removeItem(int itemIndex) {
 			inventory.setSlot(itemIndex,null);
+		
+	}
+	public double getLevelProgress(){
 		
 	}
 	

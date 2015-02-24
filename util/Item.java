@@ -17,6 +17,7 @@ public class Item {
 
 	public static final Potion basicPotion = new Potion(10);
 	public static final Sword basicSword = new Sword(30);
+	public static final Sword basicWand = new Sword(25);
 	public static final Boots basicBoot = new Boots(1.2);
 	public static final Armor basicArmor = new Armor(0.1);
 	public static final Boots normBoots = new Boots(1.3);
