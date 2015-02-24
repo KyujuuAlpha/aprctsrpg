@@ -14,11 +14,14 @@ public class Sprite implements Element {
     private String url;
     private BufferedImage bufferedImage;
     
-    private boolean resizable;
+    private double resizable = 0.0f;
+    
+    private int customWidth = 0;
+    private int customHeight = 0;
     
     public Sprite() {
         setSource("");
-        this.resizable = true;
+        this.resizable = 1.0f;
     }
     
     /**
@@ -28,22 +31,31 @@ public class Sprite implements Element {
      */
     public Sprite(String stringVar) {
         setSource(stringVar);
-        this.resizable = true;
+        this.resizable = 1.0f;
     }
     
     /**
      * Set if the image should expand to the height of it's container
-     * @param flag Whether this sprite resizes with the window
+     * @param flag Whether this sprite resizes with the window's height
      */
     public void setResizable(boolean flag) {
-        this.resizable = flag;
+        if(flag) this.resizable = 1.0f;
+        else this.resizable = 0.0f;
+    }
+    
+    /**
+     * Set if the image should expand to the height of it's container
+     * @param flag Whether this sprite resizes with the containers height: 1.0f, width: 0.5f; or none: 0.0f;
+     */
+    public void setResizable(float f) {
+        this.resizable = Math.round(f / 0.5f) * 0.5f;
     }
     
     /**
      * Check if the image is resizable
      */
     public boolean isResizable() {
-        return this.resizable;
+        return this.resizable > 0.0f;
     }
     
     /**
@@ -61,6 +73,14 @@ public class Sprite implements Element {
      */
     public String getSource() {
         return this.url; //dont actually return the buffered image
+    }
+    
+    /**
+     * Set a custom size for this sprite
+     */
+    public void setSize(int intVar0, int intVar1) {
+    	customWidth = intVar0;
+    	customHeight = intVar1;
     }
     
     @Override
@@ -87,7 +107,9 @@ public class Sprite implements Element {
     public void sync() {
         if(bufferedImage == null || this.guiElement == null || this.container == null) return;
         this.container.setLayout(new GridLayout(1, this.container.getComponents().length)); //grid layout rock
-        if(this.resizable) this.guiElement.setIcon(new ImageIcon(bufferedImage.getScaledInstance(this.container.getHeight() * this.bufferedImage.getWidth() / this.bufferedImage.getHeight(), (int)this.container.getHeight(), Image.SCALE_FAST))); //easy way of displaying an image trough a jlabel instead of messing with graphics
+        if(this.resizable == 1.0f) this.guiElement.setIcon(new ImageIcon(bufferedImage.getScaledInstance(this.container.getHeight() * this.bufferedImage.getWidth() / this.bufferedImage.getHeight(), this.container.getHeight() * this.bufferedImage.getHeight() / this.bufferedImage.getHeight(), Image.SCALE_FAST))); //easy way of displaying an image trough a jlabel instead of messing with graphics
+        else if(this.resizable == 0.5f) this.guiElement.setIcon(new ImageIcon(bufferedImage.getScaledInstance(this.container.getWidth() / this.container.getComponents().length * this.bufferedImage.getWidth() / this.bufferedImage.getWidth(), this.container.getWidth() / this.container.getComponents().length * this.bufferedImage.getHeight() / this.bufferedImage.getWidth(), Image.SCALE_FAST)));
+        else if(customWidth > 0 && customHeight > 0) this.guiElement.setIcon(new ImageIcon(bufferedImage.getScaledInstance(customWidth, customHeight, Image.SCALE_FAST)));
         else this.guiElement.setIcon(new ImageIcon(bufferedImage));
     }
 }
