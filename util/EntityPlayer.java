@@ -3,7 +3,7 @@ package util;
 import java.util.*;
 
 public class EntityPlayer extends Entity {
-	protected double armor,speed,speedX,playerLevel;
+	protected double armor,speed,speedX,playerLevelProgress;
 	protected int heldItemIndex;
 	protected Inventory inventory;
 	
@@ -26,8 +26,8 @@ public class EntityPlayer extends Entity {
 	 * returns damage + the addedDamage combined
 	 */
 	public double getDamage(){
-		if(inventory.getItem(0) != null) return armor + ((Armor)inventory.getItem(0)).getArmor();
-		else return armor;
+		if(inventory.getItem(1) != null) return damage + ((Sword)inventory.getItem(1)).getDamage();
+		else return damage;
 	}
 	
 	public double getArmor() {
@@ -115,8 +115,13 @@ public class EntityPlayer extends Entity {
 			inventory.setSlot(itemIndex,null);
 		
 	}
-	public double getLevelProgress(){
+	
+	public void leveling(EntityCreature creature){
+		creature.getLevel();
 		
+	}
+	public double getLevelProgress(){
+		return playerLevelProgress;
 	}
 	
 
