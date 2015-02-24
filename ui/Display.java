@@ -72,9 +72,9 @@ public class Display extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent e) { //called whenver the timer ticks
         if(getStage() == null) return; //if the stage does not exist, dont do anything
         int incrementVar = getStage().incrementVar(); //to save cpu usage, save the incrementVar variable for the current stage
-        if(incrementVar == 1)this.nextStage(); //if the incrementVar var is set to code 1, try to go to the next stage
-        else if(incrementVar == 2) this.prevStage(); //if it is code 2, try to go to the previous stage
-        else if(incrementVar > 2) this.setStage(incrementVar - 3); //if it's code is greater than 2, then try to set the current stage with id set to the increment variable - 3
+        if(incrementVar == 1) { this.nextStage(); } //if the incrementVar var is set to code 1, try to go to the next stage
+        else if(incrementVar == 2) { this.prevStage(); } //if it is code 2, try to go to the previous stage
+        else if(incrementVar > 2) { this.setStage(incrementVar - 3); } //if it's code is greater than 2, then try to set the current stage with id set to the increment variable - 3
         boolean flag = false;
         try { for(Element elementVar : getStage().getElements()) { //loop through each element in the stage's element list
         	if(elementVar.getComponent() == null) { //if the element has no container
@@ -111,6 +111,7 @@ public class Display extends JFrame implements ActionListener {
      */
     public void addStage(Stage stageVar) {
         stageList.add(stageVar); //add the stage to the stagelist
+        stageVar.setID(stageList.size() - 1);
     }
     
     /**
@@ -119,6 +120,7 @@ public class Display extends JFrame implements ActionListener {
     public void nextStage() {
         getStage().removeElements(); //remove all the elements from the current stage
         if(currentStage < stageList.size() - 1) currentStage++; //check if you should increase the current stage variable, this check is to avoid the index out of bounds exception
+        getStage().resetIncrement(); //avoid infinite loop plz
         getStage().init(); //invoke the init method from the current stage
     }
     
@@ -128,6 +130,7 @@ public class Display extends JFrame implements ActionListener {
     public void prevStage() {
         getStage().removeElements();
         if(currentStage > 0) currentStage--; //go to the previous stage; same with this "
+        getStage().resetIncrement();
         getStage().init();
     }
     
@@ -139,6 +142,7 @@ public class Display extends JFrame implements ActionListener {
         currentStage = intVar; //set the current stage integer to the explicit parameter intVar
         if(currentStage < 0) currentStage = 0; //check if it is less than 0;
         if(currentStage >= stageList.size()) currentStage = stageList.size() - 1; //check if it is greater than the size of the list
+        getStage().resetIncrement();
         getStage().init();
     }
     
@@ -154,7 +158,6 @@ public class Display extends JFrame implements ActionListener {
      */
     public Stage getStage() {
         if(currentStage < stageList.size()) return stageList.get(currentStage); //if the current stage not bigger than the stagelist's size to prevent index out of bounds
-        else if(stageList.size() > 0) return stageList.get(stageList.size()-1); //prevent index out of bounds
         return null;
     }
 }
