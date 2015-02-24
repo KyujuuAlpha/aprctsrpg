@@ -116,13 +116,13 @@ public class EntityPlayer extends Entity {
 		
 	}
 	
-	public void leveling(EntityCreature creature){
+	/*public void leveling(EntityCreature creature){
 		creature.getLevel();
 		
 	}
 	public double getLevelProgress(){
 		return playerLevelProgress;
-	}
+	}*/
 	
 
 }

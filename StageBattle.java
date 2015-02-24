@@ -17,7 +17,7 @@ public class StageBattle extends Stage {
 		playerStat = new Stat();
         opponentStat = new OpponentStat();
         mainDialog = new Dialog();
-		this.addElements(fightButton, runButton, playerStat, opponentStat, mainDialog);
+		this.addElements(fightButton, runButton, playerStat, opponentStat, mainDialog, new Sprite("char.png"));
 		fight();
 	}
 
