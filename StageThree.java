@@ -23,6 +23,9 @@ public class StageThree extends Stage {
                 
             }
         }
+        if(choiceObject.getLabel().equals("Cool.....ZZZZZ")){
+            nextStage();
+        }
     }
     @Override
     public void taskPerformed() {
@@ -70,7 +73,7 @@ public class StageThree extends Stage {
         this.scheduleTask(120);
     }
     public void tutorialFour(){
-        mainDialog.setText("This is turn-based combat, which should come easily.", "Good Luck!!!, First one to 0 health loses!", "Go get 'em!");
+        mainDialog.setText("This is turn-based combat, which should come easily.", "Your stats are on top, and your opponent's is on bottom. ", "Good Luck!!! First one to 0 health loses!", "Go get 'em!");
         this.scheduleTask(100);
     }
     public void fight(){
@@ -81,6 +84,8 @@ public class StageThree extends Stage {
         meStat.setText("Player Health = " + DataHandler.player.getHealth());
         oStat.setText("Enemy Health = " + c1.getHealth());
         if(c1.getHealth() <= 0){
+            this.removeElements(b);
+            a.setLabel("Cool.....ZZZZZ");
             fight = false;
             if(!DataHandler.SHIELD) mainDialog.setText("Congrats!!!", "You killed the SHIELD scoundrels!!!");
             if(DataHandler.SHIELD) mainDialog.setText("Phew!", "Got 99 problems but a zombie ain't one...");

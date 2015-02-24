@@ -31,7 +31,7 @@ public class StageOne extends Stage {
     }
     @Override
     public void init() {
-        a = new Choice("Bow and Arrow");
+        a = new Choice("Wand");
         b = new Choice("Holy SFHS iPad");
         c = new Choice("Pistol");
         mainDialog = new Dialog("");
