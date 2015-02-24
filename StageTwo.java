@@ -1,11 +1,11 @@
 import ui.*;
 import ui.elem.*;
-import util.*;
+
 public class StageTwo extends Stage {
     private Dialog mainDialog;
     private Choice a;
     private Choice b;   
-    private Choice c;
+    
     @Override
     public void choiceClicked(Element elementVar) {
         Choice choiceObject = (Choice)elementVar;

@@ -10,6 +10,7 @@ public class StageThree extends Stage {
     private int x = 0;
     private boolean fight = false;
     private EntityCreature c1;
+    
     @Override
     public void choiceClicked(Element elementVar) {
         Choice choiceObject = (Choice)elementVar;

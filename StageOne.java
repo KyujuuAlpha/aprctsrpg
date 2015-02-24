@@ -6,6 +6,7 @@ public class StageOne extends Stage {
     private Choice a;
     private Choice b;   
     private Choice c;
+    
     @Override
     public void choiceClicked(Element elementVar) {
         Choice choiceObject = (Choice)elementVar;

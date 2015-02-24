@@ -1,6 +1,7 @@
-    import ui.*;
+import ui.*;
 import ui.elem.*;
 import util.*;
+
 public class StageFour extends StageMain {
     private Dialog mainDialog;
     private Choice a;
@@ -8,6 +9,7 @@ public class StageFour extends StageMain {
     private int x = 0;
     private int y = 0;
     private boolean fight = false;
+    
     @Override
     public void choiceClicked(Element elementVar) {
         Choice choiceObject = (Choice)elementVar;

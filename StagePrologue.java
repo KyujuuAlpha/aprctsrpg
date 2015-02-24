@@ -9,7 +9,6 @@ public class StagePrologue extends Stage {
     @Override
     public void choiceClicked(Element elementVar) {
         Choice choiceObject = (Choice)elementVar;
-        String charChoice;
         if(choiceObject.getLabel().equals("START")){
             stagePre();
             a.setLabel("Next", true);
