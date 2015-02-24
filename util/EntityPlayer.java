@@ -117,12 +117,11 @@ public class EntityPlayer extends Entity {
 		
 	}
 	
-<<<<<<< HEAD
+
 	public void leveling(EntityCreature creature){
 		level = level + ((level * Math.sqrt(creature.getXP()))/100);
 		
 	}
-=======
 	/*public void leveling(EntityCreature creature){
 		creature.getLevel();
 		
@@ -130,7 +129,6 @@ public class EntityPlayer extends Entity {
 	public double getLevelProgress(){
 		return playerLevelProgress;
 	}*/
->>>>>>> origin/master
 	
 
 }

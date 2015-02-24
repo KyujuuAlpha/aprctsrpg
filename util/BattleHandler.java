@@ -10,15 +10,11 @@ public class BattleHandler {
 	 */
 	public static void playerTurn (EntityPlayer player, EntityCreature creature){
 		creature.damageCreature(player);
-<<<<<<< HEAD
 		if (creature.getHealth() <= 0){
 			player.leveling(creature);
 		}
-
-=======
 		creatureHealth = creature.getHealth();
 		playerDamage = player.getDamage();
->>>>>>> origin/master
 		
 	}
 	/*
