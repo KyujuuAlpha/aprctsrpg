@@ -14,6 +14,16 @@ public abstract class Stage {
     //declare an integer, used to interact with Display without actually having a dependency on it :)
     private int stageIncrement = 0;
     
+    private int id = -1;
+    
+    public void setID(int intVar) {
+    	id = intVar;
+    }
+    
+    public int getID() {
+    	return id;
+    }
+    
     /**
      * Called when this stage becomes the current stage
      */
@@ -120,5 +130,9 @@ public abstract class Stage {
     
     public int incrementVar() {
     	return stageIncrement; //get the increment var variable
+    }
+    
+    public void resetIncrement() {
+    	stageIncrement = 0;
     }
 }
