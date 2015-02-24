@@ -11,7 +11,8 @@ public abstract class Stage {
     //declare a long variable for task scheduling
     private long ticks = 0;
     
-    private byte stageIncrement = 0;
+    //declare an integer, used to interact with Display without actually having a dependency on it :)
+    private int stageIncrement = 0;
     
     /**
      * Called when this stage becomes the current stage
@@ -84,6 +85,9 @@ public abstract class Stage {
         elementList.clear(); //remove all the elements from the elementList
     }
     
+    /**
+     * Get the element list of this stage
+     */
     public ArrayList<Element> getElements() {
     	return elementList;
     }
@@ -92,6 +96,7 @@ public abstract class Stage {
      * Go to the next stage in the list
      */
     public void nextStage() {
+    	if(stageIncrement > 0) return; //if it is already changing stages already, do not override it's original command
     	stageIncrement = 1;
     }
     
@@ -99,14 +104,21 @@ public abstract class Stage {
      * Go to the previous stage in the list
      */
     public void prevStage() {
+    	if(stageIncrement > 0) return;
         stageIncrement = 2;
     }
     
+    /**
+     * Set the current stage to the specified stage
+     * @param stageID The ID of the stage in the list
+     */
     public void setStage(int stageID) {
-    	stageIncrement = 3;
+    	if(stageIncrement > 0) return;
+    	if(stageID < 0) stageID = 0; //prevent the ability of -1 otherwise it would be less than 3 which could end up going to the prev stage;
+    	stageIncrement = 3 + stageID; //add 3 to make it greater than 2
     }
     
-    public byte incrementVar() {
-    	return stageIncrement;
+    public int incrementVar() {
+    	return stageIncrement; //get the increment var variable
     }
 }

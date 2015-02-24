@@ -65,7 +65,7 @@ public class Dialog implements Element { //w00t inheritance
             temp += stringVar[stringVar.length - 1];
         } else temp += stringVar[0];
         temp += "</html>";
-        return temp;
+        return temp.replaceAll("\n", "<br>");
     }
     
     @Override
@@ -91,6 +91,6 @@ public class Dialog implements Element { //w00t inheritance
     
     @Override
     public void sync() {
-        if(canSync && this.guiElement != null) this.guiElement.setText(this.text); //if you can sync and the display exists, then set  the text of the jlabel!
+        if(canSync && this.guiElement != null) this.guiElement.setText(this.text); //if you can sync and the dialog exists, then set  the text of the jlabel!
     }
 }

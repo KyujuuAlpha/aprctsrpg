@@ -6,6 +6,7 @@ import javax.swing.border.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.util.ArrayList;
+import java.util.ConcurrentModificationException;
 
 import ui.elem.*;
 
@@ -17,12 +18,12 @@ public class Display extends JFrame implements ActionListener {
     
     private ArrayList<Stage> stageList = new ArrayList<Stage>(); //declare and intiialize a new arraylist with type being stage
     
-    public final JPanel actionsMenu;
-    public final JPanel imageMenu;
-    public final JPanel inputMenu;
-    public final JLabel dialog;
-    public final JLabel stats;
-    public final JLabel stats2;
+    public final JPanel actionsMenu; //declare the containers for each type of element
+    public final JPanel imageMenu; //sprites
+    public final JPanel inputMenu; //inputs
+    public final JLabel dialog; //dialog
+    public final JLabel stats; //player stats
+    public final JLabel stats2; //opponent stats
     
     public Display(String str) {
         super(str); //call the parent classes' constructor
@@ -70,30 +71,34 @@ public class Display extends JFrame implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) { //called whenver the timer ticks
         if(getStage() == null) return; //if the stage does not exist, dont do anything
-        switch(getStage().incrementVar()) { case 1: this.nextStage(); return; case 2: this.prevStage(); return; default: break; }
-        for(Element elementVar : getStage().getElements()) {
-        	if(elementVar.getComponent() == null) {
-        		if(elementVar instanceof ui.elem.Choice) elementVar.setComponent(actionsMenu);
-        		else if(elementVar instanceof ui.elem.Input) elementVar.setComponent(inputMenu);
+        int incrementVar = getStage().incrementVar(); //to save cpu usage, save the incrementVar variable for the current stage
+        if(incrementVar == 1)this.nextStage(); //if the incrementVar var is set to code 1, try to go to the next stage
+        else if(incrementVar == 2) this.prevStage(); //if it is code 2, try to go to the previous stage
+        else if(incrementVar > 2) this.setStage(incrementVar - 3); //if it's code is greater than 2, then try to set the current stage with id set to the increment variable - 3
+        boolean flag = false;
+        try { for(Element elementVar : getStage().getElements()) { //loop through each element in the stage's element list
+        	if(elementVar.getComponent() == null) { //if the element has no container
+        		if(elementVar instanceof ui.elem.Choice) elementVar.setComponent(actionsMenu); //if it is type choice, set the component to the choice container
+        		else if(elementVar instanceof ui.elem.Input) elementVar.setComponent(inputMenu); //etcetera "
         		else if(elementVar instanceof ui.elem.Sprite) elementVar.setComponent(imageMenu);
-        		else if(elementVar instanceof ui.elem.Dialog) {
-        			if(elementVar instanceof ui.elem.Stat) elementVar.setComponent(stats);
+        		else if(elementVar instanceof ui.elem.Dialog) { //if it is type dialog
+        			if(elementVar instanceof ui.elem.Stat) elementVar.setComponent(stats); //since stat and opponent stat are type dialog, check if it is a stat or opponent stat!
             		else if(elementVar instanceof ui.elem.OpponentStat) elementVar.setComponent(stats2);
-            		else elementVar.setComponent(dialog);
+            		else elementVar.setComponent(dialog); //if not it is a dialog
         		}
-        		elementVar.createElement();
-        	} else {
-        		if(elementVar instanceof ui.elem.Choice && ((ui.elem.Choice)elementVar).isClicked()) {
-        			((ui.elem.Choice)elementVar).setClicked(false);
-        			getStage().choiceClicked(elementVar);
-        			break;
+        		elementVar.createElement(); //create the element while adding it to the element's new container!
+        	} else if(!flag) {
+        		if(elementVar instanceof ui.elem.Choice && ((ui.elem.Choice)elementVar).isClicked()) { //if it has a container and the button is clicked already, 
+        			((ui.elem.Choice)elementVar).setClicked(false); //set the variable showing whether it is clicked or not to false
+        			getStage().choiceClicked(elementVar); //and invoke the current stage's choice clicked method
+        			flag = true; //dont call the choice clicked method more than once (only if two buttons are clicked at the same exact time some how HAAAX!) 
         		}
         	}
-        }
+        } } catch(ConcurrentModificationException error) { /* dont do anything and save it for the next tick */ }
         getStage().decreaseTicks(); //decrease the stage's ticks, 
         getStage().syncElements(); //sync all it's elements
         this.revalidate(); //revalidate this jframe's elements
-        this.repaint();
+        this.repaint(); //repaint this jframe's elements
     }
     
     /**
@@ -115,16 +120,27 @@ public class Display extends JFrame implements ActionListener {
      */
     public void nextStage() {
         getStage().removeElements(); //remove all the elements from the current stage
-        if(currentStage < stageList.size() - 1) currentStage++; //go to the next stage
+        if(currentStage < stageList.size() - 1) currentStage++; //check if you should increase the current stage variable, this check is to avoid the index out of bounds exception
         getStage().init(); //invoke the init method from the current stage
     }
     
     /**
-     * Go back one stage on the list/
+     * Go back one stage on the list
      */
     public void prevStage() {
         getStage().removeElements();
-        if(currentStage > 0) currentStage--; //go to the previous stage
+        if(currentStage > 0) currentStage--; //go to the previous stage; same with this "
+        getStage().init();
+    }
+    
+    /**
+     * Set the current stage to the specified stage
+     */
+    public void setStage(int intVar) {
+        getStage().removeElements();
+        currentStage = intVar; //set the current stage integer to the explicit parameter intVar
+        if(currentStage < 0) currentStage = 0; //check if it is less than 0;
+        if(currentStage >= stageList.size()) currentStage = stageList.size() - 1; //check if it is greater than the size of the list
         getStage().init();
     }
     

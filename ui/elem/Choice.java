@@ -100,12 +100,12 @@ public class Choice implements Element, ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) { //basically call the choice clicked method when if this button is activated
         if(this.guiElement != null && this.container != null) {
-        	this.clickedVar = true;
+        	this.clickedVar = true; //this button is actually clicked now :)
         }
     }
     
     public boolean isClicked() {
-    	return clickedVar;
+    	return clickedVar; //let other classes see if this button is clicked or not!
     }
     
     public void setClicked(boolean flag) {
