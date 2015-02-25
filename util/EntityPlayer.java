@@ -9,6 +9,8 @@ public class EntityPlayer extends Entity {
 	protected Inventory inventory;
 	protected Abilities abilities;
 	
+	public int armorAbilityAddition = 0;
+	
 	public EntityPlayer() {
 		super();
 		this.armor = 0.1;
@@ -38,8 +40,10 @@ public class EntityPlayer extends Entity {
 	}
 	
 	public double getArmor() {
-		if(inventory.getItem(0) != null) return armor + ((Armor)inventory.getItem(0)).getArmor();
-		else return armor + (level/100);
+		int temp = armorAbilityAddition;
+		armorAbilityAddition = 0;
+		if(inventory.getItem(0) != null) return armor + ((Armor)inventory.getItem(0)).getArmor() + temp;
+		else return armor + (level/100) + temp;
 	}
 	
 	/*
@@ -114,31 +118,31 @@ public class EntityPlayer extends Entity {
 	}
 	public double getAbilities(int abilityNum){
 		switch(abilityNum){
-		case 1: return abilities.damageAbility();
-		case 2: return abilities.defenceAbility();
-		case 3: return abilities.utilAbility();
-		case 4: return abilities.ultiAbility();
+		case 0: return abilities.damageAbility();
+		case 1: return abilities.defenceAbility();
+		case 2: return abilities.utilAbility();
+		case 3: return abilities.ultiAbility();
 		}
-		return 0;
+		return -1;
 		
 	}
 	
 	public String getAbilitiesDesc(int abilityNum){
 		switch(abilityNum){
-		case 1: return abilities.damageAbilityDesc();
-		case 2: return abilities.defenceAbilityDec();
-		case 3: return abilities.utilAbilityDesc();
-		case 4: return abilities.ultiAbilityDesc();
+		case 0: return abilities.damageAbilityDesc();
+		case 1: return abilities.defenceAbilityDec();
+		case 2: return abilities.utilAbilityDesc();
+		case 3: return abilities.ultiAbilityDesc();
 		}
 		return null;
 		
 	}
 	public String getAbilitiesName(int abilityNum){
 		switch(abilityNum){
-		case 1: return abilities.names[0];
-		case 2: return abilities.names[1];
-		case 3: return abilities.names[2];
-		case 4: return abilities.names[3];
+		case 0: return abilities.names[0];
+		case 1: return abilities.names[1];
+		case 2: return abilities.names[2];
+		case 3: return abilities.names[3];
 		}
 		return null;
 		

@@ -15,15 +15,17 @@ public class StageBattle extends Stage {
 	private Dialog mainDialog;
 	
 	private int scheduleCode = 0;
+	
+	private int selectedAbility = -1;
 
 	@Override
 	public void init() {
 		if(DataHandler.player == null) { this.setStage(1); return; } //if there is no player, then just start stage prologue for character creation
 		fightButton = new Choice("Attack");
-		ability0 = new Choice(DataHandler.player.getAbilitiesName(1));
-		ability1 = new Choice(DataHandler.player.getAbilitiesName(2));
-		ability2 = new Choice(DataHandler.player.getAbilitiesName(3));
-		ability3 = new Choice(DataHandler.player.getAbilitiesName(4));
+		ability0 = new Choice(DataHandler.player.getAbilitiesName(0));
+		ability1 = new Choice(DataHandler.player.getAbilitiesName(1));
+		ability2 = new Choice(DataHandler.player.getAbilitiesName(2));
+		ability3 = new Choice(DataHandler.player.getAbilitiesName(3));
 		runButton = new Choice("Run!");
 		playerStat = new Stat();
         opponentStat = new OpponentStat();
@@ -45,7 +47,7 @@ public class StageBattle extends Stage {
 		ability3.setEnabled(false);
 		Choice choiceObject = (Choice)elementVar;
 		if(choiceObject == fightButton) {
-			boolean flag = BattleHandler.playerTurn(DataHandler.player, DataHandler.opponent);
+			boolean flag = BattleHandler.playerTurn(DataHandler.player, selectedAbility, DataHandler.opponent);
 			updateStats();
             if(flag) mainDialog.appendText("\nYou dealt damage!");
             else mainDialog.appendText("\nYour attack missed!");
@@ -64,15 +66,19 @@ public class StageBattle extends Stage {
         } else if(choiceObject == ability0) {
         	fightButton.setEnabled(true);
     		runButton.setEnabled(true);
+    		selectedAbility = 0;
         } else if(choiceObject == ability1) {
         	fightButton.setEnabled(true);
     		runButton.setEnabled(true);
+    		selectedAbility = 1;
         } else if(choiceObject == ability2) {
         	fightButton.setEnabled(true);
     		runButton.setEnabled(true);
+    		selectedAbility = 2;
         } else if(choiceObject == ability3) {
         	fightButton.setEnabled(true);
     		runButton.setEnabled(true);
+    		selectedAbility = 3;
         }
 	}
 
@@ -95,13 +101,14 @@ public class StageBattle extends Stage {
 		fightButton.setEnabled(true);
 		runButton.setEnabled(true);
 		ability0.setEnabled(true);
-		ability0.setToolTip(DataHandler.player.getAbilitiesDesc(1));
+		ability0.setToolTip(DataHandler.player.getAbilitiesDesc(0));
 		ability1.setEnabled(true);
-		ability1.setToolTip(DataHandler.player.getAbilitiesDesc(2));
+		ability1.setToolTip(DataHandler.player.getAbilitiesDesc(1));
 		ability2.setEnabled(true);
-		ability2.setToolTip(DataHandler.player.getAbilitiesDesc(3));
+		ability2.setToolTip(DataHandler.player.getAbilitiesDesc(2));
 		ability3.setEnabled(true);
-		ability3.setToolTip(DataHandler.player.getAbilitiesDesc(4));
+		ability3.setToolTip(DataHandler.player.getAbilitiesDesc(3));
+		selectedAbility = -1;
 		mainDialog.setText("What will you do next?");
 	}
 	
