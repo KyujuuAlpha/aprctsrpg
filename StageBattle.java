@@ -132,7 +132,10 @@ public class StageBattle extends Stage {
 	
 	private void exitBattle() {
 		DataHandler.battleCompleted = true;
-		if(DataHandler.opponent.getHealth() <= 0) DataHandler.player.leveling(DataHandler.opponent);
+		if(DataHandler.opponent.getHealth() <= 0){
+			DataHandler.player.leveling(DataHandler.opponent);
+			
+		}
 		if(DataHandler.player.getHealth() <= 0) this.setStage(10);
 		else this.setStage(DataHandler.source.getID());
 	}
