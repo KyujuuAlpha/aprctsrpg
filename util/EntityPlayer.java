@@ -12,6 +12,7 @@ public class EntityPlayer extends Entity {
 		super();
 		this.armor = 0.1;
 		this.speed = 0.1;
+		this.speedX = 1;
 		this.inventory = new Inventory(3);
 	}
 	
