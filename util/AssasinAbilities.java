@@ -1,9 +1,10 @@
 package util;
 
 public class AssasinAbilities extends Abilities {
-	public String[] names = {"Third Eye","Shadows Torment","Darkness","Soul Blade" };
+	public String[] names;
 	public AssasinAbilities(EntityPlayer player){
 		super(player);
+		this.names  = new String[]{"Third Eye","Shadows Torment","Darkness","Soul Blade" };
 	}
 	public double damageAbility(){
 		return player.getDamage() *2.5;

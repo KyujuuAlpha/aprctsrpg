@@ -1,9 +1,10 @@
 package util;
 
 public class TankAbilties extends Abilities{
-	public String[] names = {"Opening Earth","Iron Body","Insanity","Blessing of the Gods" };
+	public String[] names;
 	public TankAbilties(EntityPlayer player){
 		super(player);
+		this.names = new String[]{"Opening Earth","Iron Body","Insanity","Blessing of the Gods" };
 	}
 	public double damageAbility(){
 		return player.getDamage() * 2;
