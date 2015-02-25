@@ -34,6 +34,11 @@ public class Sprite implements Element {
         this.resizable = 1.0f;
     }
     
+    public Sprite(String stringVar, float f) {
+        setSource(stringVar);
+        this.resizable = f;
+    }
+    
     /**
      * Set if the image should expand to the height of it's container
      * @param flag Whether this sprite resizes with the window's height

@@ -1,6 +1,7 @@
 import ui.*;
 import ui.elem.*;
 import util.BattleHandler;
+import util.Item;
 import util.Zombie;
 
 public class StageBattle extends Stage {
@@ -17,10 +18,13 @@ public class StageBattle extends Stage {
 	private int scheduleCode = 0;
 	
 	private int selectedAbility = -1;
+	
+	private Item itemVar2;
 
 	@Override
 	public void init() {
 		if(DataHandler.player == null) { this.setStage(1); return; } //if there is no player, then just start stage prologue for character creation
+		itemVar2 = null;
 		fightButton = new Choice("Attack");
 		ability0 = new Choice(DataHandler.player.getAbilitiesName(0));
 		ability1 = new Choice(DataHandler.player.getAbilitiesName(1));
@@ -30,8 +34,8 @@ public class StageBattle extends Stage {
 		playerStat = new Stat();
         opponentStat = new OpponentStat();
         mainDialog = new Dialog();
-		this.addElements(fightButton, ability0, ability1, ability2, ability3, runButton, playerStat, opponentStat, mainDialog, new Sprite("char.png"));
-		if(DataHandler.opponent instanceof Zombie) this.addElements(new Sprite("zombie.png"));
+		this.addElements(fightButton, ability0, ability1, ability2, ability3, runButton, playerStat, opponentStat, mainDialog, new Sprite("char.png", 0.5f));
+		if(DataHandler.opponent instanceof Zombie) this.addElements(new Sprite("zombie.png", 0.5f));
 		fightButton.setEnabled(false);
 		runButton.setEnabled(false);
 		playerTurn();
@@ -39,47 +43,55 @@ public class StageBattle extends Stage {
 
 	@Override
 	public void choiceClicked(Element elementVar) {
-		fightButton.setEnabled(false);
-		runButton.setEnabled(false);
-		ability0.setEnabled(false);
-		ability1.setEnabled(false);
-		ability2.setEnabled(false);
-		ability3.setEnabled(false);
-		Choice choiceObject = (Choice)elementVar;
-		if(choiceObject == fightButton) {
-			boolean flag = BattleHandler.playerTurn(DataHandler.player, selectedAbility, DataHandler.opponent);
-			updateStats();
-            if(flag) mainDialog.appendText("\nYou dealt damage!");
-            else mainDialog.appendText("\nYour attack missed!");
-            scheduleCode = 2;
-            this.scheduleTask(30);
-        } else if(choiceObject == runButton){
-        	if(BattleHandler.run(DataHandler.player, DataHandler.opponent) && !(DataHandler.source instanceof StageMotherZombie)) {
-	        	scheduleCode = 1;
-	            mainDialog.appendText("\nYou got away safely..");
+		if(itemVar2 == null) {
+			fightButton.setEnabled(false);
+			runButton.setEnabled(false);
+			ability0.setEnabled(false);
+			ability1.setEnabled(false);
+			ability2.setEnabled(false);
+			ability3.setEnabled(false);
+			Choice choiceObject = (Choice)elementVar;
+			if(choiceObject == fightButton) {
+				boolean flag = BattleHandler.playerTurn(DataHandler.player, selectedAbility, DataHandler.opponent);
+				updateStats();
+	            if(flag) mainDialog.appendText("\nYou dealt damage!");
+	            else mainDialog.appendText("\nYour attack missed!");
+	            scheduleCode = 2;
 	            this.scheduleTask(30);
-        	} else {
-        		scheduleCode = 2;
-        		mainDialog.appendText("\nCan't escape!");
-        		this.scheduleTask(30);
-        	}
-        } else if(choiceObject == ability0) {
-        	fightButton.setEnabled(true);
-    		runButton.setEnabled(true);
-    		selectedAbility = 0;
-        } else if(choiceObject == ability1) {
-        	fightButton.setEnabled(true);
-    		runButton.setEnabled(true);
-    		selectedAbility = 1;
-        } else if(choiceObject == ability2) {
-        	fightButton.setEnabled(true);
-    		runButton.setEnabled(true);
-    		selectedAbility = 2;
-        } else if(choiceObject == ability3) {
-        	fightButton.setEnabled(true);
-    		runButton.setEnabled(true);
-    		selectedAbility = 3;
-        }
+	        } else if(choiceObject == runButton){
+	        	if(BattleHandler.run(DataHandler.player, DataHandler.opponent) && !(DataHandler.source instanceof StageMotherZombie)) {
+		        	scheduleCode = 1;
+		            mainDialog.appendText("\nYou got away safely..");
+		            this.scheduleTask(30);
+	        	} else {
+	        		scheduleCode = 2;
+	        		mainDialog.appendText("\nCan't escape!");
+	        		this.scheduleTask(30);
+	        	}
+	        } else if(choiceObject == ability0) {
+	        	fightButton.setEnabled(true);
+	    		runButton.setEnabled(true);
+	    		selectedAbility = 0;
+	        } else if(choiceObject == ability1) {
+	        	fightButton.setEnabled(true);
+	    		runButton.setEnabled(true);
+	    		selectedAbility = 1;
+	        } else if(choiceObject == ability2) {
+	        	fightButton.setEnabled(true);
+	    		runButton.setEnabled(true);
+	    		selectedAbility = 2;
+	        } else if(choiceObject == ability3) {
+	        	fightButton.setEnabled(true);
+	    		runButton.setEnabled(true);
+	    		selectedAbility = 3;
+	        }
+		} else {
+			if(elementVar == fightButton) {
+				DataHandler.player.addItem(itemVar2);
+				endBattle();
+			}
+			endBattle();
+		}
 	}
 
 	@Override
@@ -96,6 +108,7 @@ public class StageBattle extends Stage {
 	private void playerTurn() {
 		if(DataHandler.opponent.getHealth() <= 0 || DataHandler.player.getHealth() <= 0){
             exitBattle();
+            return;
         }
 		updateStats();
 		fightButton.setEnabled(true);
@@ -115,6 +128,7 @@ public class StageBattle extends Stage {
 	private void opponentTurn() {
 		if(DataHandler.opponent.getHealth() <= 0 || DataHandler.player.getHealth() <= 0){
             exitBattle();
+            return;
         }
 		updateStats();
 		boolean flag = BattleHandler.creatureTurn(DataHandler.player, DataHandler.opponent);
@@ -126,7 +140,7 @@ public class StageBattle extends Stage {
 	}
 	
 	private void updateStats(){
-        playerStat.setText("PLAYER STATS - Level: " + Math.round(DataHandler.player.getLevel()/10)*10 + "\nHealth: " + DataHandler.player.getHealth());
+        playerStat.setText("PLAYER STATS - Level: " + Math.round(DataHandler.player.getLevel()*10)/10 + "\nHealth: " + DataHandler.player.getHealth());
         opponentStat.setText("OPPONENT STATS - Health: " + DataHandler.opponent.getHealth());
     }
 	
@@ -134,9 +148,22 @@ public class StageBattle extends Stage {
 		DataHandler.battleCompleted = true;
 		if(DataHandler.opponent.getHealth() <= 0){
 			DataHandler.player.leveling(DataHandler.opponent);
-			
+			giveItem(DataHandler.opponent.randomDrop());
+			return;
 		}
+		endBattle();
+	}
+	
+	private void endBattle() {
 		if(DataHandler.player.getHealth() <= 0) this.setStage(10);
 		else this.setStage(DataHandler.source.getID());
+	}
+	
+	private void giveItem(Item itemVar) {
+		this.removeElements(ability0, ability1, ability2, ability3, playerStat, opponentStat);
+		mainDialog.setText("YOU GOT A " + itemVar.getName().toUpperCase(), "Do you want it?");
+		itemVar2 = itemVar;
+		fightButton.setLabel("Accept Item", true);
+		runButton.setLabel("Reject Item", true);
 	}
 }
