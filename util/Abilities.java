@@ -1,12 +1,12 @@
 package util;
 
 public class Abilities {
-	protected EntityPlayer player;
-	public String[] names = {null,null,null,null};
-	public Abilities(EntityPlayer player){
+	protected EntityPlayer player;//initialized a viarble that is type player, and is reused through all classes that inherit parent
+	public String[] names = {null,null,null,null};//constructed String array names, all with a null
+	public Abilities(EntityPlayer player){//created a construter
 		this.player = player;
 	}
-	public double damageAbility(){
+	public double damageAbility(){//returns double value
 		return 0;
 	}
 	
@@ -22,8 +22,8 @@ public class Abilities {
 	public double utilAbility(){
 		return 0;
 	}
-	public String utilAbilityDesc(){
-		return null;
+	public String utilAbilityDesc(){//returns String
+		return null;//does not point to any value/information
 	}
 	public double ultiAbility(){
 		return 0;
@@ -32,7 +32,7 @@ public class Abilities {
 		return null;
 	}
 	public String getName(int x){
-		return names[x];
+		return names[x];//returns value of name at index 'x'
 	}
 
 }
