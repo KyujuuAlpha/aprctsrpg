@@ -170,7 +170,7 @@ public class EntityPlayer extends Entity {
 	
 
 	public void leveling(EntityCreature creature){
-		level = level + ((level * Math.sqrt(creature.getXP()))/70);
+		level = level + ((level * Math.sqrt(creature.getXP()))/50);
 		this.maxHealth = this.maxHealth + ((getLevel() * maxHealth)/7);
 		this.damage = this.damage + ((getLevel() * damage)/4);
 		
