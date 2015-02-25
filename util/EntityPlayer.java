@@ -24,6 +24,7 @@ public class EntityPlayer extends Entity {
 		this.maxHealth = health;
 		this.inventory = new Inventory(3);
 		this.level = 1;
+		this.speedX = 1;
 	}
 	/*
 	 * returns damage + the addedDamage combined
