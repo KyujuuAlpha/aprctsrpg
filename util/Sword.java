@@ -6,7 +6,7 @@ public class Sword extends Item {
 	 * defualt
 	 */
 	public Sword(){
-		super("defualtSword");
+		super("Sword");
 		this.damage = 20;
 	}
 	/*
@@ -18,6 +18,9 @@ public class Sword extends Item {
 	}
 	public double getDamage(){
 		return damage;
+	}
+	public String getName(){
+		return name;
 	}
 
 }
