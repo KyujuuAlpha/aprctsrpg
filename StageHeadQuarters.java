@@ -25,7 +25,7 @@ public class StageHeadQuarters extends Stage{
     public void init() {
         a = new Choice("Zombie Patrol");
         c = new Choice("Mother Zombie");
-        stat = new Stat("PLAYER STATS - Level: " + Math.round(DataHandler.player.getLevel()/10.0D)*10.0D + "\nHealth: " + DataHandler.player.getHealth());
+        stat = new Stat("PLAYER STATS - Level: " + ((int)(DataHandler.player.getLevel()*10))/10.0D + "\nHealth: " + DataHandler.player.getHealth());
         mainDialog = new Dialog("");
         this.addElements(mainDialog, a, c, stat);
         if(DataHandler.SHIELD){
