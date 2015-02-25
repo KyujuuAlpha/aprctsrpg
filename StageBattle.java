@@ -1,6 +1,7 @@
 import ui.*;
 import ui.elem.*;
 import util.BattleHandler;
+import util.Zombie;
 
 public class StageBattle extends Stage {
 	private Choice fightButton;
@@ -28,6 +29,7 @@ public class StageBattle extends Stage {
         opponentStat = new OpponentStat();
         mainDialog = new Dialog();
 		this.addElements(fightButton, ability0, ability1, ability2, ability3, runButton, playerStat, opponentStat, mainDialog, new Sprite("char.png"));
+		if(DataHandler.opponent instanceof Zombie) this.addElements(new Sprite("zombie.png"));
 		fightButton.setEnabled(false);
 		runButton.setEnabled(false);
 		playerTurn();

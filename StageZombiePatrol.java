@@ -6,13 +6,13 @@ import java.util.Random;
 public class StageZombiePatrol extends Stage {
     private Dialog mainDialog;
     private Choice a;
-    private EntityCreature c1;
+    private Zombie c1;
     private Random rand = new Random();
     @Override
     public void init() {
     	int j = rand.nextInt(50) + 1;
     	int k = rand.nextInt(50) + 1;
-        c1 = new EntityCreature(j, k);
+        c1 = new Zombie(j, k);
         a = new Choice("Continue");
         mainDialog = new Dialog("");
         this.addElements(mainDialog, a);
