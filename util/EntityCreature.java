@@ -12,6 +12,7 @@ public class EntityCreature extends Entity{
 		creatureList.add(this);
 		
 	}
+	
 	public EntityCreature(double damage, double health){
 		super();
 		this.damage = damage;
@@ -19,6 +20,7 @@ public class EntityCreature extends Entity{
 		
 		
 	}
+	
 	/*
 	 * returns damage
 	 */
@@ -48,6 +50,7 @@ public class EntityCreature extends Entity{
 		int temp = gen.nextInt(100);
 		return temp/100;
 	}
+	
 	public double getXP(){
 		return getDamage() + maxHealth;
 	}

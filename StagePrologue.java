@@ -48,11 +48,11 @@ public class StagePrologue extends Stage {
             DataHandler.player.addItem(Item.basicWand);
             poststage();
             return;
-        } /*else if(choiceObject.getLabel().equals("Pistol")){
+        } else if(choiceObject.getLabel().equals("Pistol")){
             DataHandler.player.addItem(Item.pistol);
             poststage();
             return;
-        }*/
+        }
     }
     
     @Override

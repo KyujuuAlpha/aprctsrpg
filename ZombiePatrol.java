@@ -21,6 +21,7 @@ public class ZombiePatrol extends Stage {
         this.addElements(mainDialog, a);
         if(DataHandler.battleCompleted) {
     		DataHandler.battleCompleted = false;
+    		setStage(5);
     		return;
     	}
         mainDialog.setText("A wild zombie attacked!");

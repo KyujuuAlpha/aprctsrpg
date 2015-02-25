@@ -19,6 +19,7 @@ public class WeaponUpgrade extends Stage{
     @Override
     public void init() {
         mainDialog = new Dialog("");
-        mainDialog.setText("Hi!", "Weapon: ", "Level: ", "Upgradeable: ");
+        this.addElements(mainDialog);
+        mainDialog.setText("Hi!", "Weapon: ", "Level: " + DataHandler.player.getLevel(), "Upgradeable: ");
     }
 }

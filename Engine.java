@@ -10,9 +10,17 @@ public class Engine {
         displayVar.addStage(new StageTeam()); //2
         displayVar.addStage(new StageBattleTutorial()); //3
         displayVar.addStage(new StageFour());//4
+<<<<<<< HEAD
         displayVar.addStage(new ZombiePatrol()); //5
         displayVar.addStage(new WeaponUpgrade()); //6
         displayVar.addStage(new StageArena());//!!!!anytime!!!!
+=======
+        displayVar.addStage(new HeadQuarters());//5
+        displayVar.addStage(new ZombiePatrol()); //6
+        displayVar.addStage(new WeaponUpgrade()); //7
+        displayVar.addStage(new MotherZombie()); //8
+        displayVar.addStage(new EndGame());
+>>>>>>> origin/master
         displayVar.begin();
     }
 }
