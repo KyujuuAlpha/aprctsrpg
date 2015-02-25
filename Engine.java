@@ -12,10 +12,9 @@ public class Engine {
         displayVar.addStage(new StageFour());//4
         displayVar.addStage(new StageHeadQuarters());//5
         displayVar.addStage(new StageZombiePatrol()); //6
-        displayVar.addStage(new StageWeaponUpgrade()); //7
-        displayVar.addStage(new StageMotherZombie()); //8
-        displayVar.addStage(new StageEndGame()); //9
-        displayVar.addStage(new StageDeath()); //10
+        displayVar.addStage(new StageMotherZombie()); //7
+        displayVar.addStage(new StageEndGame()); //8
+        displayVar.addStage(new StageDeath()); //9
         displayVar.begin();
     }
 }

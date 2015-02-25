@@ -1,7 +1,12 @@
+import java.util.Random;
+
 import ui.*;
 import ui.elem.*;
+import util.Assassin;
 import util.BattleHandler;
+import util.EntityCreature;
 import util.Item;
+import util.Tank;
 import util.Zombie;
 
 public class StageBattle extends Stage {
@@ -34,8 +39,22 @@ public class StageBattle extends Stage {
 		playerStat = new Stat();
         opponentStat = new OpponentStat();
         mainDialog = new Dialog();
-		this.addElements(fightButton, ability0, ability1, ability2, ability3, runButton, playerStat, opponentStat, mainDialog, new Sprite("char.png", 0.5f));
-		if(DataHandler.opponent instanceof Zombie) this.addElements(new Sprite("zombie.png", 0.5f));
+		this.addElements(fightButton, ability0, ability1, ability2, ability3, runButton, playerStat, opponentStat, mainDialog);
+		if(DataHandler.player instanceof Tank) this.addElements(new Sprite("tank.png", 0.5f));
+		else if(DataHandler.player instanceof Assassin) this.addElements(new Sprite("assassin.png", 0.5f));
+		else this.addElements(new Sprite("norm.png", 0.5f));
+		
+		if(DataHandler.opponent instanceof Zombie) {
+			if(new Random().nextInt(2) == 0) this.addElements(new Sprite("minion.png", 0.5f));
+			else this.addElements(new Sprite("minion2.png", 0.5f));
+		} else if(DataHandler.source instanceof StageMotherZombie) {
+			switch(new Random().nextInt(3)) {
+				case 0: this.addElements(new Sprite("boss1.png", 0.5f)); break;
+				case 1: this.addElements(new Sprite("boss2.png", 0.5f)); break;
+				case 2: this.addElements(new Sprite("boss3.png", 0.5f)); break;
+				default: this.addElements(new Sprite("guy.png", 0.5f)); break;
+			}
+		} else if(DataHandler.opponent instanceof EntityCreature) this.addElements(new Sprite("guy.png", 0.5f));
 		fightButton.setEnabled(false);
 		runButton.setEnabled(false);
 		playerTurn();
@@ -155,7 +174,7 @@ public class StageBattle extends Stage {
 	}
 	
 	private void endBattle() {
-		if(DataHandler.player.getHealth() <= 0) this.setStage(10);
+		if(DataHandler.player.getHealth() <= 0) this.setStage(9);
 		else this.setStage(DataHandler.source.getID());
 	}
 	
