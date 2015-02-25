@@ -14,6 +14,8 @@ public class Choice implements Element, ActionListener {
     
     private boolean clickedVar;
     
+    private String tooltip;
+    
     public Choice() { //the default constructor if no parameters are passed
         this.text = "Choice"; //iniialize the internal data of this element
         this.enabled = true;
@@ -53,6 +55,14 @@ public class Choice implements Element, ActionListener {
         this.setEnabled(flag);
     }
     
+    public void setToolTip(String stringVar) {
+    	tooltip = stringVar;
+    }
+    
+    public String getToolTip() {
+    	return tooltip;
+    }
+    
     /**
      * Set this button to be enabled or not
      * @param flag Whether this button is enabled or not
@@ -84,6 +94,7 @@ public class Choice implements Element, ActionListener {
     public void sync() {
         if(this.guiElement == null) return; //skip if the gui element was never created
         this.guiElement.setText(this.text); //pass the internal data of this element to the gui counter part
+        this.guiElement.setToolTipText(tooltip);
         this.guiElement.setEnabled(this.enabled);
     }
     

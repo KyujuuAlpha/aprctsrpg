@@ -4,6 +4,10 @@ import util.BattleHandler;
 
 public class StageBattle extends Stage {
 	private Choice fightButton;
+	private Choice ability0;
+	private Choice ability1;
+	private Choice ability2;
+	private Choice ability3;
 	private Choice runButton;
 	private Stat playerStat;
 	private OpponentStat opponentStat;
@@ -15,11 +19,15 @@ public class StageBattle extends Stage {
 	public void init() {
 		if(DataHandler.player == null) { this.setStage(1); return; } //if there is no player, then just start stage prologue for character creation
 		fightButton = new Choice("Attack");
+		ability0 = new Choice("Ability 0");
+		ability1 = new Choice("1");
+		ability2 = new Choice("2");
+		ability3 = new Choice("3");
 		runButton = new Choice("Run!");
 		playerStat = new Stat();
         opponentStat = new OpponentStat();
         mainDialog = new Dialog();
-		this.addElements(fightButton, runButton, playerStat, opponentStat, mainDialog, new Sprite("char.png"));
+		this.addElements(fightButton, ability0, ability1, ability2, ability3, runButton, playerStat, opponentStat, mainDialog, new Sprite("char.png"));
 		fightButton.setEnabled(false);
 		runButton.setEnabled(false);
 		playerTurn();
@@ -29,6 +37,10 @@ public class StageBattle extends Stage {
 	public void choiceClicked(Element elementVar) {
 		fightButton.setEnabled(false);
 		runButton.setEnabled(false);
+		ability0.setEnabled(false);
+		ability1.setEnabled(false);
+		ability2.setEnabled(false);
+		ability3.setEnabled(false);
 		Choice choiceObject = (Choice)elementVar;
 		if(choiceObject == fightButton) {
 			boolean flag = BattleHandler.playerTurn(DataHandler.player, DataHandler.opponent);
@@ -45,6 +57,18 @@ public class StageBattle extends Stage {
         	} else {
         		opponentTurn();
         	}
+        } else if(choiceObject == ability0) {
+        	fightButton.setEnabled(true);
+    		runButton.setEnabled(true);
+        } else if(choiceObject == ability1) {
+        	fightButton.setEnabled(true);
+    		runButton.setEnabled(true);
+        } else if(choiceObject == ability2) {
+        	fightButton.setEnabled(true);
+    		runButton.setEnabled(true);
+        } else if(choiceObject == ability3) {
+        	fightButton.setEnabled(true);
+    		runButton.setEnabled(true);
         }
 	}
 
@@ -66,6 +90,10 @@ public class StageBattle extends Stage {
 		updateStats();
 		fightButton.setEnabled(true);
 		runButton.setEnabled(true);
+		ability0.setEnabled(true);
+		ability1.setEnabled(true);
+		ability2.setEnabled(true);
+		ability3.setEnabled(true);
 		mainDialog.setText("What will you do next?");
 	}
 	
