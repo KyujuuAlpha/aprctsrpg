@@ -12,6 +12,7 @@ public class Engine {
         displayVar.addStage(new StageFour());//4
         displayVar.addStage(new ZombiePatrol()); //5
         displayVar.addStage(new WeaponUpgrade()); //6
+        displayVar.addStage(new StageArena());//!!!!anytime!!!!
         displayVar.begin();
     }
 }

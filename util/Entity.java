@@ -16,6 +16,6 @@ public class Entity {
 	public double getHealth(){
 		return health;
 	}
-
+		
 
 }

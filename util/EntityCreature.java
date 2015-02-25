@@ -49,7 +49,7 @@ public class EntityCreature extends Entity{
 		return temp/100;
 	}
 	public double getXP(){
-		return getDamage() + getHealth();
+		return getDamage() + maxHealth;
 	}
 	public void levelUp(EntityPlayer player){
 		this.health = this.health + ((player.getLevel() * health)/5);
