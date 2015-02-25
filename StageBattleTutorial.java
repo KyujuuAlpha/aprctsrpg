@@ -38,11 +38,11 @@ public class StageBattleTutorial extends Stage {
     
     @Override
     public void taskPerformed() {
-        if(x == 1){ x++; tutorialOne(); return;}
+        //if(x == 1){ x++; tutorialOne(); return;}
         if(x == 2){ x++; tutorialTwo(); return;}
         if(x == 3){ x++; tutorialThree(); return;}
         if(x == 4){ x++; tutorialFour(); return;}
-        if(x == 5){ x++; DataHandler.prepareBattle(DataHandler.player, c1, this); this.setStage(0); return; }
+        if(x == 1){ x++; DataHandler.prepareBattle(DataHandler.player, c1, this); this.setStage(0); return; }
     }
     
     public void tutorialSHIELDStart(){
