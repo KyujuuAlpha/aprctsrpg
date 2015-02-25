@@ -2,7 +2,7 @@ package util;
 
 public class Abilities {
 	protected EntityPlayer player;
-	protected String[] names = {null,null,null,null};
+	private String[] names = {null,null,null,null};
 	public Abilities(EntityPlayer player){
 		this.player = player;
 		
