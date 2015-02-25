@@ -159,7 +159,7 @@ public class StageBattle extends Stage {
 	}
 	
 	private void updateStats(){
-        playerStat.setText("PLAYER STATS - Level: " + Math.round(DataHandler.player.getLevel()*10.0D)/10.0D + "\nHealth: " + DataHandler.player.getHealth());
+        playerStat.setText("PLAYER STATS - Level: " + Math.round(DataHandler.player.getLevel()/10.0D)*10.0D + "\nHealth: " + DataHandler.player.getHealth());
         opponentStat.setText("OPPONENT STATS - Health: " + DataHandler.opponent.getHealth());
     }
 	
