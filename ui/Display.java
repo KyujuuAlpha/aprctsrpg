@@ -25,8 +25,11 @@ public class Display extends JFrame implements ActionListener {
     public final JLabel stats; //player stats
     public final JLabel stats2; //opponent stats
     
+    private final String simpleName;
+    
     public Display(String str) {
         super(str); //call the parent classes' constructor
+        simpleName = str;
         this.setSize(800,600); //set the jpanel's size
         JPanel subContainerA = new JPanel(new GridLayout(1,2)); //initialize jpanels with specified layout manager
         JPanel subContainerB = new JPanel(new GridLayout(2,1));
@@ -71,6 +74,7 @@ public class Display extends JFrame implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) { //called whenver the timer ticks
         if(getStage() == null) return; //if the stage does not exist, dont do anything
+        if(!this.getTitle().equals(simpleName + " - " + getStage().getClass().getSimpleName())) this.setTitle(simpleName + " - " + getStage().getClass().getSimpleName());
         int incrementVar = getStage().incrementVar(); //to save cpu usage, save the incrementVar variable for the current stage
         if(incrementVar == 1) { this.nextStage(); } //if the incrementVar var is set to code 1, try to go to the next stage
         else if(incrementVar == 2) { this.prevStage(); } //if it is code 2, try to go to the previous stage

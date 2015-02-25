@@ -45,7 +45,8 @@ public class StageBattle extends Stage {
         if(DataHandler.opponent.getHealth() <= 0 || DataHandler.player.getHealth() <= 0){
             DataHandler.battleCompleted = true;
             this.removeElements(sprite);
-            this.setStage(DataHandler.source.getID());
+            if(DataHandler.player.getHealth() <= 0) this.setStage(10);
+            else this.setStage(DataHandler.source.getID());
         }
     }
 }
