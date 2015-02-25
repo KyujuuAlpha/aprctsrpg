@@ -14,7 +14,6 @@ public class BattleHandler {
         if (creature.getHealth() <= 0){
             player.leveling(creature);
         }*/
-    	System.out.println(creature.hitChance() + " " + player.getSpeed());
     	if (creature.hitChance() > player.getSpeed()) {
             return false;
         } else {
@@ -31,7 +30,7 @@ public class BattleHandler {
      */
     
     public static boolean creatureTurn (EntityPlayer player, EntityCreature creature){
-        if (player.getSpeed() > creature.hitChance()) {
+        if (creature.hitChance() <= player.getSpeed()) {
             return false;
         } else {
             player.damagePlayer(creature);
@@ -40,7 +39,7 @@ public class BattleHandler {
     }
     
     public static boolean run(EntityPlayer player, EntityCreature creature){
-        if (player.getSpeed() * 2 < creature.hitChance()){
+        if (player.getSpeed() > creature.hitChance()){
             return false;
         } else {
             return true;
