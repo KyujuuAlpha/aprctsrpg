@@ -12,30 +12,26 @@ public class Abilities {
 	}
 	
 	public String damageAbilityDesc(){
-		String x = "NULL";
-		return x;
+		return null;
 	}
 	public double defenceAbility(){
 		return 0;
 	}
 	public String defenceAbilityDec(){
-		String x = "NULL";
-		return x;
+		return null;
 	} 
 	public double utilAbility(){
 		return 0;
 		
 	}
 	public String utilAbilityDesc(){
-		String x = "NULL";
-		return x;
+		return null;
 	}
 	public double ultiAbility(){
 		return 0;
 	}
 	public String ultiAbilityDesc(){
-		String x = "NULL";
-		return x;
+		return null;
 				
 
 	}

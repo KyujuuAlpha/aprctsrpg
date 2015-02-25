@@ -8,7 +8,6 @@ public class EntityPlayer extends Entity {
 	protected int heldItemIndex;
 	protected Inventory inventory;
 	protected Abilities abilities;
-	protected EntityPlayer player = new EntityPlayer();
 	
 	public EntityPlayer() {
 		super();
@@ -16,7 +15,7 @@ public class EntityPlayer extends Entity {
 		this.speed = 0.35;
 		this.speedX = 1;
 		this.inventory = new Inventory(3);
-		this.abilities = new NormalAbilities(player);
+		this.abilities = new NormalAbilities(this);
 		
 	}
 	
