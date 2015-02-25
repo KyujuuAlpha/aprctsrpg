@@ -1,7 +1,7 @@
 package util;
 
-public class tankAbilitites extends Abilities{
-	public tankAbilitites(EntityPlayer player){
+public class TankAbilties extends Abilities{
+	public TankAbilties(EntityPlayer player){
 		super(player);
 	}
 	public double damageAbility(){
