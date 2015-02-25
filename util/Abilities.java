@@ -30,12 +30,13 @@ public class Abilities {
 		String x = "NULL";
 		return x;
 	}
-	public double utliAbility(){
+	public double ultiAbility(){
 		return 0;
 	}
 	public String ultiAbilityDesc(){
 		String x = "NULL";
 		return x;
 				
+
 	}
 }
