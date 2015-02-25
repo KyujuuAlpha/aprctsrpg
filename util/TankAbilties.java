@@ -1,7 +1,7 @@
 package util;
 
 public class TankAbilties extends Abilities{
-	private String[] names = {"Opening Earth","Iron Body","Insanity","Blessing of the Gods" };
+	public String[] names = {"Opening Earth","Iron Body","Insanity","Blessing of the Gods" };
 	public TankAbilties(EntityPlayer player){
 		super(player);
 	}

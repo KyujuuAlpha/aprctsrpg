@@ -1,7 +1,7 @@
 package util;
 
 public class AssasinAbilities extends Abilities {
-	private String[] names = {"Third Eye","Shadows Torment","Darkness","Soul Blade" };
+	public String[] names = {"Third Eye","Shadows Torment","Darkness","Soul Blade" };
 	public AssasinAbilities(EntityPlayer player){
 		super(player);
 	}

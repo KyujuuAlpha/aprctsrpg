@@ -1,7 +1,7 @@
 package util;
 
 public class NormalAbilities extends Abilities {
-	private String[] names = {"Iron Fist","Extra Armor", "Nikes", "Chuk-norris to the Face"};
+	public String[] names = {"Iron Fist","Extra Armor", "Nikes", "Chuk-norris to the Face"};
 	public NormalAbilities(EntityPlayer player) {
 		super(player);
 	}
