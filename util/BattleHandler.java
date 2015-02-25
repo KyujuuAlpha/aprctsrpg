@@ -1,7 +1,6 @@
 package util;
 
 public class BattleHandler {
-    private static double playerDamage,playerHealth,creatureDamage,creatureHealth;
     private static String Exception;
     /*
      * takes in the EntityPlayer object and the EntityCreature object, using the existing methods inside, applies the damage to creature
@@ -13,8 +12,6 @@ public class BattleHandler {
         if (creature.getHealth() <= 0){
             player.leveling(creature);
         }
-        creatureHealth = creature.getHealth();
-        playerDamage = player.getDamage();
         
     }
     /*
@@ -33,8 +30,6 @@ public class BattleHandler {
             }
         else {
                 player.damagePlayer(creature);
-                playerHealth = player.getHealth();
-                creatureDamage = creature.getDamage();
                 Exception = "And you took damage!!!";
                 return Exception;
             }
