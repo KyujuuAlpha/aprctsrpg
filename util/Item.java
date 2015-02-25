@@ -14,6 +14,9 @@ public class Item {
 	public static Item getRandomItem() {
 		return itemList.get(new Random().nextInt(itemList.size()));
 	}
+	public String getName(){
+		return name;
+	}
 
 
 
