@@ -2,15 +2,19 @@ import ui.*;
 import ui.elem.*;
 
 public class StageTeam extends Stage {
-    private Dialog mainDialog;
-    private Choice a;
+    private Dialog mainDialog; //declaring variables
+    private Choice a; //a choice object is a button that shows up on the left side of the menu
     private Choice b;   
     
     @Override
     public void choiceClicked(Element elementVar) {
         Choice choiceObject = (Choice)elementVar;
+        /*
+         * When a button is clicked, it is assigned to the variable choiceObject. The getLabel() method checks the label assigned to the button and acts
+         * according to the conditional.
+         */
         if(choiceObject.getLabel().equals("The Marina")){
-            eventMarina();
+            eventMarina(); //a stage is a method, so to call a stage, all you need to do is invoke the method
             return;
         } else if(choiceObject.getLabel().equals("The Space Needle")){
             eventTower();
@@ -19,9 +23,13 @@ public class StageTeam extends Stage {
         if(choiceObject.getLabel().equals("FIGHT")){
             nextStage();
         } else if(choiceObject.getLabel().equals("JOIN 'EM")){
-            DataHandler.SHIELD = true;
+            DataHandler.SHIELD = true; 
             nextStage();
         }
+        /*
+         * if one joins the SHIELD faction, then the boolean value true is assigned to a variable in the DataHandler, where all the data is stored.
+         * This creates somewhat of an alternate storyline, but it only goes to a different headquarters
+         */
     }
     
     @Override

@@ -7,11 +7,11 @@ public class StageMotherZombie extends Stage {
     private Dialog mainDialog;
     private Choice a;
     private Choice b;
-    private int x = 0;
     private EntityCreature Boss1;
     private EntityCreature Boss2;
     private EntityCreature Boss3;
     private EntityCreature MotherZombie;
+    private int x = 0;
     @Override
     public void init() {
         a = new Choice("Continue");
@@ -29,7 +29,8 @@ public class StageMotherZombie extends Stage {
     public void choiceClicked(Element elementVar) {
         Choice choiceObject = (Choice)elementVar;
         if(choiceObject.getLabel().equals("Continue")){
-            battleOne(); return;
+            battleOne();
+            return;
         }
         if(choiceObject.getLabel().equals("First Obstacle...Let's Go!")){
             DataHandler.prepareBattle(DataHandler.player, Boss1, this);

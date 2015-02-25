@@ -4,8 +4,8 @@ import util.Utilities;
 public class Engine {
     public static void main(String[] args) {
     	Utilities.init();
-        Display displayVar = new Display("AP-RC-TS RPG");
-        displayVar.addStage(new StageBattle()); // 0
+        Display displayVar = new Display("AP-RC-TS RPG"); //names the frame
+        displayVar.addStage(new StageBattle()); //the displaryVar.addStage adds the stage to an array list
         displayVar.addStage(new StagePrologue()); //1
         displayVar.addStage(new StageTeam()); //2
         displayVar.addStage(new StageBattleTutorial()); //3
