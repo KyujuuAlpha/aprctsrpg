@@ -1,23 +1,23 @@
-import ui.Stage;
-import ui.elem.*;
+import ui.*;
+import ui.elem.Element;
+
 
 public class StageDeath extends Stage {
-	private Dialog mainDialog;
-	
+
 	@Override
 	public void init() {
-		mainDialog = new Dialog();
-		this.addElements(mainDialog);
-		mainDialog.setText("HAHAHAHAHA YOU LOSE YOU DIED SUCCKAH!");
+		
 	}
 
 	@Override
 	public void choiceClicked(Element elementVar) {
+		
 		
 	}
 
 	@Override
 	public void taskPerformed() {
 		
-	}	
+	}
+
 }
