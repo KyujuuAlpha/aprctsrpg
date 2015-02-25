@@ -7,13 +7,15 @@ public class EntityPlayer extends Entity {
 	protected double armor,speed,speedX,level;
 	protected int heldItemIndex;
 	protected Inventory inventory;
+	protected Abilities abilities;
 	
 	public EntityPlayer() {
 		super();
 		this.armor = 0.1;
-		this.speed = 0.1;
+		this.speed = 0.35;
 		this.speedX = 1;
 		this.inventory = new Inventory(3);
+		
 	}
 	
 	
@@ -108,6 +110,15 @@ public class EntityPlayer extends Entity {
 				this.speedX = ((Boots)item).getSpeed();
 				inventory.setSlot(2,item);
 			}
+	}
+	public double getAbilities(int abilityNum){
+		switch(abilityNum){
+		case 1: return abilities.damageAbility();break;
+		case 2: return abilities.defenceAbility();break;
+		case 3: return abilities.utilAbility();break;
+		case 4: return abilities.ultiAbility();break;
+		}
+		
 	}
 		
 	/*
