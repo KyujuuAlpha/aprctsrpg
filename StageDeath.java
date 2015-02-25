@@ -1,7 +1,5 @@
 import ui.*;
-import ui.elem.Dialog;
-import ui.elem.Element;
-
+import ui.elem.*;
 
 public class StageDeath extends Stage {
 
@@ -10,7 +8,9 @@ public class StageDeath extends Stage {
 	@Override
 	public void init() {
 		mainDialog = new Dialog();
-		this.addElements(mainDialog);
+		Sprite rip = new Sprite("rip.png");
+		rip.setResizable(0.5f);
+		this.addElements(mainDialog, rip);
 		mainDialog.setText("HAH YOU DIED");
 	}
 
