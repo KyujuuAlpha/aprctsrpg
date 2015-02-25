@@ -23,6 +23,10 @@ public class StageFour extends Stage{
                 return;
             }
         }
+        if(choiceObject.getLabel().equals("Next")){
+        	stageOne(); 
+        }
+        
     }
     @Override
     public void taskPerformed() {
