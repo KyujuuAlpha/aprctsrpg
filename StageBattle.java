@@ -91,9 +91,13 @@ public class StageBattle extends Stage {
 		fightButton.setEnabled(true);
 		runButton.setEnabled(true);
 		ability0.setEnabled(true);
+		ability0.setToolTip(DataHandler.player.getAbilitiesDesc(1));
 		ability1.setEnabled(true);
+		ability1.setToolTip(DataHandler.player.getAbilitiesDesc(2));
 		ability2.setEnabled(true);
+		ability2.setToolTip(DataHandler.player.getAbilitiesDesc(3));
 		ability3.setEnabled(true);
+		ability3.setToolTip(DataHandler.player.getAbilitiesDesc(4));
 		mainDialog.setText("What will you do next?");
 	}
 	
