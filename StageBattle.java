@@ -19,10 +19,10 @@ public class StageBattle extends Stage {
 	public void init() {
 		if(DataHandler.player == null) { this.setStage(1); return; } //if there is no player, then just start stage prologue for character creation
 		fightButton = new Choice("Attack");
-		ability0 = new Choice("Ability 0");
-		ability1 = new Choice("1");
-		ability2 = new Choice("2");
-		ability3 = new Choice("3");
+		ability0 = new Choice(DataHandler.player.getAbilitiesName(1));
+		ability1 = new Choice(DataHandler.player.getAbilitiesName(2));
+		ability2 = new Choice(DataHandler.player.getAbilitiesName(3));
+		ability3 = new Choice(DataHandler.player.getAbilitiesName(4));
 		runButton = new Choice("Run!");
 		playerStat = new Stat();
         opponentStat = new OpponentStat();
