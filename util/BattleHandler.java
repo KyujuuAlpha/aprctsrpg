@@ -24,10 +24,10 @@ public class BattleHandler {
     
     public static String creatureTurn (EntityPlayer player, EntityCreature creature){
         if (player.speedX > creature.hitChance()) {
-                player.health = player.getHealth();
                 Exception = " But it Missed!!!!!";
                 return Exception;
             }
+        
         else {
                 player.damagePlayer(creature);
                 Exception = "And you took damage!!!";
