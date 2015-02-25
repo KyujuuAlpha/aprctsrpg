@@ -159,8 +159,8 @@ public class StageBattle extends Stage {
 	}
 	
 	private void updateStats(){
-        playerStat.setText("PLAYER STATS - Level: " + ((int)(DataHandler.player.getLevel()*10))/10.0D + "\nHealth: " + DataHandler.player.getHealth());
-        opponentStat.setText("OPPONENT STATS - Health: " + DataHandler.opponent.getHealth());
+        playerStat.setText("PLAYER STATS - Level: " + ((int)(DataHandler.player.getLevel()*10))/10.0D + "\nHealth: " + ((int)(DataHandler.player.getHealth()*10))/10.0D);
+        opponentStat.setText("OPPONENT STATS - Health: " + ((int)(DataHandler.opponent.getHealth()*10))/10.0D);
     }
 	
 	private void exitBattle() {
