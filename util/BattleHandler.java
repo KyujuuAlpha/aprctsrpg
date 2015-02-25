@@ -29,28 +29,11 @@ public class BattleHandler {
     
     public static boolean creatureTurn (EntityPlayer player, EntityCreature creature){
         if (player.speedX > creature.hitChance()) {
-<<<<<<< HEAD
             return false;
         } else {
             player.damagePlayer(creature);
             return true;
         }
-=======
-                Exception = " But it Missed!!!!!";
-                return Exception;
-            }
-        
-        else {
-                player.damagePlayer(creature);
-                Exception = "And you took damage!!!";
-                return Exception;
-            }
-        /*
-         * if this method is invoked, it calculates the propbabiliy of runing away
-         * 
-         * takes into acco  unt the chance if its a hit or miss
-         */
->>>>>>> origin/master
     }
     
     public static boolean run(EntityPlayer player, EntityCreature creature){
