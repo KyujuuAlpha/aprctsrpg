@@ -1,10 +1,9 @@
 package util;
 
 public class NormalAbilities extends Abilities {
-	public String[] names;
 	public NormalAbilities(EntityPlayer player) {
 		super(player);
-		this.names  = new String[]{"Iron Fist","Extra Armor", "Nikes", "Chuk-norris to the Face"};
+		this.names = new String[]{"Iron Fist","Extra Armor", "Nikes", "Chuk-norris to the Face"};
 	}
 	public double damageAbility(){
 		return player.getDamage() * 2.3;
