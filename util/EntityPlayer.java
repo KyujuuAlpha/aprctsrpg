@@ -122,6 +122,17 @@ public class EntityPlayer extends Entity {
 		return 0;
 		
 	}
+	
+	public String getAbilitiesDesc(int abilityNum){
+		switch(abilityNum){
+		case 1: return abilities.damageAbilityDesc();
+		case 2: return abilities.defenceAbilityDec();
+		case 3: return abilities.utilAbilityDesc();
+		case 4: return abilities.ultiAbilityDesc();
+		}
+		return null;
+		
+	}
 		
 	/*
 	 * this is used to elimate item values
