@@ -23,15 +23,6 @@ public class StageFour extends Stage{
                 return;
             }
         }
-        if(choiceObject.getLabel().equals("Next")){
-        	stageOne(); 
-        }
-        if(choiceObject.getLabel().equals("Zombie Patrol")){
-            setStage(6);
-        }
-        if(choiceObject.getLabel().equals("Mother Zombie")){
-            setStage(7);
-        }
     }
     @Override
     public void taskPerformed() {
@@ -56,15 +47,7 @@ public class StageFour extends Stage{
     }
     public void stageOne(){
         this.removeElements(a);
-        mainDialog.setText("You have four options here at headquarters.", "1) Go on a Zombie Patrol", "2) Go after the Mother Zombie", "Going after the Mother Zombie is highly unreccomended", "for beginners."); 
+        mainDialog.setText("You have two options here at headquarters.", "1) Go on a Zombie Patrol", "2) Go after the Mother Zombie", "Going after the Mother Zombie is highly unreccomended", "for beginners."); 
         this.scheduleTask(60);
-    }
-    public void stageTwo(){
-        a.setLabel("Zombie Patrol");
-        c = new Choice("Mother Zombie");
-        this.addElements(c);
-        if(DataHandler.SHIELD){
-            mainDialog.setText("What would you like to do today?");
-        } else{mainDialog.setText("What's up?");}
     }
 }

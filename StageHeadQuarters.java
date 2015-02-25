@@ -5,8 +5,7 @@ public class StageHeadQuarters extends Stage{
     private Dialog mainDialog;
     private Choice a;
     private Choice c;
-    private int x = 0;
-    private int y = 0;
+    private Stat stat;
     
     @Override
     public void choiceClicked(Element elementVar) {
@@ -26,6 +25,7 @@ public class StageHeadQuarters extends Stage{
     public void init() {
         a = new Choice("Zombie Patrol");
         c = new Choice("Mother Zombie");
+        stat = new Stat("PLAYER STATS - Level: " + Math.round(DataHandler.player.getLevel()*10.0D)/10.0D + "\nHealth: " + DataHandler.player.getHealth());
         mainDialog = new Dialog("");
         this.addElements(mainDialog, a, c);
         if(DataHandler.SHIELD){
