@@ -6,8 +6,6 @@ import java.util.Random;
 public class StageZombiePatrol extends Stage {
     private Dialog mainDialog;
     private Choice a;
-    private Choice b;
-    private int x = 0;
     private EntityCreature c1;
     private Random rand = new Random();
     @Override
@@ -16,28 +14,24 @@ public class StageZombiePatrol extends Stage {
     	int k = rand.nextInt(50) + 1;
         c1 = new EntityCreature(j, k);
         a = new Choice("Continue");
-        b = new Choice();
         mainDialog = new Dialog("");
         this.addElements(mainDialog, a);
         if(DataHandler.battleCompleted) {
     		DataHandler.battleCompleted = false;
-    		setStage(5);
+    		mainDialog.setText("Whew! 99 Problems but a Zombie ain't one...");
+    		scheduleTask(30);
     		return;
     	}
         mainDialog.setText("A wild zombie attacked!");
-        this.scheduleTask(60);
     }
     
     @Override
     public void choiceClicked(Element elementVar) {
+    	if(elementVar == a){DataHandler.prepareBattle(DataHandler.player, c1, this); this.setStage(0); return;}
     }
     
     @Override
     public void taskPerformed() {
-        if(x == 0){DataHandler.prepareBattle(DataHandler.player, c1, this); this.setStage(0); return;}
-    }
-    
-    public void endBattle(){
-        mainDialog.setText("Whew! 99 Problems but a Zombie ain't one...");
+    	setStage(5);
     }
 }

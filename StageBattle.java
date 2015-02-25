@@ -50,12 +50,14 @@ public class StageBattle extends Stage {
             scheduleCode = 2;
             this.scheduleTask(30);
         } else if(choiceObject == runButton){
-        	if(BattleHandler.run(DataHandler.player, DataHandler.opponent)) {
+        	if(BattleHandler.run(DataHandler.player, DataHandler.opponent) && !(DataHandler.source instanceof StageMotherZombie)) {
 	        	scheduleCode = 1;
 	            mainDialog.appendText("\nYou got away safely..");
-	            this.scheduleTask(20);
+	            this.scheduleTask(30);
         	} else {
-        		opponentTurn();
+        		scheduleCode = 2;
+        		mainDialog.appendText("\nCan't escape!");
+        		this.scheduleTask(30);
         	}
         } else if(choiceObject == ability0) {
         	fightButton.setEnabled(true);

@@ -38,11 +38,11 @@ public class StageBattleTutorial extends Stage {
     
     @Override
     public void taskPerformed() {
-        //if(x == 1){ x++; tutorialOne(); return;}
+        if(x == 1){ x++; tutorialOne(); return;}
         if(x == 2){ x++; tutorialTwo(); return;}
         if(x == 3){ x++; tutorialThree(); return;}
         if(x == 4){ x++; tutorialFour(); return;}
-        if(x == 1){ x++; DataHandler.prepareBattle(DataHandler.player, c1, this); this.setStage(0); return; }
+        if(x == 5){ x++; DataHandler.prepareBattle(DataHandler.player, c1, this); this.setStage(0); return; }
     }
     
     public void tutorialSHIELDStart(){
@@ -54,21 +54,21 @@ public class StageBattleTutorial extends Stage {
         b.setLabel("Run!", false);
         this.addElements(b);
         mainDialog.setText("Welcome to the Fight Screen!!!");
-        this.scheduleTask(60);
+        this.scheduleTask(30);
     }
     
     public void tutorialOne(){
         mainDialog.setText("On the left, you can see that you have two battle", "options.");
-        this.scheduleTask(60);
+        this.scheduleTask(65);
     }
     
     public void tutorialTwo(){
-        mainDialog.setText("The first is to attack.");
-        this.scheduleTask(60);
+        mainDialog.setText("The first is to attack.", "The buttons below it are your abilities, ", "Hover over them to see what they do,", "You can only use one per round,");
+        this.scheduleTask(135);
     }
     
     public void tutorialThree(){
-        mainDialog.setText("The last button, RUN, enables you to flee your opponent.", "This only works 0.0005% of the time.");
+        mainDialog.setText("The last button, RUN, enables you to flee your opponent.", "This works depending on your speed");
         this.scheduleTask(120);
     }
     
