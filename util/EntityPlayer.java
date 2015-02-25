@@ -133,6 +133,16 @@ public class EntityPlayer extends Entity {
 		return null;
 		
 	}
+	public String getAbilitiesName(int abilityNum){
+		switch(abilityNum){
+		case 1: return abilities.names[0];
+		case 2: return abilities.names[1];
+		case 3: return abilities.names[2];
+		case 4: return abilities.names[3];
+		}
+		return null;
+		
+	}
 		
 	/*
 	 * this is used to elimate item values

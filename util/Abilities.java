@@ -2,7 +2,7 @@ package util;
 
 public class Abilities {
 	protected EntityPlayer player;
-	
+	protected String[] names = {null,null,null,null};
 	public Abilities(EntityPlayer player){
 		this.player = player;
 		
@@ -32,7 +32,9 @@ public class Abilities {
 	}
 	public String ultiAbilityDesc(){
 		return null;
-				
-
 	}
+	public String getName(int x){
+		return names[x];
+	}
+
 }

@@ -1,6 +1,7 @@
 package util;
 
 public class TankAbilties extends Abilities{
+	String[] names = {"Opening Earth","Iron Body","Insanity","Blessing of the Gods" };
 	public TankAbilties(EntityPlayer player){
 		super(player);
 	}
@@ -34,5 +35,8 @@ public class TankAbilties extends Abilities{
 		String x = "You are granted a blessing from the gods and are invincible for a moment";
 		return x;
 				
+	}
+	public String getName(int x){
+		return names[x];
 	}
 }
