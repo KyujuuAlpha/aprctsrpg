@@ -6,6 +6,9 @@ public class StagePrologue extends Stage {
     private Choice a;
     private Choice b;    
     private Choice c;
+    private Sprite d;
+    private Sprite e;
+    private Sprite f;
     
     @Override
     public void choiceClicked(Element elementVar) {
@@ -77,12 +80,15 @@ public class StagePrologue extends Stage {
         a.setLabel("Tank", true);
         b.setLabel("Normal", true);
         c.setLabel("Assassin", true);
-        this.addElements(c, new Sprite("tank.png", 0.5f), new Sprite("norm.png", 0.5f), new Sprite("assassin.png", 0.5f));
+        d = new Sprite("tank.png", 0.5f);
+        e = new Sprite("norm.png", 0.5f);
+        f = new Sprite("assassin.png", 0.5f);
+        this.addElements(c, d, e, f);
         mainDialog.setText("What CLASS will you choose?", "Tank - High Health", "Normal - Average", "Assassin - High Speed/Attack");
     }
     
     public void chooseItem() {
-    	this.removeElements(a, b, c);
+    	this.removeElements(a, b, c, d, e, f);
     	this.addElements(a, b, c); //make sure they are in order :)
     	a.setLabel("Wand", true);
     	b.setLabel("Holy SFHS iPad", true);
