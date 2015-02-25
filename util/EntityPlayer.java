@@ -22,18 +22,19 @@ public class EntityPlayer extends Entity {
 		this.speed = speed;
 		this.maxHealth = health;
 		this.inventory = new Inventory(3);
+		this.level = 1;
 	}
 	/*
 	 * returns damage + the addedDamage combined
 	 */
 	public double getDamage(){
 		if(inventory.getItem(1) != null) return damage + ((Sword)inventory.getItem(1)).getDamage();
-		else return damage;
+		else return damage + (level * 5);
 	}
 	
 	public double getArmor() {
 		if(inventory.getItem(0) != null) return armor + ((Armor)inventory.getItem(0)).getArmor();
-		else return armor;
+		else return armor + (level/100);
 	}
 	
 	/*
