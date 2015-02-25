@@ -34,8 +34,8 @@ public class StageFour extends Stage{
     @Override
     public void taskPerformed() {
         if(y == 1){y++; stageOne(); return;}
-        if(y == 2){stageTwo(); return;}
-        if(x == 1){stageTwo(); return;}
+        if(y == 2){nextStage(); return;}
+        if(x == 1){nextStage(); return;}
     }
     @Override
     public void init() {
@@ -53,15 +53,17 @@ public class StageFour extends Stage{
         mainDialog.setText("Kanye introduces himself as the captain of your", "squad, and explains you duties on the island.");
     }
     public void stageOne(){
+        this.removeElements(a);
         mainDialog.setText("You have four options here at headquarters.", "1) Go on a Zombie Patrol", "2) Upgrade your weapon", "3) Go after the Mother Zombie", "Going after the Mother Zombie is highly unreccomended", "for beginners."); 
-        this.scheduleTask(100);
+        this.scheduleTask(60);
     }
     public void stageTwo(){
         a.setLabel("Zombie Patrol");
         b = new Choice("Weapon Upgrade");
         c = new Choice("Mother Zombie");
         this.addElements(b, c);
-        if(DataHandler.SHIELD){mainDialog.setText("What would you like to do today?");}
-        else{mainDialog.setText("What's up?");}
+        if(DataHandler.SHIELD){
+            mainDialog.setText("What would you like to do today?");
+        } else{mainDialog.setText("What's up?");}
     }
 }

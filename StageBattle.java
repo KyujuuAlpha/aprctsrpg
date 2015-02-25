@@ -8,6 +8,7 @@ public class StageBattle extends Stage {
 	private Stat playerStat;
 	private OpponentStat opponentStat;
 	private Dialog mainDialog;
+	private Sprite sprite = new Sprite("char.png");
 
 	@Override
 	public void init() {
@@ -29,7 +30,7 @@ public class StageBattle extends Stage {
             BattleHandler.creatureTurn(DataHandler.player, DataHandler.opponent);
             fight();
         } else if(choiceObject == runButton){
-            
+            BattleHandler.Run(DataHandler.player, DataHandler.opponent);
         }
 	}
 
@@ -39,10 +40,11 @@ public class StageBattle extends Stage {
 	
 	public void fight(){
         mainDialog.setText("What will you do next?");
-        playerStat.setText("Player Health: " + DataHandler.player.getHealth());
+        playerStat.setText("Level: " + DataHandler.player.getlevel(), "Player Health: " + DataHandler.player.getHealth());
         opponentStat.setText("Enemy Health: " + DataHandler.opponent.getHealth());
         if(DataHandler.opponent.getHealth() <= 0 || DataHandler.player.getHealth() <= 0){
             DataHandler.battleCompleted = true;
+            this.removeElements(sprite);
             this.setStage(DataHandler.source.getID());
         }
     }

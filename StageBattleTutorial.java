@@ -78,9 +78,10 @@ public class StageBattleTutorial extends Stage {
     }
     
     public void endBattle(){
-        if(DataHandler.SHIELD){mainDialog.setText("Whew! 99 Problems but a Zombie ain't one...");}
-        else{
+        if(DataHandler.SHIELD){
+            mainDialog.setText("Whew! 99 Problems but a Zombie ain't one...");
+        }else{
             mainDialog.setText("You killed the SHIELD scoundrels!");
-       }
+        }
     }
 }
