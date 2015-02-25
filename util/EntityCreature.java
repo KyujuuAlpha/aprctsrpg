@@ -31,9 +31,8 @@ public class EntityCreature extends Entity{
 	/*
 	 * effects health of creature thorugh object player
 	 */
-	public void damageCreature(EntityPlayer player,  double ablilties){
-		if (player != null) this.health = this.health - player.getDamage() ;
-		else this.health = this.health - ablilties;
+	public void damageCreature(EntityPlayer player){
+		if (player != null) this.health = this.health - player.getDamage();
 	}
 	
 	/*

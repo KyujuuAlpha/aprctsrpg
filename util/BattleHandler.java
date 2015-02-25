@@ -11,9 +11,10 @@ public class BattleHandler {
     	if (creature.hitChance() > player.getSpeed()) {
             return false;
         } else {
-    		if(abilities != -1){
+    		if(abilities > -1){
     			if(abilities == 0){
-    				creature.damageCreature(player,player.getAbilities(0));
+    				player.damageAbilityAddition = (int) player.getAbilities(0);
+    				creature.damageCreature(player);
 				}
     			if(abilities == 1){
     				//

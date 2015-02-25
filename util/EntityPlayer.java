@@ -10,6 +10,7 @@ public class EntityPlayer extends Entity {
 	protected Abilities abilities;
 	
 	public int armorAbilityAddition = 0;
+	public int damageAbilityAddition = 0;
 	
 	public EntityPlayer() {
 		super();
@@ -35,8 +36,10 @@ public class EntityPlayer extends Entity {
 	 * returns damage + the addedDamage combined
 	 */
 	public double getDamage(){
-		if(inventory.getItem(1) != null) return damage + ((Sword)inventory.getItem(1)).getDamage();
-		else return damage + (level * 5);
+		int temp = damageAbilityAddition;
+		damageAbilityAddition = 0;
+		if(inventory.getItem(1) != null) return damage + ((Sword)inventory.getItem(1)).getDamage() + temp;
+		else return damage + (level * 5) + temp;
 	}
 	
 	public double getArmor() {
