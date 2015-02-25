@@ -14,24 +14,23 @@ public class BattleHandler {
         }*/
     	if (creature.hitChance() > player.getSpeed()) {
             return false;
-        } 
-    	if(abilities != -1){
-    		for(int i = 0; i>4;i++){
-    			if( player.getAbilities(i) == player.getAbilities(0)){
-    				creature.damageCreature(null,player.getAbilities(0));
-				}
-    			if( player.getAbilities(i) == player.getAbilities(1)) ;
+        }   			
     			
-    			
-    			
-    		}
-    	}
     	
-    	else {
+    		else {
+    		if(abilities != -1){
+        		for(int i = 0; i<4;i++){
+        			if( player.getAbilities(i) == player.getAbilities(0)){
+        				creature.damageCreature(null,player.getAbilities(0));
+    				}
+        			if( player.getAbilities(i) == player.getAbilities(1)){
+        		}
+    		}
             creature.damageCreature(player);
             return true;
         }
     }
+  }
     /*
      * This uses the EntityPLayer object and the EntityCreature object, using the existing methods inside, applies the damage to player
      * 
