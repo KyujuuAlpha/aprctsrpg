@@ -47,7 +47,7 @@ public class EntityCreature extends Entity{
 	 * returns 0-1 as a percent chance of comparison
 	 */
 	public double hitChance(){
-		int temp = gen.nextInt(70);
+		int temp = gen.nextInt(100);
 		return temp/100.0D;
 	}
 	

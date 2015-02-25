@@ -126,12 +126,13 @@ public class StageBattle extends Stage {
 	}
 	
 	private void updateStats(){
-        playerStat.setText("PLAYER STATS - Level: " + (int)DataHandler.player.getLevel() + "\nHealth: " + DataHandler.player.getHealth());
+        playerStat.setText("PLAYER STATS - Level: " + Math.round(DataHandler.player.getLevel()/10)*10 + "\nHealth: " + DataHandler.player.getHealth());
         opponentStat.setText("OPPONENT STATS - Health: " + DataHandler.opponent.getHealth());
     }
 	
 	private void exitBattle() {
 		DataHandler.battleCompleted = true;
+		if(DataHandler.opponent.getHealth() <= 0) DataHandler.player.leveling(DataHandler.opponent);
 		if(DataHandler.player.getHealth() <= 0) this.setStage(10);
 		else this.setStage(DataHandler.source.getID());
 	}

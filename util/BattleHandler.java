@@ -14,12 +14,19 @@ public class BattleHandler {
     		if(abilities > -1){
     			if(abilities == 0){
     				player.damageAbilityAddition = (int) player.getAbilities(0);
-    				creature.damageCreature(player);
 				}
     			if(abilities == 1){
-    				//
+    				player.armorAbilityAddition = (int) player.getAbilities(1);
         		}
+    			if(abilities == 2){
+    				player.speedAbilityAddition = (int) player.getAbilities(2);
+        		}
+    			if(abilities == 3){
+    				player.damageAbilityAddition = (int) player.getAbilities(3);
+        		}
+    			
 	        }
+    		creature.damageCreature(player);
     		return true;
         }
     }

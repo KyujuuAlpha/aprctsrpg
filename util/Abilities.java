@@ -5,7 +5,6 @@ public class Abilities {
 	public String[] names = {null,null,null,null};
 	public Abilities(EntityPlayer player){
 		this.player = player;
-		
 	}
 	public double damageAbility(){
 		return 0;
@@ -22,7 +21,6 @@ public class Abilities {
 	} 
 	public double utilAbility(){
 		return 0;
-		
 	}
 	public String utilAbilityDesc(){
 		return null;

@@ -11,11 +11,12 @@ public class EntityPlayer extends Entity {
 	
 	public int armorAbilityAddition = 0;
 	public int damageAbilityAddition = 0;
+	public int speedAbilityAddition = 0;
 	
 	public EntityPlayer() {
 		super();
 		this.armor = 0.1;
-		this.speed = 0.35;
+		this.speed = 0.45;
 		this.speedX = 1;
 		this.inventory = new Inventory(3);
 		this.abilities = new NormalAbilities(this);
@@ -36,17 +37,19 @@ public class EntityPlayer extends Entity {
 	 * returns damage + the addedDamage combined
 	 */
 	public double getDamage(){
-		int temp = damageAbilityAddition;
-		damageAbilityAddition = 0;
-		if(inventory.getItem(1) != null) return damage + ((Sword)inventory.getItem(1)).getDamage() + temp;
-		else return damage + (level * 5) + temp;
+		  int temp = damageAbilityAddition;
+		  damageAbilityAddition = 0;
+		  if(temp > 0) return temp;
+		  if(inventory.getItem(1) != null) return damage + ((Sword)inventory.getItem(1)).getDamage();
+		  else return damage + (level * 5);
 	}
 	
 	public double getArmor() {
 		int temp = armorAbilityAddition;
 		armorAbilityAddition = 0;
+		if(temp > 0) return temp;
 		if(inventory.getItem(0) != null) return armor + ((Armor)inventory.getItem(0)).getArmor() + temp;
-		else return armor + (level/100) + temp;
+		else return armor + (level/100);
 	}
 	
 	/*
@@ -77,6 +80,9 @@ public class EntityPlayer extends Entity {
 	 * returns speed times the multiplier
 	 */
 	public double getSpeed(){
+		int temp = speedAbilityAddition;
+		speedAbilityAddition = 0;
+		if(temp > 0) return temp;
 		return speed * speedX;
 	}
 	
@@ -164,8 +170,8 @@ public class EntityPlayer extends Entity {
 
 	public void leveling(EntityCreature creature){
 		level = level + ((level * Math.sqrt(creature.getXP()))/100);
-		this.health = this.health + ((getLevel() * health)/7);
-		this.damage = this.damage + ((getLevel() * damage)/4);
+		this.health = this.health + ((getLevel() * health)/10);
+		this.damage = this.damage + ((getLevel() * damage)/6);
 		
 	}
 	public double getLevel(){

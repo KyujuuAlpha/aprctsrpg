@@ -10,30 +10,26 @@ public class TankAbilties extends Abilities{
 	}
 	
 	public String damageAbilityDesc(){
-		String x = "You thrust your weapon into the ground causing the earth to split before you, cuasing you to deal x2 added damage to the enemy";
-		return x;
+		return "You thrust your weapon into the ground causing the earth to split before you, cuasing you to deal x2 added damage to the enemy";
 	}
 	public double defenceAbility(){
 		return player.getArmor() + (player.getArmor() / 2);
 	}
 	public String defenceAbilityDec(){
-		String x = "you use feel energy surrounding your body as your skin hardens to iron cuasing your armor to increase by 1/2";
-		return x;
+		return "you use feel energy surrounding your body as your skin hardens to iron cuasing your armor to increase by 1/2";
 	} 
 	public double utilAbility(){
 		return player.getSpeed() + 0.2;
 		
 	}
 	public String utilAbilityDesc(){
-		String x = "you become insane and increase agility for a short time";
-		return x;
+		return "you become insane and increase agility for a short time";
 	}
 	public double utliAbility(){
-		return 1.00;
+		return player.getDamage() * 2;
 	}
 	public String ultiAbilityDesc(){
-		String x = "You are granted a blessing from the gods and are invincible for a moment";
-		return x;
+		return "You are granted a blessing from the gods and are powerful for a moment";
 				
 	}
 	public String getName(int x){
