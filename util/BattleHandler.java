@@ -7,14 +7,27 @@ public class BattleHandler {
      * 
      * this takes care of changing the health
      */
-    public static boolean playerTurn (EntityPlayer player, EntityCreature creature){
+    public static boolean playerTurn (EntityPlayer player, int abilities, EntityCreature creature){
         /*creature.damageCreature(player);
         if (creature.getHealth() <= 0){
             player.leveling(creature);
         }*/
     	if (creature.hitChance() > player.getSpeed()) {
             return false;
-        } else {
+        } 
+    	if(abilities != -1){
+    		for(int i = 0; i>4;i++){
+    			if( player.getAbilities(i) == player.getAbilities(0)){
+    				creature.damageCreature(null,player.getAbilities(0));
+				}
+    			if( player.getAbilities(i) == player.getAbilities(1)) ;
+    			
+    			
+    			
+    		}
+    	}
+    	
+    	else {
             creature.damageCreature(player);
             return true;
         }
@@ -37,9 +50,10 @@ public class BattleHandler {
     }
     
     public static boolean run(EntityPlayer player, EntityCreature creature){
-        if (player.getSpeed() > creature.hitChance()){
+    	if (creature.hitChance() > player.getSpeed()) {
             return false;
-        } else {
+        } 
+        else {
             return true;
         }
     }
