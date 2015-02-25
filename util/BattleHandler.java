@@ -1,5 +1,7 @@
 package util;
 
+import java.util.Random;
+
 public class BattleHandler {
 
     /*
@@ -12,7 +14,8 @@ public class BattleHandler {
         if (creature.getHealth() <= 0){
             player.leveling(creature);
         }*/
-    	if (creature.hitChance() > player.speedX) {
+    	System.out.println(creature.hitChance() + " " + player.getSpeed());
+    	if (creature.hitChance() > player.getSpeed()) {
             return false;
         } else {
             creature.damageCreature(player);
@@ -28,7 +31,7 @@ public class BattleHandler {
      */
     
     public static boolean creatureTurn (EntityPlayer player, EntityCreature creature){
-        if (player.speedX > creature.hitChance()) {
+        if (player.getSpeed() > creature.hitChance()) {
             return false;
         } else {
             player.damagePlayer(creature);
