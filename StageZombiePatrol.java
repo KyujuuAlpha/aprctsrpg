@@ -17,9 +17,10 @@ public class StageZombiePatrol extends Stage {
         mainDialog = new Dialog("");
         this.addElements(mainDialog, a);
         if(DataHandler.battleCompleted) {
+        	this.removeElements(a);
     		DataHandler.battleCompleted = false;
     		mainDialog.setText("Whew! 99 Problems but a Zombie ain't one...");
-    		scheduleTask(30);
+    		scheduleTask(40);
     		return;
     	}
         mainDialog.setText("A wild zombie attacked!");
