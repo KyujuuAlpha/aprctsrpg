@@ -1,7 +1,7 @@
 import ui.elem.*;
 import ui.*;
 
-public class WeaponUpgrade extends Stage{
+public class StageWeaponUpgrade extends Stage{
     private Dialog mainDialog;
     private Choice a;
     private Choice b;

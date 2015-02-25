@@ -2,7 +2,7 @@ import ui.*;
 import ui.elem.*;
 import util.*;
 import java.util.Random;
-public class EndGame extends Stage {
+public class StageEndGame extends Stage {
     private Dialog mainDialog;
     private Choice a;
     private int x = 0;

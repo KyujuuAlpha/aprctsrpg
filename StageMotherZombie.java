@@ -3,7 +3,7 @@ import ui.elem.*;
 import util.*;
 import java.util.Random;
 
-public class MotherZombie extends Stage {
+public class StageMotherZombie extends Stage {
     private Dialog mainDialog;
     private Choice a;
     private Choice b;

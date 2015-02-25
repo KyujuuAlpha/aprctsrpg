@@ -3,7 +3,7 @@ import ui.elem.*;
 import util.*;
 import java.util.Random;
 
-public class ZombiePatrol extends Stage {
+public class StageZombiePatrol extends Stage {
     private Dialog mainDialog;
     private Choice a;
     private Choice b;

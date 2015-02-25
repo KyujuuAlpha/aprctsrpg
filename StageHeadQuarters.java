@@ -1,7 +1,7 @@
 import ui.elem.*;
 import ui.*;
 
-public class HeadQuarters extends Stage{
+public class StageHeadQuarters extends Stage{
     private Dialog mainDialog;
     private Choice a;
     private Choice b;
