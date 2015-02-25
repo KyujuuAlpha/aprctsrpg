@@ -77,7 +77,7 @@ public class StagePrologue extends Stage {
         a.setLabel("Tank", true);
         b.setLabel("Normal", true);
         c.setLabel("Assassin", true);
-        this.addElements(c);
+        this.addElements(c, new Sprite("tank.png", 0.5f), new Sprite("norm.png", 0.5f), new Sprite("assassin.png", 0.5f));
         mainDialog.setText("What CLASS will you choose?", "Tank - High Health", "Normal - Average", "Assassin - High Speed/Attack");
     }
     
