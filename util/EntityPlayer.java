@@ -69,7 +69,8 @@ public class EntityPlayer extends Entity {
 	public double healPlayer(double item){
 		if (item + health >= health)
 			{
-				health = maxHealth;
+			this.maxHealth = this.maxHealth + ((getLevel() * maxHealth)/7);
+			this.health = maxHealth;
 				return health;
 			}
 		else return health + item;
@@ -170,7 +171,7 @@ public class EntityPlayer extends Entity {
 
 	public void leveling(EntityCreature creature){
 		level = level + ((level * Math.sqrt(creature.getXP()))/70);
-		this.health = this.health + ((getLevel() * health)/7);
+		this.maxHealth = this.maxHealth + ((getLevel() * maxHealth)/7);
 		this.damage = this.damage + ((getLevel() * damage)/4);
 		
 	}
