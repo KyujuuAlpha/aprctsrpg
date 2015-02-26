@@ -9,9 +9,9 @@ public class EntityPlayer extends Entity {
 	protected Inventory inventory;
 	protected Abilities abilities;
 	
-	public int armorAbilityAddition = 0;
-	public int damageAbilityAddition = 0;
-	public int speedAbilityAddition = 0;
+	public double armorAbilityAddition = 0;
+	public double damageAbilityAddition = 0;
+	public double speedAbilityAddition = 0;
 	
 	public EntityPlayer() {
 		super();
@@ -37,7 +37,7 @@ public class EntityPlayer extends Entity {
 	 * returns damage + the addedDamage combined
 	 */
 	public double getDamage(){
-		  int temp = damageAbilityAddition;
+		  double temp = damageAbilityAddition;
 		  damageAbilityAddition = 0;
 		  if(temp > 0) return temp;
 		  if(inventory.getItem(1) != null) return damage + ((Sword)inventory.getItem(1)).getDamage();
@@ -45,7 +45,7 @@ public class EntityPlayer extends Entity {
 	}
 	
 	public double getArmor() {
-		int temp = armorAbilityAddition;
+		double temp = armorAbilityAddition;
 		armorAbilityAddition = 0;
 		if(temp > 0) return temp;
 		if(inventory.getItem(0) != null) return armor + ((Armor)inventory.getItem(0)).getArmor() + temp;
@@ -81,7 +81,7 @@ public class EntityPlayer extends Entity {
 	 * returns speed times the multiplier
 	 */
 	public double getSpeed(){
-		int temp = speedAbilityAddition;
+		double temp = speedAbilityAddition;
 		speedAbilityAddition = 0;
 		if(temp > 0) return temp;
 		return speed * speedX;

@@ -7,22 +7,22 @@ public class BattleHandler {
      * 
      * this takes care of changing the health
      */
-    public static boolean playerTurn (EntityPlayer player, int abilities, EntityCreature creature){
-    	if (creature.hitChance() > player.getSpeed()) {
-            return false;
+    public static boolean playerTurn (EntityPlayer player, int abilities, EntityCreature creature){//return true or false
+    	if (creature.hitChance() > player.getSpeed()) {// checks for return value of the condition to be true
+            return false;//if true then returns false, stepping out of the class
         } else {
     		if(abilities > -1){
     			if(abilities == 0){
-    				player.damageAbilityAddition = (int) player.getAbilities(0);
+    				player.damageAbilityAddition =  player.getAbilities(0);//checks for the same same memory allocation/location
 				}
     			if(abilities == 1){
-    				player.armorAbilityAddition = (int) player.getAbilities(1);
+    				player.armorAbilityAddition =  player.getAbilities(1);// Steps int
         		}
     			if(abilities == 2){
-    				player.speedAbilityAddition = (int) player.getAbilities(2);
+    				player.speedAbilityAddition =  player.getAbilities(2);
         		}
     			if(abilities == 3){
-    				player.damageAbilityAddition = (int) player.getAbilities(3);
+    				player.damageAbilityAddition = player.getAbilities(3);
         		}
     			
 	        }
