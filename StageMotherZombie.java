@@ -28,32 +28,38 @@ public class StageMotherZombie extends Stage {
     @Override
     public void choiceClicked(Element elementVar) {
         Choice choiceObject = (Choice)elementVar;
-        if(choiceObject.getLabel().equals("Continue")){
+        if(choiceObject.getLabel().equals("Continue") && x == 0){
             battleOne();
+            x++;
             return;
         }
-        if(choiceObject.getLabel().equals("First Obstacle...Let's Go!")){
+        if(choiceObject.getLabel().equals("First Obstacle...Let's Go!") && x == 1){
             DataHandler.prepareBattle(DataHandler.player, Boss1, this);
             this.setStage(0);
+            x++;
             return;
         }
-        if(choiceObject.getLabel().equals("Round Two...Fight!!!")){
+        if(choiceObject.getLabel().equals("Round Two...Fight!!!") && x == 2){
             DataHandler.prepareBattle(DataHandler.player, Boss2, this);
             this.setStage(0);
+            x++;
             return;
         }
-        if(choiceObject.getLabel().equals("Round Three...Bring it on!!!")){
+        if(choiceObject.getLabel().equals("Round Three...Bring it on!!!") && x == 3){
             DataHandler.prepareBattle(DataHandler.player, Boss3, this);
             this.setStage(0);
+            x++;
             return;
         }
-        if(choiceObject.getLabel().equals("What?")){
+        if(choiceObject.getLabel().equals("What?") && x == 4){
             nextStage();
         }
     }
     
     @Override
     public void taskPerformed() {
+        if(x == 1){ x++; battleOne(); return;}
+        if(x == 2){ x++; battleTwo(); return;}
     }
     
     public void battleOne(){

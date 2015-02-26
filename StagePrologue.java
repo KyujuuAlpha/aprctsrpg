@@ -2,6 +2,29 @@ import ui.*;
 import ui.elem.*;
 import util.*;
 public class StagePrologue extends Stage {
+    /* 
+     * In every stage class, there will for sure be three class:
+     *           choiceClicked(): assigns the button clicked to the variable choiceObject and looks through the conditionals, acting accordingly
+     *           taskPerformed(): used in conjunction with the scheduleTask() method. After the specified amount of time, the method will looks through the conditionals within
+     *           init(): the method that is first looked at in every class
+     *Usually, withiin every init() class:
+     *           1. the choices are initialized: the choices are the buttons on the left side of the gui. At this point, they are given labels
+     *           2. the mainDialog, which is the center text, is initialized and text is assigned to it.
+     *           3. the this.addElements() method is so the external parameters (the choice and mainDialog) are added to the gui and are visible
+     *           
+     * This is the prologue stage, where the player chooses what weapon they will use and what character class they will use
+     * Character classes:
+     *           Tank: higher hp, but lower damage
+     *           Normal: normal hp, with normal damage
+     *           Assassin: faster, with lower hp but higher attack
+     * The weapons:
+     *           Wand: cause Harry Potter
+     *           Holy SFHS iPad: cause why not
+     *           Pistol: cause stereotypical zombie game
+     * 
+     * After every stage, the method nextStage() will be used to tell the engine to move to the next stage listed in the array.
+     * The next stage in the order will be stageTeam();
+     */
     private Dialog mainDialog;
     private Choice a;
     private Choice b;    
@@ -20,27 +43,27 @@ public class StagePrologue extends Stage {
         }
         
         if(choiceObject.getLabel().equals("Next")) {
-        	if(DataHandler.player == null) {
-	            chooseClass();
-	            this.addElements(b);
-        	} else {
-        		this.nextStage();
-        	}
+            if(DataHandler.player == null) {
+                chooseClass();
+                this.addElements(b);
+            } else {
+                this.nextStage();
+            }
             return;
         }
         
         if(choiceObject.getLabel().equals("Tank")){
-        	DataHandler.player = new Tank();
+            DataHandler.player = new Tank();
             chooseItem();
             return;
         } else if(choiceObject.getLabel().equals("Normal")){
-        	DataHandler.player = new EntityPlayer();
-        	chooseItem();
-        	return;
+            DataHandler.player = new EntityPlayer();
+            chooseItem();
+            return;
         } else if(choiceObject.getLabel().equals("Assassin")){
-        	DataHandler.player = new Assassin();
-        	chooseItem();
-        	return;
+            DataHandler.player = new Assassin();
+            chooseItem();
+            return;
         }
         
         if(choiceObject.getLabel().equals("Wand")){
@@ -88,16 +111,16 @@ public class StagePrologue extends Stage {
     }
     
     public void chooseItem() {
-    	this.removeElements(a, b, c, d, e, f);
-    	this.addElements(a, b, c); //make sure they are in order :)
-    	a.setLabel("Wand", true);
-    	b.setLabel("Holy SFHS iPad", true);
-    	c.setLabel("Pistol", true);
-    	mainDialog.setText("You wake up and get ready to leave your apartment.", "What weapon will you take?", "Option 1: Wand", "Option 2: Holy SFHS iPad", "Option 3: Pistol");
+        this.removeElements(a, b, c, d, e, f);
+        this.addElements(a, b, c); //make sure they are in order :)
+        a.setLabel("Wand", true);
+        b.setLabel("Holy SFHS iPad", true);
+        c.setLabel("Pistol", true);
+        mainDialog.setText("You wake up and get ready to leave your apartment.", "What weapon will you take?", "Option 1: Wand", "Option 2: Holy SFHS iPad", "Option 3: Pistol");
     }
     
     public void poststage() {
-    	this.removeElements(b, c);
+        this.removeElements(b, c);
         a.setLabel("Next", true);
         mainDialog.setText("You leave your apartment, after locking all your doors and windows.", "The other tenants of your building have long since left.", "One 50 year old man claimed to be smuggling out a 14 year old girl whose blood has the cure to Ebola Z.", "You don't care about any of this.", "With food, fresh water, and ammo running low, you have to get out.", "Where will you go?" );
     }
