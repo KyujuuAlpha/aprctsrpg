@@ -3,6 +3,7 @@ import ui.elem.*;
 import util.*;
 
 public class StageBattleTutorial extends Stage {
+    //declaring variables
     private Dialog mainDialog;
     private Choice a;
     private Choice b;
@@ -11,17 +12,21 @@ public class StageBattleTutorial extends Stage {
     
     @Override
     public void init() {
+        //a creature needs to be created, as it will be the opponent in this case
         c1 = new EntityCreature(10.0, 200.0);
         a = new Choice("Continue");
         b = new Choice();
         mainDialog = new Dialog("");
         this.addElements(mainDialog, a);
+        //this conditional checks if the battle is completed
+        //if it is, then the stage moves on
         if(DataHandler.battleCompleted) {
             a.setLabel("Ok");
             DataHandler.battleCompleted = false;
             endBattle();
             return;
         }
+        //just gives a different dialog if the player did not join SHIELD
         if(DataHandler.SHIELD != true){ 
             mainDialog.setText("A wild SHIELD attacked!!!");
         } else { 
@@ -49,11 +54,13 @@ public class StageBattleTutorial extends Stage {
         mainDialog.setText("As you approach the SHIELD soldiers with your hands in the air,", "a zombie pops up behind you!", "Time to show them what you're made of!");
     }
     
+    //all the methods below are part of a tutorial that teaches the user how to use the interface
     public void tutorialStart(){
         a.setLabel("Attack", false);
         b.setLabel("Run!", false);
         this.addElements(b);
         mainDialog.setText("Welcome to the Fight Screen!!!");
+        //this is the timer for when to check the method taskPerformed
         this.scheduleTask(30);
     }
     

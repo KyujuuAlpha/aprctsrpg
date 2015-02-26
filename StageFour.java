@@ -9,6 +9,9 @@ public class StageFour extends Stage{
     private int x = 0;
     private int y = 0;
     
+    //this is a tutorial of what options are available to the user
+    //after the tutorial, the stage goes to the StageHeadQuarters
+    
     @Override
     public void choiceClicked(Element elementVar) {
         Choice choiceObject = (Choice)elementVar;

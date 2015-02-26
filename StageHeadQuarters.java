@@ -2,10 +2,18 @@ import ui.elem.*;
 import ui.*;
 
 public class StageHeadQuarters extends Stage{
+    /*
+     * here is where the headquarters is.
+     * As Kanye or JARVIS described, there are two options
+     * if you die during either of the battles, you will lose the game
+     * if you win in Zombie Patrol, you return to HeadQuarters
+     * if you win in Mother Zombie, you advance to StageEndGame
+     */
     private Dialog mainDialog;
     private Choice a;
     private Choice c;
     private Stat stat;
+    
     
     @Override
     public void choiceClicked(Element elementVar) {

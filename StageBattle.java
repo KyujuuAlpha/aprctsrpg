@@ -1,5 +1,4 @@
 import java.util.Random;
-
 import ui.*;
 import ui.elem.*;
 import util.Assassin;
@@ -8,16 +7,23 @@ import util.EntityCreature;
 import util.Item;
 import util.Tank;
 import util.Zombie;
-
+/*
+ * This is the class where all the battles are handled
+ */
 public class StageBattle extends Stage {
+    //initializing choices
 	private Choice fightButton;
 	private Choice ability0;
 	private Choice ability1;
 	private Choice ability2;
 	private Choice ability3;
 	private Choice runButton;
+	//initializing the stats
+	//the stats are located at the top and the bottom of the screen on the upper and lower right
 	private Stat playerStat;
 	private OpponentStat opponentStat;
+	
+	
 	private Dialog mainDialog;
 	
 	private int scheduleCode = 0;
@@ -29,26 +35,28 @@ public class StageBattle extends Stage {
 	@Override
 	public void init() {
 		if(DataHandler.player == null) { this.setStage(1); return; } //if there is no player, then just start stage prologue for character creation
-		itemVar2 = null;
-		fightButton = new Choice("Attack");
-		ability0 = new Choice(DataHandler.player.getAbilitiesName(0));
+		itemVar2 = null; //sets the Item to null
+		fightButton = new Choice("Attack"); //creates the important attack button
+		ability0 = new Choice(DataHandler.player.getAbilitiesName(0)); //gets the abilities' name using a method that does just that and adds it as a new choice
 		ability1 = new Choice(DataHandler.player.getAbilitiesName(1));
 		ability2 = new Choice(DataHandler.player.getAbilitiesName(2));
 		ability3 = new Choice(DataHandler.player.getAbilitiesName(3));
-		runButton = new Choice("Run!");
-		playerStat = new Stat();
+		runButton = new Choice("Run!"); //the all powerful run method that never works
+		playerStat = new Stat(); //creates the stat. The player's are on the top right and the opponent's are on the bottom right
         opponentStat = new OpponentStat();
         mainDialog = new Dialog();
 		this.addElements(fightButton, ability0, ability1, ability2, ability3, runButton, playerStat, opponentStat, mainDialog);
+		
+		//the following methods check what picture should be put on the rightmost pane
 		if(DataHandler.player instanceof Tank) this.addElements(new Sprite("tank.png", 0.5f));
 		else if(DataHandler.player instanceof Assassin) this.addElements(new Sprite("assassin.png", 0.5f));
 		else this.addElements(new Sprite("norm.png", 0.5f));
-		
+				
 		if(DataHandler.opponent instanceof Zombie) {
-			if(new Random().nextInt(2) == 0) this.addElements(new Sprite("minion.png", 0.5f));
+			if(new Random().nextInt(2) == 0) this.addElements(new Sprite("minion.png", 0.5f)); //a random conditional to determine which one will be added
 			else this.addElements(new Sprite("minion2.png", 0.5f));
 		} else if(DataHandler.source instanceof StageMotherZombie) {
-			switch(new Random().nextInt(3)) {
+			switch(new Random().nextInt(3)) { 
 				case 0: this.addElements(new Sprite("boss1.png", 0.5f)); break;
 				case 1: this.addElements(new Sprite("boss2.png", 0.5f)); break;
 				case 2: this.addElements(new Sprite("boss3.png", 0.5f)); break;
@@ -72,7 +80,7 @@ public class StageBattle extends Stage {
 			Choice choiceObject = (Choice)elementVar;
 			if(choiceObject == fightButton) {
 				boolean flag = BattleHandler.playerTurn(DataHandler.player, selectedAbility, DataHandler.opponent);
-				updateStats();
+				updateStats();//a method to update the stats
 	            if(flag) mainDialog.appendText("\nYou dealt damage!");
 	            else mainDialog.appendText("\nYour attack missed!");
 	            scheduleCode = 2;
