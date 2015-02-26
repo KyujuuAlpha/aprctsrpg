@@ -19,10 +19,10 @@ public class StageMotherZombie extends Stage {
         b = new Choice();
         mainDialog = new Dialog();
         this.addElements(mainDialog, a);
-        Boss1 = new EntityCreature(1.0, 1.0);
-        Boss2 = new EntityCreature(1.0, 1.0);
-        Boss3 = new EntityCreature(1.0, 1.0);
-        MotherZombie = new Mother(1.0, 1.0);
+        Boss1 = new EntityCreature(100.0, 500.0);
+        Boss2 = new EntityCreature(75.0, 750.0);
+        Boss3 = new EntityCreature(150.0, 500.0);
+        MotherZombie = new Mother(200.0, 1000.0);
         if(DataHandler.battleCompleted) {
             DataHandler.battleCompleted = false;
             if(x == 1) {
