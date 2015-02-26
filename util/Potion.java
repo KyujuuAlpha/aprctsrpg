@@ -1,6 +1,6 @@
 package util;
 
-public class Potion extends Item {
+public class Potion extends Item {//inherits the Class Items methods and variabels
 	protected double heal;
 	/*
 	 * defualt

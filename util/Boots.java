@@ -6,7 +6,7 @@ public class Boots extends Item{
 		super("defualtBoots");
 		
 	}
-	public Boots(double speedMutliplier, String name){
+	public Boots(double speedMutliplier, String name){//requires values of a double var and a string var / text
 		super(name);
 		this.speedX = speedMutliplier;
 	}

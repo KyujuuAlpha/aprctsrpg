@@ -13,20 +13,20 @@ public class EntityPlayer extends Entity {
 	public double damageAbilityAddition = 0;
 	public double speedAbilityAddition = 0;
 	
-	public EntityPlayer() {
-		super();
+	public EntityPlayer() {//defualt constructer
+		super();//invokes super class constructer
 		this.armor = 0.1;
 		this.speed = 0.45;
 		this.speedX = 1;
-		this.inventory = new Inventory(3);
-		this.abilities = new NormalAbilities(this);
+		this.inventory = new Inventory(3);//assignes the array of Inventory to a size of 4 holding spaces
+		this.abilities = new NormalAbilities(this);//constructs a new class of Normal abilities that take in this class as it's explicit parameters
 		
 	}
 	
 	
 	public EntityPlayer(double armor, double health, double speed, double damage){
-		super(health, damage);
-		this.armor = armor;
+		super(health, damage);//invokes the super constructer while feeding values to the explicit paremters
+		this.armor = armor;//assignes this armor of this class to the explicit paramenters of the explicit parameters
 		this.speed = speed;
 		this.maxHealth = health;
 		this.inventory = new Inventory(3);
@@ -36,12 +36,12 @@ public class EntityPlayer extends Entity {
 	/*
 	 * returns damage + the addedDamage combined
 	 */
-	public double getDamage(){
-		  double temp = damageAbilityAddition;
+	public double getDamage(){//reutrn type double
+		  double temp = damageAbilityAddition;//creation of a temparary variable
 		  damageAbilityAddition = 0;
-		  if(temp > 0) return temp;
-		  if(inventory.getItem(1) != null) return damage + ((Sword)inventory.getItem(1)).getDamage();
-		  else return damage + (level * 5);
+		  if(temp > 0) return temp;//exits out of method
+		  if(inventory.getItem(1) != null) return damage + ((Sword)inventory.getItem(1)).getDamage();//casts get item one which holds damage from a sword  as a sword, that holds the value of damage
+		  else return damage + (level * 5);//exit
 	}
 	
 	public double getArmor() {
@@ -66,7 +66,7 @@ public class EntityPlayer extends Entity {
 	 * 
 	 * takes into account error in going over full health, no worries
 	 */
-	public double healPlayer(double item){
+	public double healPlayer(double item){//takes in the input of the explicit parameters of a double value
 		if (item + health >= health)
 			{
 			this.maxHealth = this.maxHealth + ((getLevel() * maxHealth)/7);
@@ -88,11 +88,11 @@ public class EntityPlayer extends Entity {
 	}
 	
 	public Item getCurrentHeldItem() {
-		return this.inventory.getItem(this.heldItemIndex);
+		return this.inventory.getItem(this.heldItemIndex);//returns the inventory class that was created above, invoke a method apon it, with the explicit parementers of the heldItemIndex
 	}
 	
 	public void setHeldItem(Item item) {
-		if(this.inventory.getSlot(item) > -1) this.heldItemIndex = this.inventory.getSlot(item);
+		if(this.inventory.getSlot(item) > -1) this.heldItemIndex = this.inventory.getSlot(item);//sets the value of setItemIdex from the constructed clas inventory and invokes the method getSolt
 	}
 	
 	/*
@@ -101,16 +101,16 @@ public class EntityPlayer extends Entity {
 	 * works off of instanceof , error will occur if one of the following items aren't used "Armor, Potion, Sword, Boot"
 	 */
 	public void addItem(Item item){
-		for (int i = 0; i < inventory.size(); i++){
+		for (int i = 0; i < inventory.size(); i++){//for loop that loop as much as invetory size method return value
 			if(inventory.getItem(i) == item) {
 				setHeldItem(item);
 				removeItem(heldItemIndex);	
 				break;
 			}	
 		}
-		if(item instanceof Armor)
+		if(item instanceof Armor)//checks to see if the item value points to the same memeorylocation as Armor
 			{
-				inventory.setSlot(0,item);
+				inventory.setSlot(0,item);//invokes setSlot apon inventory with the explicit parameters
 			}
 		else if (item instanceof Potion)
 			{

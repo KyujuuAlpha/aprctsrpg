@@ -1,11 +1,11 @@
 package util;
 
 public class NormalAbilities extends Abilities {
-	public NormalAbilities(EntityPlayer player) {
-		super(player);
-		this.names = new String[]{"Iron Fist","Extra Armor", "Nikes", "Chuk-norris to the Face"};
+	public NormalAbilities(EntityPlayer player) {//Constructor requires  variable Type EbtityPlayer
+		super(player);//invokes super constructoer
+		this.names = new String[]{"Iron Fist","Extra Armor", "Nikes", "Chuk-norris to the Face"};//constructed new String and assigned the values of the Strings
 	}
-	public double damageAbility(){
+	public double damageAbility(){//returns type double
 		return player.getDamage() * 2.3;
 	}
 	

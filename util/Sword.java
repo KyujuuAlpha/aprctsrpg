@@ -1,6 +1,6 @@
 package util;
 
-public class Sword extends Item {
+public class Sword extends Item {//inherits the methods and variables from Item Class
 	private double damage;
 	/*
 	 * defualt
