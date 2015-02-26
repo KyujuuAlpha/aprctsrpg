@@ -1,10 +1,12 @@
 import java.util.Random;
+
 import ui.*;
 import ui.elem.*;
 import util.Assassin;
 import util.BattleHandler;
 import util.EntityCreature;
 import util.Item;
+import util.Mother;
 import util.Tank;
 import util.Zombie;
 /*
@@ -56,11 +58,14 @@ public class StageBattle extends Stage {
 			if(new Random().nextInt(2) == 0) this.addElements(new Sprite("minion.png", 0.5f)); //a random conditional to determine which one will be added
 			else this.addElements(new Sprite("minion2.png", 0.5f));
 		} else if(DataHandler.source instanceof StageMotherZombie) {
-			switch(new Random().nextInt(3)) { 
-				case 0: this.addElements(new Sprite("boss1.png", 0.5f)); break;
-				case 1: this.addElements(new Sprite("boss2.png", 0.5f)); break;
-				case 2: this.addElements(new Sprite("boss3.png", 0.5f)); break;
-				default: this.addElements(new Sprite("guy.png", 0.5f)); break;
+			if(DataHandler.opponent instanceof Mother) this.addElements(new Sprite("boss4.png", 0.5f));
+			else {
+				switch(new Random().nextInt(3)) { 
+					case 0: this.addElements(new Sprite("boss1.png", 0.5f)); break;
+					case 1: this.addElements(new Sprite("boss2.png", 0.5f)); break;
+					case 2: this.addElements(new Sprite("boss3.png", 0.5f)); break;
+					default: this.addElements(new Sprite("guy.png", 0.5f)); break;
+				}
 			}
 		} else if(DataHandler.opponent instanceof EntityCreature) this.addElements(new Sprite("guy.png", 0.5f));
 		fightButton.setEnabled(false);
