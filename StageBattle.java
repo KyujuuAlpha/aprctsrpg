@@ -47,7 +47,6 @@ public class StageBattle extends Stage {
         playerStat = new Stat(); //creates the stat. The player's are on the top right and the opponent's are on the bottom right
         opponentStat = new OpponentStat();
         mainDialog = new Dialog();
-<<<<<<< HEAD
 		this.addElements(fightButton, ability0, ability1, ability2, ability3, runButton, playerStat, opponentStat, mainDialog);
 		
 		//the following methods check what picture should be put on the rightmost pane
@@ -73,31 +72,6 @@ public class StageBattle extends Stage {
 		runButton.setEnabled(false);
 		playerTurn();
 	}
-=======
-        this.addElements(fightButton, ability0, ability1, ability2, ability3, runButton, playerStat, opponentStat, mainDialog);
-        
-        //the following methods check what picture should be put on the rightmost pane
-        if(DataHandler.player instanceof Tank) this.addElements(new Sprite("tank.png", 0.5f));
-        else if(DataHandler.player instanceof Assassin) this.addElements(new Sprite("assassin.png", 0.5f));
-        else this.addElements(new Sprite("norm.png", 0.5f));
-                
-        if(DataHandler.opponent instanceof Zombie) {
-            if(new Random().nextInt(2) == 0) this.addElements(new Sprite("minion.png", 0.5f)); //a random conditional to determine which one will be added
-            else this.addElement        s(new Sprite("minion2.png", 0.5f));
-        } else if(DataHandler.source instanceof StageMotherZombie) {
-            switch(new Random().nextInt(3)) { 
-                //adding the appropriate sprite to the screen
-                case 0: this.addElements(new Sprite("boss1.png", 0.5f)); break;
-                case 1: this.addElements(new Sprite("boss2.png", 0.5f)); break;
-                case 2: this.addElements(new Sprite("boss3.png", 0.5f)); break;
-                default: this.addElements(new Sprite("guy.png", 0.5f)); break;
-            }
-        } else if(DataHandler.opponent instanceof EntityCreature) this.addElements(new Sprite("guy.png", 0.5f));
-        fightButton.setEnabled(false);
-        runButton.setEnabled(false);
-        playerTurn();
-    }
->>>>>>> origin/master
 
     @Override
     public void choiceClicked(Element elementVar) {
