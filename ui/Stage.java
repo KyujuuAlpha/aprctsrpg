@@ -99,7 +99,7 @@ public abstract class Stage {
      * Get the element list of this stage
      */
     public ArrayList<Element> getElements() {
-    	return elementList;
+    	return elementList; //return type is an arraylist type element so return the elementlist
     }
     
     /**
@@ -133,6 +133,6 @@ public abstract class Stage {
     }
     
     public void resetIncrement() {
-    	stageIncrement = 0;
+    	stageIncrement = 0; //reset this control variable to its default state
     }
 }
