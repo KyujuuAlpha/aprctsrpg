@@ -57,6 +57,7 @@ public class StageBattle extends Stage {
 			else this.addElements(new Sprite("minion2.png", 0.5f));
 		} else if(DataHandler.source instanceof StageMotherZombie) {
 			switch(new Random().nextInt(3)) { 
+			    //adding the appropriate sprite to the screen
 				case 0: this.addElements(new Sprite("boss1.png", 0.5f)); break;
 				case 1: this.addElements(new Sprite("boss2.png", 0.5f)); break;
 				case 2: this.addElements(new Sprite("boss3.png", 0.5f)); break;
