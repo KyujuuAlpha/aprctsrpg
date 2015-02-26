@@ -6,10 +6,10 @@ public class NormalAbilities extends Abilities {
 		this.names = new String[]{"Iron Fist","Extra Armor", "Nikes", "Chuk-norris to the Face"};//constructed new String and assigned the values of the Strings
 	}
 	public double damageAbility(){//returns type double
-		return player.getDamage() * 2.3;
+		return player.getDamage() * 2.3;//calls appon getDamage invoked apon the player variable  then retuns that by te multiplier
 	}
 	
-	public String damageAbilityDesc(){
+	public String damageAbilityDesc(){//returns a string value
 		
 		return  "Your fists become more powerful that your weapon, dealing extra damage";
 	}

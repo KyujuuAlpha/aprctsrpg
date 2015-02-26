@@ -114,7 +114,7 @@ public class EntityPlayer extends Entity {
 			}
 		else if (item instanceof Potion)
 			{
-				this.health = (healPlayer(((Potion)item).getHeal())); 
+				this.health = (healPlayer(((Potion)item).getHeal())); //assignes this health to return value of health value with the explicit parameters of item poton.getHeal return value
 			}
 		else if (item instanceof Sword)
 			{
@@ -128,7 +128,7 @@ public class EntityPlayer extends Entity {
 	}
 	public double getAbilities(int abilityNum){
 		switch(abilityNum){
-		case 0: return abilities.damageAbility();
+		case 0: return abilities.damageAbility();//check to see equivuialce, then returns the abilitie class method
 		case 1: return abilities.defenceAbility();
 		case 2: return abilities.utilAbility();
 		case 3: return abilities.ultiAbility();

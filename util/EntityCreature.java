@@ -55,8 +55,8 @@ public class EntityCreature extends Entity{
 		return getDamage() + maxHealth;
 	}
 	public void levelUp(EntityPlayer player){
-		this.health = this.health + ((player.getLevel() * health)/5);
-		this.damage = this.damage + ((player.getLevel() * damage)/3);
+		this.health = this.health + ((player.getLevel() * health)/5);//scales the health
+		this.damage = this.damage + ((player.getLevel() * damage)/3);//scales the damage
 	}
 
 }
