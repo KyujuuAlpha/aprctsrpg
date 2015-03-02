@@ -18,6 +18,7 @@ public class EntityPlayer extends Entity {
 		this.armor = 0.1;
 		this.speed = 0.45;
 		this.speedX = 1;
+		this.level = 1;
 		this.inventory = new Inventory(3);
 		this.abilities = new NormalAbilities(this);
 		
