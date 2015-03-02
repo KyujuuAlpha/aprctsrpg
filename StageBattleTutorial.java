@@ -7,6 +7,7 @@ public class StageBattleTutorial extends Stage {
     private Dialog mainDialog;
     private Choice a;
     private Choice b;
+    private Choice c;
     private int x = 0;
     private EntityCreature c1;
     
@@ -38,7 +39,12 @@ public class StageBattleTutorial extends Stage {
     public void choiceClicked(Element elementVar) {
         Choice choiceObject = (Choice)elementVar;
         if(choiceObject.getLabel().equals("Continue")){ x++; tutorialStart(); return; }
-        if(choiceObject.getLabel().equals("Ok")) nextStage();
+        else if(choiceObject.getLabel().equals("Ok")) { nextStage(); return; }
+        else if(choiceObject == c) {
+        	x = 5;
+        	scheduleTask(0);
+        	return;
+        }
     }
     
     @Override
@@ -58,7 +64,8 @@ public class StageBattleTutorial extends Stage {
     public void tutorialStart(){
         a.setLabel("Attack", false);
         b.setLabel("Run!", false);
-        this.addElements(b);
+        c = new Choice("Skip");
+        this.addElements(b, c);
         mainDialog.setText("Welcome to the Fight Screen!!!");
         //this is the timer for when to check the method taskPerformed
         this.scheduleTask(30);
