@@ -10,6 +10,7 @@ import java.util.ConcurrentModificationException;
 
 import ui.elem.*;
 
+@SuppressWarnings("serial")
 public class Display extends JFrame implements ActionListener { 
     private JPanel statsMenu; //declare new jpanels
     private JPanel statsMenu2;

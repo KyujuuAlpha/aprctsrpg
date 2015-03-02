@@ -1,7 +1,6 @@
 import ui.*;
 import ui.elem.*;
-import util.*;
-import java.util.Random;
+
 public class StageEndGame extends Stage {
     private Dialog mainDialog;
     private Choice a;
@@ -9,7 +8,7 @@ public class StageEndGame extends Stage {
     @Override
     public void init() {
         mainDialog = new Dialog("");
-        Choice a = new Choice("So what now?");
+        a = new Choice("So what now?");
         this.addElements(mainDialog, a);
         mainDialog.setText("You've disrupted the time-space continuum.", "Humans weren't supposed to survive the apocalypse.");
     }

@@ -1,7 +1,6 @@
 package util;
 
 public class Inventory {
-	private int heldItemIndex;
 	private Item[] itemList;
 	
 	public Inventory(int invSize) {

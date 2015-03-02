@@ -1,8 +1,5 @@
 package util;
 
-import java.util.*;
-import java.math.*;
-
 public class EntityPlayer extends Entity {
 	protected double armor,speed,speedX,level;
 	protected int heldItemIndex;

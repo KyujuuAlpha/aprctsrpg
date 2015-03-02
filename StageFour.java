@@ -4,8 +4,6 @@ import ui.*;
 public class StageFour extends Stage{
     private Dialog mainDialog;
     private Choice a;
-    private Choice b;
-    private Choice c;
     private int x = 0;
     private int y = 0;
     

@@ -1,12 +1,10 @@
 import ui.*;
 import ui.elem.*;
 import util.*;
-import java.util.Random;
 
 public class StageMotherZombie extends Stage {
     private Dialog mainDialog;
     private Choice a;
-    private Choice b;
     private EntityCreature Boss1;
     private EntityCreature Boss2;
     private EntityCreature Boss3;
@@ -16,7 +14,6 @@ public class StageMotherZombie extends Stage {
     @Override
     public void init() {
         a = new Choice("Continue");
-        b = new Choice();
         mainDialog = new Dialog();
         this.addElements(mainDialog, a);
         Boss1 = new EntityCreature(100.0, 500.0);
