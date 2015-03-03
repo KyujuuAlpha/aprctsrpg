@@ -13,10 +13,10 @@ public class BattleHandler {
         } else {
     		if(abilities > -1){
     			if(abilities == 0){
-    				player.damageAbilityAddition =  player.getAbilities(0);//checks for the same same memory allocation/location
+    				player.damageAbilityAddition =  player.getAbilities(0);//assignes player variable to the retuned value in player.getabilities(1)
 				}
     			if(abilities == 1){
-    				player.armorAbilityAddition =  player.getAbilities(1);// Steps int
+    				player.armorAbilityAddition =  player.getAbilities(1);//assignes player variable to the retuned value in player.getabilities(1)
         		}
     			if(abilities == 2){
     				player.speedAbilityAddition =  player.getAbilities(2);
@@ -38,7 +38,7 @@ public class BattleHandler {
      * if missed, the message will be stored to static variable "exception"
      */
     
-    public static boolean creatureTurn (EntityPlayer player, EntityCreature creature){
+    public static boolean creatureTurn (EntityPlayer player, EntityCreature creature){//Requires the value to different type objects
         if (creature.hitChance() <= player.getSpeed()) {
             return false;
         } else {
