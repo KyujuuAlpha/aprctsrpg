@@ -15,15 +15,9 @@ public class EntityPlayer extends Entity {
 		this.armor = 0.1;
 		this.speed = 0.45;
 		this.speedX = 1;
-<<<<<<< HEAD
 		this.level = 1;
-		this.inventory = new Inventory(3);
-		this.abilities = new NormalAbilities(this);
-=======
 		this.inventory = new Inventory(3);//assignes the array of Inventory to a size of 4 holding spaces
 		this.abilities = new NormalAbilities(this);//constructs a new class of Normal abilities that take in this class as it's explicit parameters
->>>>>>> origin/master
-		
 	}
 	
 	
