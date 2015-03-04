@@ -46,7 +46,10 @@ public abstract class Stage {
      */
     public void scheduleTask(long tickNumber) { 
         ticks += tickNumber; //add the specified number of ticks to the countdown 
-        if(ticks == 0 && tickNumber == 0) this.taskPerformed(); //if for some reason they are both 0, just call the action method
+        if(tickNumber == 0) {
+        	ticks = 0;
+        	this.taskPerformed(); //if for some reason they are both 0, just call the action method
+        }
     }
     
     public void decreaseTicks() { //called whenever the timer ticks
