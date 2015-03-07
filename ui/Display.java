@@ -11,7 +11,7 @@ import java.util.ConcurrentModificationException;
 import ui.elem.*;
 
 @SuppressWarnings("serial")
-public class Display extends JFrame implements ActionListener { 
+public class Display extends JFrame implements ActionListener, KeyListener { 
     private JPanel statsMenu; //declare new jpanels
     private JPanel statsMenu2;
     
@@ -26,12 +26,14 @@ public class Display extends JFrame implements ActionListener {
     private final JLabel stats; //player stats
     private final JLabel stats2; //opponent stats
     
+    private boolean toggleFullscreen;
+    
     private final String simpleName;
     
     public Display(String str) {
         super(str); //call the parent classes' constructor
         simpleName = str;
-        this.setSize(800,600); //set the jpanel's size
+        this.setPreferredSize(new Dimension(800,600)); //set the jpanel's size
         JPanel subContainerA = new JPanel(new GridLayout(1,2)); //initialize jpanels with specified layout manager
         JPanel subContainerB = new JPanel(new GridLayout(2,1));
         subContainerA.add(subContainerB); //add container b to container a
@@ -66,10 +68,13 @@ public class Display extends JFrame implements ActionListener {
         temp2 = new JScrollPane(actionsMenu); //actions
         temp2.setBorder(BorderFactory.createEtchedBorder(EtchedBorder.LOWERED));
         this.add(temp2, BorderLayout.WEST);
+        this.addKeyListener(this);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); //kill the java.exe process plz
+        this.pack();
         this.setVisible(true); //set the visibility of this jframe to true
         Timer timerVar = new Timer(50, this); //ticking timer
         timerVar.start(); //invoke the start method from the timervar
+        toggleFullscreen = false;
     }
     
     @Override
@@ -165,4 +170,30 @@ public class Display extends JFrame implements ActionListener {
         if(currentStage < stageList.size()) return stageList.get(currentStage); //if the current stage not bigger than the stagelist's size to prevent index out of bounds
         return null;
     }
+
+	@Override
+	public void keyPressed(KeyEvent e) {
+		if(e.getKeyCode() == KeyEvent.VK_F11) {
+			this.dispose();
+			if(!toggleFullscreen) {
+				toggleFullscreen = true;
+				this.setUndecorated(true);
+				this.setExtendedState(JFrame.MAXIMIZED_BOTH);
+			} else {
+				toggleFullscreen = false;
+				this.setUndecorated(false);
+				this.setExtendedState(JFrame.NORMAL);
+				this.pack();
+			}
+			this.setVisible(true);
+		}
+	}
+
+	@Override
+	public void keyReleased(KeyEvent e) {
+	}
+
+	@Override
+	public void keyTyped(KeyEvent e) {
+	}
 }
