@@ -1,52 +1,70 @@
 package ui.elem;
 
+import java.awt.Color;
+import java.awt.Container;
+import java.awt.Font;
+import java.awt.FontMetrics;
 import java.awt.Graphics2D;
+import java.awt.geom.RoundRectangle2D;
 
 public class Choice implements Element {
 	
-	private String text; //internal data that holds the element's name
-    private boolean enabled; //whether the current button is enabled or not
+	public final byte NONE = 0;
+	public final byte BOTH = 1;
+	public final byte EAST = 2;
+	public final byte SOUTH = 3;
+	
+	private int dock = BOTH;
+	private int changeX = 0;
+	private int changeY = 0;
+	
+	private String label;
+    private boolean enabled;
     
     private boolean clickedVar;
     
     private String tooltip;
     
-    public Choice() { //the default constructor if no parameters are passed
-        this.text = "Choice"; //iniialize the internal data of this element
+    private int x;
+    private int y;
+    
+    public Choice() {
+        this.label = "Choice";
         this.enabled = true;
     }
 
-    /**
-     * Construct a new choice object
-     * @param stringVar The text displayed inside of the button
-     */
     public Choice(String stringVar) {
-        this.text = stringVar; //initialize by setting it to the parameter
+        this.label = stringVar;
         this.enabled = true;
+        this.x = 0;
+        this.y = 0;
     }
     
-    /**
-     * Retrieve the label of this button
-     */
+    public Choice(String stringVar, int intX, int intY) {
+        this.label = stringVar;
+        this.enabled = true;
+        this.x = intX;
+        this.y = intY;
+    }
+    
+    public void setX(int intX) {
+    	this.x = intX;
+    }
+    
+    public void setY(int intY) {
+    	this.y = intY;
+    }
+    
     public String getLabel() {
-        return this.text; //access the label of this button element
+        return this.label; 
     }
     
-    /**
-     * Set a new label for this button
-     * @param stringVar The text inside of the button
-     */
     public void setLabel(String stringVar) {
-        this.text = stringVar; //set the label of this button element
+        this.label = stringVar;
     }
-    
-    /**
-     * Set the label aswell as setting it's enabled state
-     * @param stringVar The text inside of the button
-     * @param flag Whether this button is enabled or not
-     */
+
     public void setLabel(String stringVar, boolean flag) {
-        this.text = stringVar; //set the label as well as it's enabled state
+        this.label = stringVar;
         this.setEnabled(flag);
     }
     
@@ -57,24 +75,17 @@ public class Choice implements Element {
     public String getToolTip() {
     	return tooltip;
     }
-    
-    /**
-     * Set this button to be enabled or not
-     * @param flag Whether this button is enabled or not
-     */
+
     public void setEnabled(boolean flag) {
-        this.enabled = flag; //set whether this button is enabled or not
+        this.enabled = flag;
     }
-    
-    /**
-     * Check to see if this button is enabled
-     */
+
     public boolean isEnabled() {
-        return this.enabled; //return whether this button is enabled or note
+        return this.enabled;
     }
    
     public boolean isClicked() {
-    	return clickedVar; //let other classes see if this button is clicked or not!
+    	return clickedVar;
     }
     
     public void setClicked(boolean flag) {
@@ -82,10 +93,25 @@ public class Choice implements Element {
     }
     
 	@Override
-	public void updateElement() {
+	public void updateElement(Container container) {
 	}
 
 	@Override
-	public void drawElement(Graphics2D render) {
+	public void drawElement(Graphics2D render, Container containerVar) {
+		if((dock == EAST || dock == BOTH) && this.changeX == 0) this.changeX = containerVar.getWidth() - this.x;
+		if((dock == SOUTH || dock == BOTH) && this.changeY == 0) this.changeY = containerVar.getHeight() - this.y;
+		if(dock == EAST || dock == BOTH) this.x = containerVar.getWidth() - changeX;
+		if(dock == SOUTH || dock == BOTH) this.y = containerVar.getHeight() - changeY;
+		int spaceX = 10;
+		int spaceY = 5;
+		int fontSize = 12;
+		int roundFactor = 2;
+		render.setFont(new Font("Arial", Font.BOLD, fontSize));
+		FontMetrics fontMetrics = render.getFontMetrics(render.getFont());
+		render.setPaint(Color.LIGHT_GRAY);
+		RoundRectangle2D.Double container = new RoundRectangle2D.Double(x, y, fontMetrics.stringWidth(getLabel()) + spaceX*2, fontMetrics.getHeight() + spaceY*2, roundFactor, roundFactor);
+		render.fill(container);
+		render.setPaint(Color.BLACK);
+		render.drawString(getLabel(), (int)container.getX() + spaceX, (int)container.getY() + render.getFont().getSize() + spaceY);
 	}
 }

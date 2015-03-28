@@ -1,5 +1,7 @@
 package ui;
 
+import java.awt.Container;
+import java.awt.Graphics2D;
 import java.util.ArrayList;
 
 import ui.elem.Element;
@@ -78,10 +80,17 @@ public abstract class Stage {
         }
     }
     
-    public void update() {
+    public void drawAll(Graphics2D render, Container container) {
+    	for(int i = 0; i < elementList.size(); i++) {
+            Element element = elementList.get(i);
+            if(element != null) element.drawElement(render, container);
+        }
+    }
+    
+    public void update(Container container) {
         for(int i = 0; i < elementList.size(); i++) {
             Element element = elementList.get(i);
-            element.updateElement();
+            element.updateElement(container);
         }
     }
 

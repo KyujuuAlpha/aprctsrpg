@@ -1,16 +1,16 @@
 package ui.elem;
 
-import javax.swing.*;
-import javax.imageio.*;
+import java.awt.Container;
+import java.awt.Graphics2D;
+import java.awt.image.BufferedImage;
+import java.io.File;
 
-import java.awt.*;
-import java.awt.image.*;
-import java.io.*;
+import javax.imageio.ImageIO;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
 
 public class Sprite implements Element {
-	private JPanel container;
-    private JLabel guiElement;
-    
+
     private String url;
     private BufferedImage bufferedImage;
     
@@ -88,12 +88,12 @@ public class Sprite implements Element {
     	customHeight = intVar1;
     }
     @Override
-	public void updateElement() {
+	public void updateElement(Container container) {
 
 	}
 
 	@Override
-	public void drawElement(Graphics2D render) {
+	public void drawElement(Graphics2D render, Container container) {
 
 	}
 }

@@ -29,38 +29,44 @@ public class Display extends JFrame implements ActionListener, KeyListener, Mous
     
     private final String simpleName;
     
+    private int counter = 0;
+    
     public Display(String str) {
         super(str);
         simpleName = str;
         this.setPreferredSize(new Dimension(800,600));
-        setContentPane(new JPanel(){
+        setContentPane(new JPanel() { //This is the actual thing that actually displays things, so yeah 
         	@Override
         	public void paintComponent(Graphics g) {
         		super.paintComponent(g);
         		Graphics2D render = (Graphics2D) g;
-        		setBackground(Color.BLACK);
+        		setBackground(Color.WHITE);
+        		getStage().drawAll(render, this);
         	}
         });
         this.addKeyListener(this);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.pack();
         this.setVisible(true);
-        Timer timerVar = new Timer(50, this);
+        Timer timerVar = new Timer(10, this);
         timerVar.start();
         toggleFullscreen = false;
     }
     
     @Override
     public void actionPerformed(ActionEvent e) {
+    	counter++;
         if(getStage() == null) return;
-        if(!this.getTitle().equals(simpleName + " - " + getStage().getClass().getSimpleName())) this.setTitle(simpleName + " - " + getStage().getClass().getSimpleName());
-        int incrementVar = getStage().incrementVar();
-        if(incrementVar == 1) { this.nextStage(); }
-        else if(incrementVar == 2) { this.prevStage(); }
-        else if(incrementVar > 2) { this.setStage(incrementVar - 3); }
-        getStage().decreaseTicks();
-        getStage().update();
-        this.revalidate();
+        if(counter == 5) {
+        	if(!this.getTitle().equals(simpleName + " - " + getStage().getClass().getSimpleName())) this.setTitle(simpleName + " - " + getStage().getClass().getSimpleName());
+        	int incrementVar = getStage().incrementVar();
+            if(incrementVar == 1) { this.nextStage(); }
+            else if(incrementVar == 2) { this.prevStage(); }
+            else if(incrementVar > 2) { this.setStage(incrementVar - 3); }
+            getStage().decreaseTicks();
+            getStage().update(this.getContentPane());
+            counter = 0;
+        }
         this.repaint();
     }
     

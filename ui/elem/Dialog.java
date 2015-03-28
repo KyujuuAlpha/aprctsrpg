@@ -1,6 +1,6 @@
 package ui.elem;
 
-import java.awt.Component;
+import java.awt.Container;
 import java.awt.Graphics2D;
 
 import javax.swing.JLabel;
@@ -71,13 +71,13 @@ public class Dialog implements Element { //w00t inheritance
     }
     
 	@Override
-	public void updateElement() {
+	public void updateElement(Container container) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void drawElement(Graphics2D render) {
+	public void drawElement(Graphics2D render, Container container) {
 		// TODO Auto-generated method stub
 		
 	}
