@@ -19,61 +19,35 @@ public class Display extends JFrame implements ActionListener, KeyListener {
     
     private ArrayList<Stage> stageList = new ArrayList<Stage>(); //declare and intiialize a new arraylist with type being stage
     
-    private final JPanel actionsMenu; //declare the containers for each type of element
-    private final JPanel imageMenu; //sprites
-    private final JPanel inputMenu; //inputs
-    private final JLabel dialog; //dialog
-    private final JLabel stats; //player stats
-    private final JLabel stats2; //opponent stats
+    private JPanel actionsMenu; //declare the containers for each type of element
+    private JPanel imageMenu; //sprites
+    private JPanel inputMenu; //inputs
+    private JLabel dialog; //dialog
+    private JLabel stats; //player stats
+    private JLabel stats2; //opponent stats
     
     private boolean toggleFullscreen;
     
     private final String simpleName;
     
     public Display(String str) {
-        super(str); //call the parent classes' constructor
+        super(str);
         simpleName = str;
-        this.setPreferredSize(new Dimension(800,600)); //set the jpanel's size
-        JPanel subContainerA = new JPanel(new GridLayout(1,2)); //initialize jpanels with specified layout manager
-        JPanel subContainerB = new JPanel(new GridLayout(2,1));
-        subContainerA.add(subContainerB); //add container b to container a
-        this.add(subContainerA, BorderLayout.CENTER); //add container a to this jframe
-        JPanel temp; //create a temp container
-        JScrollPane temp2; //create a temp scrolling pane
-        actionsMenu = new JPanel(); //initialize the actions jpanel
-        actionsMenu.setLayout(new BoxLayout(actionsMenu, BoxLayout.Y_AXIS)); //set it's layout to the specified layout manager
-        imageMenu = new JPanel(); //imageMenu
-        imageMenu.setBorder(BorderFactory.createEtchedBorder(EtchedBorder.LOWERED)); //set the container's border style
-        subContainerA.add(imageMenu); //add the panel to this jframe
-        inputMenu = new JPanel();
-        inputMenu.setLayout(new BoxLayout(inputMenu, BoxLayout.Y_AXIS));
-        temp = new JPanel(new FlowLayout(FlowLayout.LEFT)); //initialize the temp container
-        dialog = new JLabel(""); //initialize the dialog to an empty jlabel
-        temp.add(dialog);
-        temp2 = new JScrollPane(temp); //dialog and initialize the temporary scrolling pane
-        temp2.setBorder(BorderFactory.createEtchedBorder(EtchedBorder.LOWERED));
-        subContainerB.add(temp2);
-        temp2.setBorder(BorderFactory.createEtchedBorder(EtchedBorder.LOWERED));
-        temp2 = new JScrollPane(inputMenu); //inputs
-        subContainerB.add(temp2);
-        actionsMenu.setLayout(new BoxLayout(actionsMenu, BoxLayout.Y_AXIS));
-        statsMenu = new JPanel(new FlowLayout(FlowLayout.RIGHT));
-        statsMenu2 = new JPanel(new FlowLayout(FlowLayout.RIGHT));
-        stats = new JLabel("");
-        stats2 = new JLabel("");
-        statsMenu.add(stats); //statistics
-        this.add(statsMenu, BorderLayout.NORTH);
-        statsMenu2.add(stats2); //stats 2
-        this.add(statsMenu2, BorderLayout.SOUTH);
-        temp2 = new JScrollPane(actionsMenu); //actions
-        temp2.setBorder(BorderFactory.createEtchedBorder(EtchedBorder.LOWERED));
-        this.add(temp2, BorderLayout.WEST);
+        this.setPreferredSize(new Dimension(800,600));
+        setContentPane(new JPanel(){
+        	@Override
+        	public void paintComponent(Graphics g) {
+        		super.paintComponent(g);
+        		Graphics2D render = (Graphics2D) g;
+        		setBackground(Color.BLACK);
+        	}
+        });
         this.addKeyListener(this);
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); //kill the java.exe process plz
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.pack();
-        this.setVisible(true); //set the visibility of this jframe to true
-        Timer timerVar = new Timer(50, this); //ticking timer
-        timerVar.start(); //invoke the start method from the timervar
+        this.setVisible(true);
+        Timer timerVar = new Timer(50, this);
+        timerVar.start();
         toggleFullscreen = false;
     }
     
