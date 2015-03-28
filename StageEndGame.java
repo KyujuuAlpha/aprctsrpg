@@ -9,7 +9,7 @@ public class StageEndGame extends Stage {
     public void init() {
         mainDialog = new Dialog("");
         a = new Choice("So what now?");
-        this.addElements(mainDialog, a);
+        this.add(mainDialog, a);
         mainDialog.setText("You've disrupted the time-space continuum.", "Humans weren't supposed to survive the apocalypse.");
     }
     

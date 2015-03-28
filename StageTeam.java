@@ -45,7 +45,7 @@ public class StageTeam extends Stage {
         a = new Choice("The Marina");
         b = new Choice("The Space Needle");
         mainDialog = new Dialog("");
-        this.addElements(mainDialog, a, b);
+        this.add(mainDialog, a, b);
         mainDialog.setText("Option 1: The Marina - to steal a boat and travel to the Pitt-Jolie Island", "Option 2: The Space Needle - to get a good look of the area");
     }
     

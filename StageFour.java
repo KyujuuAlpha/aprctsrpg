@@ -39,7 +39,7 @@ public class StageFour extends Stage{
     public void init() {
         a = new Choice("Continue");
         mainDialog = new Dialog("");
-        this.addElements(mainDialog, a);
+        this.add(mainDialog, a);
         if(DataHandler.SHIELD){
             mainDialog.setText("Hi, my name is Jar-- ULTRON --vis.", "I will be helping you --TO YOUR DOOM-- during your time", "here at SHIELD.");
         }else{
@@ -51,7 +51,7 @@ public class StageFour extends Stage{
         mainDialog.setText("Kanye introduces himself as the captain of your", "squad, and explains you duties on the island.");
     }
     public void stageOne(){
-        this.removeElements(a);
+        this.remove(a);
         mainDialog.setText("You have two options here at headquarters.", "1) Go on a Zombie Patrol", "2) Go after the Mother Zombie", "Going after the Mother Zombie is highly unreccomended", "for beginners."); 
         this.scheduleTask(60);
     }

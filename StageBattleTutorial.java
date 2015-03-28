@@ -18,7 +18,7 @@ public class StageBattleTutorial extends Stage {
         a = new Choice("Continue");
         b = new Choice();
         mainDialog = new Dialog("");
-        this.addElements(mainDialog, a);
+        this.add(mainDialog, a);
         //this conditional checks if the battle is completed
         //if it is, then the stage moves on
         if(DataHandler.battleCompleted) {
@@ -65,7 +65,7 @@ public class StageBattleTutorial extends Stage {
         a.setLabel("Attack", false);
         b.setLabel("Run!", false);
         c = new Choice("Skip");
-        this.addElements(b, c);
+        this.add(b, c);
         mainDialog.setText("Welcome to the Fight Screen!!!");
         //this is the timer for when to check the method taskPerformed
         this.scheduleTask(30);

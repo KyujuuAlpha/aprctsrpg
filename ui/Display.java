@@ -59,7 +59,7 @@ public class Display extends JFrame implements ActionListener, KeyListener, Mous
         else if(incrementVar == 2) { this.prevStage(); }
         else if(incrementVar > 2) { this.setStage(incrementVar - 3); }
         getStage().decreaseTicks();
-        getStage().syncElements();
+        getStage().update();
         this.revalidate();
         this.repaint();
     }
@@ -83,7 +83,7 @@ public class Display extends JFrame implements ActionListener, KeyListener, Mous
      * Move onto the next stage on the list
      */
     public void nextStage() {
-        getStage().removeElements();
+        getStage().removeAll();
         if(currentStage < stageList.size() - 1) currentStage++;
         getStage().resetIncrement();
         getStage().init();
@@ -93,7 +93,7 @@ public class Display extends JFrame implements ActionListener, KeyListener, Mous
      * Go back one stage on the list
      */
     public void prevStage() {
-        getStage().removeElements();
+        getStage().removeAll();
         if(currentStage > 0) currentStage--;
         getStage().resetIncrement();
         getStage().init();
@@ -103,7 +103,7 @@ public class Display extends JFrame implements ActionListener, KeyListener, Mous
      * Set the current stage to the specified stage
      */
     public void setStage(int intVar) {
-        getStage().removeElements();
+        getStage().removeAll();
         currentStage = intVar;
         if(currentStage < 0) currentStage = 0;
         if(currentStage >= stageList.size()) currentStage = stageList.size() - 1;

@@ -9,19 +9,17 @@ import util.Item;
 import util.Mother;
 import util.Tank;
 import util.Zombie;
-/*
- * This is the class where all the battles are handled
- */
+
+
 public class StageBattle extends Stage {
-    //initializing choices
+	
     private Choice fightButton;
     private Choice ability0;
     private Choice ability1;
     private Choice ability2;
     private Choice ability3;
     private Choice runButton;
-    //initializing the stats
-    //the stats are located at the top and the bottom of the screen on the upper and lower right
+
     private Stat playerStat;
     private OpponentStat opponentStat;
     
@@ -47,27 +45,27 @@ public class StageBattle extends Stage {
         playerStat = new Stat(); //creates the stat. The player's are on the top right and the opponent's are on the bottom right
         opponentStat = new OpponentStat();
         mainDialog = new Dialog();
-		this.addElements(fightButton, ability0, ability1, ability2, ability3, runButton, playerStat, opponentStat, mainDialog);
+		this.add(fightButton, ability0, ability1, ability2, ability3, runButton, playerStat, opponentStat, mainDialog);
 		
 		//the following methods check what picture should be put on the rightmost pane
-		if(DataHandler.player instanceof Tank) this.addElements(new Sprite("tank.png", 0.5f));
-		else if(DataHandler.player instanceof Assassin) this.addElements(new Sprite("assassin.png", 0.5f));
-		else this.addElements(new Sprite("norm.png", 0.5f));
+		if(DataHandler.player instanceof Tank) this.add(new Sprite("tank.png", 0.5f));
+		else if(DataHandler.player instanceof Assassin) this.add(new Sprite("assassin.png", 0.5f));
+		else this.add(new Sprite("norm.png", 0.5f));
 				
 		if(DataHandler.opponent instanceof Zombie) {
-			if(new Random().nextInt(2) == 0) this.addElements(new Sprite("minion.png", 0.5f)); //a random conditional to determine which one will be added
-			else this.addElements(new Sprite("minion2.png", 0.5f));
+			if(new Random().nextInt(2) == 0) this.add(new Sprite("minion.png", 0.5f)); //a random conditional to determine which one will be added
+			else this.add(new Sprite("minion2.png", 0.5f));
 		} else if(DataHandler.source instanceof StageMotherZombie) {
-			if(DataHandler.opponent instanceof Mother) this.addElements(new Sprite("boss4.png", 0.5f));
+			if(DataHandler.opponent instanceof Mother) this.add(new Sprite("boss4.png", 0.5f));
 			else {
 				switch(new Random().nextInt(3)) { 
-					case 0: this.addElements(new Sprite("boss1.png", 0.5f)); break;
-					case 1: this.addElements(new Sprite("boss2.png", 0.5f)); break;
-					case 2: this.addElements(new Sprite("boss3.png", 0.5f)); break;
-					default: this.addElements(new Sprite("guy.png", 0.5f)); break;
+					case 0: this.add(new Sprite("boss1.png", 0.5f)); break;
+					case 1: this.add(new Sprite("boss2.png", 0.5f)); break;
+					case 2: this.add(new Sprite("boss3.png", 0.5f)); break;
+					default: this.add(new Sprite("guy.png", 0.5f)); break;
 				}
 			}
-		} else if(DataHandler.opponent instanceof EntityCreature) this.addElements(new Sprite("guy.png", 0.5f));
+		} else if(DataHandler.opponent instanceof EntityCreature) this.add(new Sprite("guy.png", 0.5f));
 		fightButton.setEnabled(false);
 		runButton.setEnabled(false);
 		playerTurn();
@@ -192,7 +190,7 @@ public class StageBattle extends Stage {
     }
     
     private void giveItem(Item itemVar) {
-        this.removeElements(ability0, ability1, ability2, ability3, playerStat, opponentStat);
+        this.remove(ability0, ability1, ability2, ability3, playerStat, opponentStat);
         mainDialog.setText("YOU GOT A " + itemVar.getName().toUpperCase(), "Do you want it?");
         itemVar2 = itemVar;
         fightButton.setLabel("Accept Item", true);

@@ -35,7 +35,7 @@ public class StageHeadQuarters extends Stage{
         c = new Choice("Mother Zombie");
         stat = new Stat("PLAYER STATS - Level: " + ((int)(DataHandler.player.getLevel()*10))/10.0D + "\nHealth: " + ((int)(DataHandler.player.getHealth()*10))/10.0D);
         mainDialog = new Dialog("");
-        this.addElements(mainDialog, a, c, stat);
+        this.add(mainDialog, a, c, stat);
         if(DataHandler.SHIELD){
             mainDialog.setText("What would you like to do today?");
         } else{

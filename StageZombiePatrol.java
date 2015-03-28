@@ -20,9 +20,9 @@ public class StageZombiePatrol extends Stage {
         c1 = new Zombie(j, k); //creates a new Zombie with the damage and health of j and k
         a = new Choice("Continue");
         mainDialog = new Dialog("");
-        this.addElements(mainDialog, a);
+        this.add(mainDialog, a);
         if(DataHandler.battleCompleted) {//checks whether or not the battle is completed
-        	this.removeElements(a); //removes the button
+        	this.remove(a); //removes the button
     		DataHandler.battleCompleted = false; //resets the boolean
     		mainDialog.setText("Whew! 99 Problems but a Zombie ain't one..."); //gives encouragement
     		scheduleTask(40); //starts a timer to move on

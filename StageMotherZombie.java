@@ -15,7 +15,7 @@ public class StageMotherZombie extends Stage {
     public void init() {
         a = new Choice("Continue");
         mainDialog = new Dialog();
-        this.addElements(mainDialog, a);
+        this.add(mainDialog, a);
         Boss1 = new EntityCreature(100.0, 500.0);
         Boss2 = new EntityCreature(75.0, 750.0);
         Boss3 = new EntityCreature(150.0, 500.0);

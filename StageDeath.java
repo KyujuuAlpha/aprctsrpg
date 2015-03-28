@@ -10,7 +10,7 @@ public class StageDeath extends Stage {
 		mainDialog = new Dialog();
 		Sprite rip = new Sprite("rip.png");
 		rip.setResizable(0.5f);
-		this.addElements(mainDialog, rip);
+		this.add(mainDialog, rip);
 		mainDialog.setText("HAH YOU DIED");
 	}
 

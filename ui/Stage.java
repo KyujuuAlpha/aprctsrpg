@@ -60,7 +60,7 @@ public abstract class Stage {
      * Add a new element to this stage;
      * @param elementVar The element(s)
      */
-    public void addElements(Element... elementVar) {
+    public void add(Element... elementVar) {
         for(Element element : elementVar) {
             if(elementList.indexOf(elementVar) < 0) {
                 elementList.add(element);
@@ -72,20 +72,20 @@ public abstract class Stage {
      * Remove the given elements from this stage
      * @param elementVar The element(s)
      */
-    public void removeElements(Element... elementVar) {
+    public void remove(Element... elementVar) {
         for(Element element : elementVar) { 
             elementList.remove(element);
         }
     }
     
-    public void syncElements() {
+    public void update() {
         for(int i = 0; i < elementList.size(); i++) {
             Element element = elementList.get(i);
             element.updateElement();
         }
     }
 
-    public void removeElements() {
+    public void removeAll() {
         elementList.clear();
     }
     

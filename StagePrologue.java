@@ -10,7 +10,7 @@ public class StagePrologue extends Stage {
      *Usually, withiin every init() class:
      *           1. the choices are initialized: the choices are the buttons on the left side of the gui. At this point, they are given labels
      *           2. the mainDialog, which is the center text, is initialized and text is assigned to it.
-     *           3. the this.addElements() method is so the external parameters (the choice and mainDialog) are added to the gui and are visible
+     *           3. the this.add() method is so the external parameters (the choice and mainDialog) are added to the gui and are visible
      *           
      * This is the prologue stage, where the player chooses what weapon they will use and what character class they will use
      * Character classes:
@@ -46,7 +46,7 @@ public class StagePrologue extends Stage {
             //since there are two instances when the text "Next" is being used, there must be ways to differentiate between the two times.
             if(DataHandler.player == null) { //detects whether or not there is a player object created. If not, the game sends the user to character class choice
                 chooseClass();
-                this.addElements(b);
+                this.add(b);
             } else {
                 this.nextStage(); //the nextStage() method moves the game to the next method that is in the stage arrayList
             }
@@ -94,7 +94,7 @@ public class StagePrologue extends Stage {
         b = new Choice();//the choices are all located on the leftmost pane of the gui
         c = new Choice();
         mainDialog = new Dialog(); //creates a new mainDialog instance field that is currently empty, the mainDialog is located in the middle pane of the gui
-        this.addElements(mainDialog, a); //this.addElements adds the mainDialog and Choice a to the screen where they belong
+        this.add(mainDialog, a); //this.add adds the mainDialog and Choice a to the screen where they belong
         mainDialog.setText("Hello! Welcome to the Game!", "Press START to Continue"); //this sets the text to whatever is in the explicit parameters
     }
     /*
@@ -111,13 +111,13 @@ public class StagePrologue extends Stage {
         d = new Sprite("tank.png", 0.5f);//adds a sprite, located on the rightmost pane to enhance game experience
         e = new Sprite("norm.png", 0.5f);
         f = new Sprite("assassin.png", 0.5f);
-        this.addElements(c, d, e, f);
+        this.add(c, d, e, f);
         mainDialog.setText("What CLASS will you choose?", "Tank - High Health", "Normal - Average", "Assassin - High Speed/Attack");
     }
     
     public void chooseItem() {
-        this.removeElements(a, b, c, d, e, f); //the removeElements() method removes elements if they are unneeded in the current substage
-        this.addElements(a, b, c); //make sure they are in order :)
+        this.remove(a, b, c, d, e, f); //the removeElements() method removes elements if they are unneeded in the current substage
+        this.add(a, b, c); //make sure they are in order :)
         a.setLabel("Wand", true); //setting the label to new options
         b.setLabel("Holy SFHS iPad", true);
         c.setLabel("Pistol", true);
@@ -125,7 +125,7 @@ public class StagePrologue extends Stage {
     }
     
     public void poststage() {
-        this.removeElements(b, c);
+        this.remove(b, c);
         a.setLabel("Next", true);
         mainDialog.setText("You leave your apartment, after locking all your doors and windows.", "The other tenants of your building have long since left.", "One 50 year old man claimed to be smuggling out a 14 year old girl whose blood has the cure to Ebola Z.", "You don't care about any of this.", "With food, fresh water, and ammo running low, you have to get out.", "Where will you go?" );
     }
