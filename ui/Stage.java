@@ -64,7 +64,6 @@ public abstract class Stage {
         for(Element element : elementVar) {
             if(elementList.indexOf(elementVar) < 0) {
                 elementList.add(element);
-                element.createElement();
             }
         }
     }
@@ -76,22 +75,17 @@ public abstract class Stage {
     public void removeElements(Element... elementVar) {
         for(Element element : elementVar) { 
             elementList.remove(element);
-            element.removeElement();
         }
     }
     
     public void syncElements() {
         for(int i = 0; i < elementList.size(); i++) {
             Element element = elementList.get(i);
-            element.sync();
+            element.updateElement();
         }
     }
 
     public void removeElements() {
-        for(int i = 0; i < elementList.size(); i++) {
-            Element element = elementList.get(i);
-            element.removeElement();
-        }
         elementList.clear();
     }
     

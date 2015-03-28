@@ -1,9 +1,11 @@
 package ui.elem;
 
 import java.awt.Component;
+import java.awt.Graphics2D;
 
 import javax.swing.JLabel;
 
+@Deprecated
 public class Dialog implements Element { //w00t inheritance
     protected String text; //protected to stay private, but to give access to these variables from a child class ;)
     protected boolean canSync = false;
@@ -68,29 +70,15 @@ public class Dialog implements Element { //w00t inheritance
         return temp.replaceAll("\n", "<br>");
     }
     
-    @Override
-    public void createElement() {
-        canSync = true; //you can now change the dialog element!
-    }
-    
-    @Override
-    public void removeElement() {
-        if(this.guiElement != null) this.guiElement.setText(""); //erase the dialog if this element is removed
-        canSync = false; //you cannot change the dialog anymore if you cannot sync
-    }
-    
-    @Override
-    public Component getComponent() {
-    	return this.guiElement;
-    }
-    
-    @Override
-    public void setComponent(Component componentVar) {
-    	this.guiElement = (JLabel)componentVar;
-    }
-    
-    @Override
-    public void sync() {
-        if(canSync && this.guiElement != null) this.guiElement.setText(this.text); //if you can sync and the dialog exists, then set  the text of the jlabel!
-    }
+	@Override
+	public void updateElement() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void drawElement(Graphics2D render) {
+		// TODO Auto-generated method stub
+		
+	}
 }

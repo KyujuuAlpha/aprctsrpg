@@ -1,15 +1,10 @@
 package ui.elem;
 
-import javax.swing.*;
+import java.awt.Graphics2D;
 
-import java.awt.Component;
-import java.awt.event.*;
-
-public class Choice implements Element, ActionListener {
-	private JPanel container;
-    private JButton guiElement; //the gui counter part of this element
-    
-    private String text; //internal data that holds the element's name
+public class Choice implements Element {
+	
+	private String text; //internal data that holds the element's name
     private boolean enabled; //whether the current button is enabled or not
     
     private boolean clickedVar;
@@ -77,44 +72,7 @@ public class Choice implements Element, ActionListener {
     public boolean isEnabled() {
         return this.enabled; //return whether this button is enabled or note
     }
-    
-    @Override
-    public void createElement() {
-        this.guiElement = new JButton(getLabel()); //initialze the actual gui element
-        this.guiElement.addActionListener(this); //add this object as its action listener
-        if(this.container != null) this.container.add(this.guiElement);
-   }
-    
-    @Override
-    public void removeElement() {
-    	if(this.container != null) this.container.remove(this.guiElement);
-    }
-    
-    @Override
-    public void sync() {
-        if(this.guiElement == null) return; //skip if the gui element was never created
-        this.guiElement.setText(this.text); //pass the internal data of this element to the gui counter part
-        this.guiElement.setToolTipText(tooltip);
-        this.guiElement.setEnabled(this.enabled);
-    }
-    
-    @Override
-    public Component getComponent() {
-    	return this.container;
-    }
-    
-    @Override
-    public void setComponent(Component componentVar) {
-    	this.container = (JPanel)componentVar;
-    }
-    
-    @Override
-    public void actionPerformed(ActionEvent e) { //basically call the choice clicked method when if this button is activated
-        if(this.guiElement != null && this.container != null) {
-        	this.clickedVar = true; //this button is actually clicked now :)
-        }
-    }
-    
+   
     public boolean isClicked() {
     	return clickedVar; //let other classes see if this button is clicked or not!
     }
@@ -122,4 +80,12 @@ public class Choice implements Element, ActionListener {
     public void setClicked(boolean flag) {
     	clickedVar = flag;
     }
+    
+	@Override
+	public void updateElement() {
+	}
+
+	@Override
+	public void drawElement(Graphics2D render) {
+	}
 }

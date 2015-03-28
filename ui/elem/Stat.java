@@ -1,5 +1,6 @@
 package ui.elem;
 
+@Deprecated
 public class Stat extends Dialog {
     /**
      * Create a new stat element

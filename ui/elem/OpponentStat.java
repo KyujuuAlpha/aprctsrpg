@@ -1,5 +1,6 @@
 package ui.elem;
 
+@Deprecated
 public class OpponentStat extends Dialog { //inherit all methods from the dialog class
     /**
      * Create a new opponent stat element

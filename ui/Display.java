@@ -8,6 +8,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.awt.event.MouseMotionListener;
 import java.util.ArrayList;
 
 import javax.swing.JFrame;
@@ -15,7 +18,7 @@ import javax.swing.JPanel;
 import javax.swing.Timer;
 
 @SuppressWarnings("serial")
-public class Display extends JFrame implements ActionListener, KeyListener { 
+public class Display extends JFrame implements ActionListener, KeyListener, MouseListener, MouseMotionListener { 
     
     private int currentStage = 0;
     
@@ -55,24 +58,6 @@ public class Display extends JFrame implements ActionListener, KeyListener {
         if(incrementVar == 1) { this.nextStage(); }
         else if(incrementVar == 2) { this.prevStage(); }
         else if(incrementVar > 2) { this.setStage(incrementVar - 3); }
-        /*boolean flag = false;
-        try { for(Element elementVar : getStage().getElements()) {
-        	if(elementVar.getComponent() == null) {
-        		if(elementVar instanceof ui.elem.Choice)
-        		else if(elementVar instanceof ui.elem.Input)
-        		else if(elementVar instanceof ui.elem.Sprite)
-        		else if(elementVar instanceof ui.elem.Stat) 
-        		else if(elementVar instanceof ui.elem.OpponentStat) 
-        		else if(elementVar instanceof ui.elem.Dialog)
-        		elementVar.createElement();
-        	} else if(!flag) {
-        		if(elementVar instanceof ui.elem.Choice && ((ui.elem.Choice)elementVar).isClicked()) {
-        			((ui.elem.Choice)elementVar).setClicked(false);
-        			getStage().choiceClicked(elementVar);
-        			flag = true;
-        		}
-        	}
-        } } catch(ConcurrentModificationException error) { }*/
         getStage().decreaseTicks();
         getStage().syncElements();
         this.revalidate();
@@ -165,5 +150,33 @@ public class Display extends JFrame implements ActionListener, KeyListener {
 
 	@Override
 	public void keyTyped(KeyEvent e) {
+	}
+
+	@Override
+	public void mouseDragged(MouseEvent e) {
+	}
+
+	@Override
+	public void mouseMoved(MouseEvent e) {
+	}
+
+	@Override
+	public void mouseClicked(MouseEvent e) {
+	}
+
+	@Override
+	public void mouseEntered(MouseEvent e) {
+	}
+
+	@Override
+	public void mouseExited(MouseEvent e) {
+	}
+
+	@Override
+	public void mousePressed(MouseEvent e) {
+	}
+
+	@Override
+	public void mouseReleased(MouseEvent e) {
 	}
 }
