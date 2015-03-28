@@ -1,17 +1,14 @@
 package ui;
 
-import ui.elem.*;
-
 import java.util.ArrayList;
 
+import ui.elem.Element;
+
 public abstract class Stage {
-    //declare and initialize a new arraylist with the type of element
     private ArrayList<Element> elementList = new ArrayList<Element>();
     
-    //declare a long variable for task scheduling
     private long ticks = 0;
     
-    //declare an integer, used to interact with Display without actually having a dependency on it :)
     private int stageIncrement = 0;
     
     private int id = -1;
@@ -45,17 +42,17 @@ public abstract class Stage {
      * @param tickNumber The number of ticks, a tick is 1/20 of a second
      */
     public void scheduleTask(long tickNumber) { 
-        ticks += tickNumber; //add the specified number of ticks to the countdown 
+        ticks += tickNumber; 
         if(tickNumber == 0) {
         	ticks = 0;
-        	this.taskPerformed(); //if for some reason they are both 0, just call the action method
+        	this.taskPerformed();
         }
     }
     
-    public void decreaseTicks() { //called whenever the timer ticks
-        if(ticks > 0) { //if the countdown is greater than 0, then
-            ticks--; //decrease it
-            if(ticks == 0) this.taskPerformed(); //if it just turned 0, run the action method
+    public void decreaseTicks() {
+        if(ticks > 0) {
+            ticks--;
+            if(ticks == 0) this.taskPerformed();
         }
     }
     
@@ -64,10 +61,10 @@ public abstract class Stage {
      * @param elementVar The element(s)
      */
     public void addElements(Element... elementVar) {
-        for(Element element : elementVar) { //foreach element in the array
-            if(elementList.indexOf(elementVar) < 0) { //if that element does not already exist
-                elementList.add(element); //then add it to the element list
-                element.createElement(); //create it to avoid null pointer exceptions
+        for(Element element : elementVar) {
+            if(elementList.indexOf(elementVar) < 0) {
+                elementList.add(element);
+                element.createElement();
             }
         }
     }
@@ -78,38 +75,38 @@ public abstract class Stage {
      */
     public void removeElements(Element... elementVar) {
         for(Element element : elementVar) { 
-            elementList.remove(element); //remove that element if it exists in the list
-            element.removeElement(); //invoke the element's removeElement method
+            elementList.remove(element);
+            element.removeElement();
         }
     }
     
     public void syncElements() {
         for(int i = 0; i < elementList.size(); i++) {
-            Element element = elementList.get(i); //get the current element in the element list
-            element.sync(); //invoke it's sync method
+            Element element = elementList.get(i);
+            element.sync();
         }
     }
 
     public void removeElements() {
         for(int i = 0; i < elementList.size(); i++) {
             Element element = elementList.get(i);
-            element.removeElement(); //invoke it's remove method!
+            element.removeElement();
         }
-        elementList.clear(); //remove all the elements from the elementList
+        elementList.clear();
     }
     
     /**
      * Get the element list of this stage
      */
     public ArrayList<Element> getElements() {
-    	return elementList; //return type is an arraylist type element so return the elementlist
+    	return elementList;
     }
     
     /**
      * Go to the next stage in the list
      */
     public void nextStage() {
-    	if(stageIncrement > 0) return; //if it is already changing stages already, do not override it's original command
+    	if(stageIncrement > 0) return;
     	stageIncrement = 1;
     }
     
@@ -127,15 +124,15 @@ public abstract class Stage {
      */
     public void setStage(int stageID) {
     	if(stageIncrement > 0) return;
-    	if(stageID < 0) stageID = 0; //prevent the ability of -1 otherwise it would be less than 3 which could end up going to the prev stage;
-    	stageIncrement = 3 + stageID; //add 3 to make it greater than 2
+    	if(stageID < 0) stageID = 0;
+    	stageIncrement = 3 + stageID;
     }
     
     public int incrementVar() {
-    	return stageIncrement; //get the increment var variable
+    	return stageIncrement;
     }
     
     public void resetIncrement() {
-    	stageIncrement = 0; //reset this control variable to its default state
+    	stageIncrement = 0;
     }
 }
