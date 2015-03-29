@@ -1,7 +1,14 @@
 import ui.elem.*;
 import ui.*;
 
-public class StageHeadQuarters extends Stage{
+public class StageHeadQuarters extends Stage {
+	
+	private DataHandler data;
+	
+	public StageHeadQuarters(DataHandler dataVar) {
+		data = dataVar;
+	}
+	
     /*
      * here is where the headquarters is.
      * As Kanye or JARVIS described, there are two options
@@ -33,10 +40,10 @@ public class StageHeadQuarters extends Stage{
     public void init() {
         a = new Choice("Zombie Patrol");
         c = new Choice("Mother Zombie");
-        stat = new Text("PLAYER STATS - Level: " + ((int)(DataHandler.player.getLevel()*10))/10.0D + "\nHealth: " + ((int)(DataHandler.player.getHealth()*10))/10.0D, 0, 0);
+        stat = new Text("PLAYER STATS - Level: " + ((int)(data.player.getLevel()*10))/10.0D + "\nHealth: " + ((int)(data.player.getHealth()*10))/10.0D, 0, 0);
         mainDialog = new Text("", 0, 0);
         this.add(mainDialog, a, c, stat);
-        if(DataHandler.SHIELD){
+        if(data.SHIELD){
             mainDialog.setText("What would you like to do today?");
         } else{
             mainDialog.setText("What's up?");

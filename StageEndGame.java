@@ -2,6 +2,13 @@ import ui.*;
 import ui.elem.*;
 
 public class StageEndGame extends Stage {
+	
+	private DataHandler data;
+	
+	public StageEndGame(DataHandler dataVar) {
+		data = dataVar;
+	}
+	
     private Text mainDialog;
     private Choice a;
     private int x = 0;

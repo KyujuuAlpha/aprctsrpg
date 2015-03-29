@@ -2,6 +2,12 @@ import ui.*;
 import ui.elem.*;
 
 public class StageDeath extends Stage {
+	
+	private DataHandler data;
+	
+	public StageDeath(DataHandler dataVar) {
+		data = dataVar;
+	}
 
 	private Text mainDialog;
 	

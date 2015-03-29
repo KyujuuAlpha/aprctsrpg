@@ -2,6 +2,13 @@ import ui.*;
 import ui.elem.*;
 
 public class StageTeam extends Stage {
+	
+	private DataHandler data;
+	
+	public StageTeam(DataHandler dataVar) {
+		data = dataVar;
+	}
+	
     /*
      * This is the StageTeam class, where the player will get a chance to either join the SHIELD army or join the Island of Celebrities.
      * In this stage, after the player chooses whether or not to join the SHIELD army, they will fight a zombie or a SHIELD soldier, depending on their choice
@@ -27,11 +34,11 @@ public class StageTeam extends Stage {
         if(choiceObject.getLabel().equals("FIGHT")){
             nextStage();
         } else if(choiceObject.getLabel().equals("JOIN 'EM")){
-            DataHandler.SHIELD = true; 
+            data.SHIELD = true; 
             nextStage();
         }
         /*
-         * if one joins the SHIELD faction, then the boolean value true is assigned to a variable in the DataHandler, where all the data is stored.
+         * if one joins the SHIELD faction, then the boolean value true is assigned to a variable in the data, where all the data is stored.
          * This creates somewhat of an alternate storyline, but it only goes to a different headquarters
          */
     }

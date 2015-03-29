@@ -3,6 +3,13 @@ import ui.elem.*;
 import util.*;
 
 public class StageBattleTutorial extends Stage {
+	
+	private DataHandler data;
+	
+	public StageBattleTutorial(DataHandler dataVar) {
+		data = dataVar;
+	}
+	
     //declaring variables
     private Text mainDialog;
     private Choice a;
@@ -21,14 +28,14 @@ public class StageBattleTutorial extends Stage {
         this.add(mainDialog, a);
         //this conditional checks if the battle is completed
         //if it is, then the stage moves on
-        if(DataHandler.battleCompleted) {
+        if(data.battleCompleted) {
             a.setLabel("Ok");
-            DataHandler.battleCompleted = false;
+            data.battleCompleted = false;
             endBattle();
             return;
         }
         //just gives a different dialog if the player did not join SHIELD
-        if(DataHandler.SHIELD != true){ 
+        if(data.SHIELD != true){ 
             mainDialog.setText("A wild SHIELD attacked!!!");
         } else { 
             tutorialSHIELDStart();
@@ -53,7 +60,7 @@ public class StageBattleTutorial extends Stage {
         if(x == 2){ x++; tutorialTwo(); return;}
         if(x == 3){ x++; tutorialThree(); return;}
         if(x == 4){ x++; tutorialFour(); return;}
-        if(x == 5){ x++; DataHandler.prepareBattle(DataHandler.player, c1, this); this.setStage(0); return; }
+        if(x == 5){ x++; data.prepareBattle(data.player, c1, this); this.setStage(0); return; }
     }
     
     public void tutorialSHIELDStart(){
@@ -92,7 +99,7 @@ public class StageBattleTutorial extends Stage {
     }
     
     public void endBattle(){
-        if(DataHandler.SHIELD){
+        if(data.SHIELD){
             mainDialog.setText("Whew! 99 Problems but a Zombie ain't one...");
         }else{
             mainDialog.setText("You killed the SHIELD scoundrels!");

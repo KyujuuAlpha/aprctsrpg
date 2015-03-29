@@ -2,6 +2,13 @@ import ui.*;
 import ui.elem.*;
 import util.*;
 public class StagePrologue extends Stage {
+	
+	private DataHandler data;
+	
+	public StagePrologue(DataHandler dataVar) {
+		data = dataVar;
+	}
+	
     /* 
      * In every stage class, there will for sure be three class:
      *           choiceClicked(): assigns the button clicked to the variable choiceObject and looks through the conditionals, acting accordingly
@@ -44,7 +51,7 @@ public class StagePrologue extends Stage {
         
         if(choiceObject.getLabel().equals("Next")) {
             //since there are two instances when the text "Next" is being used, there must be ways to differentiate between the two times.
-            if(DataHandler.player == null) { //detects whether or not there is a player object created. If not, the game sends the user to character class choice
+            if(data.player == null) { //detects whether or not there is a player object created. If not, the game sends the user to character class choice
                 chooseClass();
                 this.add(b);
             } else {
@@ -54,29 +61,29 @@ public class StagePrologue extends Stage {
         }
         
         if(choiceObject.getLabel().equals("Tank")){
-            DataHandler.player = new Tank(); //creates an instance field of the class Tank, which is a subclass of the superclass EntityPlayer
+            data.player = new Tank(); //creates an instance field of the class Tank, which is a subclass of the superclass EntityPlayer
             chooseItem();//sends the player to the chooseItem() substage, where the user can choose their weapon.
             return;
         } else if(choiceObject.getLabel().equals("Normal")){
-            DataHandler.player = new EntityPlayer();
+            data.player = new EntityPlayer();
             chooseItem();
             return;
         } else if(choiceObject.getLabel().equals("Assassin")){
-            DataHandler.player = new Assassin();
+            data.player = new Assassin();
             chooseItem();
             return;
         }
         
         if(choiceObject.getLabel().equals("Wand")){ //adds an item to the weapon inventory based on the users selection
-            DataHandler.player.addItem(Item.basicSword);
+            data.player.addItem(Item.basicSword);
             poststage();
             return;
         } else if(choiceObject.getLabel().equals("Holy SFHS iPad")){
-            DataHandler.player.addItem(Item.basicWand);
+            data.player.addItem(Item.basicWand);
             poststage();
             return;
         } else if(choiceObject.getLabel().equals("Pistol")){
-            DataHandler.player.addItem(Item.pistol);
+            data.player.addItem(Item.pistol);
             poststage();
             return;
         }

@@ -1,7 +1,14 @@
 import ui.elem.*;
 import ui.*;
 
-public class StageFour extends Stage{
+public class StageFour extends Stage {
+	
+	private DataHandler data;
+	
+	public StageFour(DataHandler dataVar) {
+		data = dataVar;
+	}
+	
     private Text mainDialog;
     private Choice a;
     private int x = 0;
@@ -14,7 +21,7 @@ public class StageFour extends Stage{
     public void choiceClicked(Element elementVar) {
         Choice choiceObject = (Choice)elementVar;
         if(choiceObject.getLabel().equals("Continue")){
-            if(DataHandler.SHIELD){
+            if(data.SHIELD){
                 x++; 
                 stageOne();
                 return;
@@ -40,7 +47,7 @@ public class StageFour extends Stage{
         a = new Choice("Continue");
         mainDialog = new Text("", 0, 0);
         this.add(mainDialog, a);
-        if(DataHandler.SHIELD){
+        if(data.SHIELD){
             mainDialog.setText("Hi, my name is Jar-- ULTRON --vis.", "I will be helping you --TO YOUR DOOM-- during your time", "here at SHIELD.");
         }else{
             mainDialog.setText("You black out after your battle with SHIELD", "and wake up among Kanye West, Ryan Gosling and", "Megan Fox.");
