@@ -1,3 +1,5 @@
+import java.awt.Font;
+
 import ui.*;
 import ui.elem.*;
 import util.*;
@@ -23,8 +25,18 @@ public class StageBattleTutorial extends Stage {
         //a creature needs to be created, as it will be the opponent in this case
         c1 = new EntityCreature(10.0, 200.0);
         a = new Choice("Continue");
+        a.setFont(new Font("Arial", Font.BOLD, 12));
+        a.setX((int) (getWidth() / 2 - a.getWidth() / 2));
+        a.setY(this.getHeight() - 100);
+        a.setDock(Text.CENTER_SOUTH);
         b = new Choice();
-        mainDialog = new Text("", 0, 0);
+        b.setFont(new Font("Arial", Font.BOLD, 12));
+        b.setX((int) (getWidth() / 2 - a.getWidth() / 2 - a.getWidth() / 2 - 10));
+        b.setY(this.getHeight() - 100);
+        b.setDock(Text.CENTER_SOUTH);
+        mainDialog = new Text("", 0, 100);
+    	mainDialog.setFont(new Font("Arial", Font.PLAIN, 12));
+    	mainDialog.setDock(Text.TRUE_CENTER);
         this.add(mainDialog, a);
         //this conditional checks if the battle is completed
         //if it is, then the stage moves on
@@ -70,8 +82,15 @@ public class StageBattleTutorial extends Stage {
     //all the methods below are part of a tutorial that teaches the user how to use the interface
     public void tutorialStart(){
         a.setLabel("Attack", false);
+        a.setX((int) (getWidth() / 2 - a.getWidth() / 2));
+        a.setY(this.getHeight() - 100 - a.getHeight() - 10);
         b.setLabel("Run!", false);
+        b.setX((int) (getWidth() / 2 - b.getWidth() / 2));
+        b.setY(this.getHeight() - 100);
         c = new Choice("Skip");
+        c.setDock(Choice.CENTER_SOUTH);
+        c.setX((int) (getWidth() / 2 - c.getWidth() / 2));
+        c.setY(this.getHeight() - 100 - c.getHeight()*2 - 10*2);
         this.add(b, c);
         mainDialog.setText("Welcome to the Fight Screen!!!");
         //this is the timer for when to check the method taskPerformed

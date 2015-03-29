@@ -1,3 +1,4 @@
+import java.awt.Font;
 import java.util.Random;
 
 import ui.Stage;
@@ -44,15 +45,42 @@ public class StageBattle extends Stage {
     public void init() {
         if(data.player == null) { this.setStage(1); return; } //if there is no player, then just start stage prologue for character creation
         itemVar2 = null; //sets the Item to null
-        fightButton = new Choice("Attack"); //creates the important attack button
+        int abilityWidth = 150;
         ability0 = new Choice(data.player.getAbilitiesName(0)); //gets the abilities' name using a method that does just that and adds it as a new choice
+        ability0.setWidth(abilityWidth);
+        ability0.setDock(Choice.CENTER_SOUTH);
+        ability0.setX((int) (getWidth() / 2 - ability0.getWidth() - 5));
+        ability0.setY(this.getHeight() - 100 - ability0.getHeight()*2 - 10*2);
         ability1 = new Choice(data.player.getAbilitiesName(1));
+        ability1.setWidth(abilityWidth);
+        ability1.setDock(Choice.CENTER_SOUTH);
+        ability1.setX((int) (getWidth() / 2 + 5));
+        ability1.setY(this.getHeight() - 100 - ability1.getHeight()*2 - 10*2);
         ability2 = new Choice(data.player.getAbilitiesName(2));
+        ability2.setWidth(abilityWidth);
+        ability2.setDock(Choice.CENTER_SOUTH);
+        ability2.setX((int) (getWidth() / 2 + 5));
+        ability2.setY(this.getHeight() - 100 - ability2.getHeight() - 10);
         ability3 = new Choice(data.player.getAbilitiesName(3));
+        ability3.setWidth(abilityWidth);
+        ability3.setDock(Choice.CENTER_SOUTH);
+        ability3.setX((int) (getWidth() / 2 - ability3.getWidth() - 5));
+        ability3.setY(this.getHeight() - 100 - ability3.getHeight() - 10);
+        fightButton = new Choice("Attack"); //creates the important attack button
+        fightButton.setDock(Choice.CENTER_SOUTH);
+        fightButton.setWidth(ability0.getWidth() * 2 + 5*2);
+        fightButton.setX((int) (getWidth() / 2 - fightButton.getWidth() / 2));
+        fightButton.setY(this.getHeight() - 100 - ability0.getHeight()*3 - 10*3);
         runButton = new Choice("Run!"); //the all powerful run method that never works
+        runButton.setDock(Choice.CENTER_SOUTH);
+        runButton.setWidth(ability0.getWidth() * 2 + 5*2);
+        runButton.setX((int) (getWidth() / 2 - runButton.getWidth() / 2));
+        runButton.setY(this.getHeight() - 100);
         playerStat = new Text("", 0, 0); //creates the stat. The player's are on the top right and the opponent's are on the bottom right
         opponentStat = new Text("", 0, 0);
-        mainDialog = new Text("", 0, 0);
+        mainDialog = new Text("", 0, 100);
+    	mainDialog.setFont(new Font("Arial", Font.PLAIN, 12));
+    	mainDialog.setDock(Text.TRUE_CENTER);
 		this.add(fightButton, ability0, ability1, ability2, ability3, runButton, playerStat, opponentStat, mainDialog);
 		
 		//the following methods check what picture should be put on the rightmost pane

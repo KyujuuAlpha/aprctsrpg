@@ -1,3 +1,5 @@
+import java.awt.Font;
+
 import ui.*;
 import ui.elem.*;
 
@@ -50,8 +52,19 @@ public class StageTeam extends Stage {
     @Override
     public void init() {
         a = new Choice("The Marina");
+        a.setFont(new Font("Arial", Font.BOLD, 12));
+        a.setX((int) (getWidth() / 2 - a.getWidth() / 2 - a.getWidth() / 2 - 10));
+        a.setDock(Text.CENTER_SOUTH);
+        a.setY(this.getHeight() - 100);
         b = new Choice("The Space Needle");
+        b.setFont(new Font("Arial", Font.BOLD, 12));
+        b.setX((int) (getWidth() / 2 - b.getWidth() / 2 + b.getWidth() / 2 + 10));
+        b.setDock(Text.CENTER_SOUTH);
+        b.setY(this.getHeight() - 100);
         mainDialog = new Text("", 0, 0);
+        mainDialog.setY(100);
+    	mainDialog.setFont(new Font("Arial", Font.PLAIN, 12));
+    	mainDialog.setDock(Text.TRUE_CENTER);
         this.add(mainDialog, a, b);
         mainDialog.setText("Option 1: The Marina - to steal a boat and travel to the Pitt-Jolie Island", "Option 2: The Space Needle - to get a good look of the area");
     }
