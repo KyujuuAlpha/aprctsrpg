@@ -7,6 +7,15 @@ import java.awt.Graphics2D;
 
 public class Text implements Element {
 	
+	public static final byte NONE = 0;
+	public static final byte BOTH = 1;
+	public static final byte EAST = 2;
+	public static final byte SOUTH = 3;
+	
+	private int dock = NONE;
+	private int changeX = 0;
+	private int changeY = 0;
+	
 	private String label;
 	
 	private int x;
@@ -30,6 +39,10 @@ public class Text implements Element {
 		font = fontVar;
 	}
 	
+	public void setDock(byte a) {
+    	dock = a;
+    }
+	
 	public String getText() {
 		return label;
 	}
@@ -48,6 +61,14 @@ public class Text implements Element {
 			if(text.length > 1 && i < text.length - 1) label += "\n";
 		}
 	}
+	
+	public void setX(int intX) {
+    	this.x = intX;
+    }
+    
+    public void setY(int intY) {
+    	this.y = intY;
+    }
 
 	@Override
 	public void updateElement(Container container) {
@@ -55,6 +76,10 @@ public class Text implements Element {
 
 	@Override
 	public void drawElement(Graphics2D render, Container container) {
+		if((dock == EAST || dock == BOTH) && this.changeX == 0) this.changeX = container.getWidth() - this.x;
+		if((dock == SOUTH || dock == BOTH) && this.changeY == 0) this.changeY = container.getHeight() - this.y;
+		if(dock == EAST || dock == BOTH) this.x = container.getWidth() - changeX;
+		if(dock == SOUTH || dock == BOTH) this.y = container.getHeight() - changeY;
 		render.setFont(font);
 		FontMetrics fontMetrics = render.getFontMetrics(render.getFont());
 		this.width = fontMetrics.stringWidth(label);

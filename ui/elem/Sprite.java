@@ -7,10 +7,17 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 
 import javax.imageio.ImageIO;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
 
 public class Sprite implements Element {
+	
+	public static final byte NONE = 0;
+	public static final byte BOTH = 1;
+	public static final byte EAST = 2;
+	public static final byte SOUTH = 3;
+	
+	private int dock = NONE;
+	private int changeX = 0;
+	private int changeY = 0;
 
     private String url;
     private BufferedImage bufferedImage;
@@ -32,6 +39,10 @@ public class Sprite implements Element {
         	width = bufferedImage.getWidth();
         	height = bufferedImage.getHeight();
         }
+    }
+    
+    public void setDock(byte a) {
+    	dock = a;
     }
     
     public Sprite(String stringVar, int intX, int intY, int intWidth, int intHeight) {
@@ -63,9 +74,21 @@ public class Sprite implements Element {
 
 	@Override
 	public void drawElement(Graphics2D render, Container container) {
+		if((dock == EAST || dock == BOTH) && this.changeX == 0) this.changeX = container.getWidth() - this.x;
+		if((dock == SOUTH || dock == BOTH) && this.changeY == 0) this.changeY = container.getHeight() - this.y;
+		if(dock == EAST || dock == BOTH) this.x = container.getWidth() - changeX;
+		if(dock == SOUTH || dock == BOTH) this.y = container.getHeight() - changeY;
 		if(bufferedImage == null) return;
 		render.drawImage(bufferedImage.getScaledInstance(width, height, Image.SCALE_FAST), x, y, container);
 	}
+	
+	public void setX(int intX) {
+    	this.x = intX;
+    }
+    
+    public void setY(int intY) {
+    	this.y = intY;
+    }
 
 	@Override
 	public int getWidth() {
