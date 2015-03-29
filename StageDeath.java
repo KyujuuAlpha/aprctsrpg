@@ -8,8 +8,7 @@ public class StageDeath extends Stage {
 	@Override
 	public void init() {
 		mainDialog = new Text("", 0, 0);
-		Sprite rip = new Sprite("rip.png");
-		rip.setResizable(0.5f);
+		Sprite rip = new Sprite("rip.png", 0, 0);
 		this.add(mainDialog, rip);
 		mainDialog.setText("HAH YOU DIED");
 	}

@@ -109,9 +109,9 @@ public class StagePrologue extends Stage {
         a.setLabel("Tank", true); //the setLabel methods doesn't need the addElement method to update the label
         b.setLabel("Normal", true); //the setLabel method had to parameters. The first is the new text, and the second is a boolean value that 
         c.setLabel("Assassin", true);// decides whether or not the button is clickeable
-        d = new Sprite("tank.png", 0.5f);//adds a sprite, located on the rightmost pane to enhance game experience
-        e = new Sprite("norm.png", 0.5f);
-        f = new Sprite("assassin.png", 0.5f);
+        d = new Sprite("tank.png", 0, 0);//adds a sprite, located on the rightmost pane to enhance game experience
+        e = new Sprite("norm.png", 0, 0);
+        f = new Sprite("assassin.png", 0, 0);
         this.add(c, d, e, f);
         mainDialog.setText("What CLASS will you choose?", "Tank - High Health", "Normal - Average", "Assassin - High Speed/Attack");
     }

@@ -51,24 +51,24 @@ public class StageBattle extends Stage {
 		this.add(fightButton, ability0, ability1, ability2, ability3, runButton, playerStat, opponentStat, mainDialog);
 		
 		//the following methods check what picture should be put on the rightmost pane
-		if(DataHandler.player instanceof Tank) this.add(new Sprite("tank.png", 0.5f));
-		else if(DataHandler.player instanceof Assassin) this.add(new Sprite("assassin.png", 0.5f));
-		else this.add(new Sprite("norm.png", 0.5f));
+		if(DataHandler.player instanceof Tank) this.add(new Sprite("tank.png", 0, 0));
+		else if(DataHandler.player instanceof Assassin) this.add(new Sprite("assassin.png", 0, 0));
+		else this.add(new Sprite("norm.png", 0, 0));
 				
 		if(DataHandler.opponent instanceof Zombie) {
-			if(new Random().nextInt(2) == 0) this.add(new Sprite("minion.png", 0.5f)); //a random conditional to determine which one will be added
-			else this.add(new Sprite("minion2.png", 0.5f));
+			if(new Random().nextInt(2) == 0) this.add(new Sprite("minion.png", 0, 0)); //a random conditional to determine which one will be added
+			else this.add(new Sprite("minion2.png", 0, 0));
 		} else if(DataHandler.source instanceof StageMotherZombie) {
-			if(DataHandler.opponent instanceof Mother) this.add(new Sprite("boss4.png", 0.5f));
+			if(DataHandler.opponent instanceof Mother) this.add(new Sprite("boss4.png", 0, 0));
 			else {
 				switch(new Random().nextInt(3)) { 
-					case 0: this.add(new Sprite("boss1.png", 0.5f)); break;
-					case 1: this.add(new Sprite("boss2.png", 0.5f)); break;
-					case 2: this.add(new Sprite("boss3.png", 0.5f)); break;
-					default: this.add(new Sprite("guy.png", 0.5f)); break;
+					case 0: this.add(new Sprite("boss1.png", 0, 0)); break;
+					case 1: this.add(new Sprite("boss2.png", 0, 0)); break;
+					case 2: this.add(new Sprite("boss3.png", 0, 0)); break;
+					default: this.add(new Sprite("guy.png", 0, 0)); break;
 				}
 			}
-		} else if(DataHandler.opponent instanceof EntityCreature) this.add(new Sprite("guy.png", 0.5f));
+		} else if(DataHandler.opponent instanceof EntityCreature) this.add(new Sprite("guy.png", 0, 0));
 		fightButton.setEnabled(false);
 		runButton.setEnabled(false);
 		playerTurn();
