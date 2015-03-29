@@ -1,3 +1,5 @@
+import java.awt.Dimension;
+
 import ui.Display;
 import util.Utilities;
 
@@ -17,5 +19,6 @@ public class Engine {
         displayVar.addStage(new StageEndGame(data)); //8
         displayVar.addStage(new StageDeath(data)); //9
         displayVar.begin();
+        displayVar.setMinimumSize(new Dimension(600, 600));
     }
 }

@@ -30,6 +30,10 @@ public class Choice extends DockedElement implements Element, TypeMouse {
     public Choice() {
         this.label = "Choice";
         this.enabled = true;
+        this.x = 0;
+        this.y = 0;
+        this.width = 100;
+        this.height = 25;
     }
 
     public Choice(String stringVar) {
