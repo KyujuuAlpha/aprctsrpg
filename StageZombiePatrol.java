@@ -9,7 +9,7 @@ public class StageZombiePatrol extends Stage {
      * but with varying difficulty. This is where the Random class comes into play. 
      */
     //declaring variables
-    private Dialog mainDialog;
+    private Text mainDialog;
     private Choice a;
     private Zombie c1;
     private Random rand = new Random(); //creating Random instance field
@@ -19,7 +19,7 @@ public class StageZombiePatrol extends Stage {
     	int k = rand.nextInt(50) + 1;
         c1 = new Zombie(j, k); //creates a new Zombie with the damage and health of j and k
         a = new Choice("Continue");
-        mainDialog = new Dialog("");
+        mainDialog = new Text("", 0, 0);
         this.add(mainDialog, a);
         if(DataHandler.battleCompleted) {//checks whether or not the battle is completed
         	this.remove(a); //removes the button

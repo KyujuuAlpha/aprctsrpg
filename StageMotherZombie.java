@@ -3,7 +3,7 @@ import ui.elem.*;
 import util.*;
 
 public class StageMotherZombie extends Stage {
-    private Dialog mainDialog;
+    private Text mainDialog;
     private Choice a;
     private EntityCreature Boss1;
     private EntityCreature Boss2;
@@ -14,7 +14,7 @@ public class StageMotherZombie extends Stage {
     @Override
     public void init() {
         a = new Choice("Continue");
-        mainDialog = new Dialog();
+        mainDialog = new Text("", 0, 0);
         this.add(mainDialog, a);
         Boss1 = new EntityCreature(100.0, 500.0);
         Boss2 = new EntityCreature(75.0, 750.0);

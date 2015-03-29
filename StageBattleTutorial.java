@@ -4,7 +4,7 @@ import util.*;
 
 public class StageBattleTutorial extends Stage {
     //declaring variables
-    private Dialog mainDialog;
+    private Text mainDialog;
     private Choice a;
     private Choice b;
     private Choice c;
@@ -17,7 +17,7 @@ public class StageBattleTutorial extends Stage {
         c1 = new EntityCreature(10.0, 200.0);
         a = new Choice("Continue");
         b = new Choice();
-        mainDialog = new Dialog("");
+        mainDialog = new Text("", 0, 0);
         this.add(mainDialog, a);
         //this conditional checks if the battle is completed
         //if it is, then the stage moves on

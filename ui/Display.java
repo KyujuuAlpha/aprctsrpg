@@ -17,6 +17,10 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
+import ui.elem.Choice;
+import ui.elem.Element;
+import ui.elem.TypeMouse;
+
 @SuppressWarnings("serial")
 public class Display extends JFrame implements ActionListener, KeyListener, MouseListener, MouseMotionListener { 
     
@@ -41,10 +45,12 @@ public class Display extends JFrame implements ActionListener, KeyListener, Mous
         		super.paintComponent(g);
         		Graphics2D render = (Graphics2D) g;
         		setBackground(Color.WHITE);
-        		getStage().drawAll(render, this);
+        		getStage().drawAll(render);
         	}
         });
         this.addKeyListener(this);
+        getContentPane().addMouseListener(this);
+        getContentPane().addMouseMotionListener(this);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.pack();
         this.setVisible(true);
@@ -64,7 +70,7 @@ public class Display extends JFrame implements ActionListener, KeyListener, Mous
             else if(incrementVar == 2) { this.prevStage(); }
             else if(incrementVar > 2) { this.setStage(incrementVar - 3); }
             getStage().decreaseTicks();
-            getStage().update(this.getContentPane());
+            getStage().update();
             counter = 0;
         }
         this.repaint();
@@ -82,6 +88,7 @@ public class Display extends JFrame implements ActionListener, KeyListener, Mous
      */
     public void addStage(Stage stageVar) {
         stageList.add(stageVar);
+        stageVar.setContainer(getContentPane());
         stageVar.setID(stageList.size() - 1);
     }
     
@@ -168,6 +175,15 @@ public class Display extends JFrame implements ActionListener, KeyListener, Mous
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
+		for(Element element : getStage().getElements()) {
+			if(element instanceof TypeMouse && e.getX() > element.getX() && e.getY() > element.getY() && e.getX() < element.getWidth() + element.getX() && e.getY() < element.getHeight() + element.getY()) {
+				((TypeMouse)element).mouseClicked();
+				if(element instanceof Choice && ((Choice)element).isEnabled()) {
+					getStage().choiceClicked(element);
+					break;
+				}
+			}
+		}
 	}
 
 	@Override
@@ -180,9 +196,17 @@ public class Display extends JFrame implements ActionListener, KeyListener, Mous
 
 	@Override
 	public void mousePressed(MouseEvent e) {
+		for(Element element : getStage().getElements()) {
+			if(element instanceof TypeMouse && e.getX() > element.getX() && e.getY() > element.getY() && e.getX() < element.getWidth() + element.getX() && e.getY() < element.getHeight() + element.getY()) {
+				((TypeMouse)element).mouseDown();
+			}
+		}
 	}
 
 	@Override
 	public void mouseReleased(MouseEvent e) {
+		for(Element element : getStage().getElements()) {
+			if(element instanceof TypeMouse) ((TypeMouse)element).mouseUp();
+		}
 	}
 }

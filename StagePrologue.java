@@ -25,7 +25,7 @@ public class StagePrologue extends Stage {
      * After every stage, the method nextStage() will be used to tell the engine to move to the next stage listed in the array.
      * The next stage in the order will be stageTeam();
      */
-    private Dialog mainDialog;
+    private Text mainDialog;
     private Choice a;
     private Choice b;    
     private Choice c;
@@ -90,10 +90,11 @@ public class StagePrologue extends Stage {
     @Override
     //this is the first method that will be called upon
     public void init() {
-        a = new Choice("START"); //creates a new Choice instance field with the text of "START"
+        a = new Choice("START", this.getWidth() - 200, this.getHeight() - 200, 100, 25); //creates a new Choice instance field with the text of "START"
+        a.setDock(Choice.BOTH);
         b = new Choice();//the choices are all located on the leftmost pane of the gui
         c = new Choice();
-        mainDialog = new Dialog(); //creates a new mainDialog instance field that is currently empty, the mainDialog is located in the middle pane of the gui
+        mainDialog = new Text("", 0, 0); //creates a new mainDialog instance field that is currently empty, the mainDialog is located in the middle pane of the gui
         this.add(mainDialog, a); //this.add adds the mainDialog and Choice a to the screen where they belong
         mainDialog.setText("Hello! Welcome to the Game!", "Press START to Continue"); //this sets the text to whatever is in the explicit parameters
     }

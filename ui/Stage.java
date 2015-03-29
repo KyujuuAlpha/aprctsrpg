@@ -15,6 +15,8 @@ public abstract class Stage {
     
     private int id = -1;
     
+    private Container containerVar;
+    
     public void setID(int intVar) {
     	id = intVar;
     }
@@ -80,17 +82,17 @@ public abstract class Stage {
         }
     }
     
-    public void drawAll(Graphics2D render, Container container) {
+    public void drawAll(Graphics2D render) {
     	for(int i = 0; i < elementList.size(); i++) {
             Element element = elementList.get(i);
-            if(element != null) element.drawElement(render, container);
+            if(element != null) element.drawElement(render, containerVar);
         }
     }
     
-    public void update(Container container) {
+    public void update() {
         for(int i = 0; i < elementList.size(); i++) {
             Element element = elementList.get(i);
-            element.updateElement(container);
+            element.updateElement(containerVar);
         }
     }
 
@@ -137,5 +139,17 @@ public abstract class Stage {
     
     public void resetIncrement() {
     	stageIncrement = 0;
+    }
+    
+    public int getWidth() {
+    	return containerVar.getWidth();
+    }
+    
+    public int getHeight() {
+    	return containerVar.getHeight();
+    }
+    
+    public void setContainer(Container c) {
+    	containerVar = c;
     }
 }

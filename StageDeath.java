@@ -3,11 +3,11 @@ import ui.elem.*;
 
 public class StageDeath extends Stage {
 
-	private Dialog mainDialog;
+	private Text mainDialog;
 	
 	@Override
 	public void init() {
-		mainDialog = new Dialog();
+		mainDialog = new Text("", 0, 0);
 		Sprite rip = new Sprite("rip.png");
 		rip.setResizable(0.5f);
 		this.add(mainDialog, rip);

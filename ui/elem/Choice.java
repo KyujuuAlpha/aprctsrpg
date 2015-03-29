@@ -5,28 +5,31 @@ import java.awt.Container;
 import java.awt.Font;
 import java.awt.FontMetrics;
 import java.awt.Graphics2D;
+import java.awt.Shape;
 import java.awt.geom.RoundRectangle2D;
 
-public class Choice implements Element {
+public class Choice implements Element, TypeMouse {
 	
-	public final byte NONE = 0;
-	public final byte BOTH = 1;
-	public final byte EAST = 2;
-	public final byte SOUTH = 3;
+	public static final byte NONE = 0;
+	public static final byte BOTH = 1;
+	public static final byte EAST = 2;
+	public static final byte SOUTH = 3;
 	
-	private int dock = BOTH;
+	private int dock = NONE;
 	private int changeX = 0;
 	private int changeY = 0;
 	
 	private String label;
     private boolean enabled;
     
-    private boolean clickedVar;
+    private boolean mouseDown = false;
     
     private String tooltip;
     
     private int x;
     private int y;
+    private int width;
+    private int height;
     
     public Choice() {
         this.label = "Choice";
@@ -38,6 +41,8 @@ public class Choice implements Element {
         this.enabled = true;
         this.x = 0;
         this.y = 0;
+        this.width = 100;
+        this.height = 25;
     }
     
     public Choice(String stringVar, int intX, int intY) {
@@ -45,6 +50,17 @@ public class Choice implements Element {
         this.enabled = true;
         this.x = intX;
         this.y = intY;
+        this.width = 100;
+        this.height = 25;
+    }
+    
+    public Choice(String stringVar, int intX, int intY, int intWidth, int intHeight) {
+        this.label = stringVar;
+        this.enabled = true;
+        this.x = intX;
+        this.y = intY;
+        this.width = intWidth;
+        this.height = intHeight;
     }
     
     public void setX(int intX) {
@@ -83,13 +99,9 @@ public class Choice implements Element {
     public boolean isEnabled() {
         return this.enabled;
     }
-   
-    public boolean isClicked() {
-    	return clickedVar;
-    }
     
-    public void setClicked(boolean flag) {
-    	clickedVar = flag;
+    public void setDock(byte a) {
+    	dock = a;
     }
     
 	@Override
@@ -98,20 +110,60 @@ public class Choice implements Element {
 
 	@Override
 	public void drawElement(Graphics2D render, Container containerVar) {
+		Shape oldClip = render.getClip();
 		if((dock == EAST || dock == BOTH) && this.changeX == 0) this.changeX = containerVar.getWidth() - this.x;
 		if((dock == SOUTH || dock == BOTH) && this.changeY == 0) this.changeY = containerVar.getHeight() - this.y;
 		if(dock == EAST || dock == BOTH) this.x = containerVar.getWidth() - changeX;
 		if(dock == SOUTH || dock == BOTH) this.y = containerVar.getHeight() - changeY;
-		int spaceX = 10;
-		int spaceY = 5;
 		int fontSize = 12;
 		int roundFactor = 2;
-		render.setFont(new Font("Arial", Font.BOLD, fontSize));
+		render.setFont(new Font("Arial", Font.PLAIN, fontSize));
 		FontMetrics fontMetrics = render.getFontMetrics(render.getFont());
 		render.setPaint(Color.LIGHT_GRAY);
-		RoundRectangle2D.Double container = new RoundRectangle2D.Double(x, y, fontMetrics.stringWidth(getLabel()) + spaceX*2, fontMetrics.getHeight() + spaceY*2, roundFactor, roundFactor);
+		if(mouseDown || !isEnabled()) render.setPaint(Color.DARK_GRAY);
+		RoundRectangle2D.Double container = new RoundRectangle2D.Double(x, y, width, height, roundFactor, roundFactor);
+		render.clip(container);
 		render.fill(container);
 		render.setPaint(Color.BLACK);
-		render.drawString(getLabel(), (int)container.getX() + spaceX, (int)container.getY() + render.getFont().getSize() + spaceY);
+		render.drawString(getLabel(), (int)container.getX() + (int)container.getWidth() / 2 - fontMetrics.stringWidth(getLabel()) / 2, (int)container.getY() + (int)container.getHeight() / 2 + render.getFont().getSize() / 2);
+		render.setClip(oldClip);
+	}
+
+	@Override
+	public void mouseClicked() {
+	}
+
+	@Override
+	public int getWidth() {
+		return width;
+	}
+
+	@Override
+	public int getHeight() {
+		return height;
+	}
+
+	@Override
+	public int getX() {
+		return x;
+	}
+
+	@Override
+	public int getY() {
+		return y;
+	}
+
+	@Override
+	public void mouseDown() {
+		mouseDown = true;
+	}
+
+	@Override
+	public void mouseUp() {
+		mouseDown = false;
+	}
+
+	@Override
+	public void mouseOver() {
 	}
 }

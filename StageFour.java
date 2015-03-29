@@ -2,7 +2,7 @@ import ui.elem.*;
 import ui.*;
 
 public class StageFour extends Stage{
-    private Dialog mainDialog;
+    private Text mainDialog;
     private Choice a;
     private int x = 0;
     private int y = 0;
@@ -38,7 +38,7 @@ public class StageFour extends Stage{
     @Override
     public void init() {
         a = new Choice("Continue");
-        mainDialog = new Dialog("");
+        mainDialog = new Text("", 0, 0);
         this.add(mainDialog, a);
         if(DataHandler.SHIELD){
             mainDialog.setText("Hi, my name is Jar-- ULTRON --vis.", "I will be helping you --TO YOUR DOOM-- during your time", "here at SHIELD.");

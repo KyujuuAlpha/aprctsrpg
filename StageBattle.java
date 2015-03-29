@@ -1,7 +1,11 @@
+import java.awt.Dialog;
 import java.util.Random;
 
-import ui.*;
-import ui.elem.*;
+import ui.Stage;
+import ui.elem.Choice;
+import ui.elem.Element;
+import ui.elem.Sprite;
+import ui.elem.Text;
 import util.Assassin;
 import util.BattleHandler;
 import util.EntityCreature;
@@ -9,7 +13,6 @@ import util.Item;
 import util.Mother;
 import util.Tank;
 import util.Zombie;
-
 
 public class StageBattle extends Stage {
 	
@@ -20,11 +23,11 @@ public class StageBattle extends Stage {
     private Choice ability3;
     private Choice runButton;
 
-    private Stat playerStat;
-    private OpponentStat opponentStat;
+    private Text playerStat;
+    private Text opponentStat;
     
     
-    private Dialog mainDialog;
+    private Text mainDialog;
     
     private int scheduleCode = 0;
     
@@ -42,9 +45,9 @@ public class StageBattle extends Stage {
         ability2 = new Choice(DataHandler.player.getAbilitiesName(2));
         ability3 = new Choice(DataHandler.player.getAbilitiesName(3));
         runButton = new Choice("Run!"); //the all powerful run method that never works
-        playerStat = new Stat(); //creates the stat. The player's are on the top right and the opponent's are on the bottom right
-        opponentStat = new OpponentStat();
-        mainDialog = new Dialog();
+        playerStat = new Text("", 0, 0); //creates the stat. The player's are on the top right and the opponent's are on the bottom right
+        opponentStat = new Text("", 0, 0);
+        mainDialog = new Text("", 0, 0);
 		this.add(fightButton, ability0, ability1, ability2, ability3, runButton, playerStat, opponentStat, mainDialog);
 		
 		//the following methods check what picture should be put on the rightmost pane

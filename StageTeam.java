@@ -6,7 +6,7 @@ public class StageTeam extends Stage {
      * This is the StageTeam class, where the player will get a chance to either join the SHIELD army or join the Island of Celebrities.
      * In this stage, after the player chooses whether or not to join the SHIELD army, they will fight a zombie or a SHIELD soldier, depending on their choice
      */
-    private Dialog mainDialog; //declaring variables
+    private Text mainDialog; //declaring variables
     private Choice a; //a choice object is a button that shows up on the left side of the menu
     private Choice b;   
     
@@ -44,7 +44,7 @@ public class StageTeam extends Stage {
     public void init() {
         a = new Choice("The Marina");
         b = new Choice("The Space Needle");
-        mainDialog = new Dialog("");
+        mainDialog = new Text("", 0, 0);
         this.add(mainDialog, a, b);
         mainDialog.setText("Option 1: The Marina - to steal a boat and travel to the Pitt-Jolie Island", "Option 2: The Space Needle - to get a good look of the area");
     }

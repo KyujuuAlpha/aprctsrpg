@@ -1,16 +1,93 @@
 package ui.elem;
 
 import java.awt.Container;
+import java.awt.Font;
+import java.awt.FontMetrics;
 import java.awt.Graphics2D;
 
 public class Text implements Element {
+	
+	private String label;
+	
+	private int x;
+	private int y;
+	private int width;
+	private int height;
+	
+	private Font font;
+	
+	public Text(String text, int intX, int intY) {
+		label = text;
+		x = intX;
+		y = intY;
+		font = new Font("Arial", Font.PLAIN, 12);
+	}
+	
+	public Text(String text, int intX, int intY, Font fontVar) {
+		label = text;
+		x = intX;
+		y = intY;
+		font = fontVar;
+	}
+	
+	public String getText() {
+		return label;
+	}
+	
+	public void setText(String... text) {
+		label = "";
+		for(int i = 0; i < text.length; i++) {
+			label += text[i];
+			if(text.length > 1 && i < text.length - 1) label += "\n";
+		}
+	}
+	
+	public void appendText(String... text) {
+		for(int i = 0; i < text.length; i++) {
+			label += text[i];
+			if(text.length > 1 && i < text.length - 1) label += "\n";
+		}
+	}
 
 	@Override
 	public void updateElement(Container container) {
-
 	}
 
 	@Override
 	public void drawElement(Graphics2D render, Container container) {
+		render.setFont(font);
+		FontMetrics fontMetrics = render.getFontMetrics(render.getFont());
+		this.width = fontMetrics.stringWidth(label);
+		String[] strings = label.split("\n");
+		if(strings != null && strings.length > 0) this.height = fontMetrics.getHeight()*strings.length;
+		else this.height = fontMetrics.getHeight();
+		drawString(render, label);
+	}
+	
+	private void drawString(Graphics2D render, String str) {
+		String[] strings = str.split("\n");
+	    for(int i = 0; i < strings.length; i++) {
+	    	if(strings[i] != "" || strings[i] != " ") render.drawString(strings[i], x, y + render.getFontMetrics().getHeight()*(i+1));
+	    }
+	}
+
+	@Override
+	public int getWidth() {
+		return width;
+	}
+
+	@Override
+	public int getHeight() {
+		return height;
+	}
+
+	@Override
+	public int getX() {
+		return x;
+	}
+
+	@Override
+	public int getY() {
+		return y;
 	}
 }
