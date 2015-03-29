@@ -11,7 +11,7 @@ public class Text extends DockedElement implements Element {
 	
 	private String label;
 	
-	private Font font;
+	private Font font = new Font("Arial", Font.PLAIN, 12);
 	
 	private Paint fontColor = Color.BLACK;
 	
@@ -19,7 +19,6 @@ public class Text extends DockedElement implements Element {
 		label = text;
 		x = intX;
 		y = intY;
-		font = new Font("Arial", Font.PLAIN, 12);
 	}
 	
 	public Text(String text, int intX, int intY, Font fontVar) {
@@ -84,12 +83,12 @@ public class Text extends DockedElement implements Element {
 	}
 	
 	@Override
-	public void setX(int intX) {
+	public void setWidth(int intX) {
 		return;
 	}
 	
 	@Override
-	public void setY(int intY) {
+	public void setHeight(int intY) {
 		return;
 	}
 }

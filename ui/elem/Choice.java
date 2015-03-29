@@ -25,6 +25,8 @@ public class Choice extends DockedElement implements Element, TypeMouse {
     private Stroke buttonStroke = null;
     private Paint strokeColor = Color.BLACK;
     
+    private Font font = new Font("Arial", Font.PLAIN, 12);
+    
     public Choice() {
         this.label = "Choice";
         this.enabled = true;
@@ -56,6 +58,10 @@ public class Choice extends DockedElement implements Element, TypeMouse {
         this.width = intWidth;
         this.height = intHeight;
     }
+    
+    public void setFont(Font fontVar) {
+		font = fontVar;
+	}
     
     public void setFontPaint(Paint paint) {
     	fontColor = paint;
@@ -107,9 +113,8 @@ public class Choice extends DockedElement implements Element, TypeMouse {
 	public void drawElement(Graphics2D render, Container containerVar) {
 		updateDock(containerVar);
 		Shape oldClip = render.getClip();
-		int fontSize = 12;
 		int roundFactor = 2;
-		render.setFont(new Font("Arial", Font.PLAIN, fontSize));
+		render.setFont(font);
 		FontMetrics fontMetrics = render.getFontMetrics(render.getFont());
 		RoundRectangle2D.Double container = new RoundRectangle2D.Double(x, y, width, height, roundFactor, roundFactor);
 		if(buttonStroke != null) {

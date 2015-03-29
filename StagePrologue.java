@@ -1,6 +1,7 @@
+import java.awt.Font;
+
 import ui.Stage;
 import ui.elem.Choice;
-import ui.elem.Text;
 import ui.elem.Element;
 import ui.elem.Sprite;
 import ui.elem.Text;
@@ -109,9 +110,11 @@ public class StagePrologue extends Stage {
         b = new Choice();//the choices are all located on the leftmost pane of the gui
         c = new Choice();
         mainDialog = new Text("", 0, 0); //creates a new mainDialog instance field that is currently empty, the mainDialog is located in the middle pane of the gui
-        mainDialog.setDock(Text.CENTER);
         this.add(mainDialog, a); //this.add adds the mainDialog and Choice a to the screen where they belong
-        mainDialog.setText("Hello! Welcome to the Game!", "Press START to Continue"); //this sets the text to whatever is in the explicit parameters
+        mainDialog.setText("AP-RC-TS RPG: The Game"); //this sets the text to whatever is in the explicit parameters
+        mainDialog.setDock(Text.CENTER);
+        mainDialog.setFont(new Font("Arial", Font.BOLD + Font.ROMAN_BASELINE, 40));
+        mainDialog.setY(500);
     }
     /*
      * all the rest of these are substages, which usually change whenever the choices or dialog needs to change.
