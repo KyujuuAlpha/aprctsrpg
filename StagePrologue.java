@@ -1,6 +1,13 @@
-import ui.*;
-import ui.elem.*;
-import util.*;
+import ui.Stage;
+import ui.elem.Choice;
+import ui.elem.Text;
+import ui.elem.Element;
+import ui.elem.Sprite;
+import ui.elem.Text;
+import util.Assassin;
+import util.EntityPlayer;
+import util.Item;
+import util.Tank;
 public class StagePrologue extends Stage {
 	
 	private DataHandler data;
@@ -98,10 +105,11 @@ public class StagePrologue extends Stage {
     //this is the first method that will be called upon
     public void init() {
         a = new Choice("START", this.getWidth() - 200, this.getHeight() - 200, 100, 25); //creates a new Choice instance field with the text of "START"
-        a.setDock(Choice.BOTH);
+        a.setDock(Choice.CENTER);
         b = new Choice();//the choices are all located on the leftmost pane of the gui
         c = new Choice();
         mainDialog = new Text("", 0, 0); //creates a new mainDialog instance field that is currently empty, the mainDialog is located in the middle pane of the gui
+        mainDialog.setDock(Text.CENTER);
         this.add(mainDialog, a); //this.add adds the mainDialog and Choice a to the screen where they belong
         mainDialog.setText("Hello! Welcome to the Game!", "Press START to Continue"); //this sets the text to whatever is in the explicit parameters
     }

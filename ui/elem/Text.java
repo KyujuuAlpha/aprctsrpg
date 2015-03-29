@@ -66,7 +66,6 @@ public class Text extends DockedElement implements Element {
 		render.setPaint(fontColor);
 		render.setFont(font);
 		FontMetrics fontMetrics = render.getFontMetrics(render.getFont());
-		this.width = fontMetrics.stringWidth(label);
 		String[] strings = label.split("\n");
 		if(strings != null && strings.length > 0) this.height = fontMetrics.getHeight()*strings.length;
 		else this.height = fontMetrics.getHeight();
@@ -74,10 +73,14 @@ public class Text extends DockedElement implements Element {
 	}
 	
 	private void drawString(Graphics2D render, String str) {
+		FontMetrics fontMetrics = render.getFontMetrics(render.getFont());
 		String[] strings = str.split("\n");
+		int newWidth = 0;
 	    for(int i = 0; i < strings.length; i++) {
-	    	if(strings[i] != "" || strings[i] != " ") render.drawString(strings[i], x, y + render.getFontMetrics().getHeight()*(i+1));
+	    	if(newWidth < fontMetrics.stringWidth(strings[i])) newWidth = fontMetrics.stringWidth(strings[i]);
+	    	if(strings[i] != "" || strings[i] != " ") render.drawString(strings[i], x, y + fontMetrics.getHeight()*(i+1));
 	    }
+	    if(this.width != newWidth) this.width = newWidth;
 	}
 	
 	@Override
