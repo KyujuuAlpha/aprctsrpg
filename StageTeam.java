@@ -1,12 +1,21 @@
+import java.awt.Font;
+
 import ui.*;
 import ui.elem.*;
 
 public class StageTeam extends Stage {
+	
+	private DataHandler data;
+	
+	public StageTeam(DataHandler dataVar) {
+		data = dataVar;
+	}
+	
     /*
      * This is the StageTeam class, where the player will get a chance to either join the SHIELD army or join the Island of Celebrities.
      * In this stage, after the player chooses whether or not to join the SHIELD army, they will fight a zombie or a SHIELD soldier, depending on their choice
      */
-    private Dialog mainDialog; //declaring variables
+    private Text mainDialog; //declaring variables
     private Choice a; //a choice object is a button that shows up on the left side of the menu
     private Choice b;   
     
@@ -27,11 +36,11 @@ public class StageTeam extends Stage {
         if(choiceObject.getLabel().equals("FIGHT")){
             nextStage();
         } else if(choiceObject.getLabel().equals("JOIN 'EM")){
-            DataHandler.SHIELD = true; 
+            data.SHIELD = true; 
             nextStage();
         }
         /*
-         * if one joins the SHIELD faction, then the boolean value true is assigned to a variable in the DataHandler, where all the data is stored.
+         * if one joins the SHIELD faction, then the boolean value true is assigned to a variable in the data, where all the data is stored.
          * This creates somewhat of an alternate storyline, but it only goes to a different headquarters
          */
     }
@@ -43,9 +52,20 @@ public class StageTeam extends Stage {
     @Override
     public void init() {
         a = new Choice("The Marina");
+        a.setFont(new Font("Arial", Font.BOLD, 12));
+        a.setX((int) (getWidth() / 2 - a.getWidth() / 2 - a.getWidth() / 2 - 10));
+        a.setDock(Text.CENTER_SOUTH);
+        a.setY(this.getHeight() - 100);
         b = new Choice("The Space Needle");
-        mainDialog = new Dialog("");
-        this.addElements(mainDialog, a, b);
+        b.setFont(new Font("Arial", Font.BOLD, 12));
+        b.setX((int) (getWidth() / 2 - b.getWidth() / 2 + b.getWidth() / 2 + 10));
+        b.setDock(Text.CENTER_SOUTH);
+        b.setY(this.getHeight() - 100);
+        mainDialog = new Text("", 0, 0);
+        mainDialog.setY(100);
+    	mainDialog.setFont(new Font("Arial", Font.PLAIN, 12));
+    	mainDialog.setDock(Text.TRUE_CENTER);
+        this.add(mainDialog, a, b);
         mainDialog.setText("Option 1: The Marina - to steal a boat and travel to the Pitt-Jolie Island", "Option 2: The Space Needle - to get a good look of the area");
     }
     

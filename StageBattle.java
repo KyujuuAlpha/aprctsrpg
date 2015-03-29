@@ -1,7 +1,11 @@
+import java.awt.Font;
 import java.util.Random;
 
-import ui.*;
-import ui.elem.*;
+import ui.Stage;
+import ui.elem.Choice;
+import ui.elem.Element;
+import ui.elem.Sprite;
+import ui.elem.Text;
 import util.Assassin;
 import util.BattleHandler;
 import util.EntityCreature;
@@ -9,24 +13,27 @@ import util.Item;
 import util.Mother;
 import util.Tank;
 import util.Zombie;
-/*
- * This is the class where all the battles are handled
- */
+
 public class StageBattle extends Stage {
-    //initializing choices
+	
+	private DataHandler data;
+	
+	public StageBattle(DataHandler dataVar) {
+		data = dataVar;
+	}
+	
     private Choice fightButton;
     private Choice ability0;
     private Choice ability1;
     private Choice ability2;
     private Choice ability3;
     private Choice runButton;
-    //initializing the stats
-    //the stats are located at the top and the bottom of the screen on the upper and lower right
-    private Stat playerStat;
-    private OpponentStat opponentStat;
+
+    private Text playerStat;
+    private Text opponentStat;
     
     
-    private Dialog mainDialog;
+    private Text mainDialog;
     
     private int scheduleCode = 0;
     
@@ -36,38 +43,65 @@ public class StageBattle extends Stage {
 
     @Override
     public void init() {
-        if(DataHandler.player == null) { this.setStage(1); return; } //if there is no player, then just start stage prologue for character creation
+        if(data.player == null) { this.setStage(1); return; } //if there is no player, then just start stage prologue for character creation
         itemVar2 = null; //sets the Item to null
+        int abilityWidth = 150;
+        ability0 = new Choice(data.player.getAbilitiesName(0)); //gets the abilities' name using a method that does just that and adds it as a new choice
+        ability0.setWidth(abilityWidth);
+        ability0.setDock(Choice.CENTER_SOUTH);
+        ability0.setX((int) (getWidth() / 2 - ability0.getWidth() - 5));
+        ability0.setY(this.getHeight() - 100 - ability0.getHeight()*2 - 10*2);
+        ability1 = new Choice(data.player.getAbilitiesName(1));
+        ability1.setWidth(abilityWidth);
+        ability1.setDock(Choice.CENTER_SOUTH);
+        ability1.setX((int) (getWidth() / 2 + 5));
+        ability1.setY(this.getHeight() - 100 - ability1.getHeight()*2 - 10*2);
+        ability2 = new Choice(data.player.getAbilitiesName(2));
+        ability2.setWidth(abilityWidth);
+        ability2.setDock(Choice.CENTER_SOUTH);
+        ability2.setX((int) (getWidth() / 2 + 5));
+        ability2.setY(this.getHeight() - 100 - ability2.getHeight() - 10);
+        ability3 = new Choice(data.player.getAbilitiesName(3));
+        ability3.setWidth(abilityWidth);
+        ability3.setDock(Choice.CENTER_SOUTH);
+        ability3.setX((int) (getWidth() / 2 - ability3.getWidth() - 5));
+        ability3.setY(this.getHeight() - 100 - ability3.getHeight() - 10);
         fightButton = new Choice("Attack"); //creates the important attack button
-        ability0 = new Choice(DataHandler.player.getAbilitiesName(0)); //gets the abilities' name using a method that does just that and adds it as a new choice
-        ability1 = new Choice(DataHandler.player.getAbilitiesName(1));
-        ability2 = new Choice(DataHandler.player.getAbilitiesName(2));
-        ability3 = new Choice(DataHandler.player.getAbilitiesName(3));
+        fightButton.setDock(Choice.CENTER_SOUTH);
+        fightButton.setWidth(ability0.getWidth() * 2 + 5*2);
+        fightButton.setX((int) (getWidth() / 2 - fightButton.getWidth() / 2));
+        fightButton.setY(this.getHeight() - 100 - ability0.getHeight()*3 - 10*3);
         runButton = new Choice("Run!"); //the all powerful run method that never works
-        playerStat = new Stat(); //creates the stat. The player's are on the top right and the opponent's are on the bottom right
-        opponentStat = new OpponentStat();
-        mainDialog = new Dialog();
-		this.addElements(fightButton, ability0, ability1, ability2, ability3, runButton, playerStat, opponentStat, mainDialog);
+        runButton.setDock(Choice.CENTER_SOUTH);
+        runButton.setWidth(ability0.getWidth() * 2 + 5*2);
+        runButton.setX((int) (getWidth() / 2 - runButton.getWidth() / 2));
+        runButton.setY(this.getHeight() - 100);
+        playerStat = new Text("", 0, 0); //creates the stat. The player's are on the top right and the opponent's are on the bottom right
+        opponentStat = new Text("", 0, 0);
+        mainDialog = new Text("", 0, 100);
+    	mainDialog.setFont(new Font("Arial", Font.PLAIN, 12));
+    	mainDialog.setDock(Text.TRUE_CENTER);
+		this.add(fightButton, ability0, ability1, ability2, ability3, runButton, playerStat, opponentStat, mainDialog);
 		
 		//the following methods check what picture should be put on the rightmost pane
-		if(DataHandler.player instanceof Tank) this.addElements(new Sprite("tank.png", 0.5f));
-		else if(DataHandler.player instanceof Assassin) this.addElements(new Sprite("assassin.png", 0.5f));
-		else this.addElements(new Sprite("norm.png", 0.5f));
+		if(data.player instanceof Tank) this.add(new Sprite("tank.png", 0, 0));
+		else if(data.player instanceof Assassin) this.add(new Sprite("assassin.png", 0, 0));
+		else this.add(new Sprite("norm.png", 0, 0));
 				
-		if(DataHandler.opponent instanceof Zombie) {
-			if(new Random().nextInt(2) == 0) this.addElements(new Sprite("minion.png", 0.5f)); //a random conditional to determine which one will be added
-			else this.addElements(new Sprite("minion2.png", 0.5f));
-		} else if(DataHandler.source instanceof StageMotherZombie) {
-			if(DataHandler.opponent instanceof Mother) this.addElements(new Sprite("boss4.png", 0.5f));
+		if(data.opponent instanceof Zombie) {
+			if(new Random().nextInt(2) == 0) this.add(new Sprite("minion.png", 0, 0)); //a random conditional to determine which one will be added
+			else this.add(new Sprite("minion2.png", 0, 0));
+		} else if(data.source instanceof StageMotherZombie) {
+			if(data.opponent instanceof Mother) this.add(new Sprite("boss4.png", 0, 0));
 			else {
 				switch(new Random().nextInt(3)) { 
-					case 0: this.addElements(new Sprite("boss1.png", 0.5f)); break;
-					case 1: this.addElements(new Sprite("boss2.png", 0.5f)); break;
-					case 2: this.addElements(new Sprite("boss3.png", 0.5f)); break;
-					default: this.addElements(new Sprite("guy.png", 0.5f)); break;
+					case 0: this.add(new Sprite("boss1.png", 0, 0)); break;
+					case 1: this.add(new Sprite("boss2.png", 0, 0)); break;
+					case 2: this.add(new Sprite("boss3.png", 0, 0)); break;
+					default: this.add(new Sprite("guy.png", 0, 0)); break;
 				}
 			}
-		} else if(DataHandler.opponent instanceof EntityCreature) this.addElements(new Sprite("guy.png", 0.5f));
+		} else if(data.opponent instanceof EntityCreature) this.add(new Sprite("guy.png", 0, 0));
 		fightButton.setEnabled(false);
 		runButton.setEnabled(false);
 		playerTurn();
@@ -84,14 +118,14 @@ public class StageBattle extends Stage {
             ability3.setEnabled(false);
             Choice choiceObject = (Choice)elementVar;
             if(choiceObject == fightButton) {
-                boolean flag = BattleHandler.playerTurn(DataHandler.player, selectedAbility, DataHandler.opponent);
+                boolean flag = BattleHandler.playerTurn(data.player, selectedAbility, data.opponent);
                 updateStats();//a method to update the stats
                 if(flag) mainDialog.appendText("\nYou dealt damage!");
                 else mainDialog.appendText("\nYour attack missed!");
                 scheduleCode = 2;
                 this.scheduleTask(30);
             } else if(choiceObject == runButton){
-                if(BattleHandler.run(DataHandler.player, DataHandler.opponent) && !(DataHandler.source instanceof StageMotherZombie)) {
+                if(BattleHandler.run(data.player, data.opponent) && !(data.source instanceof StageMotherZombie)) {
                     scheduleCode = 1;
                     mainDialog.appendText("\nYou got away safely..");
                     this.scheduleTask(30);
@@ -119,7 +153,7 @@ public class StageBattle extends Stage {
             }
         } else {
             if(elementVar == fightButton) {
-                DataHandler.player.addItem(itemVar2);
+                data.player.addItem(itemVar2);
                 endBattle();
             }
             endBattle();
@@ -138,7 +172,7 @@ public class StageBattle extends Stage {
     }
     
     private void playerTurn() {
-        if(DataHandler.opponent.getHealth() <= 0 || DataHandler.player.getHealth() <= 0){
+        if(data.opponent.getHealth() <= 0 || data.player.getHealth() <= 0){
             exitBattle();
             return;
         }
@@ -146,24 +180,24 @@ public class StageBattle extends Stage {
         fightButton.setEnabled(true);
         runButton.setEnabled(true);
         ability0.setEnabled(true);
-        ability0.setToolTip(DataHandler.player.getAbilitiesDesc(0));
+        ability0.setToolTip(data.player.getAbilitiesDesc(0));
         ability1.setEnabled(true);
-        ability1.setToolTip(DataHandler.player.getAbilitiesDesc(1));
+        ability1.setToolTip(data.player.getAbilitiesDesc(1));
         ability2.setEnabled(true);
-        ability2.setToolTip(DataHandler.player.getAbilitiesDesc(2));
+        ability2.setToolTip(data.player.getAbilitiesDesc(2));
         ability3.setEnabled(true);
-        ability3.setToolTip(DataHandler.player.getAbilitiesDesc(3));
+        ability3.setToolTip(data.player.getAbilitiesDesc(3));
         selectedAbility = -1;
         mainDialog.setText("What will you do next?");
     }
     
     private void opponentTurn() {
-        if(DataHandler.opponent.getHealth() <= 0 || DataHandler.player.getHealth() <= 0){
+        if(data.opponent.getHealth() <= 0 || data.player.getHealth() <= 0){
             exitBattle();
             return;
         }
         updateStats();
-        boolean flag = BattleHandler.creatureTurn(DataHandler.player, DataHandler.opponent);
+        boolean flag = BattleHandler.creatureTurn(data.player, data.opponent);
         updateStats();
         if(flag) mainDialog.setText("Your opponent dealt damage!");
         else mainDialog.setText("Your opponent's attack missed!");
@@ -172,27 +206,27 @@ public class StageBattle extends Stage {
     }
     
     private void updateStats(){
-        playerStat.setText("PLAYER STATS - Level: " + ((int)(DataHandler.player.getLevel()*10))/10.0D + "\nHealth: " + ((int)(DataHandler.player.getHealth()*10))/10.0D);
-        opponentStat.setText("OPPONENT STATS - Health: " + ((int)(DataHandler.opponent.getHealth()*10))/10.0D);
+        playerStat.setText("PLAYER STATS - Level: " + ((int)(data.player.getLevel()*10))/10.0D + "\nHealth: " + ((int)(data.player.getHealth()*10))/10.0D);
+        opponentStat.setText("OPPONENT STATS - Health: " + ((int)(data.opponent.getHealth()*10))/10.0D);
     }
     
     private void exitBattle() {
-        DataHandler.battleCompleted = true;
-        if(DataHandler.opponent.getHealth() <= 0){
-            DataHandler.player.leveling(DataHandler.opponent);
-            giveItem(DataHandler.opponent.randomDrop());
+        data.battleCompleted = true;
+        if(data.opponent.getHealth() <= 0){
+            data.player.leveling(data.opponent);
+            giveItem(data.opponent.randomDrop());
             return;
         }
         endBattle();
     }
     
     private void endBattle() {
-        if(DataHandler.player.getHealth() <= 0) this.setStage(9);
-        else this.setStage(DataHandler.source.getID());
+        if(data.player.getHealth() <= 0) this.setStage(9);
+        else this.setStage(data.source.getID());
     }
     
     private void giveItem(Item itemVar) {
-        this.removeElements(ability0, ability1, ability2, ability3, playerStat, opponentStat);
+        this.remove(ability0, ability1, ability2, ability3, playerStat, opponentStat);
         mainDialog.setText("YOU GOT A " + itemVar.getName().toUpperCase(), "Do you want it?");
         itemVar2 = itemVar;
         fightButton.setLabel("Accept Item", true);

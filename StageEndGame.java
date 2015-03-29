@@ -2,14 +2,21 @@ import ui.*;
 import ui.elem.*;
 
 public class StageEndGame extends Stage {
-    private Dialog mainDialog;
+	
+	private DataHandler data;
+	
+	public StageEndGame(DataHandler dataVar) {
+		data = dataVar;
+	}
+	
+    private Text mainDialog;
     private Choice a;
     private int x = 0;
     @Override
     public void init() {
-        mainDialog = new Dialog("");
+        mainDialog = new Text("", 0, 0);
         a = new Choice("So what now?");
-        this.addElements(mainDialog, a);
+        this.add(mainDialog, a);
         mainDialog.setText("You've disrupted the time-space continuum.", "Humans weren't supposed to survive the apocalypse.");
     }
     

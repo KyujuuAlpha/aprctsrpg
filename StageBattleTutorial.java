@@ -1,10 +1,19 @@
+import java.awt.Font;
+
 import ui.*;
 import ui.elem.*;
 import util.*;
 
 public class StageBattleTutorial extends Stage {
+	
+	private DataHandler data;
+	
+	public StageBattleTutorial(DataHandler dataVar) {
+		data = dataVar;
+	}
+	
     //declaring variables
-    private Dialog mainDialog;
+    private Text mainDialog;
     private Choice a;
     private Choice b;
     private Choice c;
@@ -16,19 +25,29 @@ public class StageBattleTutorial extends Stage {
         //a creature needs to be created, as it will be the opponent in this case
         c1 = new EntityCreature(10.0, 200.0);
         a = new Choice("Continue");
+        a.setFont(new Font("Arial", Font.BOLD, 12));
+        a.setX((int) (getWidth() / 2 - a.getWidth() / 2));
+        a.setY(this.getHeight() - 100);
+        a.setDock(Text.CENTER_SOUTH);
         b = new Choice();
-        mainDialog = new Dialog("");
-        this.addElements(mainDialog, a);
+        b.setFont(new Font("Arial", Font.BOLD, 12));
+        b.setX((int) (getWidth() / 2 - a.getWidth() / 2 - a.getWidth() / 2 - 10));
+        b.setY(this.getHeight() - 100);
+        b.setDock(Text.CENTER_SOUTH);
+        mainDialog = new Text("", 0, 100);
+    	mainDialog.setFont(new Font("Arial", Font.PLAIN, 12));
+    	mainDialog.setDock(Text.TRUE_CENTER);
+        this.add(mainDialog, a);
         //this conditional checks if the battle is completed
         //if it is, then the stage moves on
-        if(DataHandler.battleCompleted) {
+        if(data.battleCompleted) {
             a.setLabel("Ok");
-            DataHandler.battleCompleted = false;
+            data.battleCompleted = false;
             endBattle();
             return;
         }
         //just gives a different dialog if the player did not join SHIELD
-        if(DataHandler.SHIELD != true){ 
+        if(data.SHIELD != true){ 
             mainDialog.setText("A wild SHIELD attacked!!!");
         } else { 
             tutorialSHIELDStart();
@@ -53,7 +72,7 @@ public class StageBattleTutorial extends Stage {
         if(x == 2){ x++; tutorialTwo(); return;}
         if(x == 3){ x++; tutorialThree(); return;}
         if(x == 4){ x++; tutorialFour(); return;}
-        if(x == 5){ x++; DataHandler.prepareBattle(DataHandler.player, c1, this); this.setStage(0); return; }
+        if(x == 5){ x++; data.prepareBattle(data.player, c1, this); this.setStage(0); return; }
     }
     
     public void tutorialSHIELDStart(){
@@ -63,9 +82,16 @@ public class StageBattleTutorial extends Stage {
     //all the methods below are part of a tutorial that teaches the user how to use the interface
     public void tutorialStart(){
         a.setLabel("Attack", false);
+        a.setX((int) (getWidth() / 2 - a.getWidth() / 2));
+        a.setY(this.getHeight() - 100 - a.getHeight() - 10);
         b.setLabel("Run!", false);
+        b.setX((int) (getWidth() / 2 - b.getWidth() / 2));
+        b.setY(this.getHeight() - 100);
         c = new Choice("Skip");
-        this.addElements(b, c);
+        c.setDock(Choice.CENTER_SOUTH);
+        c.setX((int) (getWidth() / 2 - c.getWidth() / 2));
+        c.setY(this.getHeight() - 100 - c.getHeight()*2 - 10*2);
+        this.add(b, c);
         mainDialog.setText("Welcome to the Fight Screen!!!");
         //this is the timer for when to check the method taskPerformed
         this.scheduleTask(30);
@@ -92,7 +118,7 @@ public class StageBattleTutorial extends Stage {
     }
     
     public void endBattle(){
-        if(DataHandler.SHIELD){
+        if(data.SHIELD){
             mainDialog.setText("Whew! 99 Problems but a Zombie ain't one...");
         }else{
             mainDialog.setText("You killed the SHIELD scoundrels!");

@@ -1,57 +1,95 @@
 package ui.elem;
 
-import javax.swing.*;
+import java.awt.Color;
+import java.awt.Container;
+import java.awt.Font;
+import java.awt.FontMetrics;
+import java.awt.Graphics2D;
+import java.awt.Paint;
+import java.awt.Shape;
+import java.awt.Stroke;
+import java.awt.geom.RoundRectangle2D;
 
-import java.awt.Component;
-import java.awt.event.*;
-
-public class Choice implements Element, ActionListener {
-	private JPanel container;
-    private JButton guiElement; //the gui counter part of this element
+public class Choice extends DockedElement implements Element, TypeMouse {
+	
+	private String label;
+    private boolean enabled;
     
-    private String text; //internal data that holds the element's name
-    private boolean enabled; //whether the current button is enabled or not
-    
-    private boolean clickedVar;
+    private boolean mouseDown = false;
     
     private String tooltip;
     
-    public Choice() { //the default constructor if no parameters are passed
-        this.text = "Choice"; //iniialize the internal data of this element
+    private Paint fontColor = Color.BLACK;
+    private Paint backColor = Color.LIGHT_GRAY;
+    
+    private Stroke buttonStroke = null;
+    private Paint strokeColor = Color.BLACK;
+    
+    private Font font = new Font("Arial", Font.PLAIN, 12);
+    
+    public Choice() {
+        this.label = "Choice";
         this.enabled = true;
+        this.x = 0;
+        this.y = 0;
+        this.width = 100;
+        this.height = 25;
     }
 
-    /**
-     * Construct a new choice object
-     * @param stringVar The text displayed inside of the button
-     */
     public Choice(String stringVar) {
-        this.text = stringVar; //initialize by setting it to the parameter
+        this.label = stringVar;
         this.enabled = true;
+        this.x = 0;
+        this.y = 0;
+        this.width = 100;
+        this.height = 25;
     }
     
-    /**
-     * Retrieve the label of this button
-     */
+    public Choice(String stringVar, int intX, int intY) {
+        this.label = stringVar;
+        this.enabled = true;
+        this.x = intX;
+        this.y = intY;
+        this.width = 100;
+        this.height = 25;
+    }
+    
+    public Choice(String stringVar, int intX, int intY, int intWidth, int intHeight) {
+        this.label = stringVar;
+        this.enabled = true;
+        this.x = intX;
+        this.y = intY;
+        this.width = intWidth;
+        this.height = intHeight;
+    }
+    
+    public void setFont(Font fontVar) {
+		font = fontVar;
+	}
+    
+    public void setFontPaint(Paint paint) {
+    	fontColor = paint;
+    }
+    
+    public void setBackgroundPaint(Paint paint) {
+    	backColor = paint;
+    }
+    
+    public void setStroke(Stroke stroke, Paint paint) {
+    	buttonStroke = stroke;
+    	strokeColor = paint;
+    }
+    
     public String getLabel() {
-        return this.text; //access the label of this button element
+        return this.label; 
     }
     
-    /**
-     * Set a new label for this button
-     * @param stringVar The text inside of the button
-     */
     public void setLabel(String stringVar) {
-        this.text = stringVar; //set the label of this button element
+        this.label = stringVar;
     }
-    
-    /**
-     * Set the label aswell as setting it's enabled state
-     * @param stringVar The text inside of the button
-     * @param flag Whether this button is enabled or not
-     */
+
     public void setLabel(String stringVar, boolean flag) {
-        this.text = stringVar; //set the label as well as it's enabled state
+        this.label = stringVar;
         this.setEnabled(flag);
     }
     
@@ -62,64 +100,58 @@ public class Choice implements Element, ActionListener {
     public String getToolTip() {
     	return tooltip;
     }
-    
-    /**
-     * Set this button to be enabled or not
-     * @param flag Whether this button is enabled or not
-     */
+
     public void setEnabled(boolean flag) {
-        this.enabled = flag; //set whether this button is enabled or not
+        this.enabled = flag;
     }
-    
-    /**
-     * Check to see if this button is enabled
-     */
+
     public boolean isEnabled() {
-        return this.enabled; //return whether this button is enabled or note
+        return this.enabled;
     }
     
-    @Override
-    public void createElement() {
-        this.guiElement = new JButton(getLabel()); //initialze the actual gui element
-        this.guiElement.addActionListener(this); //add this object as its action listener
-        if(this.container != null) this.container.add(this.guiElement);
-   }
-    
-    @Override
-    public void removeElement() {
-    	if(this.container != null) this.container.remove(this.guiElement);
-    }
-    
-    @Override
-    public void sync() {
-        if(this.guiElement == null) return; //skip if the gui element was never created
-        this.guiElement.setText(this.text); //pass the internal data of this element to the gui counter part
-        this.guiElement.setToolTipText(tooltip);
-        this.guiElement.setEnabled(this.enabled);
-    }
-    
-    @Override
-    public Component getComponent() {
-    	return this.container;
-    }
-    
-    @Override
-    public void setComponent(Component componentVar) {
-    	this.container = (JPanel)componentVar;
-    }
-    
-    @Override
-    public void actionPerformed(ActionEvent e) { //basically call the choice clicked method when if this button is activated
-        if(this.guiElement != null && this.container != null) {
-        	this.clickedVar = true; //this button is actually clicked now :)
-        }
-    }
-    
-    public boolean isClicked() {
-    	return clickedVar; //let other classes see if this button is clicked or not!
-    }
-    
-    public void setClicked(boolean flag) {
-    	clickedVar = flag;
-    }
+	@Override
+	public void updateElement(Container container) {
+	}
+
+	@Override
+	public void drawElement(Graphics2D render, Container containerVar) {
+		updateDock(containerVar);
+		Shape oldClip = render.getClip();
+		int roundFactor = 2;
+		render.setFont(font);
+		FontMetrics fontMetrics = render.getFontMetrics(render.getFont());
+		RoundRectangle2D.Double container = new RoundRectangle2D.Double(x, y, width, height, roundFactor, roundFactor);
+		if(buttonStroke != null) {
+			Stroke oldStroke = render.getStroke();
+			render.setPaint(strokeColor);
+			render.setStroke(buttonStroke);
+			render.draw(container);
+			render.setStroke(oldStroke);
+		}
+		render.clip(container);
+		render.setPaint(backColor);
+		if(mouseDown || !isEnabled()) render.setPaint(Color.DARK_GRAY);
+		render.fill(container);
+		render.setPaint(fontColor);
+		render.drawString(getLabel(), (int)container.getX() + (int)container.getWidth() / 2 - fontMetrics.stringWidth(getLabel()) / 2, (int)container.getY() + (int)container.getHeight() / 2 + render.getFont().getSize() / 2);
+		render.setClip(oldClip);
+	}
+
+	@Override
+	public void mouseClicked() {
+	}
+
+	@Override
+	public void mouseDown() {
+		mouseDown = true;
+	}
+
+	@Override
+	public void mouseUp() {
+		mouseDown = false;
+	}
+
+	@Override
+	public void mouseOver() {
+	}
 }
