@@ -7,23 +7,9 @@ import java.awt.FontMetrics;
 import java.awt.Graphics2D;
 import java.awt.Paint;
 
-public class Text implements Element {
-	
-	public static final byte NONE = 0;
-	public static final byte BOTH = 1;
-	public static final byte EAST = 2;
-	public static final byte SOUTH = 3;
-	
-	private int dock = NONE;
-	private int changeX = 0;
-	private int changeY = 0;
+public class Text extends DockedElement implements Element {
 	
 	private String label;
-	
-	private int x;
-	private int y;
-	private int width;
-	private int height;
 	
 	private Font font;
 	
@@ -47,10 +33,6 @@ public class Text implements Element {
 		font = fontVar;
 	}
 	
-	public void setDock(byte a) {
-    	dock = a;
-    }
-	
 	public String getText() {
 		return label;
 	}
@@ -73,14 +55,6 @@ public class Text implements Element {
 	public void setFontPaint(Paint paint) {
     	fontColor = paint;
     }
-	
-	public void setX(int intX) {
-    	this.x = intX;
-    }
-    
-    public void setY(int intY) {
-    	this.y = intY;
-    }
 
 	@Override
 	public void updateElement(Container container) {
@@ -88,10 +62,7 @@ public class Text implements Element {
 
 	@Override
 	public void drawElement(Graphics2D render, Container container) {
-		if((dock == EAST || dock == BOTH) && this.changeX == 0) this.changeX = container.getWidth() - this.x;
-		if((dock == SOUTH || dock == BOTH) && this.changeY == 0) this.changeY = container.getHeight() - this.y;
-		if(dock == EAST || dock == BOTH) this.x = container.getWidth() - changeX;
-		if(dock == SOUTH || dock == BOTH) this.y = container.getHeight() - changeY;
+		updateDock(container);
 		render.setPaint(fontColor);
 		render.setFont(font);
 		FontMetrics fontMetrics = render.getFontMetrics(render.getFont());
@@ -108,24 +79,14 @@ public class Text implements Element {
 	    	if(strings[i] != "" || strings[i] != " ") render.drawString(strings[i], x, y + render.getFontMetrics().getHeight()*(i+1));
 	    }
 	}
-
+	
 	@Override
-	public int getWidth() {
-		return width;
+	public void setX(int intX) {
+		return;
 	}
-
+	
 	@Override
-	public int getHeight() {
-		return height;
-	}
-
-	@Override
-	public int getX() {
-		return x;
-	}
-
-	@Override
-	public int getY() {
-		return y;
+	public void setY(int intY) {
+		return;
 	}
 }

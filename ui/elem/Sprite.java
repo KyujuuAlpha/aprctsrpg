@@ -12,24 +12,10 @@ import java.io.File;
 
 import javax.imageio.ImageIO;
 
-public class Sprite implements Element {
-	
-	public static final byte NONE = 0;
-	public static final byte BOTH = 1;
-	public static final byte EAST = 2;
-	public static final byte SOUTH = 3;
-	
-	private int dock = NONE;
-	private int changeX = 0;
-	private int changeY = 0;
+public class Sprite extends DockedElement implements Element {
 
     private String url;
     private BufferedImage bufferedImage;
-    
-    private int x = 0;
-    private int y = 0;
-    private int width = 0;
-    private int height = 0;
     
     private Stroke imageStroke = null;
     private Paint strokeColor = Color.BLACK;
@@ -57,10 +43,6 @@ public class Sprite implements Element {
     	bufferedImage = image;
     }
     
-    public void setDock(byte a) {
-    	dock = a;
-    }
-    
     public Sprite(String stringVar, int intX, int intY, int intWidth, int intHeight) {
         setSource(stringVar);
         x = intX;
@@ -78,14 +60,6 @@ public class Sprite implements Element {
     public String getSource() {
         return this.url;
     }
-    
-    public void setWidth(int intWidth) {
-    	width = intWidth;
-    }
-    
-    public void setHeight(int intHeight) {
-    	height = intHeight;
-    }
 
     @Override
 	public void updateElement(Container container) {
@@ -93,10 +67,7 @@ public class Sprite implements Element {
 
 	@Override
 	public void drawElement(Graphics2D render, Container container) {
-		if((dock == EAST || dock == BOTH) && this.changeX == 0) this.changeX = container.getWidth() - this.x;
-		if((dock == SOUTH || dock == BOTH) && this.changeY == 0) this.changeY = container.getHeight() - this.y;
-		if(dock == EAST || dock == BOTH) this.x = container.getWidth() - changeX;
-		if(dock == SOUTH || dock == BOTH) this.y = container.getHeight() - changeY;
+		updateDock(container);
 		if(bufferedImage == null) return;
 		if(imageStroke != null) {
 			Stroke oldStroke = render.getStroke();
@@ -106,33 +77,5 @@ public class Sprite implements Element {
 			render.setStroke(oldStroke);
 		}
 		render.drawImage(bufferedImage.getScaledInstance(width, height, Image.SCALE_FAST), x, y, container);
-	}
-	
-	public void setX(int intX) {
-    	this.x = intX;
-    }
-    
-    public void setY(int intY) {
-    	this.y = intY;
-    }
-
-	@Override
-	public int getWidth() {
-		return width;
-	}
-
-	@Override
-	public int getHeight() {
-		return height;
-	}
-
-	@Override
-	public int getX() {
-		return x;
-	}
-
-	@Override
-	public int getY() {
-		return y;
 	}
 }
