@@ -1,8 +1,12 @@
 package ui.elem;
 
+import java.awt.Color;
 import java.awt.Container;
 import java.awt.Graphics2D;
 import java.awt.Image;
+import java.awt.Paint;
+import java.awt.Rectangle;
+import java.awt.Stroke;
 import java.awt.image.BufferedImage;
 import java.io.File;
 
@@ -27,6 +31,9 @@ public class Sprite implements Element {
     private int width = 0;
     private int height = 0;
     
+    private Stroke imageStroke = null;
+    private Paint strokeColor = Color.BLACK;
+    
     public Sprite() {
         setSource("");
     }
@@ -39,6 +46,15 @@ public class Sprite implements Element {
         	width = bufferedImage.getWidth();
         	height = bufferedImage.getHeight();
         }
+    }
+    
+    public void setStroke(Stroke stroke, Paint paint) {
+    	imageStroke = stroke;
+    	strokeColor = paint;
+    }
+    
+    public void setImage(BufferedImage image) {
+    	bufferedImage = image;
     }
     
     public void setDock(byte a) {
@@ -63,8 +79,11 @@ public class Sprite implements Element {
         return this.url;
     }
     
-    public void setSize(int intWidth, int intHeight) {
+    public void setWidth(int intWidth) {
     	width = intWidth;
+    }
+    
+    public void setHeight(int intHeight) {
     	height = intHeight;
     }
 
@@ -79,6 +98,13 @@ public class Sprite implements Element {
 		if(dock == EAST || dock == BOTH) this.x = container.getWidth() - changeX;
 		if(dock == SOUTH || dock == BOTH) this.y = container.getHeight() - changeY;
 		if(bufferedImage == null) return;
+		if(imageStroke != null) {
+			Stroke oldStroke = render.getStroke();
+			render.setPaint(strokeColor);
+			render.setStroke(imageStroke);
+			render.draw(new Rectangle(x, y, width, height));
+			render.setStroke(oldStroke);
+		}
 		render.drawImage(bufferedImage.getScaledInstance(width, height, Image.SCALE_FAST), x, y, container);
 	}
 	

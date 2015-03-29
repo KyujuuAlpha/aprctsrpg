@@ -5,7 +5,9 @@ import java.awt.Container;
 import java.awt.Font;
 import java.awt.FontMetrics;
 import java.awt.Graphics2D;
+import java.awt.Paint;
 import java.awt.Shape;
+import java.awt.Stroke;
 import java.awt.geom.RoundRectangle2D;
 
 public class Choice implements Element, TypeMouse {
@@ -30,6 +32,12 @@ public class Choice implements Element, TypeMouse {
     private int y;
     private int width;
     private int height;
+    
+    private Paint fontColor = Color.BLACK;
+    private Paint backColor = Color.LIGHT_GRAY;
+    
+    private Stroke buttonStroke = null;
+    private Paint strokeColor = Color.BLACK;
     
     public Choice() {
         this.label = "Choice";
@@ -61,6 +69,19 @@ public class Choice implements Element, TypeMouse {
         this.y = intY;
         this.width = intWidth;
         this.height = intHeight;
+    }
+    
+    public void setFontPaint(Paint paint) {
+    	fontColor = paint;
+    }
+    
+    public void setBackgroundPaint(Paint paint) {
+    	backColor = paint;
+    }
+    
+    public void setStroke(Stroke stroke, Paint paint) {
+    	buttonStroke = stroke;
+    	strokeColor = paint;
     }
     
     public void setX(int intX) {
@@ -119,12 +140,19 @@ public class Choice implements Element, TypeMouse {
 		int roundFactor = 2;
 		render.setFont(new Font("Arial", Font.PLAIN, fontSize));
 		FontMetrics fontMetrics = render.getFontMetrics(render.getFont());
-		render.setPaint(Color.LIGHT_GRAY);
-		if(mouseDown || !isEnabled()) render.setPaint(Color.DARK_GRAY);
 		RoundRectangle2D.Double container = new RoundRectangle2D.Double(x, y, width, height, roundFactor, roundFactor);
+		if(buttonStroke != null) {
+			Stroke oldStroke = render.getStroke();
+			render.setPaint(strokeColor);
+			render.setStroke(buttonStroke);
+			render.draw(container);
+			render.setStroke(oldStroke);
+		}
 		render.clip(container);
+		render.setPaint(backColor);
+		if(mouseDown || !isEnabled()) render.setPaint(Color.DARK_GRAY);
 		render.fill(container);
-		render.setPaint(Color.BLACK);
+		render.setPaint(fontColor);
 		render.drawString(getLabel(), (int)container.getX() + (int)container.getWidth() / 2 - fontMetrics.stringWidth(getLabel()) / 2, (int)container.getY() + (int)container.getHeight() / 2 + render.getFont().getSize() / 2);
 		render.setClip(oldClip);
 	}

@@ -1,9 +1,11 @@
 package ui.elem;
 
+import java.awt.Color;
 import java.awt.Container;
 import java.awt.Font;
 import java.awt.FontMetrics;
 import java.awt.Graphics2D;
+import java.awt.Paint;
 
 public class Text implements Element {
 	
@@ -25,6 +27,8 @@ public class Text implements Element {
 	
 	private Font font;
 	
+	private Paint fontColor = Color.BLACK;
+	
 	public Text(String text, int intX, int intY) {
 		label = text;
 		x = intX;
@@ -36,6 +40,10 @@ public class Text implements Element {
 		label = text;
 		x = intX;
 		y = intY;
+		font = fontVar;
+	}
+	
+	public void setFont(Font fontVar) {
 		font = fontVar;
 	}
 	
@@ -62,6 +70,10 @@ public class Text implements Element {
 		}
 	}
 	
+	public void setFontPaint(Paint paint) {
+    	fontColor = paint;
+    }
+	
 	public void setX(int intX) {
     	this.x = intX;
     }
@@ -80,6 +92,7 @@ public class Text implements Element {
 		if((dock == SOUTH || dock == BOTH) && this.changeY == 0) this.changeY = container.getHeight() - this.y;
 		if(dock == EAST || dock == BOTH) this.x = container.getWidth() - changeX;
 		if(dock == SOUTH || dock == BOTH) this.y = container.getHeight() - changeY;
+		render.setPaint(fontColor);
 		render.setFont(font);
 		FontMetrics fontMetrics = render.getFontMetrics(render.getFont());
 		this.width = fontMetrics.stringWidth(label);
