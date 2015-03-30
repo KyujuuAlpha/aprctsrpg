@@ -58,6 +58,11 @@ public class Sprite extends DockedElement implements Element {
         height = intHeight;
     }
     
+    public Sprite setAnchor(byte dock2) {
+    	this.setDock(dock2);
+    	return this;
+    }
+    
     public void setStroke(Stroke stroke, Paint paint) {
     	imageStroke = stroke;
     	strokeColor = paint;

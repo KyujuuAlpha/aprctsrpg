@@ -40,6 +40,8 @@ public class StageBattle extends Stage {
     private int selectedAbility = -1;
     
     private Item itemVar2;
+    
+    private Sprite opponentSprite;
 
     @Override
     public void init() {
@@ -84,24 +86,32 @@ public class StageBattle extends Stage {
 		this.add(fightButton, ability0, ability1, ability2, ability3, runButton, playerStat, opponentStat, mainDialog);
 		
 		//the following methods check what picture should be put on the rightmost pane
-		if(data.player instanceof Tank) this.add(new Sprite(data.getEntityImage(0, 0), 0, 0, 200, 200));
-		else if(data.player instanceof Assassin) this.add(new Sprite(data.getEntityImage(1, 0), 0, 0, 200, 200));
-		else this.add(new Sprite(data.getEntityImage(2, 0), 0, 0, 200, 200));
-				
+		if(data.player instanceof Tank) this.add(new Sprite(data.getEntityImage(0, 0), getWidth() / 2 - 100 - 150, getHeight() / 2 - 150, 200, 200).setAnchor(Sprite.CENTER));
+		else if(data.player instanceof Assassin) this.add(new Sprite(data.getEntityImage(1, 0), getWidth() / 2 - 100 - 150, getHeight() / 2 - 150, 200, 200).setAnchor(Sprite.CENTER));
+		else this.add(new Sprite(data.getEntityImage(2, 0), getWidth() / 2 - 100 - 150, getHeight() / 2 - 150, 200, 200).setAnchor(Sprite.CENTER));
+		playerStat.setX(getWidth() / 2 - 100 - 150);
+		playerStat.setY(getHeight() / 2 + 50);
+		playerStat.setDock(Text.CENTER);
+		
+		opponentSprite = new Sprite(getWidth() / 2 - 100 + 150, getHeight() / 2 - 150, 200, 200).setAnchor(Sprite.CENTER);
 		if(data.opponent instanceof Zombie) {
-			if(new Random().nextInt(2) == 0) this.add(new Sprite(data.getEntityImage(4, 0), 0, 0, 200, 200)); //a random conditional to determine which one will be added
-			else this.add(new Sprite(data.getEntityImage(0, 1), 0, 0, 200, 200));
+			if(new Random().nextInt(2) == 0) opponentSprite.setImage(data.getEntityImage(4, 0)); //a random conditional to determine which one will be added
+			else opponentSprite.setImage(data.getEntityImage(0, 1));
 		} else if(data.source instanceof StageMotherZombie) {
-			if(data.opponent instanceof Mother) this.add(new Sprite(data.getEntityImage(4, 1), 0, 0, 200, 200));
+			if(data.opponent instanceof Mother) opponentSprite.setImage(data.getEntityImage(4, 1));
 			else {
 				switch(new Random().nextInt(3)) { 
-					case 0: this.add(new Sprite(data.getEntityImage(1, 1), 0, 0, 200, 200)); break;
-					case 1: this.add(new Sprite(data.getEntityImage(2, 1), 0, 0, 200, 200)); break;
-					case 2: this.add(new Sprite(data.getEntityImage(3, 1), 0, 0, 200, 200)); break;
-					default: this.add(new Sprite(data.getEntityImage(3, 0), 0, 0, 200, 200)); break;
+					case 0: opponentSprite.setImage(data.getEntityImage(1, 1)); break;
+					case 1: opponentSprite.setImage(data.getEntityImage(2, 1)); break;
+					case 2: opponentSprite.setImage(data.getEntityImage(3, 1)); break;
+					default: opponentSprite.setImage(data.getEntityImage(3, 0)); break;
 				}
 			}
-		} else if(data.opponent instanceof EntityCreature) this.add(new Sprite(data.getEntityImage(3, 0), 0, 0, 200, 200));
+		} else if(data.opponent instanceof EntityCreature) opponentSprite.setImage(data.getEntityImage(3, 0));
+		this.add(opponentSprite);
+		opponentStat.setX(getWidth() / 2 - 100 + 150);
+		opponentStat.setY(getHeight() / 2 + 50);
+		opponentStat.setDock(Text.CENTER);
 		fightButton.setEnabled(false);
 		runButton.setEnabled(false);
 		playerTurn();
@@ -206,13 +216,14 @@ public class StageBattle extends Stage {
     }
     
     private void updateStats(){
-        playerStat.setText("PLAYER STATS - Level: " + ((int)(data.player.getLevel()*10))/10.0D + "\nHealth: " + ((int)(data.player.getHealth()*10))/10.0D);
-        opponentStat.setText("OPPONENT STATS - Health: " + ((int)(data.opponent.getHealth()*10))/10.0D);
+        playerStat.setText("Health: " + ((int)(data.player.getHealth()*10))/10.0D);
+        opponentStat.setText("Health: " + ((int)(data.opponent.getHealth()*10))/10.0D);
     }
     
     private void exitBattle() {
         data.battleCompleted = true;
         if(data.opponent.getHealth() <= 0){
+        	opponentSprite.setImage(data.getEntityImage(0, 2));
             data.player.leveling(data.opponent);
             giveItem(data.opponent.randomDrop());
             return;
@@ -230,6 +241,7 @@ public class StageBattle extends Stage {
         mainDialog.setText("YOU GOT A " + itemVar.getName().toUpperCase(), "Do you want it?");
         itemVar2 = itemVar;
         fightButton.setLabel("Accept Item", true);
+        runButton.setY(this.getHeight() - 100 - ability0.getHeight()*2 - 10*2);
         runButton.setLabel("Reject Item", true);
     }
 }
