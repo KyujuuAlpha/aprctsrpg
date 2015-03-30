@@ -98,10 +98,10 @@ public class StageBattle extends Stage {
 					case 0: this.add(new Sprite(data.getEntityImage(1, 1), 0, 0, 200, 200)); break;
 					case 1: this.add(new Sprite(data.getEntityImage(2, 1), 0, 0, 200, 200)); break;
 					case 2: this.add(new Sprite(data.getEntityImage(3, 1), 0, 0, 200, 200)); break;
-					default: this.add(new Sprite(data.getEntityImage(0, 3), 0, 0, 200, 200)); break;
+					default: this.add(new Sprite(data.getEntityImage(3, 0), 0, 0, 200, 200)); break;
 				}
 			}
-		} else if(data.opponent instanceof EntityCreature) this.add(new Sprite(data.getEntityImage(0, 3), 0, 0, 200, 200));
+		} else if(data.opponent instanceof EntityCreature) this.add(new Sprite(data.getEntityImage(3, 0), 0, 0, 200, 200));
 		fightButton.setEnabled(false);
 		runButton.setEnabled(false);
 		playerTurn();
