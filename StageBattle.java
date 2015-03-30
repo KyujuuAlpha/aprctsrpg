@@ -84,15 +84,15 @@ public class StageBattle extends Stage {
 		this.add(fightButton, ability0, ability1, ability2, ability3, runButton, playerStat, opponentStat, mainDialog);
 		
 		//the following methods check what picture should be put on the rightmost pane
-		if(data.player instanceof Tank) this.add(new Sprite(data.getEntityImage(0, 0), 0, 0));
-		else if(data.player instanceof Assassin) this.add(new Sprite(data.getEntityImage(1, 0), 0, 0));
-		else this.add(new Sprite(data.getEntityImage(2, 0), 0, 0));
+		if(data.player instanceof Tank) this.add(new Sprite(data.getEntityImage(0, 0), 0, 0, 200, 200));
+		else if(data.player instanceof Assassin) this.add(new Sprite(data.getEntityImage(1, 0), 0, 0, 200, 200));
+		else this.add(new Sprite(data.getEntityImage(2, 0), 0, 0, 200, 200));
 				
 		if(data.opponent instanceof Zombie) {
 			if(new Random().nextInt(2) == 0) this.add(new Sprite(data.getEntityImage(4, 0), 0, 0, 200, 200)); //a random conditional to determine which one will be added
 			else this.add(new Sprite(data.getEntityImage(0, 1), 0, 0, 200, 200));
 		} else if(data.source instanceof StageMotherZombie) {
-			if(data.opponent instanceof Mother) this.add(new Sprite(data.getEntityImage(4, 1), 0, 0));
+			if(data.opponent instanceof Mother) this.add(new Sprite(data.getEntityImage(4, 1), 0, 0, 200, 200));
 			else {
 				switch(new Random().nextInt(3)) { 
 					case 0: this.add(new Sprite(data.getEntityImage(1, 1), 0, 0, 200, 200)); break;
