@@ -89,19 +89,19 @@ public class StageBattle extends Stage {
 		else this.add(new Sprite("norm.png", 0, 0));
 				
 		if(data.opponent instanceof Zombie) {
-			if(new Random().nextInt(2) == 0) this.add(new Sprite("minion.png", 0, 0)); //a random conditional to determine which one will be added
-			else this.add(new Sprite("minion2.png", 0, 0));
+			if(new Random().nextInt(2) == 0) this.add(new Sprite(data.getEntityImage(4, 0), 0, 0, 200, 200)); //a random conditional to determine which one will be added
+			else this.add(new Sprite(data.getEntityImage(0, 1), 0, 0, 200, 200));
 		} else if(data.source instanceof StageMotherZombie) {
-			if(data.opponent instanceof Mother) this.add(new Sprite("boss4.png", 0, 0));
+			if(data.opponent instanceof Mother) this.add(new Sprite(data.getEntityImage(4, 1), 0, 0));
 			else {
 				switch(new Random().nextInt(3)) { 
-					case 0: this.add(new Sprite("boss1.png", 0, 0)); break;
-					case 1: this.add(new Sprite("boss2.png", 0, 0)); break;
-					case 2: this.add(new Sprite("boss3.png", 0, 0)); break;
-					default: this.add(new Sprite("guy.png", 0, 0)); break;
+					case 0: this.add(new Sprite(data.getEntityImage(1, 1), 0, 0, 200, 200)); break;
+					case 1: this.add(new Sprite(data.getEntityImage(2, 1), 0, 0, 200, 200)); break;
+					case 2: this.add(new Sprite(data.getEntityImage(3, 1), 0, 0, 200, 200)); break;
+					default: this.add(new Sprite(data.getEntityImage(0, 3), 0, 0, 200, 200)); break;
 				}
 			}
-		} else if(data.opponent instanceof EntityCreature) this.add(new Sprite("guy.png", 0, 0));
+		} else if(data.opponent instanceof EntityCreature) this.add(new Sprite(data.getEntityImage(0, 3), 0, 0, 200, 200));
 		fightButton.setEnabled(false);
 		runButton.setEnabled(false);
 		playerTurn();

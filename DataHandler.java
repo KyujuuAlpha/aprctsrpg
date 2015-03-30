@@ -1,5 +1,9 @@
+import java.awt.image.BufferedImage;
+
 import ui.Stage;
-import util.*;
+import util.EntityCreature;
+import util.EntityPlayer;
+import util.Item;
 
 public class DataHandler {
 	public Stage source;
@@ -9,10 +13,17 @@ public class DataHandler {
 	public boolean SHIELD;
 	public Item weapon;
 	
+	public BufferedImage entitiesSheet;
+	public BufferedImage gameOver;
+	
 	public void prepareBattle(EntityPlayer playerVar, EntityCreature entity, Stage stageVar) {
 		player = playerVar;
 		opponent = entity;
 		source = stageVar;
 		battleCompleted = false;
+	}
+	
+	public BufferedImage getEntityImage(int indexX, int indexY) {
+		return entitiesSheet.getSubimage(indexX*100, indexY*100, 100, 100);
 	}
 }

@@ -14,7 +14,8 @@ public class StageDeath extends Stage {
 	@Override
 	public void init() {
 		mainDialog = new Text("", 0, 0);
-		Sprite rip = new Sprite("rip.png", 0, 0);
+		Sprite rip = new Sprite();
+		rip.setImage(data.gameOver);
 		this.add(mainDialog, rip);
 		mainDialog.setText("HAH YOU DIED");
 	}

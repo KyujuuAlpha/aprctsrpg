@@ -14,7 +14,6 @@ import javax.imageio.ImageIO;
 
 public class Sprite extends DockedElement implements Element {
 
-    private String url;
     private BufferedImage bufferedImage;
     
     private Stroke imageStroke = null;
@@ -32,6 +31,31 @@ public class Sprite extends DockedElement implements Element {
         	width = bufferedImage.getWidth();
         	height = bufferedImage.getHeight();
         }
+    }
+    
+    public Sprite(int intX, int intY, int intWidth, int intHeight) {
+        x = intX;
+        y = intY;
+        width = intWidth;
+        height = intHeight;
+    }
+    
+    public Sprite(BufferedImage image, int intX, int intY) {
+        x = intX;
+        y = intY;
+        bufferedImage = image;
+        if(bufferedImage != null) {
+        	width = bufferedImage.getWidth();
+        	height = bufferedImage.getHeight();
+        }
+    }
+    
+    public Sprite(BufferedImage image, int intX, int intY, int intWidth, int intHeight) {
+        bufferedImage = image;
+        x = intX;
+        y = intY;
+        width = intWidth;
+        height = intHeight;
     }
     
     public void setStroke(Stroke stroke, Paint paint) {
@@ -52,13 +76,8 @@ public class Sprite extends DockedElement implements Element {
     }
 
     public void setSource(String stringVar) {
-        this.url = stringVar;
-        try { this.bufferedImage = ImageIO.read(new File("resources/" + this.url)); //try to find if the resource exists
+        try { this.bufferedImage = ImageIO.read(new File("resources/" + stringVar)); //try to find if the resource exists
         } catch(Exception e) { this.bufferedImage = null; }
-    }
-   
-    public String getSource() {
-        return this.url;
     }
 
     @Override

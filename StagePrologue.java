@@ -142,11 +142,11 @@ public class StagePrologue extends Stage {
         c.setLabel("Assassin", true);// decides whether or not the button is clickable
         c.setX((int) (getWidth() / 2 - c.getWidth() / 2 + c.getWidth() + 10));
         c.setY(this.getHeight() - 100);
-        d = new Sprite("tank.png", getWidth() / 2 - 50 - 120, getHeight() / 2 - 150, 100, 200);//adds a sprite, located on the rightmost pane to enhance game experience
+        d = new Sprite(data.getEntityImage(0, 0), getWidth() / 2 - 100 - 200, getHeight() / 2 - 150, 200, 200); //tank
         d.setDock(Sprite.CENTER);
-        e = new Sprite("norm.png", getWidth() / 2 - 50, getHeight() / 2 - 150, 100, 200);
+        e = new Sprite(data.getEntityImage(2, 0), getWidth() / 2 - 100, getHeight() / 2 - 150, 200, 200); //norm
         e.setDock(Sprite.CENTER);
-        f = new Sprite("assassin.png", getWidth() / 2 - 50 + 120, getHeight() / 2 - 150, 100, 200);
+        f = new Sprite(data.getEntityImage(1, 0), getWidth() / 2 - 100 + 200, getHeight() / 2 - 150, 200, 200); //assassin
         f.setDock(Sprite.CENTER);
         this.add(c, d, e, f);
         mainDialog.setText("What CLASS will you choose?", "Tank - High Health", "Normal - Average", "Assassin - High Speed/Attack");
