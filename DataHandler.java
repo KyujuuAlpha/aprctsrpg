@@ -26,4 +26,13 @@ public class DataHandler {
 	public BufferedImage getEntityImage(int indexX, int indexY) {
 		return entitiesSheet.getSubimage(indexX*100, indexY*100, 100, 100);
 	}
+	
+	public void reset() {
+		source = null;
+		player = null;
+		opponent = null;
+		battleCompleted = false;
+		SHIELD = false;
+		weapon = null;
+	}
 }

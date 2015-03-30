@@ -11,6 +11,7 @@ public class Engine {
     public static void main(String[] args) {
     	Utilities.init();
     	DataHandler data = new DataHandler();
+    	data.reset();
     	try {
     		data.entitiesSheet = ImageIO.read(new File("resources/entities.png"));
     		data.gameOver = ImageIO.read(new File("resources/rip.png"));
